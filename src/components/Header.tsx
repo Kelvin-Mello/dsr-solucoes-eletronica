@@ -45,7 +45,13 @@ export function Header() {
         </Link>
 
         {/* Navigation links */}
-        <nav className="hidden lg:flex items-center gap-5 text-xs font-medium uppercase tracking-wider">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-5 text-xs font-medium uppercase tracking-wider">
+          <Link
+            href="/"
+            className="text-[#c6d4df] hover:text-[#66c0f4] transition-colors"
+          >
+            Início
+          </Link>
           <Link
             href="/produtos"
             className="text-[#66c0f4] hover:text-[#85d1f7] transition-colors flex items-center gap-1.5 font-bold"
@@ -70,6 +76,12 @@ export function Header() {
             className="text-[#c6d4df] hover:text-white transition-colors"
           >
             Clientes
+          </Link>
+          <Link
+            href="/sobre"
+            className="text-[#c6d4df] hover:text-white transition-colors"
+          >
+            Sobre
           </Link>
           <Link
             href="/trabalhe-conosco"
