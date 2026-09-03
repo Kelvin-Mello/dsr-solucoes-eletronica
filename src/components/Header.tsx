@@ -47,7 +47,7 @@ export function Header() {
         {/* Navigation links */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
           <Link
-            href="/produtos/retificador-industrial-trifasico-alta-potencia"
+            href="/produtos"
             className="text-[#66c0f4] hover:text-[#85d1f7] transition-colors flex items-center gap-1.5 font-semibold"
           >
             <Cpu className="h-4 w-4" />

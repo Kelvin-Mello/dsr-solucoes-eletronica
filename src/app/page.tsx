@@ -62,11 +62,11 @@ export default function Home() {
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-4 pt-4">
                 <Link
-                  href={`/produtos/${featuredProduct.slug}`}
+                  href="/produtos"
                   className="flex items-center gap-2 rounded bg-gradient-to-r from-[#66c0f4] to-[#1b75bc] hover:from-[#85d1f7] hover:to-[#2892e6] text-[#0e141b] font-bold px-6 py-3.5 text-sm uppercase tracking-wider shadow-[0_0_20px_rgba(102,192,244,0.4)] transition-all transform hover:scale-[1.02]"
                 >
                   <Cpu className="h-4 w-4" />
-                  Ver Retificador DSR-9000 Pro
+                  Explorar Catálogo Completo
                   <ArrowRight className="h-4 w-4" />
                 </Link>
 

@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://dsr-solucoes-eletronica.vercel.app"),
   title: "DSR Soluções | Eletrônica de Potência & Retrofitting Industrial",
   description: "Engenharia de ponta em eletrônica de potência pesada, retificadores industriais trifásicos, modernização e retrofit para indústria pesada.",
 };
