@@ -54,33 +54,27 @@ export function Header() {
             Catálogo de Equipamentos
           </Link>
           <Link
-            href="#retrofitting"
+            href="/servicos"
             className="text-[#c6d4df] hover:text-white transition-colors"
           >
-            Serviços de Retrofit
+            Serviços & Retrofit
           </Link>
           <Link
-            href="#engenharia"
+            href="/clientes"
             className="text-[#c6d4df] hover:text-white transition-colors"
           >
-            Engenharia & Laudos
-          </Link>
-          <Link
-            href="#sobre"
-            className="text-[#c6d4df] hover:text-white transition-colors"
-          >
-            Sobre a DSR
+            Clientes & Parceiros
           </Link>
         </nav>
 
         {/* CTA */}
         <div className="flex items-center gap-3">
           <Link
-            href="/produtos/retificador-industrial-trifasico-alta-potencia"
+            href="/produtos/retificador-padrao-industrial-modelo-rit-d"
             className="hidden sm:inline-flex items-center gap-2 rounded bg-[#2a475e] hover:bg-[#315a77] text-white px-4 py-2 text-xs font-semibold uppercase tracking-wider border border-[#3b678c] hover:border-[#66c0f4] transition-all"
           >
             <Activity className="h-3.5 w-3.5 text-[#66c0f4]" />
-            Ver Retificador DSR-9000
+            Retificador Modelo RIT-D
           </Link>
         </div>
       </div>

@@ -36,24 +36,29 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/produtos/retificador-industrial-trifasico-alta-potencia" className="hover:text-[#66c0f4] transition-colors">
-                  Retificadores Industriais Trifásicos (DSR-9000)
+                <Link href="/produtos/retificador-padrao-industrial-modelo-rit-d" className="hover:text-[#66c0f4] transition-colors">
+                  Retificador Modelo RIT-D (UDQ)
                 </Link>
               </li>
               <li>
-                <span className="hover:text-[#66c0f4] transition-colors cursor-pointer">
-                  Inversores para Fornos de Indução
-                </span>
+                <Link href="/produtos/retificador-industrial-tiristorizado-digital-dk10-dk30" className="hover:text-[#66c0f4] transition-colors">
+                  Retificador Digital DK10 / DK30
+                </Link>
               </li>
               <li>
-                <span className="hover:text-[#66c0f4] transition-colors cursor-pointer">
-                  Fontes Chaveadas de Alta Corrente DC
-                </span>
+                <Link href="/produtos/retificador-modular-chaveado-digital-dk-sr10-dk-sr30" className="hover:text-[#66c0f4] transition-colors">
+                  Retificador Modular Chaveado DK-SR
+                </Link>
               </li>
               <li>
-                <span className="hover:text-[#66c0f4] transition-colors cursor-pointer">
-                  Sistemas No-Break Industriais (UPS Dinâmico)
-                </span>
+                <Link href="/produtos" className="hover:text-[#66c0f4] transition-colors">
+                  No-breaks, Inversores & Quadros
+                </Link>
+              </li>
+              <li>
+                <Link href="/produtos" className="hover:text-[#66c0f4] transition-colors text-[#66c0f4]">
+                  Ver Catálogo Completo (27 Itens) →
+                </Link>
               </li>
             </ul>
           </div>
@@ -61,14 +66,34 @@ export function Footer() {
           {/* Col 3 */}
           <div>
             <h4 className="font-semibold text-white uppercase text-xs tracking-wider mb-4 border-b border-[#2a475e] pb-2">
-              Engenharia & Retrofitting
+              Engenharia & Serviços
             </h4>
             <ul className="space-y-2 text-xs">
-              <li>Modernização de Pontes Tiristorizadas</li>
-              <li>Substituição de Módulos GTO por IGBT</li>
-              <li>Filtragem Ativa e Correção de Harmônicos</li>
-              <li>Manutenção Preditiva com Oscilografia Digital</li>
-              <li>Comissionamento e Startup em Campo</li>
+              <li>
+                <Link href="/servicos#retrofitting" className="hover:text-[#66c0f4] transition-colors">
+                  Retrofitting & Modernização
+                </Link>
+              </li>
+              <li>
+                <Link href="/servicos#digitalizacao" className="hover:text-[#66c0f4] transition-colors">
+                  Digitalização de Ativos & Telemetria
+                </Link>
+              </li>
+              <li>
+                <Link href="/servicos#manutencao-preventiva" className="hover:text-[#66c0f4] transition-colors">
+                  Manutenção Preventiva & Preditiva
+                </Link>
+              </li>
+              <li>
+                <Link href="/servicos#comissionamento" className="hover:text-[#66c0f4] transition-colors">
+                  Comissionamento & Treinamento
+                </Link>
+              </li>
+              <li>
+                <Link href="/clientes" className="hover:text-[#66c0f4] transition-colors text-[#66c0f4]">
+                  Clientes & Parceiros Homologados →
+                </Link>
+              </li>
             </ul>
           </div>
 
