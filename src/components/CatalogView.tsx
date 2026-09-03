@@ -36,6 +36,15 @@ const CATEGORY_ICONS: Record<string, React.ElementType> = {
   "Qualidade de Energia, Proteção & Cargas": ShieldCheck,
 };
 
+const CATEGORY_IMAGES: Record<string, string> = {
+  "Retificadores & Carregadores": "/images/categories/cat-retificadores.jpg",
+  "Sistemas de Energia Ininterrupta & Conversão": "/images/categories/cat-energia-ininterrupta.jpg",
+  "Quadros de Distribuição & Paralelismo": "/images/categories/cat-quadros-distribuicao.jpg",
+  "Módulos de Digitalização & Telemetria": "/images/categories/cat-modulos-digitalizacao.jpg",
+  "Supervisão, Sensores & Condicionamento": "/images/categories/cat-supervisao-sensores.jpg",
+  "Qualidade de Energia, Proteção & Cargas": "/images/categories/cat-qualidade-energia.jpg",
+};
+
 const CATEGORY_DESCRIPTIONS: Record<string, string> = {
   "Retificadores & Carregadores": "Alimentação CC segura, retificação tiristorizada e modular de alta confiabilidade para subestações e centros industriais.",
   "Sistemas de Energia Ininterrupta & Conversão": "No-breaks industriais, inversores estáticos, chaves estáticas de transferência e estabilizadores de estado sólido.",
@@ -234,29 +243,48 @@ export function CatalogView({ products }: CatalogViewProps) {
                 id={group.category.toLowerCase().replace(/\s+/g, "-")}
                 className="space-y-6 scroll-mt-24"
               >
-                {/* Category Header Banner */}
-                <div className="rounded-xl border border-[#2a475e] bg-gradient-to-r from-[#171a21] via-[#1b2e3f]/60 to-[#171a21] p-5 sm:p-6 shadow-lg">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                    <div className="flex items-center gap-3.5">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#2a475e] border border-[#66c0f4]/40 text-[#66c0f4]">
-                        <Icon className="h-6 w-6" />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                            {group.category}
-                          </h2>
-                          <span className="rounded-full bg-[#101822] px-2 py-0.5 text-xs font-mono text-[#66c0f4] border border-[#2a475e]">
-                            {group.items.length} {group.items.length === 1 ? "item" : "itens"}
-                          </span>
+                {/* Category Header Banner with Representative Image */}
+                <div className="overflow-hidden rounded-xl border border-[#2a475e] bg-gradient-to-r from-[#171a21] via-[#1b2e3f]/80 to-[#101822] shadow-lg">
+                  <div className="flex flex-col md:flex-row items-stretch justify-between">
+                    <div className="p-5 sm:p-6 flex-1 flex flex-col justify-center">
+                      <div className="flex items-center gap-3.5">
+                        <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg bg-[#2a475e] border border-[#66c0f4]/40 text-[#66c0f4]">
+                          <Icon className="h-6 w-6" />
                         </div>
-                        {description && (
-                          <p className="text-xs sm:text-sm text-[#8f98a0] mt-1 max-w-3xl">
-                            {description}
-                          </p>
-                        )}
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                              {group.category}
+                            </h2>
+                            <span className="rounded-full bg-[#101822] px-2 py-0.5 text-xs font-mono text-[#66c0f4] border border-[#2a475e]">
+                              {group.items.length} {group.items.length === 1 ? "item" : "itens"}
+                            </span>
+                          </div>
+                          {description && (
+                            <p className="text-xs sm:text-sm text-[#8f98a0] mt-1 max-w-2xl">
+                              {description}
+                            </p>
+                          )}
+                        </div>
                       </div>
                     </div>
+
+                    {/* Representative Image for this Category */}
+                    {CATEGORY_IMAGES[group.category] && (
+                      <div className="relative w-full md:w-72 h-40 md:h-auto min-h-[120px] overflow-hidden border-t md:border-t-0 md:border-l border-[#2a475e]/60 bg-[#101822] flex-shrink-0">
+                        <Image
+                          src={CATEGORY_IMAGES[group.category]}
+                          alt={group.category}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 300px"
+                          className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#171a21]/90 md:from-[#171a21]/80 via-transparent to-transparent pointer-events-none" />
+                        <span className="absolute bottom-2.5 right-2.5 rounded bg-[#101822]/90 border border-[#2a475e] px-2 py-0.5 text-[10px] font-mono text-[#66c0f4] backdrop-blur-md">
+                          Linha de Potência DSR
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
 

@@ -90,8 +90,18 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/clientes" className="hover:text-[#66c0f4] transition-colors text-[#66c0f4]">
-                  Clientes & Parceiros Homologados →
+                <Link href="/novidades" className="hover:text-[#66c0f4] transition-colors">
+                  Atividades & Novidades da Engenharia
+                </Link>
+              </li>
+              <li>
+                <Link href="/clientes" className="hover:text-[#66c0f4] transition-colors">
+                  Clientes & Parceiros Homologados
+                </Link>
+              </li>
+              <li>
+                <Link href="/trabalhe-conosco" className="hover:text-[#66c0f4] transition-colors text-[#66c0f4]">
+                  Trabalhe Conosco (Carreiras DSR) →
                 </Link>
               </li>
             </ul>

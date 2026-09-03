@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { 
   Wrench, 
   Cpu, 
@@ -13,134 +14,29 @@ import {
   PhoneCall, 
   Mail, 
   Zap, 
-  Layers, 
   Clock, 
-  FileText,
-  AlertTriangle
+  FileText
 } from "lucide-react";
+import { getAllServices } from "@/mock/services";
 
 export const metadata: Metadata = {
   title: "Serviços de Engenharia & Retrofit | DSR Soluções",
   description: "Retrofitting de retificadores e UPS, digitalização de quadros e motores, manutenção preventiva e corretiva, comissionamento e consultoria especializada.",
 };
 
-const SERVICES = [
-  {
-    id: "retrofitting",
-    title: "Retrofitting & Modernização",
-    subtitle: "Retificadores, Inversores, No-Break / UPS e Estabilizadores",
-    icon: Wrench,
-    badge: "Economia de até 65%",
-    description:
-      "A modernização eletrônica (retrofit) substitui placas analógicas antigas, circuitos descontinuados e instrumentos obsoletos por eletrônica digital moderna com IHM touchscreen e rede Modbus/Profinet, mantendo os transformadores de força, cubículos e barramentos de cobre originais.",
-    benefits: [
-      "Substituição sem necessidade de obras civis ou corte de barramentos",
-      "Redução drástica do MTTR e elevação do MTBF com módulos universais",
-      "Turnaround rápido em paradas programadas (24h a 48h)",
-      "Adição de telemetria digital para Indústria 4.0",
-      "Custo até 65% menor em comparação a um equipamento novo"
-    ],
-    applications: "Retificadores industriais obsoletos, no-breaks de grande porte, pontes tiristorizadas e estabilizadores mecânicos."
-  },
-  {
-    id: "digitalizacao",
-    title: "Digitalização de Ativos & Indústria 4.0",
-    subtitle: "Quadros de Distribuição, Motores, Transformadores e Subestações",
-    icon: Cpu,
-    badge: "Telemetria Conectada",
-    description:
-      "Transformação de painéis eletromecânicos legados em nós de dados inteligentes. Instalamos módulos transdutores digitais de tensão, corrente, temperatura e concentradores de entradas digitais comunicando diretamente via Modbus-RTU/TCP, Profinet ou Ethernet/IP.",
-    benefits: [
-      "Supervisão em tempo real de consumo (kWh), demanda (kW) e fator de potência",
-      "Detecção precoce de anomalias térmicas e sobrecargas em barramentos",
-      "Integração direta com softwares SCADA, CLPs centrais e nuvem industrial",
-      "Histórico digital de eventos com data e hora de disparos de disjuntores"
-    ],
-    applications: "Quadros gerais de baixa e média tensão (QGBT), CCMs de motores críticos e salas de baterias."
-  },
-  {
-    id: "manutencao-preventiva",
-    title: "Manutenção Preventiva Industrial",
-    subtitle: "Inspeção Preditiva, Termografia e Ensaios Periódicos",
-    icon: ShieldCheck,
-    badge: "Máxima Disponibilidade",
-    description:
-      "Planos estruturados de manutenção preventiva com inspeções termográficas por infravermelho, reaperto torquimétrico de conexões, limpeza especializada, ensaios de capacitores e baterias e calibração de instrumentos.",
-    benefits: [
-      "Eliminação de paradas não programadas em processos contínuos 24/7",
-      "Emissão de relatórios técnicos detalhados com imagens termográficas",
-      "Aferição periódica de rippple CC, tensão de flutuação e fuga a terra",
-      "Conformidade com os requisitos de auditoria e normas NR-10 e NR-12"
-    ],
-    applications: "Plantas químicas, siderúrgicas, papel & celulose, mineradoras e subestações de transmissão."
-  },
-  {
-    id: "manutencao-corretiva",
-    title: "Manutenção Corretiva & Plantão 24/7",
-    subtitle: "Diagnóstico Rápido e Reparo Especializado em Campo",
-    icon: Activity,
-    badge: "Atendimento Emergencial",
-    description:
-      "Equipe móvel de engenheiros e técnicos seniores de plantão para resposta rápida em caso de falha de sistemas de retificação, inversores ou no-breaks industriais, com estoque local de peças sobressalentes e semicondutores de potência.",
-    benefits: [
-      "Plantão técnico direto: (11) 4564-5200 e Cel/WhatsApp (11) 98038-9729",
-      "Diagnóstico avançado com osciloscopia digital e analisadores de transitórios",
-      "Reparo ou substituição ágil de módulos tiristorizados e placas de controle",
-      "Peças de reposição nacionais para rápido reestabelecimento da operação"
-    ],
-    applications: "Qualquer sistema elétrico industrial inoperante com impacto na produção."
-  },
-  {
-    id: "treinamento",
-    title: "Treinamento Técnico & Capacitação",
-    subtitle: "Operação e Manutenção para Equipes de Fábrica",
-    icon: GraduationCap,
-    badge: "Certificação DSR",
-    description:
-      "Capacitação prática e teórica in company para operadores, eletricistas e engenheiros de manutenção dos clientes, cobrindo o funcionamento de retificadores, inversores, parametrização de IHM, interpretação de alarmes e segurança elétrica.",
-    benefits: [
-      "Aulas ministradas por engenheiros desenvolvedores dos equipamentos",
-      "Material didático completo com esquemáticos elétricos e manuais comentados",
-      "Treinamento prático de simulação de falhas e procedimentos de emergência",
-      "Certificado de conclusão de horas técnicas em conformidade NR-10"
-    ],
-    applications: "Equipes de engenharia de manutenção, operadores de subestação e eletrotécnicos industriais."
-  },
-  {
-    id: "comissionamento",
-    title: "Comissionamento & Startup em Campo",
-    subtitle: "Testes em Carga, Parametrização e Entrega Técnica Assistida",
-    icon: CheckCircle2,
-    badge: "Partida Segura",
-    description:
-      "Procedimentos rigorosos de inicialização, conferência de fiação, testes de isolação dielétrica, ensaios sob carga plena com banco de carga eletrônica resistiva e parametrização sob medida para a planta.",
-    benefits: [
-      "Ensaios de capacidade real de baterias e teste de autonomia",
-      "Verificação de resposta dinâmica a degraus de carga e tempo de comutação",
-      "Ajuste fino de thresholds de alarme e integração com a rede de automação",
-      "Emissão de Termo de Entrega Técnica e ART (Anotação de Responsabilidade Técnica)"
-    ],
-    applications: "Novas instalações elétricas, ampliações de plantas e pós-retrofitting de cubículos."
-  },
-  {
-    id: "consultoria",
-    title: "Consultoria em Engenharia & Projetos Especiais",
-    subtitle: "Estudos de Qualidade de Energia, Harmônicas e Dimensionamento",
-    icon: Compass,
-    badge: "Engenharia Sênior",
-    description:
-      "Estudos aprofundados de qualidade de energia elétrica (análise de harmônicas conforme IEEE 519 e PRODIST), dimensionamento de sistemas de retificação para cargas especiais e assessoria para especificação de editais e compras técnicas.",
-    benefits: [
-      "Medição em campo com analisadores de energia Classe A de alta precisão",
-      "Projetos de filtragem de harmônicas e correção de fator de potência",
-      "Especificação técnica imparcial para otimização de CAPEX e OPEX",
-      "Suporte na resolução de problemas complexos de queima repetitiva de equipamentos"
-    ],
-    applications: "Indústrias com problemas de multas de reativos, queimas de semicondutores e planejamento elétrico."
-  }
-];
+const ICON_MAP = {
+  Wrench,
+  Cpu,
+  ShieldCheck,
+  Activity,
+  GraduationCap,
+  CheckCircle2,
+  Compass,
+};
 
 export default function ServicosPage() {
+  const services = getAllServices();
+
   return (
     <div className="min-h-screen bg-[#1b2838] text-[#c6d4df] py-8 sm:py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
@@ -150,7 +46,7 @@ export default function ServicosPage() {
             Início
           </Link>
           <ChevronRight className="h-3.5 w-3.5 text-[#2a475e]" />
-          <span className="text-[#66c0f4] font-semibold">Serviços de Engenharia</span>
+          <span className="text-[#66c0f4] font-semibold">Serviços Especializados</span>
         </nav>
 
         {/* Hero Section */}
@@ -173,7 +69,7 @@ export default function ServicosPage() {
             </h1>
 
             <p className="text-sm sm:text-base text-[#8f98a0] leading-relaxed">
-              Da modernização (retrofit) de sistemas legados à digitalização completa de subestações e manutenção preventiva 24/7. Conte com o suporte direto do time de engenharia desenvolvedor da tecnologia DSR.
+              Da modernização (retrofit) de sistemas legados à digitalização completa de subestações e manutenção preventiva 24/7. Cada serviço conta com página detalhada de escopo, entregáveis e normas atendidas.
             </p>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-[#2a475e]/60 text-xs font-mono">
@@ -200,17 +96,20 @@ export default function ServicosPage() {
         {/* Services Grid */}
         <div className="space-y-8">
           <div className="flex items-center justify-between border-b border-[#2a475e] pb-3">
-            <h2 className="text-xl font-bold text-white">Nossos Pilares de Atuação</h2>
-            <span className="text-xs font-mono text-[#66c0f4]">7 Áreas de Especialidade</span>
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-white">Nossas Áreas de Atuação Técnica</h2>
+              <p className="text-xs text-[#8f98a0] mt-0.5">Selecione um serviço para acessar a documentação técnica completa e metodologia</p>
+            </div>
+            <span className="text-xs font-mono text-[#66c0f4]">{services.length} Áreas Especializadas</span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {SERVICES.map((service, index) => {
-              const Icon = service.icon;
+            {services.map((service, index) => {
+              const Icon = ICON_MAP[service.iconName] || Wrench;
               return (
                 <div
                   key={service.id}
-                  id={service.id}
+                  id={service.slug}
                   className="rounded-xl border border-[#2a475e] bg-gradient-to-b from-[#1b2838] to-[#171a21] p-6 sm:p-8 shadow-lg hover:border-[#66c0f4]/80 transition-all flex flex-col justify-between group scroll-mt-24"
                 >
                   <div className="space-y-4">
@@ -222,11 +121,14 @@ export default function ServicosPage() {
                         </div>
                         <div>
                           <span className="text-[11px] font-mono text-[#66c0f4] uppercase tracking-wider block">
-                            Pilar 0{index + 1}
+                            Serviço 0{index + 1}
                           </span>
-                          <h3 className="text-xl font-bold text-white group-hover:text-[#66c0f4] transition-colors">
+                          <Link
+                            href={`/servicos/${service.slug}`}
+                            className="text-xl font-bold text-white group-hover:text-[#66c0f4] transition-colors"
+                          >
                             {service.title}
-                          </h3>
+                          </Link>
                         </div>
                       </div>
 
@@ -249,7 +151,7 @@ export default function ServicosPage() {
                         <CheckCircle2 className="h-3.5 w-3.5 text-[#66c0f4]" /> Diferenciais & Vantagens:
                       </h4>
                       <ul className="space-y-1.5 text-xs text-[#8f98a0]">
-                        {service.benefits.map((benefit, i) => (
+                        {service.benefits.slice(0, 4).map((benefit, i) => (
                           <li key={i} className="flex items-start gap-2">
                             <span className="h-1.5 w-1.5 rounded-full bg-[#66c0f4] mt-1.5 flex-shrink-0" />
                             <span>{benefit}</span>
@@ -267,22 +169,22 @@ export default function ServicosPage() {
                     </div>
                   </div>
 
-                  {/* Service Card Footer */}
-                  <div className="mt-6 pt-4 border-t border-[#2a475e]/60 flex items-center justify-between">
+                  {/* Service Card Footer with Direct Link to Dedicated Page */}
+                  <div className="mt-6 pt-4 border-t border-[#2a475e]/60 flex items-center justify-between gap-3">
                     <Link
-                      href="/produtos"
-                      className="text-xs font-semibold text-[#8f98a0] hover:text-[#66c0f4] flex items-center gap-1 transition-colors"
+                      href={`/servicos/${service.slug}`}
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#66c0f4] hover:text-white transition-colors"
                     >
-                      <span>Ver Equipamentos Relacionados</span>
-                      <ChevronRight className="h-3 w-3" />
+                      <span>Ver Página Completa do Serviço</span>
+                      <ChevronRight className="h-4 w-4" />
                     </Link>
 
                     <a
-                      href="mailto:engenharia@dsrsolucoes.com.br?subject=Consulta de Servico - DSR"
-                      className="inline-flex items-center gap-1.5 rounded-lg bg-[#66c0f4] hover:bg-[#85d1f7] text-[#101822] px-3.5 py-1.5 text-xs font-bold transition-all shadow-sm"
+                      href={`mailto:engenharia@dsrsolucoes.com.br?subject=Consulta de Servico - ${service.title}`}
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-[#2a475e] hover:bg-[#3b678c] text-white px-3.5 py-1.5 text-xs font-semibold transition-all border border-[#66c0f4]/30"
                     >
-                      <FileText className="h-3.5 w-3.5" />
-                      <span>Solicitar Proposta</span>
+                      <FileText className="h-3.5 w-3.5 text-[#66c0f4]" />
+                      <span>Cotação</span>
                     </a>
                   </div>
                 </div>
