@@ -1,3 +1,5 @@
+import { ProductMedia } from "./products";
+
 export interface ServiceMethodologyStep {
   step: string;
   title: string;
@@ -19,6 +21,7 @@ export interface ServiceItem {
   deliverables: string[];
   standards: string[];
   imageUrl: string;
+  midias: ProductMedia[];
 }
 
 export const SERVICES_MOCK: ServiceItem[] = [
@@ -58,7 +61,36 @@ export const SERVICES_MOCK: ServiceItem[] = [
       "Manual de operação e manutenção atualizado"
     ],
     standards: ["NR-10", "NR-12", "IEC 60146", "IEC 61439", "ISO 9001"],
-    imageUrl: "/images/categories/cat-energia-ininterrupta.jpg"
+    imageUrl: "/images/categories/cat-energia-ininterrupta.jpg",
+    midias: [
+      {
+        id: "srv-retro-1",
+        type: "image",
+        url: "/images/categories/cat-energia-ininterrupta.jpg",
+        thumbnailUrl: "/images/categories/cat-energia-ininterrupta.jpg",
+        title: "Modernização e Retrofit de Cubículos de Potência",
+        alt: "Cubículo industrial em processo de retrofit",
+        badge: "Retrofit em Campo"
+      },
+      {
+        id: "srv-retro-2",
+        type: "image",
+        url: "/images/products/rit-d-udq.jpg",
+        thumbnailUrl: "/images/products/rit-d-udq.jpg",
+        title: "Substituição de Pontes Tiristorizadas e Diodos",
+        alt: "Estágio de potência com semicondutores novos",
+        badge: "Estágio de Potência"
+      },
+      {
+        id: "srv-retro-3",
+        type: "image",
+        url: "/images/products/rit-d-supervisao.jpg",
+        thumbnailUrl: "/images/products/rit-d-supervisao.jpg",
+        title: "Instalação de Eletrônica Digital e Teclas F1-F4",
+        alt: "Módulo digital de supervisão instalado no painel",
+        badge: "Supervisão Digital"
+      }
+    ]
   },
   {
     id: "serv-digitalizacao",
@@ -94,7 +126,36 @@ export const SERVICES_MOCK: ServiceItem[] = [
       "Treinamento operacional para operadores de sala de controle"
     ],
     standards: ["NR-10", "IEC 61850", "IEEE 802.3", "Modbus IDA", "ISO 9001"],
-    imageUrl: "/images/categories/cat-modulos-digitalizacao.jpg"
+    imageUrl: "/images/categories/cat-modulos-digitalizacao.jpg",
+    midias: [
+      {
+        id: "srv-digi-1",
+        type: "image",
+        url: "/images/categories/cat-modulos-digitalizacao.jpg",
+        thumbnailUrl: "/images/categories/cat-modulos-digitalizacao.jpg",
+        title: "Transdutores Digitais em Trilho DIN",
+        alt: "Módulos de telemetria digital em trilho DIN",
+        badge: "Telemetria 4.0"
+      },
+      {
+        id: "srv-digi-2",
+        type: "image",
+        url: "/images/categories/cat-quadros-distribuicao.jpg",
+        thumbnailUrl: "/images/categories/cat-quadros-distribuicao.jpg",
+        title: "Quadro de Distribuição Conectado em Rede",
+        alt: "Quadro elétrico com medição digital",
+        badge: "Painel Inteligente"
+      },
+      {
+        id: "srv-digi-3",
+        type: "image",
+        url: "/images/products/rit-d-supervisao.jpg",
+        thumbnailUrl: "/images/products/rit-d-supervisao.jpg",
+        title: "Interface de Operação e Diagnóstico em Tempo Real",
+        alt: "Display e indicadores de status",
+        badge: "IHM Conectada"
+      }
+    ]
   },
   {
     id: "serv-manutencao-preventiva",
@@ -130,7 +191,36 @@ export const SERVICES_MOCK: ServiceItem[] = [
       "Recomendações técnicas de substituição preventiva"
     ],
     standards: ["NR-10", "ABNT NBR 5410", "ABNT NBR 14039", "IEEE 1188", "ISO 9001"],
-    imageUrl: "/images/categories/cat-supervisao-sensores.jpg"
+    imageUrl: "/images/categories/cat-supervisao-sensores.jpg",
+    midias: [
+      {
+        id: "srv-prev-1",
+        type: "image",
+        url: "/images/categories/cat-supervisao-sensores.jpg",
+        thumbnailUrl: "/images/categories/cat-supervisao-sensores.jpg",
+        title: "Inspeção de Bancos de Baterias e Sensores BMS",
+        alt: "Sala de acumuladores com sensores de medição",
+        badge: "Inspeção Preditiva"
+      },
+      {
+        id: "srv-prev-2",
+        type: "image",
+        url: "/images/categories/cat-quadros-distribuicao.jpg",
+        thumbnailUrl: "/images/categories/cat-quadros-distribuicao.jpg",
+        title: "Aferição de Barramentos e Torque de Conexões",
+        alt: "Barramentos de cobre e chaves seccionadoras",
+        badge: "Preventiva Elétrica"
+      },
+      {
+        id: "srv-prev-3",
+        type: "image",
+        url: "/images/products/rit-d-cabinet.jpg",
+        thumbnailUrl: "/images/products/rit-d-cabinet.jpg",
+        title: "Calibração de Medidores e Ensaios de Isolação",
+        alt: "Cubículo industrial em ensaio preventivo",
+        badge: "Laudo Técnico"
+      }
+    ]
   },
   {
     id: "serv-manutencao-corretiva",
@@ -166,7 +256,36 @@ export const SERVICES_MOCK: ServiceItem[] = [
       "Emissão de ART para o serviço executado"
     ],
     standards: ["NR-10", "NR-12", "IEC 60146", "ISO 9001"],
-    imageUrl: "/images/categories/cat-qualidade-energia.jpg"
+    imageUrl: "/images/categories/cat-qualidade-energia.jpg",
+    midias: [
+      {
+        id: "srv-corr-1",
+        type: "image",
+        url: "/images/categories/cat-qualidade-energia.jpg",
+        thumbnailUrl: "/images/categories/cat-qualidade-energia.jpg",
+        title: "Diagnóstico e Troca Rápida de Componentes em Campo",
+        alt: "Equipamento aberto para manutenção corretiva",
+        badge: "Plantão Emergencial"
+      },
+      {
+        id: "srv-corr-2",
+        type: "image",
+        url: "/images/products/rit-d-udq.jpg",
+        thumbnailUrl: "/images/products/rit-d-udq.jpg",
+        title: "Substituição de Módulos de Diodo e Tiristor",
+        alt: "Módulo de potência com dissipadores",
+        badge: "Reparo de Potência"
+      },
+      {
+        id: "srv-corr-3",
+        type: "image",
+        url: "/images/products/rit-d-supervisao.jpg",
+        thumbnailUrl: "/images/products/rit-d-supervisao.jpg",
+        title: "Testes de Disparo e Validação de Sinais de Controle",
+        alt: "Painel de controle com sinalização de status",
+        badge: "Diagnóstico Digital"
+      }
+    ]
   },
   {
     id: "serv-treinamento",
@@ -202,7 +321,36 @@ export const SERVICES_MOCK: ServiceItem[] = [
       "Registro de treinamento para atendimento a auditorias de segurança"
     ],
     standards: ["NR-10", "NR-12", "MTE", "ISO 9001"],
-    imageUrl: "/images/categories/cat-retificadores.jpg"
+    imageUrl: "/images/categories/cat-retificadores.jpg",
+    midias: [
+      {
+        id: "srv-trein-1",
+        type: "image",
+        url: "/images/categories/cat-retificadores.jpg",
+        thumbnailUrl: "/images/categories/cat-retificadores.jpg",
+        title: "Treinamento Prático com Retificador Modelo RIT-D",
+        alt: "Painel do retificador para treinamento de operadores",
+        badge: "Aulas Práticas"
+      },
+      {
+        id: "srv-trein-2",
+        type: "image",
+        url: "/images/products/rit-d-supervisao.jpg",
+        thumbnailUrl: "/images/products/rit-d-supervisao.jpg",
+        title: "Navegação por Teclas F1-F4 e Histórico de Alarmes",
+        alt: "IHM com menus explicativos",
+        badge: "Operação IHM"
+      },
+      {
+        id: "srv-trein-3",
+        type: "image",
+        url: "/images/products/rit-d-udq.jpg",
+        thumbnailUrl: "/images/products/rit-d-udq.jpg",
+        title: "Compreensão de Etapas da Unidade de Diodo de Queda",
+        alt: "Diodos de queda e circuitos auxiliares",
+        badge: "Módulo UDQ"
+      }
+    ]
   },
   {
     id: "serv-comissionamento",
@@ -238,7 +386,36 @@ export const SERVICES_MOCK: ServiceItem[] = [
       "Anotação de Responsabilidade Técnica (ART/CREA) de Comissionamento"
     ],
     standards: ["NR-10", "IEC 60146", "IEC 61439", "IEEE 450/1188", "ISO 9001"],
-    imageUrl: "/images/categories/cat-quadros-distribuicao.jpg"
+    imageUrl: "/images/categories/cat-quadros-distribuicao.jpg",
+    midias: [
+      {
+        id: "srv-com-1",
+        type: "image",
+        url: "/images/categories/cat-quadros-distribuicao.jpg",
+        thumbnailUrl: "/images/categories/cat-quadros-distribuicao.jpg",
+        title: "Testes sob Carga e Verificação de Disjuntores",
+        alt: "Painel de distribuição durante testes de carga",
+        badge: "Startup Assistido"
+      },
+      {
+        id: "srv-com-2",
+        type: "image",
+        url: "/images/categories/cat-supervisao-sensores.jpg",
+        thumbnailUrl: "/images/categories/cat-supervisao-sensores.jpg",
+        title: "Ensaio de Autonomia de Banco de Baterias",
+        alt: "Monitoramento de baterias durante descarga controlada",
+        badge: "Baterias"
+      },
+      {
+        id: "srv-com-3",
+        type: "image",
+        url: "/images/products/rit-d-cabinet.jpg",
+        thumbnailUrl: "/images/products/rit-d-cabinet.jpg",
+        title: "Entrega Técnica Final e Emissão de ART",
+        alt: "Equipamento em regime permanente de operação",
+        badge: "Conclusão com ART"
+      }
+    ]
   },
   {
     id: "serv-consultoria",
@@ -274,7 +451,36 @@ export const SERVICES_MOCK: ServiceItem[] = [
       "Parecer Técnico assinado por Engenheiro Especialista com ART"
     ],
     standards: ["IEEE 519", "IEC 61000-4-30", "PRODIST Módulo 8", "ONS", "ISO 9001"],
-    imageUrl: "/images/categories/cat-qualidade-energia.jpg"
+    imageUrl: "/images/categories/cat-qualidade-energia.jpg",
+    midias: [
+      {
+        id: "srv-cons-1",
+        type: "image",
+        url: "/images/categories/cat-qualidade-energia.jpg",
+        thumbnailUrl: "/images/categories/cat-qualidade-energia.jpg",
+        title: "Medição de Harmônicas e Análise Espectral",
+        alt: "Analisador de qualidade de energia e formas de onda",
+        badge: "IEEE 519"
+      },
+      {
+        id: "srv-cons-2",
+        type: "image",
+        url: "/images/categories/cat-modulos-digitalizacao.jpg",
+        thumbnailUrl: "/images/categories/cat-modulos-digitalizacao.jpg",
+        title: "Mapeamento de Transitórios e Ressonância",
+        alt: "Sinais oscilográficos de transitórios de chaveamento",
+        badge: "Diagnóstico"
+      },
+      {
+        id: "srv-cons-3",
+        type: "image",
+        url: "/images/categories/cat-quadros-distribuicao.jpg",
+        thumbnailUrl: "/images/categories/cat-quadros-distribuicao.jpg",
+        title: "Memorial Descritivo e Dimensionamento de Painéis",
+        alt: "Projeto de engenharia de distribuição de potência",
+        badge: "Projeto Executivo"
+      }
+    ]
   }
 ];
 

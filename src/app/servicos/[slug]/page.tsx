@@ -22,6 +22,7 @@ import {
   Award
 } from "lucide-react";
 import { getAllServices, getServiceBySlug, ServiceItem } from "@/mock/services";
+import { MediaCarousel } from "@/components/MediaCarousel";
 
 interface ServicePageProps {
   params: Promise<{
@@ -125,25 +126,12 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column (Main Details) */}
           <div className="lg:col-span-8 space-y-8">
-            {/* Featured Image */}
-            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-[#2a475e] bg-[#101822] shadow-xl">
-              <Image
-                src={service.imageUrl}
-                alt={service.title}
-                fill
-                sizes="(max-width: 1024px) 100vw, 800px"
-                className="object-cover object-center"
-                priority
+            {/* Media Carousel */}
+            <div className="rounded-xl bg-[#171a21]/90 p-3 md:p-4 border border-[#2a475e] shadow-xl">
+              <MediaCarousel
+                mediaList={service.midias}
+                productName={service.title}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#101822] via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono">
-                <span className="rounded bg-[#101822]/90 border border-[#2a475e] px-3 py-1 text-white backdrop-blur-md">
-                  Engenharia de Campo DSR Soluções
-                </span>
-                <span className="rounded bg-[#66c0f4] text-[#101822] px-2.5 py-1 font-bold">
-                  Atendimento Nacional
-                </span>
-              </div>
             </div>
 
             {/* In-Depth Description */}

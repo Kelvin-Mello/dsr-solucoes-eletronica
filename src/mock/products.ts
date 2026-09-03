@@ -1071,3 +1071,82 @@ export function getProductBySlug(slug: string): Product | undefined {
 export function getAllProducts(): Product[] {
   return PRODUCTS_MOCK;
 }
+
+export interface CategoryData {
+  slug: string;
+  name: string;
+  tagline: string;
+  description: string;
+  imageUrl: string;
+  badge: string;
+  featuredModels: string[];
+}
+
+export const CATEGORIES_DATA: CategoryData[] = [
+  {
+    slug: "retificadores-e-carregadores",
+    name: "Retificadores & Carregadores",
+    tagline: "Alimentação CC ininterrupta de 12V a 250Vcc e correntes até 5.000A com controle tiristorizado e modular.",
+    description: "Sistemas de retificação industrial semi ou totalmente controlados, carregadores de baterias para subestações e equipamentos formadores de baterias com supervisão microcontrolada dupla.",
+    imageUrl: "/images/categories/cat-retificadores.jpg",
+    badge: "Linha Pesada & Subestações",
+    featuredModels: ["Modelo RIT-D (UDQ)", "Modelo DK10 / DK30", "Modular DK-SR", "Formador de Baterias"]
+  },
+  {
+    slug: "sistemas-de-energia-ininterrupta-e-conversao",
+    name: "Sistemas de Energia Ininterrupta & Conversão",
+    tagline: "No-breaks industriais On-line Dupla Conversão, inversores estáticos CC/CA e chaves estáticas de transferência.",
+    description: "Conversores de energia estáticos sem interrupção de suprimento, estabilizadores eletrônicos de estado sólido sem partes móveis e chaveamento ultrarrápido < 4ms.",
+    imageUrl: "/images/categories/cat-energia-ininterrupta.jpg",
+    badge: "Energia Ininterrupta 24/7",
+    featuredModels: ["UPS Industrial On-Line", "Inversor Estático CC/CA", "Chave Estática STS", "Estabilizador Estado Sólido"]
+  },
+  {
+    slug: "quadros-de-distribuicao-e-paralelismo",
+    name: "Quadros de Distribuição & Paralelismo",
+    tagline: "Distribuição CA e CC industrial com barramentos de cobre maciço e paralelismo seguro de bancos de baterias.",
+    description: "Cubículos modulares conforme NR-10 e NR-12 com supervisão digital por circuito, disjuntores motorizados e acoplamento seguro de múltiplas fontes CC.",
+    imageUrl: "/images/categories/cat-quadros-distribuicao.jpg",
+    badge: "Distribuição & Paralelismo",
+    featuredModels: ["Quadro Distribuição AC/DC", "Quadro Paralelismo DC", "Painéis Conectados Modbus"]
+  },
+  {
+    slug: "modulos-de-digitalizacao-e-telemetria",
+    name: "Módulos de Digitalização & Telemetria",
+    tagline: "Transdutores digitais True RMS de tensão, corrente, temperatura e concentradores multicanal em trilho DIN.",
+    description: "Digitalização direta de grandezas elétricas e térmicas com isolamento galvânico de 2,5 kV e comunicação nativa Modbus-RTU para indústria 4.0.",
+    imageUrl: "/images/categories/cat-modulos-digitalizacao.jpg",
+    badge: "Telemetria & Indústria 4.0",
+    featuredModels: ["Transdutor Tensão AC/DC", "Transdutor Corrente AC/DC", "Módulo Entradas Digitais/Analógicas", "Módulo Térmico"]
+  },
+  {
+    slug: "supervisao-sensores-e-condicionamento",
+    name: "Supervisão, Sensores & Condicionamento",
+    tagline: "Sistemas BMS célula a célula para bancos de acumuladores, telemetria solar fotovoltaica e telecomando a relés.",
+    description: "Monitoramento contínuo de impedância, tensão e temperatura de baterias estacionárias, sensores térmicos blindados e isoladores de sinal em 3 vias.",
+    imageUrl: "/images/categories/cat-supervisao-sensores.jpg",
+    badge: "Supervisão Crítica",
+    featuredModels: ["Monitor BMS de Baterias", "Monitor Strings Solares", "Sensor Térmico Barramento", "Supervisão a Relés"]
+  },
+  {
+    slug: "qualidade-de-energia-protecao-e-cargas",
+    name: "Qualidade de Energia, Proteção & Cargas",
+    tagline: "Correção ativa de fator de potência em tempo real (< 5ms), amortecedores snubber de alta energia e cargas eletrônicas.",
+    description: "Equipamentos eletrônicos de potência para mitigação de reativos dinâmicos, proteção contra picos dv/dt em tiristores e bancos de carga programáveis para ensaios.",
+    imageUrl: "/images/categories/cat-qualidade-energia.jpg",
+    badge: "Proteção & Qualidade",
+    featuredModels: ["Correção Ativa de FP", "Módulo Snubber RC/RCD", "Carga Eletrônica Programável"]
+  }
+];
+
+export function getAllCategories(): CategoryData[] {
+  return CATEGORIES_DATA;
+}
+
+export function getCategoryBySlug(slug: string): CategoryData | undefined {
+  return CATEGORIES_DATA.find((c) => c.slug === slug);
+}
+
+export function getProductsByCategory(categoryName: string): Product[] {
+  return PRODUCTS_MOCK.filter((p) => p.categoria === categoryName);
+}
