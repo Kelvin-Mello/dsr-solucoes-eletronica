@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Zap, ShieldCheck, Cpu, HardHat, Mail, Phone, MapPin } from "lucide-react";
 
 export function Footer() {
@@ -9,14 +10,17 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Brand Col */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded bg-[#2a475e] text-[#66c0f4] border border-[#66c0f4]/30">
-                <Zap className="h-5 w-5" />
+            <Link href="/" className="inline-block transition-opacity hover:opacity-90">
+              <div className="relative h-12 w-40">
+                <Image
+                  src="/images/logo/logo-white.png"
+                  alt="DSR - Soluções em Eletrônica"
+                  fill
+                  sizes="160px"
+                  className="object-contain object-left"
+                />
               </div>
-              <span className="text-lg font-bold text-white tracking-wider">
-                DSR <span className="text-[#66c0f4]">SOLUÇÕES</span>
-              </span>
-            </div>
+            </Link>
             <p className="text-xs text-[#8f98a0] leading-relaxed">
               Especialistas em eletrônica de potência pesada, retificadores industriais, inversores de alta capacidade e retrofitting de sistemas elétricos críticos.
             </p>

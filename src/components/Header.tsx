@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Zap, Cpu, ShieldAlert, PhoneCall, ChevronRight, Activity, Terminal } from "lucide-react";
 
 export function Header() {
@@ -28,19 +29,18 @@ export function Header() {
       </div>
 
       {/* Main Navbar */}
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6">
-        {/* Brand */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="flex h-10 w-10 items-center justify-center rounded-md bg-gradient-to-br from-[#2a475e] to-[#1b2838] border border-[#66c0f4]/40 text-[#66c0f4] group-hover:border-[#66c0f4] group-hover:shadow-[0_0_15px_rgba(102,192,244,0.4)] transition-all">
-            <Zap className="h-6 w-6 fill-[#66c0f4]/20 text-[#66c0f4]" />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-lg font-black tracking-wider text-white flex items-center gap-1.5">
-              DSR <span className="text-[#66c0f4] font-medium text-sm tracking-normal">SOLUÇÕES</span>
-            </span>
-            <span className="text-[10px] uppercase font-mono tracking-widest text-[#8f98a0] -mt-1">
-              Eletrônica de Potência
-            </span>
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
+        {/* Brand Logo */}
+        <Link href="/" className="flex items-center group transition-opacity hover:opacity-90">
+          <div className="relative h-11 w-36 sm:w-40">
+            <Image
+              src="/images/logo/logo-white.png"
+              alt="DSR - Soluções em Eletrônica"
+              fill
+              sizes="(max-width: 640px) 144px, 160px"
+              className="object-contain object-left"
+              priority
+            />
           </div>
         </Link>
 
