@@ -46,6 +46,129 @@ export interface Product {
 
 export const PRODUCTS_MOCK: Product[] = [
   {
+    id: "dsr-rit-d",
+    slug: "retificador-padrao-industrial-modelo-rit-d",
+    nome: "Retificador Padrão Industrial Modelo RIT-D",
+    codigo_modelo: "RIT-D",
+    categoria: "Retificadores Industriais",
+    subcategoria: "Sistemas de Alimentação CC Segura e Ininterrupta",
+    tagline: "Alimentação CC ininterrupta de 12V a 250Vcc (10A a 5.000A) com controle microprocessado duplo, módulo UDQ de 4 etapas e supervisão digital avançada.",
+    descricao: "Os Retificadores Industriais Modelo RIT-D foram projetados para atender às mais rígidas especificações do mercado de energia industrial, subestações e centros de controle. Incorporam tecnologia tiristorizada (semi ou totalmente controlada de 02 a 06 pulsos, com 12 a 24 sob consulta), duplo microcontrolador dedicado para supervisão e comunicação Modbus-RTU, além de unidade de diodo de queda (UDQ) inteligente para proteção do consumidor.",
+    descricao_detalhada: "A concentração inteligente de circuitos no Módulo de Controle e Alarmes eleva drasticamente o MTBF pela redução de conexões e número de placas, além de reduzir o MTTR com módulos e placas de circuito impresso (PCIs) intercambiáveis e universais para todas as faixas de tensão (12 a 250Vcc) e redes monofásicas, bifásicas ou trifásicas. Conta com fonte auxiliar chaveada dupla (CA e CC), mantendo a supervisão 100% ativa em caso de falta de energia da rede.",
+    texto_tecnologia: "Módulo de Controle de UDQ Sequencial e Duplo Microcontrolador: A Unidade de Diodo de Queda monitora diretamente a tensão no Consumidor, detectando sobretensões no caso de falha de contator. Seu acionamento é sequencial em ordem inversa (a primeira etapa inserida em alta tensão é a última retirada quando a tensão normaliza). Configurável de 1 até 4 etapas, envia sinal de desligamento seguro do retificador se todas as etapas forem inseridas e a tensão atingir o limite pré-ajustado. A janela de alarmes armazena histórico de até 20 ocorrências com registro de data e hora, supervisionando CA Alta/Baixa, Falta de Fase, CC Baixa/Alta, Fuga a Terra positiva e negativa via acoplamento óptico e queima de fusível por via eletrônica.",
+    status_disponibilidade: "Em Estoque",
+    garantia: "24 Meses (Garantia de Fábrica DSR com Assistência Técnica Nacional)",
+    certificacoes: ["NR-10", "NR-12", "IEC 60146", "MODBUS-RTU", "ISO 9001"],
+    recursos_principais: [
+      {
+        titulo: "Supervisão Microcontrolada Dupla",
+        descricao: "Um microcontrolador dedicado exclusivamente à supervisão do retificador e um segundo dedicado à comunicação MODBUS-RTU.",
+        icone: "Cpu"
+      },
+      {
+        titulo: "Módulo UDQ de 1 a 4 Etapas",
+        descricao: "Unidade de Diodo de Queda com inserção e retirada sequencial inversa e proteção ativa contra sobretensão no consumidor.",
+        icone: "Zap"
+      },
+      {
+        titulo: "IHM Intuitiva com Teclas F1 a F4",
+        descricao: "Navegação rápida e auto-compreensível com sinóptico de status completo: CA, Retificador, Baterias e Consumidor.",
+        icone: "Activity"
+      },
+      {
+        titulo: "Histórico de 20 Alarmes com Data/Hora",
+        descricao: "Memória de eventos para CA, CC, fuga a terra óptica, fusível interrompido eletrônico e baterias em descarga.",
+        icone: "ShieldCheck"
+      }
+    ],
+    especificacoes_rapidas: [
+      { chave: "Faixa de Corrente", valor: "10 A a 5.000 A contínuos", destaque: true },
+      { chave: "Tensão de Saída CC", valor: "12 a 250 Vcc (todas as tensões padrão)", destaque: true },
+      { chave: "Topologia Tiristorizada", valor: "Semi ou Totalmente Controlada (02 a 06 pulsos / 12 a 24 sob consulta)", destaque: true },
+      { chave: "Alimentação de Entrada", valor: "Redes Monofásicas, Bifásicas e Trifásicas" },
+      { chave: "Unidade de Diodo de Queda", valor: "UDQ Inteligente de 1 a 4 Etapas", destaque: true },
+      { chave: "Comunicação Digital", valor: "MODBUS-RTU nativo (outros sob consulta)" },
+      { chave: "Placas Intercambiáveis", valor: "Mesmas PCIs para todas as tensões e correntes" },
+      { chave: "Fonte Auxiliar Chaveada", valor: "Alimentação dupla CA e CC" },
+      { chave: "Histórico de Alarmes", valor: "Até 20 ocorrências com registro de data/hora" },
+      { chave: "Proteção Fuga a Terra", valor: "Positiva e Negativa via acoplamento óptico" },
+      { chave: "MTBF / MTTR", valor: "MTBF drasticamente elevado / MTTR reduzido" },
+      { chave: "Normas Atendidas", valor: "NR-10, NR-12, IEC 60146, ISO 9001" }
+    ],
+    especificacoes_completas: [
+      {
+        grupo: "Parâmetros Elétricos e Alimentação CA",
+        itens: [
+          { parametro: "Configuração de Rede CA", valor: "Monofásica, Bifásica ou Trifásica (todas as tensões padrão industrial)" },
+          { parametro: "Frequência Nominal", valor: "50 Hz / 60 Hz ± 5%" },
+          { parametro: "Supervisão da Entrada CA", valor: "Detecção e alarme de CA Alta, CA Baixa e Falta de Fase" },
+          { parametro: "Fonte Auxiliar", valor: "Fonte chaveada interna com alimentação simultânea CA e CC" }
+        ]
+      },
+      {
+        grupo: "Saída CC, Baterias e Módulo UDQ",
+        itens: [
+          { parametro: "Tensão Nominal de Saída", valor: "12V, 24V, 48V, 110V, 125V, 220V ou 250Vcc (configurável)" },
+          { parametro: "Faixa de Corrente Contínua", valor: "10 A a 5.000 A" },
+          { parametro: "Módulo de Controle UDQ", valor: "1 a 4 etapas com inserção/retirada sequencial inversa" },
+          { parametro: "Proteção de Sobretensão no Consumidor", valor: "Envio de sinal de bloqueio e desligamento de emergência" },
+          { parametro: "Supervisão de Baterias", valor: "Monitoramento contínuo com alarme de Bateria em Descarga" }
+        ]
+      },
+      {
+        grupo: "Proteções, Alarmes e Comunicação",
+        itens: [
+          { parametro: "Proteção de Fuga a Terra", valor: "Detecção isolada por acoplamento óptico para Fuga (+) e Fuga (-)" },
+          { parametro: "Proteção de Curto-Circuito", valor: "Fusível Interrompido / Disjuntor Aberto monitorado por via eletrônica" },
+          { parametro: "Supervisão do Retificador", valor: "Alarme de Retificador Anormal e autodiagnóstico" },
+          { parametro: "Janela de Alarmes & Histórico", valor: "Registro em memória de até 20 eventos com data e hora" },
+          { parametro: "Protocolo de Comunicação", valor: "MODBUS-RTU nativo via RS-485 (outros sob consulta)" },
+          { parametro: "Interface com Operador", valor: "IHM com display digital e teclas de atalho F1, F2, F3 e F4" }
+        ]
+      },
+      {
+        grupo: "Serviços e Manutenção de Fábrica",
+        itens: [
+          { parametro: "Serviços Disponíveis", valor: "Suporte técnico, Instalação, Comissionamento, Manutenção Preventiva/Corretiva e Retrofitting" },
+          { parametro: "Disponibilidade de Peças", valor: "100% componentes de fácil aquisição no mercado nacional" },
+          { parametro: "Engenharia de Aplicação", valor: "Suporte direto pelos engenheiros da DSR (engenharia@dsrsolucoes.com.br)" }
+        ]
+      }
+    ],
+    midias: [
+      {
+        id: "media-rit-1",
+        type: "image",
+        url: "/images/products/rit-d-cabinet.jpg",
+        thumbnailUrl: "/images/products/rit-d-cabinet.jpg",
+        title: "Painel do Retificador Industrial Modelo RIT-D",
+        alt: "Cubículo industrial do Retificador DSR Modelo RIT-D com instrumentos analógicos, supervisão digital e venezianas de ventilação",
+        description: "Gabinete padrão industrial robusto com módulo de Supervisão Digital DSR, instrumentos no topo e chassi modular de alta confiabilidade.",
+        badge: "Cubículo RIT-D"
+      },
+      {
+        id: "media-rit-2",
+        type: "image",
+        url: "/images/products/rit-d-supervisao.jpg",
+        thumbnailUrl: "/images/products/rit-d-supervisao.jpg",
+        title: "Módulo DSR Supervisão Digital com Teclas F1 a F4",
+        alt: "Close-up do módulo de supervisão digital DSR com display LCD, teclas de função F1 a F4 e matriz de LEDs anunciadores",
+        description: "Supervisão microcontrolada dupla com navegação intuitiva por teclas F1-F4, status sinóptico de CA, Retificador, Baterias e Consumidor.",
+        badge: "Supervisão Digital"
+      },
+      {
+        id: "media-rit-3",
+        type: "image",
+        url: "/images/products/rit-d-udq.jpg",
+        thumbnailUrl: "/images/products/rit-d-udq.jpg",
+        title: "Unidade de Diodo de Queda (UDQ) e Estágio de Potência",
+        alt: "Estágio interno da Unidade de Diodo de Queda (UDQ) com contatores sequenciais, dissipadores de diodos e barramentos",
+        description: "Controle de UDQ inteligente de 1 a 4 etapas com inserção sequencial inversa, proteção contra sobretensão e fonte auxiliar dupla CA/CC.",
+        badge: "Módulo UDQ"
+      }
+    ]
+  },
+  {
     id: "dsr-rect-9000-pro",
     slug: "retificador-industrial-trifasico-alta-potencia",
     nome: "Retificador Industrial Trifásico DSR-9000 Pro",

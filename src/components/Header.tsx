@@ -20,7 +20,7 @@ export function Header() {
             <span className="hidden md:inline font-mono">RETROFITTING & ELETRÔNICA DE POTÊNCIA</span>
           </div>
           <div className="flex items-center gap-4">
-            <span className="font-mono text-white/70">PLANTÃO TÉCNICO: (11) 4004-9090</span>
+            <span className="font-mono text-white/70">PLANTÃO TÉCNICO: (11) 4564-5200 | (11) 98038-9729</span>
             <span className="rounded bg-[#2a475e]/50 px-2 py-0.5 font-mono text-[10px] text-[#66c0f4]">
               NR-10 / NR-12
             </span>

@@ -79,13 +79,14 @@ export function Footer() {
             </h4>
             <ul className="space-y-2.5 text-xs">
               <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-[#66c0f4]" /> (11) 4004-9090 / (11) 99876-5432
+                <Phone className="h-4 w-4 text-[#66c0f4]" /> Tel: (11) 4564-5200 | Cel: (11) 98038-9729
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-[#66c0f4]" /> contato@dsrsolucoes.com.br
+                <Mail className="h-4 w-4 text-[#66c0f4]" /> engenharia@dsrsolucoes.com.br
               </li>
               <li className="flex items-start gap-2">
-                <MapPin className="h-4 w-4 text-[#66c0f4] flex-shrink-0 mt-0.5" /> Polo Industrial - São Paulo / SP - Brasil
+                <MapPin className="h-4 w-4 text-[#66c0f4] flex-shrink-0 mt-0.5" />
+                <span>Avenida Líder, 652 - Cidade Líder<br />CEP 03586-000 - São Paulo / SP</span>
               </li>
             </ul>
           </div>
