@@ -107,11 +107,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
                 {product.nome}
               </h1>
-              {product.codigo_modelo && (
-                <div className="mt-1 text-sm md:text-base font-mono font-bold text-[#66c0f4]">
-                  {product.codigo_modelo}
-                </div>
-              )}
               <p className="mt-1.5 text-sm md:text-base text-[#8f98a0] max-w-3xl">
                 {product.tagline}
               </p>
@@ -181,7 +176,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               ))}
             </div>
 
-            {/* 4. Deep Technology Section */}
+            {/* Deep Technology Section */}
             <div className="rounded-lg bg-gradient-to-b from-[#1b2e3f]/80 to-[#171a21]/90 border border-[#3b678c] p-6 md:p-8">
               <div className="flex items-center gap-3 border-b border-[#2a475e] pb-4 mb-5">
                 <div className="flex h-9 w-9 items-center justify-center rounded bg-[#101822] border border-[#66c0f4]/50 text-[#66c0f4]">
@@ -189,16 +184,51 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-white tracking-wide">
-                    Tecnologia de Potência & Topologia Avançada
+                    Tecnologia de Potência & Topologia
                   </h3>
                   <p className="text-xs text-[#66c0f4] font-mono">
-                    Engenharia DSR Soluções • Controle em Malha Fechada 100 kHz
+                    Engenharia DSR Soluções • {product.subcategoria || "Confiabilidade Industrial"}
                   </p>
                 </div>
               </div>
               <p className="text-sm md:text-base leading-relaxed text-[#c6d4df] mb-6">
                 {product.texto_tecnologia}
               </p>
+
+              {/* Official Catalog Download Banner if available */}
+              {product.datasheet_url && (
+                <div className="mb-6 rounded-lg bg-gradient-to-r from-[#171a21] via-[#1b2e3f] to-[#171a21] border border-[#66c0f4]/40 p-4 sm:p-5 shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <div className="flex items-start sm:items-center gap-3.5">
+                    <div className="flex h-11 w-11 items-center justify-center rounded bg-[#101822] border border-[#66c0f4]/50 text-[#66c0f4] flex-shrink-0">
+                      <FileDown className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="rounded bg-[#66c0f4]/20 text-[#66c0f4] text-[10px] font-mono px-2 py-0.5 uppercase tracking-wider font-semibold border border-[#66c0f4]/30">
+                          Catálogo Original
+                        </span>
+                        <span className="text-xs text-[#8f98a0] font-mono">PDF Oficial DSR</span>
+                      </div>
+                      <h4 className="text-white font-bold text-sm sm:text-base mt-1">
+                        Download da Ficha Técnica & Catálogo ({product.codigo_modelo})
+                      </h4>
+                      <p className="text-xs text-[#c6d4df] mt-0.5">
+                        Documento oficial da engenharia com especificações de alarmes, módulos UDQ e dimensionamento.
+                      </p>
+                    </div>
+                  </div>
+                  <a
+                    href={product.datasheet_url}
+                    download={`Catalogo-Oficial-DSR-${product.codigo_modelo.replace(/[^a-zA-Z0-9_-]/g, "_")}.pdf`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded bg-gradient-to-r from-[#66c0f4] to-[#4ba6df] hover:brightness-110 text-[#0e141b] font-extrabold px-5 py-2.5 text-xs uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(102,192,244,0.3)] shrink-0"
+                  >
+                    <FileDown className="h-4 w-4" />
+                    Baixar Catálogo PDF
+                  </a>
+                </div>
+              )}
 
               {/* Technical Specifications Accordion / Groups */}
               {product.especificacoes_completas && (

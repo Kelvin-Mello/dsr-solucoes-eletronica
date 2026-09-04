@@ -28,6 +28,16 @@ export function ProductSidebar({ product }: ProductSidebarProps) {
   const [downloading, setDownloading] = useState(false);
 
   const handleDownloadDatasheet = () => {
+    if (product.datasheet_url) {
+      const link = document.createElement("a");
+      link.href = product.datasheet_url;
+      link.download = `Catalogo-DSR-${product.codigo_modelo.replace(/[^a-zA-Z0-9_-]/g, "_")}.pdf`;
+      link.target = "_blank";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      return;
+    }
     setDownloading(true);
     setTimeout(() => {
       setDownloading(false);
@@ -50,9 +60,6 @@ export function ProductSidebar({ product }: ProductSidebarProps) {
                 Especificações Rápidas
               </h2>
             </div>
-            <span className="rounded bg-[#101822]/80 px-2 py-0.5 text-[10px] font-mono text-[#66c0f4] border border-[#66c0f4]/30">
-              DATAPACK v3.4
-            </span>
           </div>
 
           {/* Key / Value Specs List */}
@@ -111,10 +118,10 @@ export function ProductSidebar({ product }: ProductSidebarProps) {
               type="button"
               onClick={handleDownloadDatasheet}
               disabled={downloading}
-              className="flex w-full items-center justify-center gap-2 rounded bg-[#1b2838] hover:bg-[#203248] text-[#c6d4df] hover:text-white p-2.5 text-xs font-semibold uppercase tracking-wider border border-[#2a475e] hover:border-[#66c0f4] transition-all"
+              className="flex w-full items-center justify-center gap-2 rounded bg-[#1b2838] hover:bg-[#203248] text-[#c6d4df] hover:text-white p-2.5 text-xs font-semibold uppercase tracking-wider border border-[#2a475e] hover:border-[#66c0f4] transition-all shadow-sm"
             >
               <Download className={`h-4 w-4 text-[#66c0f4] ${downloading ? "animate-bounce" : ""}`} />
-              {downloading ? "Gerando Ficha Técnica..." : "Baixar Datasheet PDF"}
+              {downloading ? "Iniciando Download..." : (product.datasheet_url ? "Baixar Catálogo Oficial (PDF)" : "Baixar Datasheet PDF")}
             </button>
           </div>
         </div>
@@ -136,17 +143,17 @@ export function ProductSidebar({ product }: ProductSidebarProps) {
             </li>
             <li className="flex items-center gap-2">
               <Check className="h-3.5 w-3.5 text-[#66c0f4]" />
-              Atendimento técnico emergencial 24h para indústrias
+              Atendimento técnico e suporte de engenharia
             </li>
           </ul>
 
           <div className="pt-2 border-t border-[#2a475e]/60 flex items-center justify-between">
             <span className="text-[#8f98a0]">Dúvidas Técnicas?</span>
             <a
-              href="tel:1140049090"
+              href="tel:1145645200"
               className="font-mono text-[#66c0f4] font-bold hover:underline flex items-center gap-1"
             >
-              <PhoneCall className="h-3.5 w-3.5" /> (11) 4004-9090
+              <PhoneCall className="h-3.5 w-3.5" /> (11) 4564-5200
             </a>
           </div>
         </div>
