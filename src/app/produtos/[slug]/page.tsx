@@ -9,6 +9,7 @@ import {
 } from "@/mock/products";
 import { MediaCarousel } from "@/components/MediaCarousel";
 import { ProductSidebar } from "@/components/ProductSidebar";
+import { ProductDetailTabs } from "@/components/ProductDetailTabs";
 import { 
   Cpu, 
   Zap, 
@@ -176,101 +177,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
               ))}
             </div>
 
-            {/* Deep Technology Section */}
-            <div className="rounded-lg bg-gradient-to-b from-[#1b2e3f]/80 to-[#171a21]/90 border border-[#3b678c] p-6 md:p-8">
-              <div className="flex items-center gap-3 border-b border-[#2a475e] pb-4 mb-5">
-                <div className="flex h-9 w-9 items-center justify-center rounded bg-[#101822] border border-[#66c0f4]/50 text-[#66c0f4]">
-                  <Gauge className="h-5 w-5" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white tracking-wide">
-                    Tecnologia de Potência & Topologia
-                  </h3>
-                  <p className="text-xs text-[#66c0f4] font-mono">
-                    Engenharia DSR Soluções • {product.subcategoria || "Confiabilidade Industrial"}
-                  </p>
-                </div>
-              </div>
-              <p className="text-sm md:text-base leading-relaxed text-[#c6d4df] mb-6">
-                {product.texto_tecnologia}
-              </p>
-
-              {/* Official Catalog Download Banner if available */}
-              {product.datasheet_url && (
-                <div className="mb-6 rounded-lg bg-gradient-to-r from-[#171a21] via-[#1b2e3f] to-[#171a21] border border-[#66c0f4]/40 p-4 sm:p-5 shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                  <div className="flex items-start sm:items-center gap-3.5">
-                    <div className="flex h-11 w-11 items-center justify-center rounded bg-[#101822] border border-[#66c0f4]/50 text-[#66c0f4] flex-shrink-0">
-                      <FileDown className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="rounded bg-[#66c0f4]/20 text-[#66c0f4] text-[10px] font-mono px-2 py-0.5 uppercase tracking-wider font-semibold border border-[#66c0f4]/30">
-                          Catálogo Original
-                        </span>
-                        <span className="text-xs text-[#8f98a0] font-mono">PDF Oficial DSR</span>
-                      </div>
-                      <h4 className="text-white font-bold text-sm sm:text-base mt-1">
-                        Download da Ficha Técnica & Catálogo ({product.codigo_modelo})
-                      </h4>
-                      <p className="text-xs text-[#c6d4df] mt-0.5">
-                        Documento oficial da engenharia com especificações de alarmes, módulos UDQ e dimensionamento.
-                      </p>
-                    </div>
-                  </div>
-                  <a
-                    href={product.datasheet_url}
-                    download={`Catalogo-Oficial-DSR-${product.codigo_modelo.replace(/[^a-zA-Z0-9_-]/g, "_")}.pdf`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded bg-gradient-to-r from-[#66c0f4] to-[#4ba6df] hover:brightness-110 text-[#0e141b] font-extrabold px-5 py-2.5 text-xs uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(102,192,244,0.3)] shrink-0"
-                  >
-                    <FileDown className="h-4 w-4" />
-                    Baixar Catálogo PDF
-                  </a>
-                </div>
-              )}
-
-              {/* Technical Specifications Accordion / Groups */}
-              {product.especificacoes_completas && (
-                <div className="mt-6 space-y-4">
-                  <h4 className="text-sm font-semibold uppercase tracking-wider text-[#66c0f4] flex items-center gap-2">
-                    <Sliders className="h-4 w-4" /> Parâmetros Detalhados de Engenharia
-                  </h4>
-                  <div className="space-y-3">
-                    {product.especificacoes_completas.map((grupo, gIdx) => (
-                      <div key={gIdx} className="rounded bg-[#101822]/90 border border-[#2a475e] overflow-hidden">
-                        <div className="bg-[#1b2838] px-4 py-2.5 text-xs font-bold text-white uppercase tracking-wider border-b border-[#2a475e]">
-                          {grupo.grupo}
-                        </div>
-                        <div className="divide-y divide-[#2a475e]/60">
-                          {grupo.itens.map((item, iIdx) => (
-                            <div key={iIdx} className="flex items-center justify-between px-4 py-2.5 text-xs">
-                              <span className="text-[#8f98a0]">{item.parametro}</span>
-                              <span className="font-mono font-medium text-white text-right">{item.valor}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* 5. Normas e Certificações */}
-            <div className="flex flex-wrap items-center justify-between gap-4 rounded-lg bg-[#101822]/90 border border-[#2a475e] p-4 text-xs font-mono">
-              <div className="flex items-center gap-2 text-[#8f98a0]">
-                <ShieldCheck className="h-4 w-4 text-[#66c0f4]" />
-                Normas de Fabricação e Segurança Industrial:
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {product.certificacoes.map((cert, idx) => (
-                  <span key={idx} className="rounded bg-[#2a475e] px-2.5 py-1 text-white font-bold border border-[#3b678c]">
-                    {cert}
-                  </span>
-                ))}
-              </div>
-            </div>
+            {/* Interactive Engineering Tabs (Especificações, Tecnologia, Downloads, Normas) */}
+            <ProductDetailTabs product={product} />
           </section>
 
           {/* RIGHT COLUMN (SIDEBAR ~ 4 to 5 cols): Stylized Quick Specs + CTA Button */}

@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { getAllServices, getServiceBySlug, ServiceItem } from "@/mock/services";
 import { MediaCarousel } from "@/components/MediaCarousel";
+import { ServiceDetailTabs } from "@/components/ServiceDetailTabs";
 
 interface ServicePageProps {
   params: Promise<{
@@ -134,101 +135,8 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               />
             </div>
 
-            {/* In-Depth Description */}
-            <article className="rounded-xl border border-[#2a475e] bg-[#171a21]/90 p-6 sm:p-8 space-y-4 shadow-lg">
-              <div className="flex items-center gap-3 border-b border-[#2a475e] pb-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#2a475e] text-[#66c0f4]">
-                  <IconComponent className="h-5 w-5" />
-                </div>
-                <div>
-                  <h2 className="text-xl font-bold text-white">
-                    Escopo Técnico & Metodologia
-                  </h2>
-                  <span className="text-xs text-[#8f98a0]">
-                    Execução rigorosa com ART e conformidade normativa
-                  </span>
-                </div>
-              </div>
-              <p className="text-sm sm:text-base text-[#c6d4df] leading-relaxed">
-                {service.detailedDescription}
-              </p>
-            </article>
-
-            {/* Benefits & Differentials */}
-            <section className="rounded-xl border border-[#2a475e] bg-[#171a21]/90 p-6 sm:p-8 space-y-5 shadow-lg">
-              <h2 className="text-lg font-bold text-white flex items-center gap-2 border-b border-[#2a475e] pb-3">
-                <CheckCircle2 className="h-5 w-5 text-[#66c0f4]" />
-                Vantagens Estratégicas & Diferenciais DSR
-              </h2>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
-                {service.benefits.map((benefit, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-2.5 rounded-lg bg-[#101822] border border-[#2a475e]/60 p-3"
-                  >
-                    <span className="h-2 w-2 rounded-full bg-[#66c0f4] mt-1.5 flex-shrink-0 shadow-[0_0_8px_#66c0f4]" />
-                    <span className="text-[#c6d4df]">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-
-            {/* Equipment Covered */}
-            <section className="rounded-xl border border-[#2a475e] bg-[#171a21]/90 p-6 sm:p-8 space-y-4 shadow-lg">
-              <h2 className="text-lg font-bold text-white flex items-center gap-2 border-b border-[#2a475e] pb-3">
-                <Layers className="h-5 w-5 text-[#66c0f4]" />
-                Equipamentos & Sistemas Atendidos
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
-                {service.equipmentCovered.map((eq, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-2 text-[#8f98a0]"
-                  >
-                    <span className="text-[#66c0f4] font-bold font-mono">▸</span>
-                    <span>{eq}</span>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Deliverables and Technical Standards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* Deliverables */}
-              <div className="rounded-xl border border-[#2a475e] bg-[#171a21]/90 p-6 space-y-3">
-                <h3 className="text-sm font-bold text-white flex items-center gap-2 uppercase tracking-wider text-[#66c0f4]">
-                  <FileText className="h-4 w-4" /> Entregáveis Técnicos:
-                </h3>
-                <ul className="space-y-1.5 text-xs text-[#8f98a0]">
-                  {service.deliverables.map((d, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="text-[#66c0f4]">•</span>
-                      <span>{d}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Standards */}
-              <div className="rounded-xl border border-[#2a475e] bg-[#171a21]/90 p-6 space-y-3">
-                <h3 className="text-sm font-bold text-white flex items-center gap-2 uppercase tracking-wider text-[#66c0f4]">
-                  <Award className="h-4 w-4" /> Normas Aplicadas:
-                </h3>
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {service.standards.map((st, i) => (
-                    <span
-                      key={i}
-                      className="rounded bg-[#101822] border border-[#2a475e] px-2.5 py-1 text-xs font-mono text-[#66c0f4]"
-                    >
-                      {st}
-                    </span>
-                  ))}
-                </div>
-                <p className="text-[11px] text-[#8f98a0] leading-relaxed pt-2">
-                  Todos os projetos e manutenções são executados com emissão de ART registrada no CREA/SP.
-                </p>
-              </div>
-            </div>
+            {/* Interactive Engineering Tabs (Escopo, Benefícios, Equipamentos, Normas & ART) */}
+            <ServiceDetailTabs service={service} />
           </div>
 
           {/* Right Column (Sidebar CTA & Other Services) */}
