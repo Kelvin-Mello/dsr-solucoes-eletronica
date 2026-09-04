@@ -62,28 +62,17 @@ export function ProductSidebar({ product }: ProductSidebarProps) {
             </div>
           </div>
 
-          {/* Key / Value Specs List */}
-          <div className="divide-y divide-[#1b2838]/80 text-xs">
+          {/* Key / Value Specs List - Padronizado com fundo uniforme mais claro */}
+          <div className="space-y-1.5 text-xs">
             {product.especificacoes_rapidas.map((spec, index) => (
               <div
                 key={index}
-                className={`flex items-start justify-between py-2.5 px-2 rounded transition-colors ${
-                  spec.destaque
-                    ? "bg-[#101822]/70 font-semibold border-l-2 border-[#66c0f4]"
-                    : "hover:bg-[#101822]/30"
-                }`}
+                className="flex items-start justify-between py-2 px-2.5 rounded bg-[#274563]/50 border border-[#3b678c]/50 hover:bg-[#274563]/75 transition-colors"
               >
-                <span className="text-[#8f98a0] pr-2 flex items-center gap-1.5">
-                  {spec.destaque && (
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#66c0f4]"></span>
-                  )}
+                <span className="text-[#c6d4df] pr-2 font-medium">
                   {spec.chave}
                 </span>
-                <span
-                  className={`text-right font-mono ${
-                    spec.destaque ? "text-[#66c0f4] font-bold" : "text-white"
-                  }`}
-                >
+                <span className="text-right font-mono text-white font-semibold">
                   {spec.valor}
                 </span>
               </div>

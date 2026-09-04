@@ -24,6 +24,8 @@ type TabType = "especificacoes" | "tecnologia" | "downloads" | "normas";
 export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
   // Default to 'especificacoes' as shown in the user's request
   const [activeTab, setActiveTab] = useState<TabType>("especificacoes");
+  // Sub-botão para exibir uma seção de parâmetros por vez
+  const [selectedSpecGroup, setSelectedSpecGroup] = useState<number>(0);
 
   const tabs = [
     {
@@ -31,9 +33,6 @@ export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
       label: "Especificações de Engenharia",
       shortLabel: "Especificações",
       icon: Sliders,
-      badge: product.especificacoes_completas 
-        ? `${product.especificacoes_completas.reduce((acc, g) => acc + g.itens.length, 0)} parâmetros`
-        : undefined
     },
     {
       id: "tecnologia" as TabType,
@@ -43,25 +42,22 @@ export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
     },
     {
       id: "downloads" as TabType,
-      label: "Downloads & Catálogos",
-      shortLabel: "Downloads",
+      label: "Downloads & Catálogo",
+      shortLabel: "Downloads & Catálogo",
       icon: FileDown,
-      badge: product.datasheet_url ? "PDF Oficial" : undefined,
-      badgeColor: "bg-[#66c0f4] text-[#0e141b]"
     },
     {
       id: "normas" as TabType,
       label: "Normas & Confiabilidade",
       shortLabel: "Normas",
       icon: ShieldCheck,
-      badge: `${product.certificacoes.length} normas`
     }
   ];
 
   return (
     <div className="rounded-xl bg-[#171a21]/90 border border-[#2a475e] shadow-2xl overflow-hidden backdrop-blur-sm">
-      {/* Tab Navigation Header - Steam Styled */}
-      <div className="flex items-center border-b border-[#2a475e] bg-[#101822]/90 px-2 sm:px-4 pt-2 overflow-x-auto scrollbar-none gap-1 sm:gap-2">
+      {/* Tab Navigation Header - Alto contraste e sem overflow da palavra Catálogo */}
+      <div className="flex items-stretch border-b border-[#2a475e] bg-[#0c1219] p-1.5 sm:p-2 gap-1.5 sm:gap-2 overflow-x-auto scrollbar-none">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -70,25 +66,17 @@ export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
               key={tab.id}
               type="button"
               onClick={() => setActiveTab(tab.id)}
-              className={`group relative flex items-center gap-2 px-3.5 sm:px-5 py-3 text-xs sm:text-sm font-semibold transition-all whitespace-nowrap border-b-2 -mb-[2px] ${
+              className={`group relative flex-1 min-w-[130px] sm:min-w-0 flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold transition-all rounded-lg border ${
                 isActive
-                  ? "text-white border-[#66c0f4] bg-[#1b2838]/80 shadow-[0_-4px_15px_rgba(102,192,244,0.15)] rounded-t-md"
-                  : "text-[#8f98a0] border-transparent hover:text-[#c6d4df] hover:bg-[#1b2838]/40 rounded-t-md"
+                  ? "bg-gradient-to-b from-[#244b70] to-[#16334d] text-white border-[#66c0f4] shadow-[0_0_15px_rgba(102,192,244,0.35)] font-bold ring-1 ring-[#66c0f4]/50"
+                  : "bg-[#121a24] text-[#8fa7be] border-[#22364a] hover:text-white hover:bg-[#1b2838] hover:border-[#38597a]"
               }`}
             >
-              <Icon className={`h-4 w-4 transition-colors ${
-                isActive ? "text-[#66c0f4]" : "text-[#8f98a0] group-hover:text-[#c6d4df]"
+              <Icon className={`h-4 w-4 shrink-0 transition-colors ${
+                isActive ? "text-[#66c0f4]" : "text-[#7a92a8] group-hover:text-white"
               }`} />
-              <span className="hidden md:inline">{tab.label}</span>
-              <span className="md:hidden">{tab.shortLabel}</span>
-              
-              {tab.badge && (
-                <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded font-bold ${
-                  tab.badgeColor || (isActive ? "bg-[#66c0f4]/20 text-[#66c0f4]" : "bg-[#2a475e]/60 text-[#8f98a0]")
-                }`}>
-                  {tab.badge}
-                </span>
-              )}
+              <span className="hidden md:inline truncate">{tab.label}</span>
+              <span className="md:hidden truncate">{tab.shortLabel}</span>
             </button>
           );
         })}
@@ -101,7 +89,7 @@ export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
         {/* ================================================================= */}
         {activeTab === "especificacoes" && (
           <div className="space-y-6 animate-fadeIn">
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#2a475e] pb-4">
+            <div className="border-b border-[#2a475e] pb-4">
               <div className="flex items-center gap-3">
                 <div className="flex h-9 w-9 items-center justify-center rounded bg-[#101822] border border-[#66c0f4]/40 text-[#66c0f4]">
                   <Sliders className="h-5 w-5" />
@@ -111,67 +99,81 @@ export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
                     Parâmetros Detalhados de Engenharia
                   </h3>
                   <p className="text-xs text-[#8f98a0]">
-                    Valores nominais, limites de operação e configurações construtivas de fábrica
+                    Selecione uma seção abaixo para consultar os parâmetros nominais de fábrica
                   </p>
                 </div>
               </div>
-
-              {product.datasheet_url && (
-                <a
-                  href={product.datasheet_url}
-                  download={`Catalogo-DSR-${product.codigo_modelo.replace(/[^a-zA-Z0-9_-]/g, "_")}.pdf`}
-                  className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono text-[#66c0f4] hover:underline"
-                >
-                  <Download className="h-3.5 w-3.5" /> Ficha Técnica em PDF
-                </a>
-              )}
             </div>
 
-            {/* Render Detailed Specification Groups */}
+            {/* Sistema de Sub-Botões: 1 Seção por vez */}
             {product.especificacoes_completas && product.especificacoes_completas.length > 0 ? (
-              <div className="space-y-4">
-                {product.especificacoes_completas.map((grupo, gIdx) => (
-                  <div 
-                    key={gIdx} 
-                    className="rounded-lg bg-[#101822]/90 border border-[#2a475e] overflow-hidden shadow-sm"
-                  >
-                    <div className="bg-[#1b2838] px-4 py-2.5 text-xs font-bold text-white uppercase tracking-wider border-b border-[#2a475e] flex items-center justify-between">
-                      <span>{grupo.grupo}</span>
-                      <span className="font-mono text-[11px] text-[#66c0f4]">
-                        {grupo.itens.length} parâmetros
-                      </span>
+              <div className="space-y-5">
+                {/* Botões seletores de categoria */}
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {product.especificacoes_completas.map((grupo, gIdx) => {
+                    const isSelected = (selectedSpecGroup === gIdx) || (selectedSpecGroup >= product.especificacoes_completas!.length && gIdx === 0);
+                    return (
+                      <button
+                        key={gIdx}
+                        type="button"
+                        onClick={() => setSelectedSpecGroup(gIdx)}
+                        className={`flex items-center gap-2 px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all border ${
+                          isSelected
+                            ? "bg-[#66c0f4] text-[#0a1118] font-bold border-[#66c0f4] shadow-[0_0_14px_rgba(102,192,244,0.45)]"
+                            : "bg-[#182635] text-[#c6d4df] border-[#2f4963] hover:bg-[#203447] hover:text-white hover:border-[#66c0f4]/60"
+                        }`}
+                      >
+                        <span className={`w-2 h-2 rounded-full ${isSelected ? "bg-[#0a1118]" : "bg-[#66c0f4]"}`} />
+                        <span>{grupo.grupo}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Exibição exclusiva do grupo selecionado com fundo padronizado claro */}
+                {(() => {
+                  const currentGroup = product.especificacoes_completas[selectedSpecGroup] || product.especificacoes_completas[0];
+                  if (!currentGroup) return null;
+                  return (
+                    <div className="rounded-xl bg-[#1b2e40] border border-[#3b6388] overflow-hidden shadow-lg animate-fadeIn">
+                      <div className="bg-[#243f58] px-4 sm:px-5 py-3 text-xs sm:text-sm font-bold text-white uppercase tracking-wider border-b border-[#3b6388] flex items-center justify-between">
+                        <span className="flex items-center gap-2.5">
+                          <span className="w-2.5 h-2.5 rounded-sm bg-[#66c0f4] shadow-[0_0_8px_rgba(102,192,244,0.6)]" />
+                          {currentGroup.grupo}
+                        </span>
+                      </div>
+                      <div className="divide-y divide-[#34587a]/60">
+                        {currentGroup.itens.map((item, iIdx) => (
+                          <div 
+                            key={iIdx} 
+                            className="flex flex-col sm:flex-row sm:items-center justify-between px-4 sm:px-5 py-3 text-xs sm:text-sm bg-[#1e3347]/70 hover:bg-[#27435f]/90 transition-colors gap-1 sm:gap-4"
+                          >
+                            <span className="text-[#c6d4df] font-medium sm:w-1/2">
+                              {item.parametro}
+                            </span>
+                            <span className="font-mono font-bold text-white sm:text-right sm:w-1/2 break-words">
+                              {item.valor}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <div className="divide-y divide-[#2a475e]/60">
-                      {grupo.itens.map((item, iIdx) => (
-                        <div 
-                          key={iIdx} 
-                          className="flex flex-col sm:flex-row sm:items-center justify-between px-4 py-3 text-xs hover:bg-[#1b2838]/40 transition-colors gap-1 sm:gap-4"
-                        >
-                          <span className="text-[#8f98a0] font-medium sm:w-1/2">
-                            {item.parametro}
-                          </span>
-                          <span className="font-mono font-bold text-white sm:text-right sm:w-1/2 break-words">
-                            {item.valor}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+                  );
+                })()}
               </div>
             ) : (
-              /* Fallback to Quick Specs if no complete specs defined */
-              <div className="rounded-lg bg-[#101822]/90 border border-[#2a475e] overflow-hidden">
-                <div className="bg-[#1b2838] px-4 py-2.5 text-xs font-bold text-white uppercase tracking-wider border-b border-[#2a475e]">
+              /* Fallback para especificações nominais do produto */
+              <div className="rounded-xl bg-[#1b2e40] border border-[#3b6388] overflow-hidden shadow-lg">
+                <div className="bg-[#243f58] px-4 sm:px-5 py-3 text-xs sm:text-sm font-bold text-white uppercase tracking-wider border-b border-[#3b6388]">
                   Especificações Nominais do Equipamento
                 </div>
-                <div className="divide-y divide-[#2a475e]/60">
+                <div className="divide-y divide-[#34587a]/60">
                   {product.especificacoes_rapidas.map((spec, sIdx) => (
                     <div 
                       key={sIdx} 
-                      className="flex items-center justify-between px-4 py-3 text-xs hover:bg-[#1b2838]/40"
+                      className="flex items-center justify-between px-4 sm:px-5 py-3 text-xs sm:text-sm bg-[#1e3347]/70 hover:bg-[#27435f]/90 transition-colors"
                     >
-                      <span className="text-[#8f98a0]">{spec.chave}</span>
+                      <span className="text-[#c6d4df] font-medium">{spec.chave}</span>
                       <span className="font-mono font-bold text-white text-right">{spec.valor}</span>
                     </div>
                   ))}
@@ -271,7 +273,7 @@ export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
                       Ficha Técnica Completa ({product.codigo_modelo})
                     </h4>
                     <p className="text-xs text-[#c6d4df] mt-1 max-w-xl">
-                      Documento oficial impresso da DSR com descritivo dos módulos intercambiáveis, lógica da UDQ, histórico de alarmes e contatos da engenharia.
+                      Documento oficial impresso da DSR com descritivo dos módulos intercambiáveis, lógica da UDQ, proteções de engenharia e contatos de suporte.
                     </p>
                   </div>
                 </div>
@@ -377,7 +379,7 @@ export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
                   {product.garantia}
                 </p>
                 <p className="text-xs text-[#8f98a0]">
-                  Garantia de fábrica cobrindo semicondutores de potência, módulos de disparo, módulos UDQ e circuitos microcontrolados.
+                  Garantia de fábrica cobrindo semicondutores de potência, módulos de disparo, módulos UDQ e circuitos eletrônicos de controle.
                 </p>
               </div>
 

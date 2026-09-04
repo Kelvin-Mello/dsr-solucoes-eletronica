@@ -51,8 +51,8 @@ export const POSTS_MOCK: PostItem[] = [
   },
   {
     id: "post-3",
-    slug: "supervisao-duplo-microcontrolador-rit-d",
-    title: "Supervisão Digital com Duplo Microcontrolador e Modbus-RTU Nativo: A Arquitetura do RIT-D",
+    slug: "supervisao-duplo-microcontrolador-dk10-dk30",
+    title: "Supervisão Digital com Duplo Microcontrolador e Modbus-RTU Nativo: A Arquitetura dos Retificadores DK10 e DK30",
     category: "Desenvolvimentos",
     date: "20 de Agosto, 2026",
     readTime: "4 min de leitura",
@@ -60,12 +60,12 @@ export const POSTS_MOCK: PostItem[] = [
     summary: "Conheça a arquitetura de processamento dedicado que isola a malha de controle em tempo real da comunicação serial, garantindo 100% de disponibilidade mesmo sob alto tráfego de rede.",
     content: [
       "Um dos desafios mais comuns em painéis de retificação industrial é o travamento de microcontroladores quando submetidos simultaneamente a tarefas críticas de disparo de tiristores em nanossegundos e comunicação serial intensa com sistemas supervisórios SCADA.",
-      "Para eliminar esse gargalo definitivamente, a equipe de P&D da DSR projetou o Módulo de Supervisão Digital do Retificador RIT-D com arquitetura de Duplo Microcontrolador.",
+      "Para eliminar esse gargalo definitivamente, a equipe de P&D da DSR projetou o Módulo de Supervisão Digital dos Retificadores DK10 e DK30 com arquitetura de Duplo Microcontrolador.",
       "O Microcontrolador Principal (MCU 1) dedica 100% de seus ciclos de clock à amostragem de tensões de entrada/saída, controle de corrente, regulação da malha UDQ e supervisão instantânea de falhas (fuga a terra, subtensão, disjuntor aberto e falha de fase).",
       "Enquanto isso, o Microcontrolador Secundário (MCU 2) gerencia com exclusividade a porta serial isolada MODBUS-RTU via RS-485, respondendo a requisições de telemetria sem interferir no laço de controle do equipamento. Como resultado, o sistema oferece MTBF drasticamente superior e total imunidade contra travamentos causados por polling de rede."
     ],
     imageUrl: "/images/products/rit-d-supervisao.jpg",
-    tags: ["Modbus-RTU", "Microcontroladores", "RIT-D", "Automação"]
+    tags: ["Modbus-RTU", "Microcontroladores", "DK10-DK30", "Automação"]
   },
   {
     id: "post-4",

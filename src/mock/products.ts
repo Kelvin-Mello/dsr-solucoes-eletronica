@@ -64,34 +64,34 @@ export const PRODUCTS_MOCK: Product[] = [
     nome: "Retificador Industrial Analógico",
     codigo_modelo: "Modelo RIT-D",
     categoria: "Retificadores & Carregadores",
-    subcategoria: "Retificador Tiristorizado com Supervisão Microcontrolada",
-    tagline: "Retificador tiristorizado analógico simples, robusto e funcional, com supervisão microcontrolada, para tensões de 12V a 250Vcc e correntes de 10A a 5.000A.",
-    descricao: "Os Retificadores Industriais Modelo RIT-D foram projetados para atender às mais rígidas especificações do mercado. Seus componentes e dispositivos foram dimensionados para trabalhar nos mais diversos ambientes industriais. Trata-se de um retificador tiristorizado analógico, semi ou totalmente controlado de 02, 03, 04 ou 06 pulsos (modelos com 12, 18 e 24 pulsos sob consulta). Utiliza os mesmos módulos (PCIs) intercambiáveis para todas as tensões padrão industrial (12 a 250Vcc) e para redes monofásicas, bifásicas e trifásicas, independente da corrente de saída (10 a 5.000A).",
-    descricao_detalhada: "Este produto conta com uma supervisão microcontrolada eficiente, sendo um microcontrolador dedicado à supervisão do Retificador e um segundo microcontrolador dedicado à comunicação MODBUS-RTU (outros protocolos sob consulta). A IHM dos retificadores RIT-D é de fácil navegação e auto-compreensível, pois é apresentada na tela a ação que cada botão de função (F1 a F4) tomará. Um painel com o status dos principais elementos do sistema compõe o painel frontal, instruindo o usuário de forma rápida sobre o status da alimentação CA, do Retificador, do Banco de Baterias e do Consumidor. A concentração de circuitos no Módulo de Controle e Alarmes eleva drasticamente o MTBF (Mean Time Between Failures - Tempo Médio Entre Falhas) pela redução de conexões e número de placas, e reduz o MTTR (Mean Time To Repair - Tempo Médio Para Reparo).",
-    texto_tecnologia: "Módulo de Controle de UDQ (Unidade de Diodo de Queda) e Proteções Integradas: Os retificadores RIT-D possuem um Módulo de Controle de UDQ que monitora diretamente a tensão sobre o Consumidor, detectando sobretensão no caso de falha ou acionamento indevido de um contator da UDQ. Seu acionamento é sequencial e a ordem de entrada dos diodos em série com o Consumidor é inversa à ordem de retirada dos mesmos (a primeira etapa inserida em tensão alta será a última a ser retirada na tensão mais baixa). Este módulo é configurável para uma a até quatro etapas e, se inseridas todas as etapas e a tensão sobre o Consumidor atingir um nível pré-ajustado, um sinal de Sobretensão CC é enviado ao Módulo de Controle para desligamento do Retificador. Possui fonte auxiliar chaveada com alimentação CA e CC (em caso de falha CA a supervisão continua funcionando pelas baterias), proteção de fusível interrompido / disjuntor aberto por eletrônica e proteção de fuga a terra via acoplamento óptico.",
+    subcategoria: "Retificador Industrial Tiristorizado Analógico",
+    tagline: "Retificador tiristorizado analógico simples, robusto e funcional para alimentação CC ininterrupta de 12V a 250Vcc e correntes de 10A a 5.000A.",
+    descricao: "Os Retificadores Industriais Modelo RIT-D foram projetados para atender às mais rígidas especificações do mercado industrial. Seus componentes e dispositivos foram dimensionados para trabalhar nos mais diversos ambientes industriais com extrema simplicidade e robustez. Trata-se de um retificador tiristorizado analógico simples e funcional, semi ou totalmente controlado de 02, 03, 04 ou 06 pulsos (modelos com 12, 18 e 24 pulsos sob consulta). Utiliza os mesmos módulos (PCIs) intercambiáveis para todas as tensões padrão industrial (12 a 250Vcc) e para redes monofásicas, bifásicas e trifásicas, independente da corrente de saída (10 a 5.000A).",
+    descricao_detalhada: "Projetado com arquitetura analógica direta e confiável, o Modelo RIT-D prioriza a durabilidade e a facilidade de manutenção em campo. No painel frontal, conta com instrumentos analógicos de medição (voltímetros e amperímetros de ponteiro) e sinalização luminosa por LEDs para os principais pontos do sistema: Alimentação CA, Retificador, Banco de Baterias e Consumidor. A concentração de circuitos no Módulo de Controle eleva o MTBF (Tempo Médio Entre Falhas) pela redução de conexões e número de placas, e reduz o MTTR (Tempo Médio Para Reparo). A fonte auxiliar chaveada possui alimentação mista CA e CC, garantindo que em caso de falta da rede CA os circuitos de controle e sinalização continuem operando através do banco de baterias.",
+    texto_tecnologia: "Módulo de Controle de UDQ (Unidade de Diodo de Queda) e Proteções Analógicas: Os retificadores RIT-D possuem um Módulo de Controle de UDQ que monitora diretamente a tensão sobre o Consumidor, protegendo contra sobretensão no caso de falha ou acionamento indevido de um contator da UDQ. Seu acionamento é sequencial e a ordem de entrada dos diodos em série com o Consumidor é inversa à ordem de retirada dos mesmos (a primeira etapa inserida em tensão alta será a última a ser retirada na tensão mais baixa). Este módulo é configurável para uma a até quatro etapas e, se inseridas todas as etapas e a tensão sobre o Consumidor atingir um nível pré-ajustado, um sinal de Sobretensão CC é enviado ao Módulo de Controle para desligamento seguro do Retificador. Possui fonte auxiliar chaveada com alimentação CA e CC, proteção de fusível interrompido / disjuntor aberto por eletrônica e proteção de fuga a terra via acoplamento óptico.",
     datasheet_url: "/downloads/retificador-industrial-analogico-rit-d.pdf",
     status_disponibilidade: "Em Estoque",
     garantia: "Garantia de Fábrica DSR (com Suporte Técnico, Instalação e Retrofitting)",
-    certificacoes: ["MODBUS-RTU", "Normas Industriais ABNT/IEC", "Módulos Universais Intercambiáveis"],
+    certificacoes: ["Normas Industriais ABNT/IEC", "Módulos Universais Intercambiáveis", "NR-10 / NR-12"],
     recursos_principais: [
       {
-        titulo: "Supervisão Microcontrolada Dedicada",
-        descricao: "Um microcontrolador dedicado à supervisão do Retificador e um segundo dedicado à comunicação MODBUS-RTU (outros sob consulta).",
+        titulo: "Topologia Tiristorizada Analógica",
+        descricao: "Controle analógico com disparo robusto de tiristores em pontes de 02 a 06 pulsos (12 a 24 sob consulta).",
         icone: "Cpu"
       },
       {
         titulo: "Módulo UDQ de 1 a 4 Etapas",
-        descricao: "Monitora diretamente a tensão sobre o consumidor, com acionamento sequencial inverso e sinal de corte seguro por sobretensão CC.",
+        descricao: "Monitoramento direto da tensão no consumidor com acionamento sequencial inverso e proteção contra sobretensão CC.",
         icone: "Zap"
       },
       {
-        titulo: "IHM Clara com Teclas F1 a F4 e Sinóptico",
-        descricao: "Painel frontal com botões F1 a F4 e status visual dos 4 elementos: Entrada CA, Retificador, Bateria e Consumidor.",
+        titulo: "Painel com Instrumentação Analógica",
+        descricao: "Voltímetros e amperímetros de ponteiro no painel com sinalização luminosa por LED para CA, Retificador, Bateria e Consumidor.",
         icone: "Activity"
       },
       {
-        titulo: "Histórico de até 20 Alarmes",
-        descricao: "Salva os alarmes ocorridos com nome, data e hora da ocorrência (CA, CC, Fuga à Terra óptica, Fusível eletrônico, etc.).",
+        titulo: "Proteções Eletrônicas e Fuga a Terra",
+        descricao: "Proteção contra curto-circuito via fusível eletrônico e fuga a terra (+) e (-) com isolamento óptico.",
         icone: "ShieldCheck"
       },
       {
@@ -101,7 +101,7 @@ export const PRODUCTS_MOCK: Product[] = [
       },
       {
         titulo: "Fonte Auxiliar Chaveada CA e CC",
-        descricao: "Alimentação mista que garante o funcionamento ininterrupto da supervisão mesmo em caso de corte total da rede CA.",
+        descricao: "Alimentação mista que garante o funcionamento ininterrupto do controle e sinalização mesmo em caso de corte total da rede CA.",
         icone: "Sparkles"
       }
     ],
@@ -111,11 +111,11 @@ export const PRODUCTS_MOCK: Product[] = [
       { chave: "Faixa de Corrente", valor: "10 A a 5.000 A", destaque: true },
       { chave: "Alimentação de Entrada", valor: "Redes Monofásicas, Bifásicas e Trifásicas" },
       { chave: "Módulos Intercambiáveis", valor: "Mesmas PCIs para qualquer tensão e corrente", destaque: true },
-      { chave: "Supervisão Microcontrolada", valor: "2 microcontroladores dedicados (Supervisão + Modbus)" },
       { chave: "Unidade de Diodo de Queda", valor: "UDQ inteligente de 1 a 4 etapas sequenciais inversas", destaque: true },
-      { chave: "Comunicação Digital", valor: "MODBUS-RTU nativo (outros protocolos sob consulta)" },
+      { chave: "Painel & Sinalização", valor: "Instrumentos analógicos de ponteiro e LEDs de status" },
+      { chave: "Proteções Integradas", valor: "Eletrônica de curto-circuito e fuga a terra óptica" },
       { chave: "Fonte Auxiliar", valor: "Chaveada com alimentação híbrida CA e CC" },
-      { chave: "Histórico de Alarmes", valor: "Memória para até 20 alarmes com data e hora" }
+      { chave: "Componentes", valor: "Componentes de fácil aquisição no mercado nacional" }
     ],
     especificacoes_completas: [
       {
@@ -135,20 +135,18 @@ export const PRODUCTS_MOCK: Product[] = [
           { parametro: "Faixa de Corrente Contínua", valor: "10 A a 5.000 A" },
           { parametro: "Módulo de Controle UDQ", valor: "Configurável de 1 a até 4 etapas em série com o Consumidor" },
           { parametro: "Lógica Sequencial UDQ", valor: "Sequência inversa: a primeira etapa inserida em sobretensão é a última a ser retirada" },
-          { parametro: "Supervisão Direta do Consumidor", valor: "Monitoramento direto da tensão sobre a carga com detecção de falha de contator" },
+          { parametro: "Monitoramento do Consumidor", valor: "Monitoramento direto da tensão sobre a carga com detecção de falha de contator" },
           { parametro: "Proteção Crítica de Sobretensão", valor: "Envia sinal de Sobretensão CC ao controle para desligamento seguro do retificador" },
-          { parametro: "Alarmes de Saída CC", valor: "CC Baixa, CC Alta, Bateria em Descarga, Retificador Anormal, Tensão Alta e Baixa no Consumidor" }
+          { parametro: "Sinalização de Saída CC", valor: "CC Baixa, CC Alta, Bateria em Descarga, Retificador Anormal, Tensão Alta e Baixa no Consumidor" }
         ]
       },
       {
-        grupo: "Supervisão, IHM e Proteções Eletrônicas",
+        grupo: "Painel Frontal, Sinalização e Proteções",
         itens: [
-          { parametro: "Arquitetura de Supervisão", valor: "1 microcontrolador para supervisão + 1 microcontrolador para MODBUS-RTU" },
-          { parametro: "Interface IHM Frontal", valor: "Teclas de função F1 a F4 com ação apresentada na tela de navegação intuitiva" },
-          { parametro: "Painel Sinóptico de Elementos", valor: "Indicação em tempo real dos 4 elementos: Alimentação CA, Retificador, Baterias e Consumidor" },
-          { parametro: "Histórico de Ocorrências", valor: "Memória para até 20 alarmes gravados com nome, data e hora" },
-          { parametro: "Proteção contra Curto-Circuito", valor: "Fusível Interrompido / Disjuntor Aberto monitorado por eletrônica (não mecânico)" },
-          { parametro: "Proteção de Fuga à Terra", valor: "Fuga a Terra (+) e (-) via acoplamento óptico (isolamento de alta tensão)" },
+          { parametro: "Instrumentação de Painel", valor: "Voltímetros e amperímetros analógicos de ponteiro" },
+          { parametro: "Sinalização Frontal", valor: "LEDs indicadores para Entrada CA, Retificador, Baterias e Consumidor" },
+          { parametro: "Proteção contra Curto-Circuito", valor: "Fusível Interrompido / Disjuntor Aberto monitorado por circuito eletrônico (não mecânico)" },
+          { parametro: "Proteção de Fuga à Terra", valor: "Fuga a Terra (+) e (-) via acoplamento óptico (isolamento galvânico)" },
           { parametro: "Fonte Auxiliar Chaveada", valor: "Alimentação mista CA e CC (em falta de CA, opera alimentada pelo banco de baterias)" }
         ]
       },
@@ -169,7 +167,7 @@ export const PRODUCTS_MOCK: Product[] = [
         url: "/images/products/rit-d-cabinet-real.jpg",
         thumbnailUrl: "/images/products/rit-d-cabinet-real.jpg",
         title: "Foto Real: Retificador Industrial Modelo RIT-D",
-        alt: "Retificador Industrial Analógico Modelo RIT-D em cubículo com medidores analógicos e supervisão DSR",
+        alt: "Retificador Industrial Analógico Modelo RIT-D em cubículo com medidores analógicos de ponteiro",
         badge: "Equipamento Real"
       },
       {
@@ -177,9 +175,9 @@ export const PRODUCTS_MOCK: Product[] = [
         type: "image",
         url: "/images/products/rit-d-supervisao-real.jpg",
         thumbnailUrl: "/images/products/rit-d-supervisao-real.jpg",
-        title: "Supervisão Digital DSR: Teclas F1 a F4 e Sinóptico",
-        alt: "Painel frontal da supervisão digital DSR com teclas F1 a F4 e status dos 4 elementos",
-        badge: "Supervisão DSR"
+        title: "Painel Frontal com Instrumentação Analógica",
+        alt: "Painel frontal do retificador com instrumentos de medição e sinalização luminosa",
+        badge: "Painel Frontal"
       },
       {
         id: "media-rit-3",

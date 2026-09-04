@@ -54,8 +54,8 @@ export function ServiceDetailTabs({ service }: ServiceDetailTabsProps) {
 
   return (
     <div className="rounded-xl bg-[#171a21]/90 border border-[#2a475e] shadow-2xl overflow-hidden backdrop-blur-sm">
-      {/* Tab Navigation Header */}
-      <div className="flex items-center border-b border-[#2a475e] bg-[#101822]/90 px-2 sm:px-4 pt-2 overflow-x-auto scrollbar-none gap-1 sm:gap-2">
+      {/* Tab Navigation Header - Alto contraste consistente */}
+      <div className="flex items-stretch border-b border-[#2a475e] bg-[#0c1219] p-1.5 sm:p-2 gap-1.5 sm:gap-2 overflow-x-auto scrollbar-none">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -64,25 +64,17 @@ export function ServiceDetailTabs({ service }: ServiceDetailTabsProps) {
               key={tab.id}
               type="button"
               onClick={() => setActiveTab(tab.id)}
-              className={`group relative flex items-center gap-2 px-3.5 sm:px-5 py-3 text-xs sm:text-sm font-semibold transition-all whitespace-nowrap border-b-2 -mb-[2px] ${
+              className={`group relative flex-1 min-w-[130px] sm:min-w-0 flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold transition-all rounded-lg border ${
                 isActive
-                  ? "text-white border-[#66c0f4] bg-[#1b2838]/80 shadow-[0_-4px_15px_rgba(102,192,244,0.15)] rounded-t-md"
-                  : "text-[#8f98a0] border-transparent hover:text-[#c6d4df] hover:bg-[#1b2838]/40 rounded-t-md"
+                  ? "bg-gradient-to-b from-[#244b70] to-[#16334d] text-white border-[#66c0f4] shadow-[0_0_15px_rgba(102,192,244,0.35)] font-bold ring-1 ring-[#66c0f4]/50"
+                  : "bg-[#121a24] text-[#8fa7be] border-[#22364a] hover:text-white hover:bg-[#1b2838] hover:border-[#38597a]"
               }`}
             >
-              <Icon className={`h-4 w-4 transition-colors ${
-                isActive ? "text-[#66c0f4]" : "text-[#8f98a0] group-hover:text-[#c6d4df]"
+              <Icon className={`h-4 w-4 shrink-0 transition-colors ${
+                isActive ? "text-[#66c0f4]" : "text-[#7a92a8] group-hover:text-white"
               }`} />
-              <span className="hidden md:inline">{tab.label}</span>
-              <span className="md:hidden">{tab.shortLabel}</span>
-
-              {tab.badge && (
-                <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded font-bold ${
-                  isActive ? "bg-[#66c0f4]/20 text-[#66c0f4]" : "bg-[#2a475e]/60 text-[#8f98a0]"
-                }`}>
-                  {tab.badge}
-                </span>
-              )}
+              <span className="hidden md:inline truncate">{tab.label}</span>
+              <span className="md:hidden truncate">{tab.shortLabel}</span>
             </button>
           );
         })}
