@@ -102,8 +102,12 @@ export default function ProdutosPage() {
                   key={cat.slug}
                   className="group flex flex-col rounded-xl border border-[#2a475e] bg-gradient-to-b from-[#1b2838] to-[#171a21] overflow-hidden shadow-xl hover:border-[#66c0f4]/80 hover:shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-all duration-300"
                 >
-                  {/* Category Image at the Top (Like a product card) */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#101822]">
+                  {/* Category Image at the Top (Clickable Link) */}
+                  <Link
+                    href={`/produtos/categoria/${cat.slug}`}
+                    className="relative aspect-[16/10] w-full overflow-hidden bg-[#101822] block cursor-pointer"
+                    title={`Ver produtos da categoria ${cat.name}`}
+                  >
                     <Image
                       src={cat.imageUrl}
                       alt={cat.name}
@@ -127,7 +131,7 @@ export default function ProdutosPage() {
                         {categoryProducts.length} {categoryProducts.length === 1 ? "Produto" : "Produtos"}
                       </span>
                     </div>
-                  </div>
+                  </Link>
 
                   {/* Card Body */}
                   <div className="flex flex-1 flex-col p-5 space-y-3">

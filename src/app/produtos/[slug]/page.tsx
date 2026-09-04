@@ -107,7 +107,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
                 {product.nome}
               </h1>
-              <p className="mt-1 text-sm md:text-base text-[#8f98a0] max-w-3xl">
+              {product.codigo_modelo && (
+                <div className="mt-1 text-sm md:text-base font-mono font-bold text-[#66c0f4]">
+                  {product.codigo_modelo}
+                </div>
+              )}
+              <p className="mt-1.5 text-sm md:text-base text-[#8f98a0] max-w-3xl">
                 {product.tagline}
               </p>
             </div>

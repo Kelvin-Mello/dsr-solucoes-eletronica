@@ -137,6 +137,25 @@ export default function ServicosPage() {
                       </span>
                     </div>
 
+                    {/* Clickable Service Image Link */}
+                    <Link
+                      href={`/servicos/${service.slug}`}
+                      className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-[#101822] border border-[#2a475e]/60 block cursor-pointer group/img"
+                      title={`Ver documentação técnica de ${service.title}`}
+                    >
+                      <Image
+                        src={service.imageUrl}
+                        alt={service.title}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="object-cover object-center group-hover/img:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#101822] via-transparent to-transparent pointer-events-none" />
+                      <span className="absolute bottom-2.5 left-2.5 rounded bg-[#101822]/90 border border-[#2a475e] px-2 py-0.5 text-[10px] font-mono text-[#66c0f4] backdrop-blur-md">
+                        Engenharia Especializada DSR
+                      </span>
+                    </Link>
+
                     <div className="text-xs font-mono text-[#8f98a0]">
                       {service.subtitle}
                     </div>

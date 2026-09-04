@@ -280,8 +280,12 @@ export function CatalogView({ products }: CatalogViewProps) {
                         key={product.id}
                         className="group flex flex-col rounded-xl border border-[#2a475e] bg-gradient-to-b from-[#1b2838] to-[#171a21] overflow-hidden shadow-lg hover:border-[#66c0f4]/80 hover:shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-all duration-300"
                       >
-                        {/* Media Container */}
-                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#101822]">
+                        {/* Media Container (Clickable Link) */}
+                        <Link
+                          href={`/produtos/${product.slug}`}
+                          className="relative aspect-[16/10] w-full overflow-hidden bg-[#101822] block cursor-pointer"
+                          title={`Ver detalhes do ${product.nome}`}
+                        >
                           <Image
                             src={primaryImage}
                             alt={product.nome}
@@ -321,16 +325,23 @@ export function CatalogView({ products }: CatalogViewProps) {
                               {product.codigo_modelo}
                             </span>
                           </div>
-                        </div>
+                        </Link>
 
                         {/* Card Body */}
                         <div className="flex flex-1 flex-col p-4 sm:p-5 space-y-3">
-                          <Link
-                            href={`/produtos/${product.slug}`}
-                            className="text-base sm:text-lg font-bold text-white group-hover:text-[#66c0f4] transition-colors line-clamp-2 leading-snug"
-                          >
-                            {product.nome}
-                          </Link>
+                          <div>
+                            <Link
+                              href={`/produtos/${product.slug}`}
+                              className="text-base sm:text-lg font-bold text-white group-hover:text-[#66c0f4] transition-colors line-clamp-2 leading-snug"
+                            >
+                              {product.nome}
+                            </Link>
+                            {product.codigo_modelo && (
+                              <span className="text-xs font-mono font-semibold text-[#66c0f4] block mt-0.5">
+                                {product.codigo_modelo}
+                              </span>
+                            )}
+                          </div>
 
                           <p className="text-xs text-[#8f98a0] line-clamp-2 leading-relaxed flex-1">
                             {product.tagline}

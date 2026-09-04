@@ -60,8 +60,8 @@ export const PRODUCTS_MOCK: Product[] = [
   {
     id: "dsr-rit-d",
     slug: "retificador-padrao-industrial-modelo-rit-d",
-    nome: "Retificador Padrão Industrial Modelo RIT-D",
-    codigo_modelo: "RIT-D",
+    nome: "Retificador Industrial Analógico",
+    codigo_modelo: "Modelo RIT-D",
     categoria: "Retificadores & Carregadores",
     subcategoria: "Sistemas de Alimentação CC Segura e Ininterrupta",
     tagline: "Alimentação CC ininterrupta de 12V a 250Vcc (10A a 5.000A) com controle microprocessado duplo, módulo UDQ de 4 etapas e supervisão digital avançada.",
@@ -1090,7 +1090,7 @@ export const CATEGORIES_DATA: CategoryData[] = [
     description: "Sistemas de retificação industrial semi ou totalmente controlados, carregadores de baterias para subestações e equipamentos formadores de baterias com supervisão microcontrolada dupla.",
     imageUrl: "/images/categories/cat-retificadores.jpg",
     badge: "Linha Pesada & Subestações",
-    featuredModels: ["Modelo RIT-D (UDQ)", "Modelo DK10 / DK30", "Modular DK-SR", "Formador de Baterias"]
+    featuredModels: ["Retificador Industrial Analógico (RIT-D)", "Modelo DK10 / DK30", "Modular DK-SR", "Formador de Baterias"]
   },
   {
     slug: "sistemas-de-energia-ininterrupta-e-conversao",
