@@ -125,7 +125,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </div>
 
         {/* Main Grid Layout: 2 Columns on Desktop, flex-col on Mobile */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* LEFT COLUMN (LARGER ~ 7 to 8 cols): MediaCarousel + Technical Description */}
           <section className="lg:col-span-7 xl:col-span-8 flex flex-col gap-8">
             {/* 1. Media Carousel */}
@@ -181,9 +181,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <ProductDetailTabs product={product} />
           </section>
 
-          {/* RIGHT COLUMN (SIDEBAR ~ 4 to 5 cols): Fixo / Sticky com Especificações Rápidas e CTA */}
+          {/* RIGHT COLUMN (SIDEBAR ~ 4 to 5 cols): Especificações Rápidas e CTA na posição original fixa */}
           <aside className="lg:col-span-5 xl:col-span-4">
-            <div className="sticky top-20 lg:top-24 space-y-5">
+            <div className="space-y-5">
               <ProductSidebar product={product} />
             </div>
           </aside>

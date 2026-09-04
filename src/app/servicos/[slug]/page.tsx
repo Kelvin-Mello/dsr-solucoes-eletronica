@@ -124,7 +124,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         </div>
 
         {/* Main Grid: Content + Sidebar */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column (Main Details) */}
           <div className="lg:col-span-8 space-y-8">
             {/* Media Carousel */}
@@ -139,9 +139,9 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             <ServiceDetailTabs service={service} />
           </div>
 
-          {/* Right Column (Sidebar CTA Fixo / Sticky com Thumbnail de Capa) */}
+          {/* Right Column (Sidebar CTA com Thumbnail de Capa) */}
           <aside className="lg:col-span-4">
-            <div className="sticky top-20 lg:top-24 space-y-6">
+            <div className="space-y-6">
               {/* Cover Thumbnail do Serviço */}
               {service.midias && service.midias.length > 0 && (
                 <div className="relative overflow-hidden rounded-xl border border-[#3b678c] bg-[#101822] shadow-xl group">
