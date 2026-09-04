@@ -62,6 +62,26 @@ export function ProductSidebar({ product }: ProductSidebarProps) {
             </div>
           </div>
 
+          {/* Cover Thumbnail do Produto */}
+          {product.midias && product.midias.length > 0 && (
+            <div className="relative mb-4 overflow-hidden rounded-lg border border-[#3b678c] bg-[#101822] shadow-md group">
+              <div className="relative aspect-video w-full overflow-hidden bg-[#0c1219]">
+                <img
+                  src={product.midias[0].url || product.midias[0].thumbnailUrl}
+                  alt={product.midias[0].alt || product.nome}
+                  className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#101822] via-transparent to-transparent opacity-60 pointer-events-none" />
+                <span className="absolute bottom-2 left-2 rounded bg-[#101822]/90 backdrop-blur-sm px-2 py-0.5 text-[10px] font-mono text-[#66c0f4] font-bold border border-[#66c0f4]/30 shadow-sm">
+                  {product.codigo_modelo}
+                </span>
+                <span className="absolute top-2 right-2 rounded bg-[#101822]/80 backdrop-blur-sm px-1.5 py-0.5 text-[9px] font-mono text-[#8f98a0] border border-[#2a475e]">
+                  {product.subcategoria || product.categoria}
+                </span>
+              </div>
+            </div>
+          )}
+
           {/* Key / Value Specs List - Padronizado com fundo uniforme escuro */}
           <div className="space-y-1.5 text-xs">
             {product.especificacoes_rapidas.map((spec, index) => (

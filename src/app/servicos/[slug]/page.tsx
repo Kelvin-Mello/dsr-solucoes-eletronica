@@ -124,7 +124,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         </div>
 
         {/* Main Grid: Content + Sidebar */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Column (Main Details) */}
           <div className="lg:col-span-8 space-y-8">
             {/* Media Carousel */}
@@ -139,10 +139,28 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             <ServiceDetailTabs service={service} />
           </div>
 
-          {/* Right Column (Sidebar CTA & Other Services) */}
-          <div className="lg:col-span-4 space-y-6">
-            {/* Quick Proposal Box */}
-            <div className="rounded-xl border border-[#3b678c] bg-gradient-to-b from-[#1b2838] to-[#101822] p-6 space-y-4 shadow-xl">
+          {/* Right Column (Sidebar CTA Fixo / Sticky com Thumbnail de Capa) */}
+          <aside className="lg:col-span-4">
+            <div className="sticky top-20 lg:top-24 space-y-6">
+              {/* Cover Thumbnail do Serviço */}
+              {service.midias && service.midias.length > 0 && (
+                <div className="relative overflow-hidden rounded-xl border border-[#3b678c] bg-[#101822] shadow-xl group">
+                  <div className="relative aspect-video w-full overflow-hidden bg-[#0c1219]">
+                    <img
+                      src={service.midias[0].url || service.midias[0].thumbnailUrl}
+                      alt={service.midias[0].alt || service.title}
+                      className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#101822] via-transparent to-transparent opacity-60 pointer-events-none" />
+                    <span className="absolute bottom-2.5 left-3 rounded bg-[#101822]/90 backdrop-blur-sm px-2.5 py-0.5 text-[10px] font-mono text-[#66c0f4] font-bold border border-[#66c0f4]/30 shadow-sm">
+                      {service.badge || "Engenharia Especializada"}
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {/* Quick Proposal Box */}
+              <div className="rounded-xl border border-[#3b678c] bg-gradient-to-b from-[#1b2838] to-[#101822] p-6 space-y-4 shadow-xl">
               <div className="space-y-1">
                 <span className="text-[10px] font-mono uppercase text-[#66c0f4] tracking-wider block">
                   ATENDIMENTO DIRETO
@@ -220,6 +238,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               </div>
             </div>
           </div>
+        </aside>
         </div>
       </div>
     </div>
