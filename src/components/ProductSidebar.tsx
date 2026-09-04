@@ -62,14 +62,14 @@ export function ProductSidebar({ product }: ProductSidebarProps) {
             </div>
           </div>
 
-          {/* Key / Value Specs List - Padronizado com fundo uniforme mais claro */}
+          {/* Key / Value Specs List - Padronizado com fundo uniforme escuro */}
           <div className="space-y-1.5 text-xs">
             {product.especificacoes_rapidas.map((spec, index) => (
               <div
                 key={index}
-                className="flex items-start justify-between py-2 px-2.5 rounded bg-[#274563]/50 border border-[#3b678c]/50 hover:bg-[#274563]/75 transition-colors"
+                className="flex items-start justify-between py-2 px-2.5 rounded bg-[#101822]/90 border border-[#2a475e]/70 hover:bg-[#15202e] transition-colors"
               >
-                <span className="text-[#c6d4df] pr-2 font-medium">
+                <span className="text-[#8f98a0] pr-2 font-medium">
                   {spec.chave}
                 </span>
                 <span className="text-right font-mono text-white font-semibold">

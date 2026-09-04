@@ -120,7 +120,7 @@ export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
                         className={`flex items-center gap-2 px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all border ${
                           isSelected
                             ? "bg-[#66c0f4] text-[#0a1118] font-bold border-[#66c0f4] shadow-[0_0_14px_rgba(102,192,244,0.45)]"
-                            : "bg-[#182635] text-[#c6d4df] border-[#2f4963] hover:bg-[#203447] hover:text-white hover:border-[#66c0f4]/60"
+                            : "bg-[#101822] text-[#8fa7be] border-[#22364a] hover:bg-[#182635] hover:text-white hover:border-[#38597a]"
                         }`}
                       >
                         <span className={`w-2 h-2 rounded-full ${isSelected ? "bg-[#0a1118]" : "bg-[#66c0f4]"}`} />
@@ -130,25 +130,25 @@ export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
                   })}
                 </div>
 
-                {/* Exibição exclusiva do grupo selecionado com fundo padronizado claro */}
+                {/* Exibição exclusiva do grupo selecionado com fundo escuro padronizado */}
                 {(() => {
                   const currentGroup = product.especificacoes_completas[selectedSpecGroup] || product.especificacoes_completas[0];
                   if (!currentGroup) return null;
                   return (
-                    <div className="rounded-xl bg-[#1b2e40] border border-[#3b6388] overflow-hidden shadow-lg animate-fadeIn">
-                      <div className="bg-[#243f58] px-4 sm:px-5 py-3 text-xs sm:text-sm font-bold text-white uppercase tracking-wider border-b border-[#3b6388] flex items-center justify-between">
+                    <div className="rounded-xl bg-[#101822]/90 border border-[#2a475e] overflow-hidden shadow-lg animate-fadeIn">
+                      <div className="bg-[#182535] px-4 sm:px-5 py-3 text-xs sm:text-sm font-bold text-white uppercase tracking-wider border-b border-[#2a475e] flex items-center justify-between">
                         <span className="flex items-center gap-2.5">
                           <span className="w-2.5 h-2.5 rounded-sm bg-[#66c0f4] shadow-[0_0_8px_rgba(102,192,244,0.6)]" />
                           {currentGroup.grupo}
                         </span>
                       </div>
-                      <div className="divide-y divide-[#34587a]/60">
+                      <div className="divide-y divide-[#2a475e]/60">
                         {currentGroup.itens.map((item, iIdx) => (
                           <div 
                             key={iIdx} 
-                            className="flex flex-col sm:flex-row sm:items-center justify-between px-4 sm:px-5 py-3 text-xs sm:text-sm bg-[#1e3347]/70 hover:bg-[#27435f]/90 transition-colors gap-1 sm:gap-4"
+                            className="flex flex-col sm:flex-row sm:items-center justify-between px-4 sm:px-5 py-3 text-xs sm:text-sm bg-[#101822]/90 hover:bg-[#182635]/80 transition-colors gap-1 sm:gap-4"
                           >
-                            <span className="text-[#c6d4df] font-medium sm:w-1/2">
+                            <span className="text-[#8f98a0] font-medium sm:w-1/2">
                               {item.parametro}
                             </span>
                             <span className="font-mono font-bold text-white sm:text-right sm:w-1/2 break-words">
@@ -163,17 +163,17 @@ export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
               </div>
             ) : (
               /* Fallback para especificações nominais do produto */
-              <div className="rounded-xl bg-[#1b2e40] border border-[#3b6388] overflow-hidden shadow-lg">
-                <div className="bg-[#243f58] px-4 sm:px-5 py-3 text-xs sm:text-sm font-bold text-white uppercase tracking-wider border-b border-[#3b6388]">
+              <div className="rounded-xl bg-[#101822]/90 border border-[#2a475e] overflow-hidden shadow-lg">
+                <div className="bg-[#182535] px-4 sm:px-5 py-3 text-xs sm:text-sm font-bold text-white uppercase tracking-wider border-b border-[#2a475e]">
                   Especificações Nominais do Equipamento
                 </div>
-                <div className="divide-y divide-[#34587a]/60">
+                <div className="divide-y divide-[#2a475e]/60">
                   {product.especificacoes_rapidas.map((spec, sIdx) => (
                     <div 
                       key={sIdx} 
-                      className="flex items-center justify-between px-4 sm:px-5 py-3 text-xs sm:text-sm bg-[#1e3347]/70 hover:bg-[#27435f]/90 transition-colors"
+                      className="flex items-center justify-between px-4 sm:px-5 py-3 text-xs sm:text-sm bg-[#101822]/90 hover:bg-[#182635]/80 transition-colors"
                     >
-                      <span className="text-[#c6d4df] font-medium">{spec.chave}</span>
+                      <span className="text-[#8f98a0] font-medium">{spec.chave}</span>
                       <span className="font-mono font-bold text-white text-right">{spec.valor}</span>
                     </div>
                   ))}
