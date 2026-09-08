@@ -6,25 +6,6 @@ import Image from "next/image";
 export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-[#2a475e]/80 bg-[#171a21]/95 backdrop-blur-md">
-      {/* Top micro bar with industrial status */}
-      <div className="border-b border-[#2a475e]/40 bg-[#101822] px-4 py-1 text-[11px] text-[#8f98a0]">
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="flex items-center gap-1.5 font-mono text-[#66c0f4]">
-              <span className="h-2 w-2 rounded-full bg-[#66c0f4] animate-pulse"></span>
-              SISTEMA OPERACIONAL DSR • ENGENHARIA ATIVA
-            </span>
-            <span className="hidden md:inline text-[#2a475e]">|</span>
-            <span className="hidden md:inline font-mono">RETROFITTING & ELETRÔNICA DE POTÊNCIA</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="font-mono text-white/70">PLANTÃO TÉCNICO: (11) 4564-5200 | (11) 98038-9729</span>
-            <span className="rounded bg-[#2a475e]/50 px-2 py-0.5 font-mono text-[10px] text-[#66c0f4]">
-              NR-10 / NR-12
-            </span>
-          </div>
-        </div>
-      </div>
 
       {/* Main Navbar */}
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
