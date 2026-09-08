@@ -266,19 +266,19 @@ export function FeaturedCarousel() {
           <ChevronRight className="h-8 w-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] transform group-hover/card:translate-x-0.5 transition-transform" />
         </button>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[460px] lg:min-h-[500px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 lg:h-[470px] xl:h-[490px]">
           
-          {/* LADO ESQUERDO: Imagem Grande de Destaque (~65% do card em telas grandes) */}
+          {/* LADO ESQUERDO: Imagem Grande de Destaque (~65% do card em telas grandes com tamanho padronizado) */}
           <Link
             href={currentItem.href}
-            className="lg:col-span-7 xl:col-span-8 relative group/preview block h-[280px] sm:h-[380px] lg:h-full w-full overflow-hidden bg-[#070b10]"
+            className="lg:col-span-7 xl:col-span-8 relative group/preview block h-[260px] sm:h-[340px] lg:h-full w-full overflow-hidden bg-[#070b10]"
           >
-            {/* Imagem com transição suave */}
+            {/* Imagem travada no container com absolute inset-0 e object-cover */}
             <img
               key={displayImage}
               src={displayImage}
               alt={currentItem.title}
-              className="h-full w-full object-cover object-center transition-all duration-700 group-hover/preview:scale-105 filter brightness-[0.95]"
+              className="absolute inset-0 h-full w-full object-cover object-center transition-all duration-700 group-hover/preview:scale-105 filter brightness-[0.95]"
             />
 
             {/* Vinheta escura de sombreamento inferior */}
@@ -311,13 +311,13 @@ export function FeaturedCarousel() {
           </Link>
 
           {/* LADO DIREITO: Painel com 4 Thumbnails, Recomendação e Preço/Ação (~35%) */}
-          <div className="lg:col-span-5 xl:col-span-4 bg-[#0d151e]/98 border-t lg:border-t-0 lg:border-l border-[#2a475e]/70 p-5 sm:p-6 flex flex-col justify-between">
+          <div className="lg:col-span-5 xl:col-span-4 bg-[#0d151e]/98 border-t lg:border-t-0 lg:border-l border-[#2a475e]/70 p-4 sm:p-5 lg:p-6 flex flex-col justify-between lg:h-full overflow-hidden">
             
             {/* Título do Produto / Serviço no Topo do Painel */}
             <div>
-              <div className="flex items-center justify-between gap-2 border-b border-[#2a475e]/60 pb-3 mb-3.5">
+              <div className="flex items-center justify-between gap-2 border-b border-[#2a475e]/60 pb-2.5 mb-3">
                 <div>
-                  <h4 className="text-base sm:text-lg font-extrabold text-white tracking-tight line-clamp-1">
+                  <h4 className="text-base sm:text-lg font-extrabold text-white tracking-tight leading-snug line-clamp-2">
                     {currentItem.title}
                   </h4>
                   <p className="text-[11px] font-mono text-[#66c0f4] tracking-wide mt-0.5">
@@ -326,7 +326,7 @@ export function FeaturedCarousel() {
                 </div>
               </div>
 
-              {/* Grid 2x2 com 4 Thumbnails Interativas */}
+              {/* Grid 2x2 com 4 Thumbnails Interativas padronizadas */}
               <div className="grid grid-cols-2 gap-2 my-2">
                 {currentItem.thumbnails.slice(0, 4).map((thumb, idx) => {
                   const isHovered = hoveredThumbIndex === idx;
@@ -344,7 +344,7 @@ export function FeaturedCarousel() {
                       <img
                         src={thumb}
                         alt={`${currentItem.title} preview ${idx + 1}`}
-                        className="h-full w-full object-cover object-center"
+                        className="absolute inset-0 h-full w-full object-cover object-center"
                       />
                       <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors" />
                     </div>
@@ -353,7 +353,7 @@ export function FeaturedCarousel() {
               </div>
 
               {/* Bloco de Recomendação (Estilo o farol de aviso do print da Steam) */}
-              <div className="mt-3.5 p-2.5 rounded-lg bg-[#111c27] border border-[#253e56] flex items-center gap-3">
+              <div className="mt-3 p-2.5 rounded-lg bg-[#111c27] border border-[#253e56] flex items-center gap-3">
                 <div className="h-9 w-9 rounded flex items-center justify-center bg-[#1a2d3e] border border-[#66c0f4]/40 text-[#66c0f4] flex-shrink-0 shadow-[0_0_8px_rgba(102,192,244,0.3)]">
                   {currentItem.iconType === "wrench" ? (
                     <Wrench className="h-5 w-5" />
