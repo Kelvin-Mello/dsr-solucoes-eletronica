@@ -4,67 +4,228 @@ import Link from "next/link";
 import Image from "next/image";
 import { 
   Building2, 
-  ShieldCheck, 
   ChevronRight, 
   Handshake, 
   Factory, 
   Zap, 
-  Sparkles, 
   Award,
-  Users,
   CheckCircle2,
   Mail,
-  PhoneCall
+  Flame,
+  Droplets,
+  Gauge
 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Clientes & Parceiros | DSR Soluções em Eletrônica",
-  description: "Empresas e indústrias atendidas pela DSR Soluções em Eletrônica de Potência. Subestações, siderurgia, mineração, químico e papel & celulose.",
+  description: "Grandes indústrias, concessionárias de energia e usinas atendidas pela DSR Soluções em Eletrônica de Potência. Engie, Sabesp, Usiminas, Inpasa, Moura e mais.",
 };
 
-// Array pronto para receber os logos dos clientes conforme forem enviados
-interface ClientLogo {
+export interface ClientItem {
   id: string;
+  rank: number;
   name: string;
+  category: string;
   sector: string;
-  logoUrl?: string; // Se indefinido, exibe o placeholder profissional
+  scale: string;
+  desc: string;
+  logoUrl: string;
 }
 
-const CLIENT_SLOTS: ClientLogo[] = [
-  { id: "c1", name: "Cliente Homologado 01", sector: "Siderurgia & Metalurgia" },
-  { id: "c2", name: "Cliente Homologado 02", sector: "Subestação & Concessionária" },
-  { id: "c3", name: "Cliente Homologado 03", sector: "Mineração & Cimento" },
-  { id: "c4", name: "Cliente Homologado 04", sector: "Química & Petroquímica" },
-  { id: "c5", name: "Cliente Homologado 05", sector: "Papel & Celulose" },
-  { id: "c6", name: "Cliente Homologado 06", sector: "Geração & Transmissão" },
-  { id: "c7", name: "Cliente Homologado 07", sector: "Indústria Automotiva" },
-  { id: "c8", name: "Cliente Homologado 08", sector: "Alimentos & Bebidas" },
-  { id: "c9", name: "Cliente Homologado 09", sector: "Óleo & Gás" },
-  { id: "c10", name: "Cliente Homologado 10", sector: "Infraestrutura Crítica" },
-  { id: "c11", name: "Cliente Homologado 11", sector: "Centros de Dados & Telecom" },
-  { id: "c12", name: "Cliente Homologado 12", sector: "Energia Renovável & Solar" }
+// 17 Empresas Homologadas ordenadas das maiores para as menores
+export const CLIENTS_LIST: ClientItem[] = [
+  {
+    id: "engie",
+    rank: 1,
+    name: "Engie",
+    category: "Energia",
+    sector: "Geração & Transmissão de Energia",
+    scale: "Multinacional Global",
+    desc: "Líder global em transição energética e uma das maiores operadoras privadas de geração do Brasil.",
+    logoUrl: "/images/clients/engie.svg"
+  },
+  {
+    id: "sabesp",
+    rank: 2,
+    name: "Sabesp",
+    category: "Saneamento",
+    sector: "Saneamento Básico & Infraestrutura Crítica",
+    scale: "Concessionária Estadual",
+    desc: "Maior empresa de saneamento ambiental e abastecimento de água das Américas.",
+    logoUrl: "/images/clients/sabesp.svg"
+  },
+  {
+    id: "usiminas",
+    rank: 3,
+    name: "Usiminas",
+    category: "Siderurgia",
+    sector: "Siderurgia & Laminação Pesada",
+    scale: "Siderúrgica Nacional",
+    desc: "Líder brasileira na produção de aços planos laminados para indústrias automotivas e de infraestrutura.",
+    logoUrl: "/images/clients/usiminas.svg"
+  },
+  {
+    id: "inpasa",
+    rank: 4,
+    name: "Inpasa",
+    category: "Agroenergia",
+    sector: "Biorrefinaria & Biocombustíveis",
+    scale: "Multinacional Agroenergética",
+    desc: "Maior produtora de etanol de milho, bioeletricidade e coprodutos da América Latina.",
+    logoUrl: "/images/clients/inpasa.png"
+  },
+  {
+    id: "moura",
+    rank: 5,
+    name: "Baterias Moura",
+    category: "Armazenamento",
+    sector: "Acumuladores & Baterias Industriais",
+    scale: "Líder Sul-Americana",
+    desc: "Maior fabricante de acumuladores e baterias para sistemas críticos de energia da América do Sul.",
+    logoUrl: "/images/clients/moura.svg"
+  },
+  {
+    id: "softys",
+    rank: 6,
+    name: "Softys Melhoramentos",
+    category: "Papel & Celulose",
+    sector: "Papel, Celulose & Bens de Consumo",
+    scale: "Multinacional (Grupo CMPC)",
+    desc: "Líder latino-americana no desenvolvimento de produtos de higiene, tissue e cuidados pessoais.",
+    logoUrl: "/images/clients/softys-melhoramentos.svg"
+  },
+  {
+    id: "ceste",
+    rank: 7,
+    name: "CESTE",
+    category: "Energia",
+    sector: "Consórcio Estreito Energia (UHE Estreito)",
+    scale: "Hidrelétrica de 1.087 MW",
+    desc: "Consórcio operador da Usina Hidrelétrica Estreito no Rio Tocantins (Engie, Vale, Alcoa e InterCement).",
+    logoUrl: "/images/clients/ceste.png"
+  },
+  {
+    id: "diamante",
+    rank: 8,
+    name: "Diamante Energia",
+    category: "Energia",
+    sector: "Geração Térmica & Transição Energética",
+    scale: "Complexo de 857 MW",
+    desc: "Operadora do Complexo Termelétrico Jorge Lacerda, o maior parque de geração a carvão da América do Sul.",
+    logoUrl: "/images/clients/diamante.png"
+  },
+  {
+    id: "enercan",
+    rank: 9,
+    name: "Enercan",
+    category: "Energia",
+    sector: "Campos Novos Energia S.A. (UHE)",
+    scale: "Hidrelétrica de 880 MW",
+    desc: "Concessionária responsável pela Usina Hidrelétrica Campos Novos, com alta disponibilidade operativa.",
+    logoUrl: "/images/clients/enercan.png"
+  },
+  {
+    id: "ceran",
+    rank: 10,
+    name: "Ceran",
+    category: "Energia",
+    sector: "Complexo Rio das Antas (3 UHEs)",
+    scale: "Complexo Hídrico de 360 MW",
+    desc: "Companhia Energética Rio das Antas, integrando as usinas Monte Claro, Castro Alves e 14 de Julho.",
+    logoUrl: "/images/clients/ceran.png"
+  },
+  {
+    id: "geramaranhao",
+    rank: 11,
+    name: "Gera Maranhão",
+    category: "Energia",
+    sector: "Geradora de Energia do Maranhão (Geramar)",
+    scale: "Usinas Termelétricas de 330 MW",
+    desc: "Complexo das UTEs Geramar I e Geramar II em Miranda do Norte (MA), ativo estratégico do SIN.",
+    logoUrl: "/images/clients/geramaranhao.png"
+  },
+  {
+    id: "usinaatena",
+    rank: 12,
+    name: "Usina Atena",
+    category: "Bioenergia",
+    sector: "Açúcar, Etanol & Cogeração",
+    scale: "Agroindústria Sucroenergética",
+    desc: "Atena Açúcar e Etanol – Parque industrial com cogeração e processamento de cana-de-açúcar.",
+    logoUrl: "/images/clients/atena.png"
+  },
+  {
+    id: "usiban",
+    rank: 13,
+    name: "Usiban",
+    category: "Bioenergia",
+    sector: "Usina Bandeirante (Açúcar & Álcool)",
+    scale: "Agroindústria Sucroenergética",
+    desc: "Açúcar e Álcool Bandeirantes S.A. – Produção em larga escala de bioenergia e derivados.",
+    logoUrl: "/images/clients/usiban.png"
+  },
+  {
+    id: "usinaiberia",
+    rank: 14,
+    name: "Usina Ibéria",
+    category: "Bioenergia",
+    sector: "Ibéria Agroindustrial (Açúcar & Etanol)",
+    scale: "Parque Agroindustrial",
+    desc: "Unidade produtora de açúcar e etanol do interior paulista (Borá/SP), associada da UDOP.",
+    logoUrl: "/images/clients/iberia.png"
+  },
+  {
+    id: "bomsucesso",
+    rank: 15,
+    name: "Bom Sucesso",
+    category: "Bioenergia",
+    sector: "BSA Bioenergia (Bom Sucesso Agroindústria)",
+    scale: "Usinagem & Bioeletricidade",
+    desc: "Bom Sucesso Agroindústria S.A. em Goiatuba/GO – Produção sustentável de etanol e açúcar.",
+    logoUrl: "/images/clients/bomsucesso.png"
+  },
+  {
+    id: "hidrogeron",
+    rank: 16,
+    name: "Hidrogeron",
+    category: "Tecnologia",
+    sector: "Sistemas de Cloração por Eletrólise",
+    scale: "Fabricante de Tecnologia",
+    desc: "Pioneira nacional em geradores de cloro in-loco para concessionárias de saneamento e tratamento de água.",
+    logoUrl: "/images/clients/hidrogeron.png"
+  },
+  {
+    id: "turbodrive",
+    rank: 17,
+    name: "Turbo Drive",
+    category: "Automação",
+    sector: "Automação & Acionamentos Industriais",
+    scale: "Engenharia de Drives",
+    desc: "Soluções em inversores, painéis de acionamento e engenharia consultiva em eletrônica de controle.",
+    logoUrl: "/images/clients/turbodrive.png"
+  }
 ];
 
 const SECTORS = [
   {
+    icon: Zap,
+    name: "Geração & Concessionárias",
+    desc: "Subestações, usinas hidrelétricas e termelétricas com retificadores de 125Vcc/250Vcc para relés e comando de disjuntores."
+  },
+  {
     icon: Factory,
     name: "Siderurgia & Metalurgia",
-    desc: "Alimentação de fornos de arco, pontes tiristorizadas de laminação e cadinhos de fundição."
+    desc: "Alimentação de alta corrente para pontes tiristorizadas de laminação, fornos de indução e controle de potência."
   },
   {
-    icon: Zap,
-    name: "Subestações & Concessionárias",
-    desc: "Sistemas ininterruptos de 125Vcc/250Vcc para comando de disjuntores e relés de proteção."
+    icon: Flame,
+    name: "Sucroenergético & Bioenergia",
+    desc: "Sistemas ininterruptos de potência para turbogeradores de cogeração, moendas, caldeiras e destilarias."
   },
   {
-    icon: Building2,
-    name: "Química & Petroquímica",
-    desc: "Retificadores industriais para eletrólise, cloração e processos químicos contínuos."
-  },
-  {
-    icon: Award,
-    name: "Mineração & Cimenteiras",
-    desc: "Sistemas de potência robustos resistentes a poeira condutiva e vibrações severas."
+    icon: Droplets,
+    name: "Saneamento & Processos Contínuos",
+    desc: "Retificadores para cloração e eletrólise in-loco, automação de bombeamento e estações de tratamento de água."
   }
 ];
 
@@ -92,7 +253,7 @@ export default function ClientesPage() {
                 PARCERIA & CONFIANÇA TÉCNICA
               </span>
               <span className="rounded bg-[#2a475e]/60 px-2.5 py-1 text-xs font-mono text-[#8f98a0]">
-                Homologação em Grandes Plantas
+                Homologação nas Maiores Plantas do Brasil
               </span>
             </div>
 
@@ -101,7 +262,7 @@ export default function ClientesPage() {
             </h1>
 
             <p className="text-sm sm:text-base text-[#8f98a0] leading-relaxed">
-              Construímos relações sólidas baseadas na entrega de tecnologia de ponta, suporte transparente e presença física de engenharia nas maiores indústrias e concessionárias de energia do país.
+              Construímos relações sólidas baseadas na entrega de tecnologia de ponta, suporte transparente e presença física de engenharia nas maiores indústrias, hidrelétricas, usinas e concessionárias de energia do país.
             </p>
 
             {/* Quote Manifesto DSR */}
@@ -134,48 +295,66 @@ export default function ClientesPage() {
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#2a475e] pb-4">
             <div>
-              <h2 className="text-xl font-bold text-white">Marcas e Indústrias Parceiras</h2>
+              <h2 className="text-xl font-bold text-white">Empresas e Plantas Homologadas</h2>
               <p className="text-xs text-[#8f98a0] mt-0.5">
-                Empresas que confiam na engenharia DSR para a segurança de sua alimentação elétrica
+                Organizadas da maior operação para as indústrias especializadas atendidas pela DSR
               </p>
             </div>
-            <span className="text-xs font-mono text-[#66c0f4] self-start sm:self-auto">
-              {CLIENT_SLOTS.length} Vagas Homologadas
+            <span className="inline-flex items-center gap-1.5 text-xs font-mono text-[#66c0f4] self-start sm:self-auto bg-[#101822] px-3 py-1 rounded-full border border-[#2a475e]">
+              <span className="h-2 w-2 rounded-full bg-[#66c0f4] animate-pulse" />
+              {CLIENTS_LIST.length} Empresas Homologadas
             </span>
           </div>
 
-          {/* Grid of Logos / Slots */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
-            {CLIENT_SLOTS.map((slot) => (
+          {/* Grid of Logos */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+            {CLIENTS_LIST.map((client) => (
               <div
-                key={slot.id}
-                className="group relative flex flex-col items-center justify-center rounded-xl border border-[#2a475e] bg-gradient-to-b from-[#171a21] to-[#101822] p-6 text-center hover:border-[#66c0f4]/80 hover:shadow-[0_0_20px_rgba(102,192,244,0.15)] transition-all duration-300 min-h-[140px]"
+                key={client.id}
+                className="group relative flex flex-col justify-between rounded-xl border border-[#2a475e] bg-gradient-to-b from-[#171a21] to-[#101822] p-5 text-center hover:border-[#66c0f4] hover:shadow-[0_0_25px_rgba(102,192,244,0.2)] transition-all duration-300 hover:-translate-y-1"
               >
-                {slot.logoUrl ? (
-                  <div className="relative h-16 w-full">
+                {/* Header with Rank and Scale */}
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <span className="inline-flex items-center justify-center h-6 w-7 rounded bg-[#2a475e]/60 font-mono text-[11px] font-bold text-[#66c0f4] border border-[#66c0f4]/30">
+                    #{String(client.rank).padStart(2, "0")}
+                  </span>
+                  <span className="text-[10px] font-mono text-[#8f98a0] uppercase tracking-wider truncate">
+                    {client.category}
+                  </span>
+                </div>
+
+                {/* White Logo Stage for Maximum Definition and Contrast */}
+                <div className="relative h-24 w-full rounded-lg bg-white p-3 flex items-center justify-center shadow-inner transition-transform duration-300 group-hover:scale-[1.02] border border-slate-200">
+                  <div className="relative h-full w-full">
                     <Image
-                      src={slot.logoUrl}
-                      alt={slot.name}
+                      src={client.logoUrl}
+                      alt={`Logo da ${client.name}`}
                       fill
-                      className="object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                      sizes="(max-width: 640px) 280px, (max-width: 1024px) 220px, 260px"
+                      className="object-contain p-1.5 transition-all duration-300 group-hover:scale-105"
                     />
                   </div>
-                ) : (
-                  /* Placeholder estilizado pronto para receber o logo */
-                  <div className="flex flex-col items-center justify-center space-y-2 text-[#8f98a0] group-hover:text-white transition-colors">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2a475e]/30 border border-[#2a475e] text-[#66c0f4]/70 group-hover:border-[#66c0f4] group-hover:text-[#66c0f4] transition-all">
-                      <Building2 className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <span className="block text-xs font-semibold text-white/90">
-                        {slot.name}
-                      </span>
-                      <span className="block text-[10px] font-mono text-[#66c0f4]/70">
-                        {slot.sector}
-                      </span>
-                    </div>
+                </div>
+
+                {/* Info Block */}
+                <div className="mt-4 pt-3 border-t border-[#2a475e]/50 text-left space-y-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="text-sm font-bold text-white group-hover:text-[#66c0f4] transition-colors truncate">
+                      {client.name}
+                    </h3>
+                    <span className="text-[9px] font-mono text-[#66c0f4] bg-[#2a475e]/40 px-1.5 py-0.5 rounded shrink-0">
+                      {client.scale}
+                    </span>
                   </div>
-                )}
+
+                  <p className="text-[11px] font-medium text-[#c6d4df] truncate">
+                    {client.sector}
+                  </p>
+
+                  <p className="text-[10px] text-[#8f98a0] leading-relaxed line-clamp-2">
+                    {client.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -192,7 +371,7 @@ export default function ClientesPage() {
                 Sua empresa precisa de homologação técnica ou fornecimento industrial?
               </h3>
               <p className="text-sm text-[#8f98a0] max-w-2xl">
-                Encaminhe os requisitos de cadastro de fornecedores ou solicite a documentação técnica e certidões da DSR Soluções em Eletrônica.
+                Encaminhe os requisitos de cadastro de fornecedores ou solicite a documentação técnica, certidões e histórico de projetos da DSR Soluções em Eletrônica.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">

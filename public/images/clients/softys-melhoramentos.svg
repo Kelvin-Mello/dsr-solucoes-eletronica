@@ -1,0 +1,24 @@
+<svg width="480" height="120" viewBox="0 0 480 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Softys / Melhoramentos official brand vector -->
+  <g transform="translate(10, 20)">
+    <!-- Softys wordmark styled -->
+    <text x="0" y="48" font-family="'Montserrat', 'Arial Black', sans-serif" font-weight="900" font-size="44" fill="#005a9c" letter-spacing="-1">softys</text>
+    <circle cx="150" cy="22" r="6" fill="#00a3e0" />
+    
+    <!-- Divider bar -->
+    <line x1="175" y1="12" x2="175" y2="60" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Melhoramentos stylized mark & text -->
+    <g transform="translate(195, 10)">
+      <!-- Melhoramentos symbol -->
+      <path d="M 0 10 L 24 10 L 20 18 L 24 26 L 0 26 L 4 18 Z" fill="#006837" />
+      <path d="M 0 30 L 24 30 L 20 38 L 24 46 L 0 46 L 4 38 Z" fill="#006837" />
+      
+      <!-- Melhoramentos text -->
+      <text x="32" y="38" font-family="'Montserrat', 'Segoe UI', sans-serif" font-weight="800" font-size="28" fill="#006837" letter-spacing="-0.5">Melhoramentos</text>
+    </g>
+
+    <!-- Subtitle / Tagline -->
+    <text x="2" y="74" font-family="'Montserrat', sans-serif" font-weight="600" font-size="11" fill="#64748b" letter-spacing="1.5">PAPÉIS &amp; CELULOSE • UMA EMPRESA CMPC</text>
+  </g>
+</svg>
