@@ -29,6 +29,7 @@ export interface FeaturedItem {
   statusBadge: string;
   ctaText: string;
   iconType?: "zap" | "wrench" | "cpu" | "shield";
+  imagePosition?: string;
 }
 
 const FEATURED_ITEMS: FeaturedItem[] = [
@@ -52,7 +53,8 @@ const FEATURED_ITEMS: FeaturedItem[] = [
     tags: ["Tiristorizado Analógico", "12 a 250Vcc", "UDQ 1-4 Etapas", "PCIs Universais"],
     statusBadge: "Fabricação Sob Medida",
     ctaText: "Ver Ficha Técnica",
-    iconType: "zap"
+    iconType: "zap",
+    imagePosition: "object-[center_28%]"
   },
   {
     id: "feat-retrofit",
@@ -278,7 +280,11 @@ export function FeaturedCarousel() {
               key={displayImage}
               src={displayImage}
               alt={currentItem.title}
-              className="absolute inset-0 h-full w-full object-cover object-center transition-all duration-700 group-hover/preview:scale-105 filter brightness-[0.95]"
+              className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 group-hover/preview:scale-105 filter brightness-[0.95] ${
+                displayImage.includes("rit-d-cabinet-real") 
+                  ? "object-[center_28%]" 
+                  : (currentItem.imagePosition || "object-center")
+              }`}
             />
 
             {/* Vinheta escura de sombreamento inferior */}
@@ -344,7 +350,11 @@ export function FeaturedCarousel() {
                       <img
                         src={thumb}
                         alt={`${currentItem.title} preview ${idx + 1}`}
-                        className="absolute inset-0 h-full w-full object-cover object-center"
+                        className={`absolute inset-0 h-full w-full object-cover ${
+                          thumb.includes("rit-d-cabinet-real") 
+                            ? "object-[center_28%]" 
+                            : "object-center"
+                        }`}
                       />
                       <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors" />
                     </div>
