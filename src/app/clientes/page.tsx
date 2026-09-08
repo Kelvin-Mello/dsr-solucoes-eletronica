@@ -3,27 +3,23 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { 
-  Building2, 
   ChevronRight, 
   Handshake, 
   Factory, 
   Zap, 
-  Award,
   CheckCircle2,
   Mail,
   Flame,
-  Droplets,
-  Gauge
+  Droplets
 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Clientes & Parceiros | DSR Soluções em Eletrônica",
-  description: "Grandes indústrias, concessionárias de energia e usinas atendidas pela DSR Soluções em Eletrônica de Potência. Engie, Sabesp, Usiminas, Inpasa, Moura e mais.",
+  description: "Grandes indústrias, concessionárias de energia e usinas atendidas pela DSR Soluções em Eletrônica de Potência. Engie, BRF, Sabesp, Usiminas, Inpasa, Moura e mais.",
 };
 
 export interface ClientItem {
   id: string;
-  rank: number;
   name: string;
   category: string;
   sector: string;
@@ -32,11 +28,10 @@ export interface ClientItem {
   logoUrl: string;
 }
 
-// 17 Empresas Homologadas ordenadas das maiores para as menores
+// 19 Empresas Clientes & Parceiras ordenadas das maiores para as menores
 export const CLIENTS_LIST: ClientItem[] = [
   {
     id: "engie",
-    rank: 1,
     name: "Engie",
     category: "Energia",
     sector: "Geração & Transmissão de Energia",
@@ -45,8 +40,16 @@ export const CLIENTS_LIST: ClientItem[] = [
     logoUrl: "/images/clients/engie.svg"
   },
   {
+    id: "brf",
+    name: "BRF",
+    category: "Alimentos",
+    sector: "Complexos Agroindustriais & Alimentos",
+    scale: "Multinacional Global de Alimentos",
+    desc: "Uma das maiores companhias de alimentos do planeta (Sadia e Perdigão), com plantas industriais de alta escala.",
+    logoUrl: "/images/clients/brf.svg"
+  },
+  {
     id: "sabesp",
-    rank: 2,
     name: "Sabesp",
     category: "Saneamento",
     sector: "Saneamento Básico & Infraestrutura Crítica",
@@ -56,7 +59,6 @@ export const CLIENTS_LIST: ClientItem[] = [
   },
   {
     id: "usiminas",
-    rank: 3,
     name: "Usiminas",
     category: "Siderurgia",
     sector: "Siderurgia & Laminação Pesada",
@@ -66,7 +68,6 @@ export const CLIENTS_LIST: ClientItem[] = [
   },
   {
     id: "inpasa",
-    rank: 4,
     name: "Inpasa",
     category: "Agroenergia",
     sector: "Biorrefinaria & Biocombustíveis",
@@ -76,7 +77,6 @@ export const CLIENTS_LIST: ClientItem[] = [
   },
   {
     id: "moura",
-    rank: 5,
     name: "Baterias Moura",
     category: "Armazenamento",
     sector: "Acumuladores & Baterias Industriais",
@@ -86,7 +86,6 @@ export const CLIENTS_LIST: ClientItem[] = [
   },
   {
     id: "softys",
-    rank: 6,
     name: "Softys Melhoramentos",
     category: "Papel & Celulose",
     sector: "Papel, Celulose & Bens de Consumo",
@@ -96,7 +95,6 @@ export const CLIENTS_LIST: ClientItem[] = [
   },
   {
     id: "ceste",
-    rank: 7,
     name: "CESTE",
     category: "Energia",
     sector: "Consórcio Estreito Energia (UHE Estreito)",
@@ -105,8 +103,16 @@ export const CLIENTS_LIST: ClientItem[] = [
     logoUrl: "/images/clients/ceste.png"
   },
   {
+    id: "enercan",
+    name: "Enercan",
+    category: "Energia",
+    sector: "Campos Novos Energia S.A. (UHE)",
+    scale: "Hidrelétrica de 880 MW",
+    desc: "Concessionária responsável pela Usina Hidrelétrica Campos Novos, com alta disponibilidade operativa.",
+    logoUrl: "/images/clients/enercan.svg"
+  },
+  {
     id: "diamante",
-    rank: 8,
     name: "Diamante Energia",
     category: "Energia",
     sector: "Geração Térmica & Transição Energética",
@@ -115,18 +121,7 @@ export const CLIENTS_LIST: ClientItem[] = [
     logoUrl: "/images/clients/diamante.png"
   },
   {
-    id: "enercan",
-    rank: 9,
-    name: "Enercan",
-    category: "Energia",
-    sector: "Campos Novos Energia S.A. (UHE)",
-    scale: "Hidrelétrica de 880 MW",
-    desc: "Concessionária responsável pela Usina Hidrelétrica Campos Novos, com alta disponibilidade operativa.",
-    logoUrl: "/images/clients/enercan.png"
-  },
-  {
     id: "ceran",
-    rank: 10,
     name: "Ceran",
     category: "Energia",
     sector: "Complexo Rio das Antas (3 UHEs)",
@@ -135,18 +130,25 @@ export const CLIENTS_LIST: ClientItem[] = [
     logoUrl: "/images/clients/ceran.png"
   },
   {
+    id: "pampasul",
+    name: "Pampa Sul Energia",
+    category: "Energia",
+    sector: "Usina Termelétrica Pampa Sul (Candiota/RS)",
+    scale: "Termelétrica de 345 MW",
+    desc: "Usina termelétrica a carvão mineral com tecnologia supercrítica de alta eficiência no Rio Grande do Sul.",
+    logoUrl: "/images/clients/pampasul.png"
+  },
+  {
     id: "geramaranhao",
-    rank: 11,
     name: "Gera Maranhão",
     category: "Energia",
-    sector: "Geradora de Energia do Maranhão (Geramar)",
-    scale: "Usinas Termelétricas de 330 MW",
-    desc: "Complexo das UTEs Geramar I e Geramar II em Miranda do Norte (MA), ativo estratégico do SIN.",
-    logoUrl: "/images/clients/geramaranhao.png"
+    sector: "UTEs Geramar I & II (Grupo Eneva)",
+    scale: "Complexo Térmico de 330 MW",
+    desc: "Complexo termelétrico em Miranda do Norte (MA), operado pela Eneva e estratégico para a estabilidade do SIN.",
+    logoUrl: "/images/clients/geramaranhao.svg"
   },
   {
     id: "usinaatena",
-    rank: 12,
     name: "Usina Atena",
     category: "Bioenergia",
     sector: "Açúcar, Etanol & Cogeração",
@@ -156,7 +158,6 @@ export const CLIENTS_LIST: ClientItem[] = [
   },
   {
     id: "usiban",
-    rank: 13,
     name: "Usiban",
     category: "Bioenergia",
     sector: "Usina Bandeirante (Açúcar & Álcool)",
@@ -166,7 +167,6 @@ export const CLIENTS_LIST: ClientItem[] = [
   },
   {
     id: "usinaiberia",
-    rank: 14,
     name: "Usina Ibéria",
     category: "Bioenergia",
     sector: "Ibéria Agroindustrial (Açúcar & Etanol)",
@@ -176,7 +176,6 @@ export const CLIENTS_LIST: ClientItem[] = [
   },
   {
     id: "bomsucesso",
-    rank: 15,
     name: "Bom Sucesso",
     category: "Bioenergia",
     sector: "BSA Bioenergia (Bom Sucesso Agroindústria)",
@@ -186,7 +185,6 @@ export const CLIENTS_LIST: ClientItem[] = [
   },
   {
     id: "hidrogeron",
-    rank: 16,
     name: "Hidrogeron",
     category: "Tecnologia",
     sector: "Sistemas de Cloração por Eletrólise",
@@ -196,7 +194,6 @@ export const CLIENTS_LIST: ClientItem[] = [
   },
   {
     id: "turbodrive",
-    rank: 17,
     name: "Turbo Drive",
     category: "Automação",
     sector: "Automação & Acionamentos Industriais",
@@ -214,7 +211,7 @@ const SECTORS = [
   },
   {
     icon: Factory,
-    name: "Siderurgia & Metalurgia",
+    name: "Siderurgia & Indústria Pesada",
     desc: "Alimentação de alta corrente para pontes tiristorizadas de laminação, fornos de indução e controle de potência."
   },
   {
@@ -253,7 +250,7 @@ export default function ClientesPage() {
                 PARCERIA & CONFIANÇA TÉCNICA
               </span>
               <span className="rounded bg-[#2a475e]/60 px-2.5 py-1 text-xs font-mono text-[#8f98a0]">
-                Homologação nas Maiores Plantas do Brasil
+                Presença nas Maiores Plantas do Brasil
               </span>
             </div>
 
@@ -267,7 +264,7 @@ export default function ClientesPage() {
 
             {/* Quote Manifesto DSR */}
             <div className="rounded-lg bg-[#101822]/80 border-l-4 border-[#66c0f4] p-4 text-xs sm:text-sm text-[#c6d4df] italic">
-              "A DSR Soluções busca estabelecer com seus clientes sólida parceria, no mais elevado grau de ética e transparência. Acreditamos que isto se alcança oferecendo produtos e serviços com qualidade, num relacionamento 'olho no olho' com nossos clientes e com respostas verdadeiras. Esta é a nossa definição de parceria."
+              &ldquo;A DSR Soluções busca estabelecer com seus clientes sólida parceria, no mais elevado grau de ética e transparência. Acreditamos que isto se alcança oferecendo produtos e serviços com qualidade, num relacionamento &apos;olho no olho&apos; com nossos clientes e com respostas verdadeiras. Esta é a nossa definição de parceria.&rdquo;
             </div>
           </div>
         </div>
@@ -295,65 +292,57 @@ export default function ClientesPage() {
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#2a475e] pb-4">
             <div>
-              <h2 className="text-xl font-bold text-white">Empresas e Plantas Homologadas</h2>
+              <h2 className="text-xl font-bold text-white">Empresas e Plantas Atendidas</h2>
               <p className="text-xs text-[#8f98a0] mt-0.5">
-                Organizadas da maior operação para as indústrias especializadas atendidas pela DSR
+                Organizadas da maior operação corporativa para as indústrias especializadas
               </p>
             </div>
             <span className="inline-flex items-center gap-1.5 text-xs font-mono text-[#66c0f4] self-start sm:self-auto bg-[#101822] px-3 py-1 rounded-full border border-[#2a475e]">
               <span className="h-2 w-2 rounded-full bg-[#66c0f4] animate-pulse" />
-              {CLIENTS_LIST.length} Empresas Homologadas
+              {CLIENTS_LIST.length} Grandes Empresas
             </span>
           </div>
 
-          {/* Grid of Logos */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+          {/* Grid of Logos with Square Standard Ratio */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {CLIENTS_LIST.map((client) => (
               <div
                 key={client.id}
-                className="group relative flex flex-col justify-between rounded-xl border border-[#2a475e] bg-gradient-to-b from-[#171a21] to-[#101822] p-5 text-center hover:border-[#66c0f4] hover:shadow-[0_0_25px_rgba(102,192,244,0.2)] transition-all duration-300 hover:-translate-y-1"
+                className="group relative flex flex-col justify-between rounded-xl border border-[#2a475e] bg-gradient-to-b from-[#171a21] to-[#101822] p-5 text-left hover:border-[#66c0f4] hover:shadow-[0_0_25px_rgba(102,192,244,0.2)] transition-all duration-300 hover:-translate-y-1"
               >
-                {/* Header with Rank and Scale */}
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="inline-flex items-center justify-center h-6 w-7 rounded bg-[#2a475e]/60 font-mono text-[11px] font-bold text-[#66c0f4] border border-[#66c0f4]/30">
-                    #{String(client.rank).padStart(2, "0")}
-                  </span>
-                  <span className="text-[10px] font-mono text-[#8f98a0] uppercase tracking-wider truncate">
-                    {client.category}
-                  </span>
-                </div>
-
-                {/* White Logo Stage for Maximum Definition and Contrast */}
-                <div className="relative h-24 w-full rounded-lg bg-white p-3 flex items-center justify-center shadow-inner transition-transform duration-300 group-hover:scale-[1.02] border border-slate-200">
+                {/* Square Logo Box for Optimal Fit Across All Ratios */}
+                <div className="relative aspect-square w-full rounded-xl bg-white p-4 flex items-center justify-center shadow-inner transition-transform duration-300 group-hover:scale-[1.02] border border-slate-200">
                   <div className="relative h-full w-full">
                     <Image
                       src={client.logoUrl}
                       alt={`Logo da ${client.name}`}
                       fill
-                      sizes="(max-width: 640px) 280px, (max-width: 1024px) 220px, 260px"
-                      className="object-contain p-1.5 transition-all duration-300 group-hover:scale-105"
+                      sizes="(max-width: 640px) 280px, (max-width: 1024px) 240px, 260px"
+                      className="object-contain p-2 transition-all duration-300 group-hover:scale-105"
                     />
                   </div>
                 </div>
 
                 {/* Info Block */}
-                <div className="mt-4 pt-3 border-t border-[#2a475e]/50 text-left space-y-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <h3 className="text-sm font-bold text-white group-hover:text-[#66c0f4] transition-colors truncate">
+                <div className="mt-4 pt-3 border-t border-[#2a475e]/50 flex-1 flex flex-col justify-between space-y-2">
+                  <div className="space-y-1">
+                    <h3 className="text-base font-bold text-white group-hover:text-[#66c0f4] transition-colors truncate">
                       {client.name}
                     </h3>
-                    <span className="text-[9px] font-mono text-[#66c0f4] bg-[#2a475e]/40 px-1.5 py-0.5 rounded shrink-0">
+                    <p className="text-xs font-semibold text-[#66c0f4] truncate">
+                      {client.sector}
+                    </p>
+                    <p className="text-[11px] text-[#8f98a0] leading-relaxed line-clamp-3">
+                      {client.desc}
+                    </p>
+                  </div>
+
+                  {/* Scale / Porte Tag at the Very Bottom */}
+                  <div className="pt-2 border-t border-[#2a475e]/30 mt-auto">
+                    <span className="inline-flex items-center text-[10px] font-mono text-[#c6d4df] bg-[#101822] border border-[#2a475e] px-2.5 py-1 rounded-md">
                       {client.scale}
                     </span>
                   </div>
-
-                  <p className="text-[11px] font-medium text-[#c6d4df] truncate">
-                    {client.sector}
-                  </p>
-
-                  <p className="text-[10px] text-[#8f98a0] leading-relaxed line-clamp-2">
-                    {client.desc}
-                  </p>
                 </div>
               </div>
             ))}
@@ -365,7 +354,7 @@ export default function ClientesPage() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="space-y-2 text-center md:text-left">
               <span className="inline-flex items-center gap-1.5 rounded bg-[#101822] px-2.5 py-1 text-xs font-mono text-[#66c0f4] border border-[#66c0f4]/30">
-                <CheckCircle2 className="h-3.5 w-3.5" /> HOMOLOGAÇÃO DE FORNECEDOR
+                <CheckCircle2 className="h-3.5 w-3.5" /> CADASTRO TÉCNICO &amp; FORNECIMENTO
               </span>
               <h3 className="text-xl sm:text-2xl font-bold text-white">
                 Sua empresa precisa de homologação técnica ou fornecimento industrial?
