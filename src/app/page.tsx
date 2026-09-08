@@ -15,6 +15,7 @@ import {
   ChevronRight
 } from "lucide-react";
 import { PRODUCTS_MOCK } from "@/mock/products";
+import { FeaturedCarousel } from "@/components/FeaturedCarousel";
 
 export default function Home() {
   const featuredProduct = PRODUCTS_MOCK[0];
@@ -121,6 +122,13 @@ export default function Home() {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Seção Steam Showcase: Destaques e Recomendados (Produtos & Serviços em Rotação Automática) */}
+      <section className="py-8 sm:py-12 bg-gradient-to-b from-[#101822] via-[#141f2b] to-[#171a21] border-b border-[#2a475e]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <FeaturedCarousel />
         </div>
       </section>
 
