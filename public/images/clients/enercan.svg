@@ -1,17 +1,18 @@
 <svg width="640" height="200" viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg">
-  <g transform="translate(15, 20)">
-    <!-- Wordmark Enercan with exact letterforms -->
-    <text x="0" y="100" font-family="'Helvetica Neue', 'Arial', sans-serif" font-weight="800" font-size="124" fill="#111649" letter-spacing="-2.5">Enercan</text>
+  <!-- ENERCAN Official Corporate Brand Lockup - Perfectly Centered with Generous Margins -->
+  <g transform="translate(65, 37)">
+    <!-- Wordmark Enercan with exact letterforms and safety padding -->
+    <text x="0" y="86" font-family="'Helvetica Neue', 'Arial', sans-serif" font-weight="800" font-size="96" fill="#111649" letter-spacing="-1.5">Enercan</text>
     
-    <!-- Symbol: Slanted green bar + navy right-triangle -->
-    <g transform="translate(485, 4)">
+    <!-- Official Symbol: Slanted green bar + navy right-triangle -->
+    <g transform="translate(420, 6)">
       <!-- Green bar -->
-      <path d="M 0 0 L 30 20 L 30 96 L 0 96 Z" fill="#008a3b" />
+      <path d="M 0 0 L 26 16 L 26 78 L 0 78 Z" fill="#008a3b" />
       <!-- Navy triangle -->
-      <polygon points="40,28 116,96 40,96" fill="#111649" />
+      <polygon points="34,22 96,78 34,78" fill="#111649" />
     </g>
     
     <!-- Subtitle: Campos Novos Energia S.A. -->
-    <text x="4" y="152" font-family="'Helvetica Neue', 'Arial', sans-serif" font-style="italic" font-weight="600" font-size="34" fill="#111649" letter-spacing="-0.5">Campos Novos Energia S.A.</text>
+    <text x="4" y="126" font-family="'Helvetica Neue', 'Arial', sans-serif" font-style="italic" font-weight="600" font-size="27" fill="#111649" letter-spacing="-0.3">Campos Novos Energia S.A.</text>
   </g>
 </svg>

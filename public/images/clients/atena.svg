@@ -1,0 +1,16 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Usina Atena Official Brandmark Vector -->
+  <g transform="translate(200, 160)">
+    <!-- Stylized Green Leaf / Arch 'A' Ring -->
+    <path d="M 0 -110 C -45 -110 -85 -70 -85 0 C -85 55 -50 95 -15 105 C 10 112 35 110 50 100 C 68 88 80 68 85 45 C 90 20 88 -15 80 -45 C 70 -80 40 -110 0 -110 Z M 5 -75 C 30 -75 52 -50 58 -20 C 64 8 62 35 55 52 C 48 68 35 78 18 78 C -5 78 -28 65 -45 42 C -60 20 -65 -10 -60 -40 C -52 -62 -25 -75 5 -75 Z" fill="#85c226" />
+    
+    <!-- Inner Leaf accent curve -->
+    <path d="M 12 70 C 35 60 55 35 60 0 C 45 25 25 45 0 55 C 4 62 8 67 12 70 Z" fill="#6ba318" />
+  </g>
+
+  <!-- Wordmark ATENA -->
+  <text x="200" y="325" text-anchor="middle" font-family="'Montserrat', 'Arial Black', sans-serif" font-weight="900" font-size="44" fill="#111827" letter-spacing="4">ATENA</text>
+  
+  <!-- Subtitle AÇÚCAR E ETANOL -->
+  <text x="200" y="355" text-anchor="middle" font-family="'Montserrat', sans-serif" font-weight="700" font-size="14" fill="#374151" letter-spacing="3">AÇÚCAR E ETANOL</text>
+</svg>

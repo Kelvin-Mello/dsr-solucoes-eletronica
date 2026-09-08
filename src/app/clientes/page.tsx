@@ -154,7 +154,7 @@ export const CLIENTS_LIST: ClientItem[] = [
     sector: "Açúcar, Etanol & Cogeração",
     scale: "Agroindústria Sucroenergética",
     desc: "Atena Açúcar e Etanol – Parque industrial com cogeração e processamento de cana-de-açúcar.",
-    logoUrl: "/images/clients/atena.png"
+    logoUrl: "/images/clients/atena.svg"
   },
   {
     id: "usiban",
@@ -190,7 +190,7 @@ export const CLIENTS_LIST: ClientItem[] = [
     sector: "Sistemas de Cloração por Eletrólise",
     scale: "Fabricante de Tecnologia",
     desc: "Pioneira nacional em geradores de cloro in-loco para concessionárias de saneamento e tratamento de água.",
-    logoUrl: "/images/clients/hidrogeron.png"
+    logoUrl: "/images/clients/hidrogeron.svg"
   },
   {
     id: "turbodrive",
@@ -199,7 +199,7 @@ export const CLIENTS_LIST: ClientItem[] = [
     sector: "Automação & Acionamentos Industriais",
     scale: "Engenharia de Drives",
     desc: "Soluções em inversores, painéis de acionamento e engenharia consultiva em eletrônica de controle.",
-    logoUrl: "/images/clients/turbodrive.png"
+    logoUrl: "/images/clients/turbodrive.svg"
   }
 ];
 
