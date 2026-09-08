@@ -14,12 +14,9 @@ import {
   Layers,
   ChevronRight
 } from "lucide-react";
-import { PRODUCTS_MOCK } from "@/mock/products";
 import { FeaturedCarousel } from "@/components/FeaturedCarousel";
 
 export default function Home() {
-  const featuredProduct = PRODUCTS_MOCK[0];
-
   return (
     <div className="min-h-screen bg-[#1b2838] text-[#c6d4df]">
       {/* Hero Section - Industrial Steam Atmosphere */}
@@ -80,51 +77,63 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Card / Product Highlight */}
+            {/* Right Showcase: Imagem Geral que Representa a DSR como um Todo */}
             <div className="lg:col-span-5">
-              <Link
-                href={`/produtos/${featuredProduct.slug}`}
-                className="group block relative overflow-hidden rounded-lg bg-gradient-to-b from-[#2a475e] to-[#1b2e3f] border border-[#3b678c] p-4 shadow-[0_15px_40px_rgba(0,0,0,0.7)] hover:border-[#66c0f4] transition-all duration-300"
-              >
-                <div className="relative aspect-video w-full overflow-hidden rounded bg-black">
+              <div className="relative group overflow-hidden rounded-2xl bg-gradient-to-br from-[#101822] via-[#162534] to-[#0c1219] border border-[#2a475e] p-2.5 sm:p-3 shadow-[0_20px_50px_rgba(0,0,0,0.85)] hover:border-[#66c0f4]/70 transition-all duration-500">
+                <div className="relative aspect-[16/11] sm:aspect-video lg:aspect-[4/3] w-full overflow-hidden rounded-xl bg-[#070b10]">
                   <Image
-                    src={featuredProduct.midias[0].url}
-                    alt={featuredProduct.nome}
+                    src="/images/company/dsr-hero-industrial.jpg"
+                    alt="DSR Soluções em Eletrônica de Potência - Centro de Engenharia e Manufatura"
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 42vw"
+                    className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute top-2 left-2 rounded bg-[#101822]/90 border border-[#66c0f4]/50 px-2 py-0.5 text-[11px] font-mono text-[#66c0f4]">
-                    DESTAQUE INDUSTRIAL
+                  {/* Gradiente de proteção de contraste */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c131c] via-[#0c131c]/30 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#0c131c]/50 via-transparent to-transparent pointer-events-none" />
+
+                  {/* Badges superiores */}
+                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 z-10">
+                    <span className="inline-flex items-center gap-1.5 rounded bg-[#101822]/90 border border-[#66c0f4]/50 px-2.5 py-1 text-[11px] font-mono font-bold text-[#66c0f4] shadow-md backdrop-blur-md">
+                      <ShieldCheck className="h-3.5 w-3.5 text-[#66c0f4]" />
+                      ENGENHARIA DSR
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 rounded bg-[#101822]/90 border border-[#2a475e] px-2.5 py-1 text-[11px] font-mono text-[#c6d4df] shadow-md backdrop-blur-md">
+                      <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                      PLANTÃO 24/7
+                    </span>
+                  </div>
+
+                  {/* Legenda institucional inferior */}
+                  <div className="absolute bottom-3 left-3 right-3 z-10">
+                    <div className="rounded-lg bg-[#0d151e]/85 border border-[#2a475e]/80 p-3 backdrop-blur-md">
+                      <h3 className="text-sm sm:text-base font-bold text-white tracking-tight leading-snug">
+                        DSR Soluções em Eletrônica de Potência
+                      </h3>
+                      <p className="text-[11px] text-[#c6d4df] mt-0.5 leading-normal">
+                        Infraestrutura completa de engenharia, ensaios em carga real e modernização de cubículos industriais de alta potência.
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="mt-4 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-[#8f98a0]">
-                      {featuredProduct.categoria}
-                    </span>
-                    <span className="text-xs font-mono text-emerald-400">
-                      {featuredProduct.status_disponibilidade}
-                    </span>
+                {/* Micro barra inferior de diferenciais institucionais */}
+                <div className="grid grid-cols-3 gap-2 pt-2.5 px-1 text-center font-mono text-[10px] text-[#8f98a0]">
+                  <div className="rounded bg-[#101822]/70 border border-[#2a475e]/60 py-1.5 px-1 truncate">
+                    <span className="text-[#66c0f4] font-bold block">100%</span>
+                    Nacional
                   </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white group-hover:text-[#66c0f4] transition-colors leading-snug">
-                      {featuredProduct.nome}
-                    </h3>
-                    <span className="font-mono text-xs font-semibold text-[#66c0f4] block mt-0.5">
-                      {featuredProduct.codigo_modelo}
-                    </span>
+                  <div className="rounded bg-[#101822]/70 border border-[#2a475e]/60 py-1.5 px-1 truncate">
+                    <span className="text-[#66c0f4] font-bold block">CREA / ART</span>
+                    Certificado
                   </div>
-                  <p className="text-xs text-[#8f98a0] line-clamp-2">
-                    {featuredProduct.descricao}
-                  </p>
-
-                  <div className="pt-2 border-t border-[#3b678c]/40 flex items-center justify-between text-xs text-[#66c0f4] font-semibold">
-                    <span>Acessar Ficha Completa e Carrossel</span>
-                    <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  <div className="rounded bg-[#101822]/70 border border-[#2a475e]/60 py-1.5 px-1 truncate">
+                    <span className="text-[#66c0f4] font-bold block">Brasil</span>
+                    Atendimento
                   </div>
                 </div>
-              </Link>
+              </div>
             </div>
           </div>
         </div>
