@@ -97,19 +97,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <div className="mb-6 rounded-lg bg-gradient-to-r from-[#171a21] via-[#2a475e]/70 to-[#171a21] border border-[#2a475e] p-5 md:p-6 shadow-lg">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <div className="flex items-center gap-2.5 mb-1.5">
-                <span className="inline-flex items-center gap-1 rounded bg-[#101822] px-2.5 py-0.5 text-xs font-mono text-[#66c0f4] border border-[#66c0f4]/40">
-                  {product.codigo_modelo}
-                </span>
-                <span className="rounded bg-[#2a475e]/80 px-2 py-0.5 text-xs text-[#c6d4df]">
-                  {product.subcategoria || product.categoria}
-                </span>
-              </div>
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
                 {product.nome}
               </h1>
-              <p className="mt-1.5 text-sm md:text-base text-[#8f98a0] max-w-3xl">
-                {product.tagline}
+              <p className="mt-1 text-sm md:text-base text-[#66c0f4] font-semibold font-mono">
+                {product.codigo_modelo}
               </p>
             </div>
             

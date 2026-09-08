@@ -95,31 +95,28 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         </nav>
 
         {/* Hero Title Banner */}
-        <div className="relative overflow-hidden rounded-xl border border-[#2a475e] bg-gradient-to-r from-[#101822] via-[#172535] to-[#101822] p-6 sm:p-10 shadow-2xl">
+        <div className="relative overflow-hidden rounded-xl border border-[#2a475e] bg-gradient-to-r from-[#101822] via-[#172535] to-[#101822] p-5 sm:p-6 shadow-xl">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#66c0f4]/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 max-w-4xl space-y-4">
-            <div className="flex flex-wrap items-center gap-2.5">
-              <span className="inline-flex items-center gap-1.5 rounded-md bg-[#101822] px-3 py-1 text-xs font-mono text-[#66c0f4] border border-[#66c0f4]/40">
+          <div className="relative z-10 flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white leading-tight">
+                {service.title}
+              </h1>
+              <p className="mt-1 text-sm sm:text-base text-[#66c0f4] font-semibold font-mono">
+                {service.subtitle}
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 rounded-md bg-[#101822] px-3 py-1.5 text-xs font-mono text-[#66c0f4] border border-[#66c0f4]/40">
                 <IconComponent className="h-3.5 w-3.5" />
                 SERVIÇO ESPECIALIZADO DSR
               </span>
-              <span className="rounded bg-[#66c0f4]/20 border border-[#66c0f4]/40 px-2.5 py-1 text-xs font-mono font-bold text-[#66c0f4]">
+              <span className="rounded bg-[#66c0f4]/20 border border-[#66c0f4]/40 px-2.5 py-1.5 text-xs font-mono font-bold text-[#66c0f4]">
                 {service.badge}
               </span>
             </div>
-
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-              {service.title}
-            </h1>
-
-            <p className="text-sm sm:text-base text-[#66c0f4] font-medium font-mono">
-              {service.subtitle}
-            </p>
-
-            <p className="text-sm sm:text-base text-[#8f98a0] leading-relaxed max-w-3xl">
-              {service.description}
-            </p>
           </div>
         </div>
 

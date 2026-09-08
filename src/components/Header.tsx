@@ -54,9 +54,8 @@ export function Header() {
           </Link>
           <Link
             href="/produtos"
-            className="text-[#66c0f4] hover:text-[#85d1f7] transition-colors flex items-center gap-1.5 font-bold"
+            className="text-[#66c0f4] hover:text-[#85d1f7] transition-colors font-bold"
           >
-            <Cpu className="h-3.5 w-3.5" />
             Produtos
           </Link>
           <Link
