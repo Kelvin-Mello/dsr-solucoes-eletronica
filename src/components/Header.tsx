@@ -3,8 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Zap, Cpu, ShieldAlert, PhoneCall, ChevronRight, Activity, Terminal } from "lucide-react";
-
 export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-[#2a475e]/80 bg-[#171a21]/95 backdrop-blur-md">
@@ -53,6 +51,12 @@ export function Header() {
             Início
           </Link>
           <Link
+            href="/sobre"
+            className="text-[#c6d4df] hover:text-[#66c0f4] transition-colors"
+          >
+            Sobre
+          </Link>
+          <Link
             href="/produtos"
             className="text-[#66c0f4] hover:text-[#85d1f7] transition-colors font-bold"
           >
@@ -65,22 +69,22 @@ export function Header() {
             Serviços
           </Link>
           <Link
-            href="/novidades"
-            className="text-[#c6d4df] hover:text-white transition-colors"
-          >
-            Novidades & Casos
-          </Link>
-          <Link
             href="/clientes"
             className="text-[#c6d4df] hover:text-white transition-colors"
           >
             Clientes
           </Link>
           <Link
-            href="/sobre"
+            href="/novidades"
             className="text-[#c6d4df] hover:text-white transition-colors"
           >
-            Sobre
+            Novidades & Casos
+          </Link>
+          <Link
+            href="/contato"
+            className="text-[#c6d4df] hover:text-white transition-colors"
+          >
+            Contato
           </Link>
           <Link
             href="/trabalhe-conosco"
@@ -89,17 +93,6 @@ export function Header() {
             Trabalhe Conosco
           </Link>
         </nav>
-
-        {/* CTA */}
-        <div className="flex items-center gap-3">
-          <Link
-            href="/produtos/retificador-padrao-industrial-modelo-rit-d"
-            className="hidden sm:inline-flex items-center gap-2 rounded bg-[#2a475e] hover:bg-[#315a77] text-white px-4 py-2 text-xs font-semibold uppercase tracking-wider border border-[#3b678c] hover:border-[#66c0f4] transition-all"
-          >
-            <Activity className="h-3.5 w-3.5 text-[#66c0f4]" />
-            Retificador Modelo RIT-D
-          </Link>
-        </div>
       </div>
     </header>
   );
