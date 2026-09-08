@@ -100,16 +100,21 @@ export default function Home() {
 
                 <div className="mt-4 space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs text-[#66c0f4]">
-                      {featuredProduct.codigo_modelo}
-                    </span>
                     <span className="text-xs text-[#8f98a0]">
+                      {featuredProduct.categoria}
+                    </span>
+                    <span className="text-xs font-mono text-emerald-400">
                       {featuredProduct.status_disponibilidade}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-white group-hover:text-[#66c0f4] transition-colors">
-                    {featuredProduct.nome}
-                  </h3>
+                  <div>
+                    <h3 className="text-lg font-bold text-white group-hover:text-[#66c0f4] transition-colors leading-snug">
+                      {featuredProduct.nome}
+                    </h3>
+                    <span className="font-mono text-xs font-semibold text-[#66c0f4] block mt-0.5">
+                      {featuredProduct.codigo_modelo}
+                    </span>
+                  </div>
                   <p className="text-xs text-[#8f98a0] line-clamp-2">
                     {featuredProduct.descricao}
                   </p>
