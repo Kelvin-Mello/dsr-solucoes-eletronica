@@ -269,23 +269,23 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
           {/* 4. Banner de Garantia & Engenharia Dedicada DSR em Largura Total */}
           <div className="rounded-xl bg-gradient-to-r from-[#171a21] via-[#1b2e3f] to-[#171a21] border border-[#2a475e] p-6 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-2">
+            <div className="space-y-3">
               <div className="flex items-center gap-2 text-white font-bold uppercase tracking-wider text-xs">
                 <ShieldCheck className="h-4 w-4 text-[#66c0f4]" />
                 Garantia de Fábrica & Engenharia Dedicada DSR
               </div>
-              <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-[#8f98a0]">
-                <li className="flex items-center gap-1.5">
-                  <Check className="h-3.5 w-3.5 text-[#66c0f4]" />
-                  <strong className="text-white">{product.garantia}</strong>
+              <ul className="flex flex-col gap-2 text-xs text-[#8f98a0]">
+                <li className="flex items-center gap-2">
+                  <Check className="h-3.5 w-3.5 text-[#66c0f4] shrink-0" />
+                  <span><strong className="text-white font-semibold">{product.garantia}</strong></span>
                 </li>
-                <li className="flex items-center gap-1.5">
-                  <Check className="h-3.5 w-3.5 text-[#66c0f4]" />
-                  Estudo de viabilidade de Retrofitting sem custo
+                <li className="flex items-center gap-2">
+                  <Check className="h-3.5 w-3.5 text-[#66c0f4] shrink-0" />
+                  <span>Estudo de viabilidade de Retrofitting sem custo</span>
                 </li>
-                <li className="flex items-center gap-1.5">
-                  <Check className="h-3.5 w-3.5 text-[#66c0f4]" />
-                  Atendimento técnico especializado e suporte nacional 24/7
+                <li className="flex items-center gap-2">
+                  <Check className="h-3.5 w-3.5 text-[#66c0f4] shrink-0" />
+                  <span>Atendimento técnico especializado e suporte nacional 24/7</span>
                 </li>
               </ul>
             </div>
