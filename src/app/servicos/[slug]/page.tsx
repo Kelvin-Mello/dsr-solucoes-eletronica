@@ -142,13 +142,13 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               {/* Cover Thumbnail do Serviço */}
               {service.midias && service.midias.length > 0 && (
                 <div className="relative overflow-hidden rounded-xl border border-[#3b678c] bg-[#101822] shadow-xl group">
-                  <div className="relative aspect-video w-full overflow-hidden bg-[#0c1219]">
+                  <div className="relative aspect-video w-full overflow-hidden bg-black">
                     <img
                       src={service.midias[0].url || service.midias[0].thumbnailUrl}
                       alt={service.midias[0].alt || service.title}
-                      className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                      className="h-full w-full object-contain object-center transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#101822] via-transparent to-transparent opacity-60 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 pointer-events-none" />
                     <span className="absolute bottom-2.5 left-3 rounded bg-[#101822]/90 backdrop-blur-sm px-2.5 py-0.5 text-[10px] font-mono text-[#66c0f4] font-bold border border-[#66c0f4]/30 shadow-sm">
                       {service.badge || "Engenharia Especializada"}
                     </span>
