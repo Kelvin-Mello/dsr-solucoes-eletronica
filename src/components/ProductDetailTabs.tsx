@@ -111,17 +111,16 @@ export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
                 {/* Botões seletores de categoria com grid perfeitamente simétrico */}
                 {(() => {
                   const count = product.especificacoes_completas.length;
-                  const gridCols =
-                    count === 6
-                      ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-                      : count === 4 || count === 8
-                      ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
-                      : count % 3 === 0
-                      ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-                      : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
+                  const isThreeCols = count === 6 || (count % 3 === 0 && count % 4 !== 0);
 
                   return (
-                    <div className={`grid ${gridCols} gap-2.5 pt-1`}>
+                    <div
+                      className={
+                        isThreeCols
+                          ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 pt-1"
+                          : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 pt-1"
+                      }
+                    >
                       {product.especificacoes_completas.map((grupo, gIdx) => {
                         const isSelected =
                           selectedSpecGroup === gIdx ||
