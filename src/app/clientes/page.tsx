@@ -194,7 +194,7 @@ export const CLIENTS_LIST: ClientItem[] = [
   },
   {
     id: "hidrogeron",
-    name: "Hidrogeron",
+    name: "Grupo Hidrogeron",
     category: "Tecnologia",
     sector: "Sistemas de Cloração por Eletrólise",
     scale: "Fabricante de Tecnologia",
