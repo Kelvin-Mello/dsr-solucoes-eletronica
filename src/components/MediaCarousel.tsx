@@ -168,7 +168,7 @@ export function MediaCarousel({ mediaList, productName }: MediaCarouselProps) {
       </div>
 
       {/* Thumbnails Row (Steam style horizontal tray) */}
-      <div className="relative flex items-center gap-2 overflow-x-auto pb-1 pt-1 scrollbar-thin">
+      <div className="relative flex items-center gap-2.5 overflow-x-auto p-1.5 scrollbar-thin">
         {mediaList.map((media, index) => {
           const isActive = index === selectedIndex;
           return (
@@ -178,7 +178,7 @@ export function MediaCarousel({ mediaList, productName }: MediaCarouselProps) {
               onClick={() => handleSelect(index)}
               className={`relative flex-shrink-0 h-16 w-28 md:h-20 md:w-36 overflow-hidden rounded transition-all duration-200 text-left group bg-[#000000] ${
                 isActive
-                  ? "ring-2 ring-[#66c0f4] ring-offset-2 ring-offset-[#1b2838] opacity-100 shadow-[0_0_12px_rgba(102,192,244,0.45)] scale-[1.02]"
+                  ? "ring-2 ring-[#66c0f4] ring-offset-2 ring-offset-[#171a21] opacity-100 shadow-[0_0_14px_rgba(102,192,244,0.5)] scale-[1.02]"
                   : "opacity-60 hover:opacity-100 border border-[#2a475e] hover:border-[#66c0f4]/60"
               }`}
             >
@@ -336,7 +336,7 @@ export function MediaCarousel({ mediaList, productName }: MediaCarouselProps) {
 
               {/* Miniaturas de navegação rápida dentro do modal */}
               {mediaList.length > 1 && (
-                <div className="flex items-center justify-center gap-2 overflow-x-auto pt-1 pb-0.5 scrollbar-thin">
+                <div className="flex items-center justify-center gap-2.5 overflow-x-auto p-1.5 scrollbar-thin">
                   {mediaList.map((media, index) => {
                     const isActive = index === selectedIndex;
                     return (
