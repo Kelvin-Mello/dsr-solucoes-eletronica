@@ -181,7 +181,7 @@ export const CLIENTS_LIST: ClientItem[] = [
     sector: "Ibéria Agroindustrial (Açúcar & Etanol)",
     scale: "Parque Agroindustrial",
     desc: "Unidade produtora de açúcar e etanol do interior paulista (Borá/SP), associada da UDOP.",
-    logoUrl: "/images/clients/iberia.png"
+    logoUrl: "/images/clients/iberia.svg"
   },
   {
     id: "bomsucesso",
