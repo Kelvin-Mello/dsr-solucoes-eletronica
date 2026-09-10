@@ -228,18 +228,18 @@ export const PRODUCTS_MOCK: Product[] = [
         type: "image",
         url: "/images/products/rit-d-cabinet-real.jpg",
         thumbnailUrl: "/images/products/rit-d-cabinet-real.jpg",
-        title: "Foto Real: Retificador Industrial Modelo RIT-D",
-        alt: "Retificador Industrial Analógico Modelo RIT-D em cubículo com medidores analógicos de ponteiro",
-        badge: "Equipamento Real"
+        title: "Retificador Industrial Modelo RIT-D (Cubículo Completo)",
+        alt: "Retificador Industrial Analógico Modelo RIT-D em cubículo industrial autossustentado com instrumentos analógicos de ponteiro",
+        badge: "Foto Remasterizada"
       },
       {
         id: "media-rit-2",
         type: "image",
         url: "/images/products/rit-d-supervisao-real.jpg",
         thumbnailUrl: "/images/products/rit-d-supervisao-real.jpg",
-        title: "Painel Frontal com Instrumentação Analógica",
-        alt: "Painel frontal do retificador com instrumentos de medição e sinalização luminosa",
-        badge: "Painel Frontal"
+        title: "Painel Frontal de Supervisão e Sinalização",
+        alt: "Painel frontal de supervisão com sinalização por LED para Entrada CA, Retificador, Bateria e Consumidor",
+        badge: "Painel de Supervisão"
       },
       {
         id: "media-rit-3",
@@ -249,15 +249,6 @@ export const PRODUCTS_MOCK: Product[] = [
         title: "Módulo de Controle e Etapas UDQ",
         alt: "Estágio interno da Unidade de Diodo de Queda (UDQ)",
         badge: "Módulo UDQ"
-      },
-      {
-        id: "media-rit-4",
-        type: "image",
-        url: "/images/products/rit-d-cabinet.jpg",
-        thumbnailUrl: "/images/products/rit-d-cabinet.jpg",
-        title: "Cubículo Industrial RIT-D (Perspectiva Estrutural)",
-        alt: "Gabinete padrão industrial do Retificador RIT-D",
-        badge: "Cubículo Industrial"
       }
     ]
   },
