@@ -1,21 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { 
-  Zap, 
-  Cpu, 
-  Shield, 
-  FileText, 
-  Send, 
-  Download, 
-  PhoneCall, 
-  Clock, 
-  Check, 
-  ArrowRight,
-  Info,
-  Layers,
-  Sparkles
-} from "lucide-react";
+import { Send, Download } from "lucide-react";
 import { Product } from "@/mock/products";
 import { QuoteModal } from "./QuoteModal";
 
@@ -47,124 +33,51 @@ export function ProductSidebar({ product }: ProductSidebarProps) {
 
   return (
     <>
-      <div className="flex flex-col gap-5">
-        {/* Steam-Inspired Quick Specs Container */}
-        <div className="rounded-lg bg-gradient-to-b from-[#2a475e] to-[#1b2e3f] border border-[#3b678c] p-5 shadow-[0_12px_35px_rgba(0,0,0,0.6)] backdrop-blur-md">
-          {/* Header */}
-          <div className="flex items-center justify-between border-b border-[#3b678c]/60 pb-3.5 mb-4">
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded bg-[#101822] text-[#66c0f4] border border-[#66c0f4]/40">
-                <Layers className="h-4 w-4" />
-              </div>
-              <h2 className="text-base font-bold text-white uppercase tracking-wider">
-                Especificações Rápidas
-              </h2>
+      <div className="rounded-xl bg-[#171a21]/90 border border-[#2a475e] p-4 sm:p-5 shadow-xl flex flex-col justify-between h-full">
+        {/* Cover Thumbnail do Produto - Apenas a imagem limpa, sem textos sobrepostos */}
+        {product.midias && product.midias.length > 0 && (
+          <div className="relative overflow-hidden rounded-lg border border-[#3b678c]/60 bg-black shadow-md">
+            <div className="relative aspect-video w-full overflow-hidden bg-black">
+              <img
+                src={product.midias[0].url || product.midias[0].thumbnailUrl}
+                alt={product.midias[0].alt || product.nome}
+                className="h-full w-full object-contain object-center"
+              />
             </div>
           </div>
+        )}
 
-          {/* Cover Thumbnail do Produto */}
-          {product.midias && product.midias.length > 0 && (
-            <div className="relative mb-4 overflow-hidden rounded-lg border border-[#3b678c] bg-[#101822] shadow-md group">
-              <div className="relative aspect-video w-full overflow-hidden bg-black">
-                <img
-                  src={product.midias[0].url || product.midias[0].thumbnailUrl}
-                  alt={product.midias[0].alt || product.nome}
-                  className="h-full w-full object-contain object-center transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 pointer-events-none" />
-                <span className="absolute bottom-2 left-2 rounded bg-[#101822]/90 backdrop-blur-sm px-2 py-0.5 text-[10px] font-mono text-[#66c0f4] font-bold border border-[#66c0f4]/30 shadow-sm">
-                  {product.codigo_modelo}
-                </span>
-                <span className="absolute top-2 right-2 rounded bg-[#101822]/80 backdrop-blur-sm px-1.5 py-0.5 text-[9px] font-mono text-[#8f98a0] border border-[#2a475e]">
-                  {product.subcategoria || product.categoria}
-                </span>
-              </div>
-            </div>
-          )}
-
-          {/* Key / Value Specs List - Padronizado com fundo uniforme escuro */}
-          <div className="space-y-1.5 text-xs">
-            {product.especificacoes_rapidas.map((spec, index) => (
-              <div
-                key={index}
-                className="flex items-start justify-between py-2 px-2.5 rounded bg-[#101822]/90 border border-[#2a475e]/70 hover:bg-[#15202e] transition-colors"
-              >
-                <span className="text-[#8f98a0] pr-2 font-medium">
-                  {spec.chave}
-                </span>
-                <span className="text-right font-mono text-white font-semibold">
-                  {spec.valor}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          {/* Quick Info Callout */}
-          <div className="mt-4 rounded bg-[#101822]/90 border border-[#2a475e] p-3 text-[11px] text-[#8f98a0] flex items-start gap-2">
-            <Info className="h-4 w-4 text-[#66c0f4] flex-shrink-0 mt-0.5" />
-            <p>
-              Projetos de <strong className="text-white">Retrofit</strong> podem ser adaptados para barramentos de 220V a 13.8kV com transformador interposto.
-            </p>
-          </div>
-
-          {/* High-Impact CTA Button: Solicitar Cotação */}
-          <div className="mt-5 pt-4 border-t border-[#3b678c]/60 flex flex-col gap-3">
-            <button
-              type="button"
-              onClick={() => setIsModalOpen(true)}
-              className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-md bg-gradient-to-r from-[#66c0f4] via-[#4ba6df] to-[#1b75bc] p-3.5 text-center font-extrabold uppercase tracking-wider text-[#0e141b] shadow-[0_0_20px_rgba(102,192,244,0.5)] transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_30px_rgba(102,192,244,0.7)] active:scale-[0.98]"
-            >
-              {/* Button Glow Pulse Effect */}
-              <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-              <Send className="h-5 w-5 text-[#0e141b] transition-transform group-hover:translate-x-1" />
-              <span className="text-sm md:text-base drop-shadow-sm">
-                Solicitar Cotação
-              </span>
-            </button>
-
-            {/* Secondary Action: Baixar Ficha Técnica (Datasheet) */}
-            <button
-              type="button"
-              onClick={handleDownloadDatasheet}
-              disabled={downloading}
-              className="flex w-full items-center justify-center gap-2 rounded bg-[#1b2838] hover:bg-[#203248] text-[#c6d4df] hover:text-white p-2.5 text-xs font-semibold uppercase tracking-wider border border-[#2a475e] hover:border-[#66c0f4] transition-all shadow-sm"
-            >
-              <Download className={`h-4 w-4 text-[#66c0f4] ${downloading ? "animate-bounce" : ""}`} />
-              {downloading ? "Iniciando Download..." : (product.datasheet_url ? "Baixar Catálogo Oficial (PDF)" : "Baixar Datasheet PDF")}
-            </button>
-          </div>
+        {/* Texto breve e curto falando sobre o produto */}
+        <div className="flex-1 flex flex-col justify-center py-4 space-y-2.5">
+          <p className="text-xs sm:text-sm font-semibold text-[#66c0f4] leading-relaxed">
+            {product.tagline}
+          </p>
+          <p className="text-xs text-[#c6d4df] leading-relaxed line-clamp-4">
+            {product.descricao}
+          </p>
         </div>
 
-        {/* Plantão & Suporte Técnico Box */}
-        <div className="rounded-lg bg-[#171a21] border border-[#2a475e] p-4 text-xs space-y-3">
-          <div className="flex items-center gap-2 text-white font-bold uppercase tracking-wider text-[11px]">
-            <Shield className="h-4 w-4 text-[#66c0f4]" />
-            Garantia & Engenharia Dedicada DSR
-          </div>
-          <ul className="space-y-2 text-[#8f98a0]">
-            <li className="flex items-center gap-2">
-              <Check className="h-3.5 w-3.5 text-[#66c0f4]" />
-              <strong>{product.garantia}</strong>
-            </li>
-            <li className="flex items-center gap-2">
-              <Check className="h-3.5 w-3.5 text-[#66c0f4]" />
-              Estudo de viabilidade de Retrofitting sem custo
-            </li>
-            <li className="flex items-center gap-2">
-              <Check className="h-3.5 w-3.5 text-[#66c0f4]" />
-              Atendimento técnico e suporte de engenharia
-            </li>
-          </ul>
+        {/* Botões de Ação Imediata (Solicitar Cotação e Catálogo) */}
+        <div className="pt-3 border-t border-[#2a475e]/80 flex flex-col gap-2.5">
+          <button
+            type="button"
+            onClick={() => setIsModalOpen(true)}
+            className="group relative flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-lg bg-gradient-to-r from-[#66c0f4] via-[#4ba6df] to-[#1b75bc] py-3 px-4 text-center font-bold uppercase tracking-wider text-[#0e141b] text-xs sm:text-sm shadow-[0_0_15px_rgba(102,192,244,0.4)] transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_25px_rgba(102,192,244,0.6)] active:scale-[0.98]"
+          >
+            <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            <Send className="h-4 w-4 text-[#0e141b] transition-transform group-hover:translate-x-1" />
+            <span>Solicitar Cotação</span>
+          </button>
 
-          <div className="pt-2 border-t border-[#2a475e]/60 flex items-center justify-between">
-            <span className="text-[#8f98a0]">Dúvidas Técnicas?</span>
-            <a
-              href="tel:1145645200"
-              className="font-mono text-[#66c0f4] font-bold hover:underline flex items-center gap-1"
-            >
-              <PhoneCall className="h-3.5 w-3.5" /> (11) 4564-5200
-            </a>
-          </div>
+          <button
+            type="button"
+            onClick={handleDownloadDatasheet}
+            disabled={downloading}
+            className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#1b2838] hover:bg-[#203248] text-[#c6d4df] hover:text-white py-2.5 px-3 text-xs font-semibold uppercase tracking-wider border border-[#2a475e] hover:border-[#66c0f4] transition-all shadow-sm"
+          >
+            <Download className={`h-4 w-4 text-[#66c0f4] ${downloading ? "animate-bounce" : ""}`} />
+            <span>{downloading ? "Iniciando Download..." : (product.datasheet_url ? "Baixar Catálogo Oficial (PDF)" : "Baixar Ficha Técnica")}</span>
+          </button>
         </div>
       </div>
 

@@ -168,7 +168,7 @@ export function MediaCarousel({ mediaList, productName }: MediaCarouselProps) {
       </div>
 
       {/* Thumbnails Row (Steam style horizontal tray) */}
-      <div className="relative flex items-center gap-2.5 overflow-x-auto p-1.5 scrollbar-thin">
+      <div className="relative flex items-center gap-2.5 overflow-x-auto px-3 py-3 scrollbar-thin">
         {mediaList.map((media, index) => {
           const isActive = index === selectedIndex;
           return (
