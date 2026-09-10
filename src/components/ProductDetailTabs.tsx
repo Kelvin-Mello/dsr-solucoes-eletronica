@@ -108,27 +108,47 @@ export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
             {/* Sistema de Sub-Botões: 1 Seção por vez */}
             {product.especificacoes_completas && product.especificacoes_completas.length > 0 ? (
               <div className="space-y-5">
-                {/* Botões seletores de categoria */}
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {product.especificacoes_completas.map((grupo, gIdx) => {
-                    const isSelected = (selectedSpecGroup === gIdx) || (selectedSpecGroup >= product.especificacoes_completas!.length && gIdx === 0);
-                    return (
-                      <button
-                        key={gIdx}
-                        type="button"
-                        onClick={() => setSelectedSpecGroup(gIdx)}
-                        className={`flex items-center gap-2 px-3.5 py-2.5 rounded-lg text-xs sm:text-sm font-semibold transition-all border ${
-                          isSelected
-                            ? "bg-[#66c0f4] text-[#0a1118] font-bold border-[#66c0f4] shadow-[0_0_14px_rgba(102,192,244,0.45)]"
-                            : "bg-[#101822] text-[#8fa7be] border-[#22364a] hover:bg-[#182635] hover:text-white hover:border-[#38597a]"
-                        }`}
-                      >
-                        <span className={`w-2 h-2 rounded-full ${isSelected ? "bg-[#0a1118]" : "bg-[#66c0f4]"}`} />
-                        <span>{grupo.grupo}</span>
-                      </button>
-                    );
-                  })}
-                </div>
+                {/* Botões seletores de categoria com grid perfeitamente simétrico */}
+                {(() => {
+                  const count = product.especificacoes_completas.length;
+                  const gridCols =
+                    count === 6
+                      ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                      : count === 4 || count === 8
+                      ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+                      : count % 3 === 0
+                      ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                      : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
+
+                  return (
+                    <div className={`grid ${gridCols} gap-2.5 pt-1`}>
+                      {product.especificacoes_completas.map((grupo, gIdx) => {
+                        const isSelected =
+                          selectedSpecGroup === gIdx ||
+                          (selectedSpecGroup >= product.especificacoes_completas!.length && gIdx === 0);
+                        return (
+                          <button
+                            key={gIdx}
+                            type="button"
+                            onClick={() => setSelectedSpecGroup(gIdx)}
+                            className={`flex items-center justify-start gap-2.5 px-3.5 py-3 rounded-lg text-xs font-semibold transition-all border w-full h-full min-h-[48px] text-left ${
+                              isSelected
+                                ? "bg-[#66c0f4] text-[#0a1118] font-bold border-[#66c0f4] shadow-[0_0_14px_rgba(102,192,244,0.45)]"
+                                : "bg-[#101822] text-[#8fa7be] border-[#22364a] hover:bg-[#182635] hover:text-white hover:border-[#38597a]"
+                            }`}
+                          >
+                            <span
+                              className={`w-2 h-2 rounded-full shrink-0 ${
+                                isSelected ? "bg-[#0a1118]" : "bg-[#66c0f4]"
+                              }`}
+                            />
+                            <span className="leading-snug">{grupo.grupo}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  );
+                })()}
 
                 {/* Exibição exclusiva do grupo selecionado com tabela sóbria e altamente legível */}
                 {(() => {
