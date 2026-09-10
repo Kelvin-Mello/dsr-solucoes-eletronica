@@ -130,28 +130,28 @@ export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
                   })}
                 </div>
 
-                {/* Exibição exclusiva do grupo selecionado com fundo escuro padronizado */}
+                {/* Exibição exclusiva do grupo selecionado com tabela sóbria e altamente legível */}
                 {(() => {
                   const currentGroup = product.especificacoes_completas[selectedSpecGroup] || product.especificacoes_completas[0];
                   if (!currentGroup) return null;
                   return (
-                    <div className="rounded-xl bg-[#101822]/90 border border-[#2a475e] overflow-hidden shadow-lg animate-fadeIn">
-                      <div className="bg-[#182535] px-4 sm:px-5 py-3 text-xs sm:text-sm font-bold text-white uppercase tracking-wider border-b border-[#2a475e] flex items-center justify-between">
+                    <div className="rounded-xl bg-[#0e1620] border border-[#22364a] overflow-hidden shadow-md animate-fadeIn">
+                      <div className="bg-[#142130] px-4 sm:px-6 py-3 text-xs sm:text-sm font-semibold text-white tracking-wide border-b border-[#22364a] flex items-center justify-between">
                         <span className="flex items-center gap-2.5">
-                          <span className="w-2.5 h-2.5 rounded-sm bg-[#66c0f4] shadow-[0_0_8px_rgba(102,192,244,0.6)]" />
+                          <span className="w-2.5 h-2.5 rounded-sm bg-[#66c0f4] shadow-[0_0_8px_rgba(102,192,244,0.4)]" />
                           {currentGroup.grupo}
                         </span>
                       </div>
-                      <div className="divide-y divide-[#2a475e]/60">
+                      <div className="divide-y divide-[#1e2f42]">
                         {currentGroup.itens.map((item, iIdx) => (
                           <div 
                             key={iIdx} 
-                            className="flex flex-col sm:flex-row sm:items-center justify-between px-4 sm:px-5 py-3 text-xs sm:text-sm bg-[#101822]/90 hover:bg-[#182635]/80 transition-colors gap-1 sm:gap-4"
+                            className="grid grid-cols-1 sm:grid-cols-12 gap-1.5 sm:gap-6 px-4 sm:px-6 py-3.5 text-xs sm:text-[13px] bg-[#0e1620] even:bg-[#121c28]/60 hover:bg-[#172536]/50 transition-colors"
                           >
-                            <span className="text-[#8f98a0] font-medium sm:w-1/2">
+                            <span className="sm:col-span-5 md:col-span-4 text-[#8fa7be] font-medium leading-relaxed">
                               {item.parametro}
                             </span>
-                            <span className="font-mono font-bold text-white sm:text-right sm:w-1/2 break-words">
+                            <span className="sm:col-span-7 md:col-span-8 text-[#dce7f3] font-normal leading-relaxed break-words">
                               {item.valor}
                             </span>
                           </div>
@@ -163,18 +163,18 @@ export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
               </div>
             ) : (
               /* Fallback para especificações nominais do produto */
-              <div className="rounded-xl bg-[#101822]/90 border border-[#2a475e] overflow-hidden shadow-lg">
-                <div className="bg-[#182535] px-4 sm:px-5 py-3 text-xs sm:text-sm font-bold text-white uppercase tracking-wider border-b border-[#2a475e]">
+              <div className="rounded-xl bg-[#0e1620] border border-[#22364a] overflow-hidden shadow-md">
+                <div className="bg-[#142130] px-4 sm:px-6 py-3 text-xs sm:text-sm font-semibold text-white tracking-wide border-b border-[#22364a]">
                   Especificações Nominais do Equipamento
                 </div>
-                <div className="divide-y divide-[#2a475e]/60">
+                <div className="divide-y divide-[#1e2f42]">
                   {product.especificacoes_rapidas.map((spec, sIdx) => (
                     <div 
                       key={sIdx} 
-                      className="flex items-center justify-between px-4 sm:px-5 py-3 text-xs sm:text-sm bg-[#101822]/90 hover:bg-[#182635]/80 transition-colors"
+                      className="grid grid-cols-1 sm:grid-cols-12 gap-1.5 sm:gap-6 px-4 sm:px-6 py-3.5 text-xs sm:text-[13px] bg-[#0e1620] even:bg-[#121c28]/60 hover:bg-[#172536]/50 transition-colors"
                     >
-                      <span className="text-[#8f98a0] font-medium">{spec.chave}</span>
-                      <span className="font-mono font-bold text-white text-right">{spec.valor}</span>
+                      <span className="sm:col-span-5 md:col-span-4 text-[#8fa7be] font-medium leading-relaxed">{spec.chave}</span>
+                      <span className="sm:col-span-7 md:col-span-8 text-[#dce7f3] font-normal leading-relaxed break-words">{spec.valor}</span>
                     </div>
                   ))}
                 </div>
