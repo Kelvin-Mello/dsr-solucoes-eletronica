@@ -11,10 +11,136 @@ interface MediaCarouselProps {
   productName: string;
 }
 
+interface CarouselScrollbarProps {
+  currentIndex: number;
+  total: number;
+  onPrev: () => void;
+  onNext: () => void;
+  onSelect: (index: number) => void;
+}
+
+function CarouselScrollbar({
+  currentIndex,
+  total,
+  onPrev,
+  onNext,
+  onSelect,
+}: CarouselScrollbarProps) {
+  const trackRef = React.useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = React.useState(false);
+
+  if (total <= 1) return null;
+
+  // Largura do slider proporcional à quantidade de mídias
+  const thumbWidthPercent = Math.min(Math.max(100 / total, 12), 26);
+  const maxLeft = 100 - thumbWidthPercent;
+  const currentLeft = (currentIndex / (total - 1)) * maxLeft;
+
+  const handleTrackClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!trackRef.current) return;
+    const rect = trackRef.current.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const ratio = Math.max(0, Math.min(1, clickX / rect.width));
+    const targetIndex = Math.round(ratio * (total - 1));
+    onSelect(targetIndex);
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  React.useEffect(() => {
+    if (!isDragging) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!trackRef.current) return;
+      const rect = trackRef.current.getBoundingClientRect();
+      const moveX = e.clientX - rect.left;
+      const ratio = Math.max(0, Math.min(1, moveX / rect.width));
+      const targetIndex = Math.round(ratio * (total - 1));
+      onSelect(targetIndex);
+    };
+
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [isDragging, total, onSelect]);
+
+  return (
+    <div className="flex items-center gap-1.5 w-full bg-[#0a0f16] border border-[#1d2f42] rounded px-1.5 py-1 select-none">
+      {/* Botão Seta Esquerda < */}
+      <button
+        type="button"
+        onClick={onPrev}
+        className="flex h-5 w-6 items-center justify-center rounded bg-[#101b26] hover:bg-[#1a334d] text-[#8fa7be] hover:text-white border border-[#1e3347] hover:border-[#66c0f4] transition-colors shrink-0 active:scale-95"
+        title="Mídia anterior"
+        aria-label="Mídia anterior"
+      >
+        <ChevronLeft className="h-3.5 w-3.5" />
+      </button>
+
+      {/* Trilha do Slider com movimentação em passos */}
+      <div
+        ref={trackRef}
+        onClick={handleTrackClick}
+        className="relative flex-1 h-4.5 bg-[#0c141e] hover:bg-[#0f1824] rounded-sm cursor-pointer overflow-hidden border border-[#162536] transition-colors"
+        title="Clique ou arraste para avançar pelas fotos e vídeos"
+      >
+        {/* Marcadores de passos discretos na trilha */}
+        <div className="absolute inset-0 flex justify-between items-center px-1 pointer-events-none opacity-20">
+          {Array.from({ length: total }).map((_, i) => (
+            <span
+              key={i}
+              className={`h-1.5 w-0.5 rounded-full ${
+                i === currentIndex ? "bg-[#66c0f4]" : "bg-[#2a475e]"
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Thumb (pastilha deslizante estilo Steam que anda em passos de acordo com o total) */}
+        <div
+          onMouseDown={handleMouseDown}
+          style={{
+            width: `${thumbWidthPercent}%`,
+            left: `${currentLeft}%`,
+          }}
+          className={`absolute top-0.5 bottom-0.5 rounded-sm transition-all duration-150 cursor-grab active:cursor-grabbing border ${
+            isDragging
+              ? "bg-[#38729e] border-[#66c0f4] shadow-[0_0_8px_rgba(102,192,244,0.6)]"
+              : "bg-[#1f3a54] hover:bg-[#2a4d70] border-[#335c85] hover:border-[#66c0f4]/80"
+          }`}
+        />
+      </div>
+
+      {/* Botão Seta Direita > */}
+      <button
+        type="button"
+        onClick={onNext}
+        className="flex h-5 w-6 items-center justify-center rounded bg-[#101b26] hover:bg-[#1a334d] text-[#8fa7be] hover:text-white border border-[#1e3347] hover:border-[#66c0f4] transition-colors shrink-0 active:scale-95"
+        title="Próxima mídia"
+        aria-label="Próxima mídia"
+      >
+        <ChevronRight className="h-3.5 w-3.5" />
+      </button>
+    </div>
+  );
+}
+
 export function MediaCarousel({ mediaList, productName }: MediaCarouselProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const thumbnailRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
+  const modalThumbnailRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
 
   const currentMedia = mediaList[selectedIndex] || mediaList[0];
 
@@ -32,6 +158,24 @@ export function MediaCarousel({ mediaList, productName }: MediaCarouselProps) {
     setDirection(1);
     setSelectedIndex((prev) => (prev === mediaList.length - 1 ? 0 : prev + 1));
   }, [mediaList.length]);
+
+  // Auto-scroll da miniatura ativa
+  useEffect(() => {
+    if (thumbnailRefs.current[selectedIndex]) {
+      thumbnailRefs.current[selectedIndex]?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    }
+    if (isFullscreen && modalThumbnailRefs.current[selectedIndex]) {
+      modalThumbnailRefs.current[selectedIndex]?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    }
+  }, [selectedIndex, isFullscreen]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -168,12 +312,15 @@ export function MediaCarousel({ mediaList, productName }: MediaCarouselProps) {
       </div>
 
       {/* Thumbnails Row (Steam style horizontal tray) */}
-      <div className="relative flex items-center gap-2.5 overflow-x-auto px-3 py-3 scrollbar-thin">
+      <div className="relative flex items-center gap-2.5 overflow-x-auto px-3 py-2 scrollbar-thin">
         {mediaList.map((media, index) => {
           const isActive = index === selectedIndex;
           return (
             <button
               key={media.id}
+              ref={(el) => {
+                thumbnailRefs.current[index] = el;
+              }}
               type="button"
               onClick={() => handleSelect(index)}
               className={`relative flex-shrink-0 h-16 w-28 md:h-20 md:w-36 overflow-hidden rounded transition-all duration-200 text-left group bg-[#000000] ${
@@ -206,6 +353,15 @@ export function MediaCarousel({ mediaList, productName }: MediaCarouselProps) {
           );
         })}
       </div>
+
+      {/* Horizontal Step-Based Scrollbar (Steam Style) */}
+      <CarouselScrollbar
+        currentIndex={selectedIndex}
+        total={mediaList.length}
+        onPrev={handlePrev}
+        onNext={handleNext}
+        onSelect={handleSelect}
+      />
 
       {/* Fullscreen Lightbox Modal - Visualização Completa e Maior com Setas Laterais */}
       <AnimatePresence>
@@ -313,32 +469,48 @@ export function MediaCarousel({ mediaList, productName }: MediaCarouselProps) {
             >
               {/* Carrossel de imagens dentro do modal com padding vertical ampliado para não cortar o ring azul */}
               {mediaList.length > 1 && (
-                <div className="w-full flex items-center justify-center gap-3 overflow-x-auto py-3.5 px-4 scrollbar-thin">
-                  {mediaList.map((media, index) => {
-                    const isActive = index === selectedIndex;
-                    return (
-                      <button
-                        key={media.id}
-                        type="button"
-                        onClick={() => handleSelect(index)}
-                        className={`relative h-14 w-24 flex-shrink-0 rounded-md transition-all bg-black ${
-                          isActive
-                            ? "ring-2 ring-[#66c0f4] ring-offset-2 ring-offset-[#101822] scale-105 opacity-100 shadow-[0_0_14px_rgba(102,192,244,0.6)]"
-                            : "opacity-50 hover:opacity-100 border border-[#2a475e] hover:border-[#66c0f4]/50"
-                        }`}
-                        title={media.title}
-                      >
-                        <div className="relative w-full h-full overflow-hidden rounded">
-                          <img
-                            src={media.thumbnailUrl || media.url}
-                            alt={media.title}
-                            className="h-full w-full object-contain bg-black"
-                          />
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
+                <>
+                  <div className="w-full flex items-center justify-center gap-3 overflow-x-auto py-3.5 px-4 scrollbar-thin">
+                    {mediaList.map((media, index) => {
+                      const isActive = index === selectedIndex;
+                      return (
+                        <button
+                          key={media.id}
+                          ref={(el) => {
+                            modalThumbnailRefs.current[index] = el;
+                          }}
+                          type="button"
+                          onClick={() => handleSelect(index)}
+                          className={`relative h-14 w-24 flex-shrink-0 rounded-md transition-all bg-black ${
+                            isActive
+                              ? "ring-2 ring-[#66c0f4] ring-offset-2 ring-offset-[#101822] scale-105 opacity-100 shadow-[0_0_14px_rgba(102,192,244,0.6)]"
+                              : "opacity-50 hover:opacity-100 border border-[#2a475e] hover:border-[#66c0f4]/50"
+                          }`}
+                          title={media.title}
+                        >
+                          <div className="relative w-full h-full overflow-hidden rounded">
+                            <img
+                              src={media.thumbnailUrl || media.url}
+                              alt={media.title}
+                              className="h-full w-full object-contain bg-black"
+                            />
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Horizontal Step-Based Scrollbar inside Modal */}
+                  <div className="w-full max-w-xl px-2">
+                    <CarouselScrollbar
+                      currentIndex={selectedIndex}
+                      total={mediaList.length}
+                      onPrev={handlePrev}
+                      onNext={handleNext}
+                      onSelect={handleSelect}
+                    />
+                  </div>
+                </>
               )}
 
               {/* Contagem de fotos/vídeos centralizada abaixo do carrossel */}
