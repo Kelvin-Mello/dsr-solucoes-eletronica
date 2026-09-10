@@ -218,37 +218,25 @@ export function MediaCarousel({ mediaList, productName }: MediaCarouselProps) {
             className="fixed inset-0 z-50 flex flex-col items-center justify-between bg-black/95 backdrop-blur-md p-3 md:p-6 select-none"
             onClick={() => setIsFullscreen(false)}
           >
-            {/* Top Bar inside Modal */}
+            {/* Top Bar inside Modal - Apenas o nome da foto de forma centralizada */}
             <div
-              className="w-full max-w-7xl flex items-center justify-between z-50 py-2.5 px-4 rounded-lg bg-[#101822]/90 border border-[#2a475e]/80 backdrop-blur-md shadow-lg"
+              className="w-full max-w-7xl relative flex items-center justify-center z-50 py-3 px-4 rounded-lg bg-[#101822]/90 border border-[#2a475e]/80 backdrop-blur-md shadow-lg"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center gap-3">
-                <span className="text-sm md:text-base font-semibold text-[#ffffff] line-clamp-1">
-                  {productName} &bull;{" "}
-                  <span className="text-[#66c0f4]">{currentMedia.title}</span>
-                </span>
-                {currentMedia.badge && (
-                  <span className="hidden sm:inline-flex items-center gap-1 rounded bg-[#1b2838] px-2 py-0.5 text-xs font-semibold text-[#66c0f4] border border-[#66c0f4]/40">
-                    <Layers className="h-3 w-3 text-[#66c0f4]" />
-                    {currentMedia.badge}
-                  </span>
-                )}
-              </div>
+              {/* Título da foto centralizado */}
+              <h3 className="text-sm md:text-base font-semibold text-white text-center px-12 truncate">
+                {currentMedia.title}
+              </h3>
 
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-xs text-[#c6d4df] bg-[#171a21] px-2.5 py-1 rounded border border-[#2a475e]">
-                  {selectedIndex + 1} / {mediaList.length}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setIsFullscreen(false)}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#1b2838] text-[#c6d4df] border border-[#2a475e] hover:border-[#66c0f4] hover:text-white hover:bg-[#66c0f4]/20 transition-all font-bold"
-                  title="Fechar visualização (Esc)"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
+              {/* Botão Fechar no canto direito */}
+              <button
+                type="button"
+                onClick={() => setIsFullscreen(false)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-lg bg-[#1b2838] text-[#c6d4df] border border-[#2a475e] hover:border-[#66c0f4] hover:text-white hover:bg-[#66c0f4]/20 transition-all font-bold"
+                title="Fechar visualização (Esc)"
+              >
+                <X className="h-5 w-5" />
+              </button>
             </div>
 
             {/* Center Viewing Stage with Lateral Navigation Arrows */}
@@ -318,25 +306,14 @@ export function MediaCarousel({ mediaList, productName }: MediaCarouselProps) {
               </AnimatePresence>
             </div>
 
-            {/* Modal Bottom Footer: Title, Description & Quick Thumbnails */}
+            {/* Modal Bottom Footer: Apenas Carrossel de Imagens + Contagem Centralizada Abaixo */}
             <div
-              className="w-full max-w-7xl flex flex-col gap-2 z-50 bg-[#101822]/90 border border-[#2a475e]/80 rounded-lg p-3 backdrop-blur-md shadow-lg"
+              className="w-full max-w-7xl flex flex-col items-center gap-2 z-50 bg-[#101822]/90 border border-[#2a475e]/80 rounded-lg py-2.5 px-4 backdrop-blur-md shadow-lg"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-1 text-center sm:text-left">
-                <div className="text-sm font-semibold text-white">
-                  {currentMedia.title}
-                </div>
-                {currentMedia.description && (
-                  <div className="text-xs text-[#c6d4df] opacity-90 max-w-2xl text-center sm:text-right">
-                    {currentMedia.description}
-                  </div>
-                )}
-              </div>
-
-              {/* Miniaturas de navegação rápida dentro do modal */}
+              {/* Carrossel de imagens dentro do modal com padding vertical ampliado para não cortar o ring azul */}
               {mediaList.length > 1 && (
-                <div className="flex items-center justify-center gap-2.5 overflow-x-auto p-1.5 scrollbar-thin">
+                <div className="w-full flex items-center justify-center gap-3 overflow-x-auto py-3.5 px-4 scrollbar-thin">
                   {mediaList.map((media, index) => {
                     const isActive = index === selectedIndex;
                     return (
@@ -344,23 +321,32 @@ export function MediaCarousel({ mediaList, productName }: MediaCarouselProps) {
                         key={media.id}
                         type="button"
                         onClick={() => handleSelect(index)}
-                        className={`relative h-12 w-20 flex-shrink-0 overflow-hidden rounded transition-all bg-black ${
+                        className={`relative h-14 w-24 flex-shrink-0 rounded-md transition-all bg-black ${
                           isActive
-                            ? "ring-2 ring-[#66c0f4] scale-105 opacity-100 shadow-[0_0_12px_rgba(102,192,244,0.7)]"
-                            : "opacity-50 hover:opacity-100 border border-[#2a475e]"
+                            ? "ring-2 ring-[#66c0f4] ring-offset-2 ring-offset-[#101822] scale-105 opacity-100 shadow-[0_0_14px_rgba(102,192,244,0.6)]"
+                            : "opacity-50 hover:opacity-100 border border-[#2a475e] hover:border-[#66c0f4]/50"
                         }`}
                         title={media.title}
                       >
-                        <img
-                          src={media.thumbnailUrl || media.url}
-                          alt={media.title}
-                          className="h-full w-full object-contain bg-black"
-                        />
+                        <div className="relative w-full h-full overflow-hidden rounded">
+                          <img
+                            src={media.thumbnailUrl || media.url}
+                            alt={media.title}
+                            className="h-full w-full object-contain bg-black"
+                          />
+                        </div>
                       </button>
                     );
                   })}
                 </div>
               )}
+
+              {/* Contagem de fotos/vídeos centralizada abaixo do carrossel */}
+              <div className="flex items-center justify-center pb-0.5">
+                <span className="font-mono text-xs text-[#c6d4df] bg-[#171a21] px-3.5 py-1 rounded-full border border-[#2a475e] shadow-inner">
+                  {selectedIndex + 1} / {mediaList.length}
+                </span>
+              </div>
             </div>
           </motion.div>
         )}

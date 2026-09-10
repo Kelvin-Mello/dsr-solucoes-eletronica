@@ -228,7 +228,7 @@ export const PRODUCTS_MOCK: Product[] = [
         type: "image",
         url: "/images/products/rit-d-cabinet-real.jpg",
         thumbnailUrl: "/images/products/rit-d-cabinet-real.jpg",
-        title: "Gabinete Frontal (Cubículo Completo)",
+        title: "Gabinete Frontal",
         alt: "Retificador Industrial Analógico Modelo RIT-D - Gabinete frontal em cubículo autossustentado com instrumentos analógicos",
         badge: "Gabinete Frontal"
       },
