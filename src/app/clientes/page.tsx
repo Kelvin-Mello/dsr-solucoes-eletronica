@@ -190,7 +190,7 @@ export const CLIENTS_LIST: ClientItem[] = [
     sector: "BSA Bioenergia (Bom Sucesso Agroindústria)",
     scale: "Usinagem & Bioeletricidade",
     desc: "Bom Sucesso Agroindústria S.A. em Goiatuba/GO – Produção sustentável de etanol e açúcar.",
-    logoUrl: "/images/clients/bomsucesso.png"
+    logoUrl: "/images/clients/bomsucesso.svg"
   },
   {
     id: "hidrogeron",
