@@ -15,7 +15,7 @@ import {
 
 export const metadata: Metadata = {
   title: "Clientes & Parceiros | DSR Soluções em Eletrônica",
-  description: "Grandes indústrias, concessionárias de energia e usinas atendidas pela DSR Soluções em Eletrônica de Potência. Engie, BRF, Sabesp, Usiminas, Inpasa, Moura e mais.",
+  description: "Grandes indústrias, concessionárias de energia e usinas atendidas pela DSR Soluções em Eletrônica de Potência. Engie, BRF, Sabesp, Usiminas, Celesc, Inpasa, Moura e mais.",
 };
 
 export interface ClientItem {
@@ -28,7 +28,7 @@ export interface ClientItem {
   logoUrl: string;
 }
 
-// 19 Empresas Clientes & Parceiras ordenadas das maiores para as menores
+// 20 Empresas Clientes & Parceiras ordenadas das maiores para as menores
 export const CLIENTS_LIST: ClientItem[] = [
   {
     id: "engie",
@@ -65,6 +65,15 @@ export const CLIENTS_LIST: ClientItem[] = [
     scale: "Siderúrgica Nacional",
     desc: "Líder brasileira na produção de aços planos laminados para indústrias automotivas e de infraestrutura.",
     logoUrl: "/images/clients/usiminas.svg"
+  },
+  {
+    id: "celesc",
+    name: "Celesc",
+    category: "Energia",
+    sector: "Geração & Distribuição de Energia",
+    scale: "Concessionária Estadual (3,3M+ Consumidores)",
+    desc: "Centrais Elétricas de Santa Catarina, uma das maiores concessionárias de distribuição e geração do Brasil, com 12 usinas próprias e atendimento a 98% do estado.",
+    logoUrl: "/images/clients/celesc.svg"
   },
   {
     id: "inpasa",
