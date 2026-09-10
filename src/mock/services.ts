@@ -22,6 +22,7 @@ export interface ServiceItem {
   standards: string[];
   imageUrl: string;
   midias: ProductMedia[];
+  resumo_exclusivo?: string;
 }
 
 export const SERVICES_MOCK: ServiceItem[] = [

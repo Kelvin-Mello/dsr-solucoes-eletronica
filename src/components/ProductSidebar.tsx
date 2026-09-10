@@ -9,6 +9,48 @@ interface ProductSidebarProps {
   product: Product;
 }
 
+const EXCLUSIVE_PRODUCT_SUMMARIES: Record<string, string> = {
+  "retificador-padrao-industrial-modelo-rit-d":
+    "Equipamento de missão crítica concebido para fornecer alimentação CC ininterrupta e recarga de bancos de baterias em subestações e plantas industriais. Destaca-se pela arquitetura analógica imune a travamentos de software, controle por tiristores de alta robustez e placas modulares intercambiáveis que simplificam a manutenção e asseguram confiabilidade máxima sem complexidades operacionais.",
+
+  "retificador-industrial-tiristorizado-digital-dk10-dk30":
+    "Solução digital avançada com microprocessamento duplo e telemetria nativa para subestações conectadas. Oferece controle térmico preciso de carga para baterias, medição contínua de parâmetros em IHM integrada e comunicação Modbus/Profinet para supervisão preditiva de última geração.",
+
+  "retificador-modular-chaveado-digital-dk-sr10-dk-sr30":
+    "Sistema modular de alta densidade energética com redundância ativa N+1 e módulos hot-swap substituíveis a quente com a carga ligada. Proporciona eficiência superior a 95%, reduz custos com refrigeração e permite expansão de capacidade sob demanda.",
+
+  "retificador-formador-de-baterias":
+    "Unidade especializada de alta potência para ciclagem, formação inicial e ensaios controlados de capacidade em acumuladores industriais. Permite parametrização de curvas de corrente e tensão multiestágio com registro em tempo real para laboratórios e fabricantes.",
+
+  "no-break-ups-industrial":
+    "Sistema de energia ininterrupta on-line dupla conversão desenvolvido para ambientes fabris severos com elevado índice de poeira e flutuações de rede. Fornece onda senoidal pura e comutação nula (0 ms) para instrumentação de segurança e sistemas de controle de processo.",
+
+  "inversor-industrial-estatico":
+    "Conversor estático CC/CA de alta isolação galvânica projetado para gerar barramentos alternados estabilizados a partir de bancos de baterias industriais. Garante alimentação contínua e sem distorções para sistemas vitais mesmo durante blecautes totais de entrada CA.",
+
+  "chave-estatica-transferencia-automatica":
+    "Comutador estático de alta velocidade com tecnologia tiristorizada capaz de transferir cargas entre duas fontes CA independentes em menos de 4 milissegundos, evitando qualquer perturbação ou desligamento em servidores e CLPs sensíveis.",
+
+  "estabilizador-eletronico-estado-solido":
+    "Regulador estático de tensão de altíssima velocidade sem qualquer componente móvel ou escovas de carvão. Elimina o desgaste mecânico e corrige quedas ou elevações bruscas de tensão da rede em frações de ciclo elétrico com máxima vida útil.",
+
+  "quadro-distribuicao-ac-dc-digital":
+    "Painel de distribuição com supervisão digital individualizada por circuito. Monitora corrente, tensão e estado de cada disjuntor em tempo real, emitindo tele-alarmes seletivos para rápido isolamento e diagnóstico de falhas operacionais.",
+
+  "quadro-paralelismo-dc-digital":
+    "Painel de paralelismo inteligente para fontes e retificadores CC, assegurando equalização ativa e precisa de corrente entre múltiplos gabinetes com isolamento automático de contingência para sistemas de missão crítica.",
+};
+
+function getExclusiveProductSummary(product: Product): string {
+  if (product.resumo_exclusivo) {
+    return product.resumo_exclusivo;
+  }
+  if (EXCLUSIVE_PRODUCT_SUMMARIES[product.slug]) {
+    return EXCLUSIVE_PRODUCT_SUMMARIES[product.slug];
+  }
+  return `Equipamento homologado pela engenharia da DSR para regime contínuo 24/7. Desenvolvido com componentes de potência sob medida, módulos de substituição simplificada e máxima conformidade técnica para subestações e operações industriais de alta criticidade.`;
+}
+
 export function ProductSidebar({ product }: ProductSidebarProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [downloading, setDownloading] = useState(false);
@@ -47,13 +89,16 @@ export function ProductSidebar({ product }: ProductSidebarProps) {
           </div>
         )}
 
-        {/* Texto breve e curto falando sobre o produto */}
-        <div className="flex-1 flex flex-col justify-center py-4 space-y-2.5">
-          <p className="text-xs sm:text-sm font-semibold text-[#66c0f4] leading-relaxed">
-            {product.tagline}
-          </p>
-          <p className="text-xs text-[#c6d4df] leading-relaxed line-clamp-4">
-            {product.descricao}
+        {/* Texto exclusivo de apresentação rápida - Não copia textos de outros lugares da página */}
+        <div className="flex-1 flex flex-col justify-center py-3.5 space-y-2">
+          <div className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#66c0f4]" />
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#66c0f4]">
+              Visão Rápida do Equipamento
+            </span>
+          </div>
+          <p className="text-xs sm:text-[13px] text-[#c6d4df] leading-relaxed">
+            {getExclusiveProductSummary(product)}
           </p>
         </div>
 

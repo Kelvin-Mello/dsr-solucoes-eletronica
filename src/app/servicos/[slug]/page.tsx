@@ -41,6 +41,36 @@ const ICON_MAP = {
   Compass,
 };
 
+const EXCLUSIVE_SERVICE_SUMMARIES: Record<string, string> = {
+  "retrofitting-e-modernizacao":
+    "Intervenção técnica especializada que renova integralmente os circuitos eletrônicos, placas de disparo e supervisão de cubículos existentes, alcançando até 65% de economia e estendendo a vida útil da planta por mais de 15 anos sem necessidade de obras civis.",
+
+  "digitalizacao-de-ativos-e-industria-4-0":
+    "Modernização de painéis legados através de transdutores digitais de alta precisão e concentradores de telemetria, integrando medições contínuas e tele-alarmes diretamente a supervisórios SCADA e sistemas em nuvem para manutenção preditiva.",
+
+  "manutencao-preventiva-industrial":
+    "Protocolo estruturado de conservação com termografia infravermelha, testes de capacitores de potência, calibração de instrumentos de medição e reaperto torquimétrico para mitigar o risco de paradas emergenciais em cargas vitais.",
+
+  "manutencao-corretiva-e-plantao-24-7":
+    "Mobilização ágil de engenheiros e técnicos com instrumental calibrado e estoque estratégico de semicondutores para diagnóstico resolutivo e restabelecimento rápido de conversores estáticos e retificadores em falha.",
+
+  "treinamento-tecnico-e-capacitacao":
+    "Capacitação técnica in company voltada para operadores e equipes de manutenção elétrica, com foco na parametrização de IHM, rotinas de inspeção, segurança operacional e diagnóstico prático de alarmes em equipamentos DSR.",
+
+  "comissionamento-e-startup-em-campo":
+    "Energização orientada com validação criteriosa de conexões elétricas, ensaios sob carga com banco de resistências e parametrização fina de malhas de controle, com emissão de relatório conclusivo e ART/CREA.",
+
+  "consultoria-em-engenharia-e-projetos-especiais":
+    "Consultoria técnica especializada para especificação de sistemas CC, estudos de qualidade de energia, análise de harmônicos e projetos de seletividade sob medida para concessionárias e indústrias de grande porte.",
+};
+
+function getExclusiveServiceSummary(service: ServiceItem): string {
+  if (EXCLUSIVE_SERVICE_SUMMARIES[service.slug]) {
+    return EXCLUSIVE_SERVICE_SUMMARIES[service.slug];
+  }
+  return `Atendimento técnico de engenharia de alta especialização prestado por equipe qualificada da DSR, com foco em confiabilidade contínua, segurança operacional e emissão formal de ART/CREA para infraestruturas elétricas de missão crítica.`;
+}
+
 export async function generateStaticParams() {
   const services = getAllServices();
   return services.map((service) => ({
@@ -148,13 +178,16 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 </div>
               )}
 
-              {/* Texto breve e curto falando sobre o serviço */}
-              <div className="flex-1 flex flex-col justify-center py-4 space-y-2.5">
-                <p className="text-xs sm:text-sm font-semibold text-[#66c0f4] leading-relaxed">
-                  {service.subtitle}
-                </p>
-                <p className="text-xs text-[#c6d4df] leading-relaxed line-clamp-4">
-                  {service.description}
+              {/* Texto exclusivo de apresentação rápida - Não copia textos de outros lugares da página */}
+              <div className="flex-1 flex flex-col justify-center py-3.5 space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#66c0f4]" />
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#66c0f4]">
+                    Visão Rápida do Serviço
+                  </span>
+                </div>
+                <p className="text-xs sm:text-[13px] text-[#c6d4df] leading-relaxed">
+                  {getExclusiveServiceSummary(service)}
                 </p>
               </div>
 

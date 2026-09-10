@@ -43,6 +43,7 @@ export interface Product {
   garantia: string;
   certificacoes: string[];
   datasheet_url?: string;
+  resumo_exclusivo?: string;
 }
 
 export const CATEGORIES_LIST = [
