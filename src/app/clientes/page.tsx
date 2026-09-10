@@ -311,14 +311,14 @@ export default function ClientesPage() {
                 className="group relative flex flex-col justify-between rounded-xl border border-[#2a475e] bg-gradient-to-b from-[#171a21] to-[#101822] p-5 text-left hover:border-[#66c0f4] hover:shadow-[0_0_25px_rgba(102,192,244,0.2)] transition-all duration-300 hover:-translate-y-1"
               >
                 {/* Square Logo Box for Optimal Fit Across All Ratios */}
-                <div className="relative aspect-square w-full rounded-xl bg-white p-4 flex items-center justify-center shadow-inner transition-transform duration-300 group-hover:scale-[1.02] border border-slate-200">
+                <div className="relative aspect-square w-full rounded-xl bg-white p-3 sm:p-3.5 flex items-center justify-center shadow-inner transition-transform duration-300 group-hover:scale-[1.02] border border-slate-200">
                   <div className="relative h-full w-full">
                     <Image
                       src={client.logoUrl}
                       alt={`Logo da ${client.name}`}
                       fill
                       sizes="(max-width: 640px) 280px, (max-width: 1024px) 240px, 260px"
-                      className="object-contain p-2 transition-all duration-300 group-hover:scale-105"
+                      className="object-contain transition-all duration-300 group-hover:scale-105"
                     />
                   </div>
                 </div>

@@ -1,30 +1,27 @@
 <svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-  <!-- Gera Maranhão & Eneva Vertical Stack Lockup (One on top of the other for square format) -->
+  <!-- Gera Maranhão & Eneva Vertical Stack Lockup (Maximized Size & Optimized Internal Margin) -->
   
   <!-- TOP: Gera Maranhão (Geradora de Energia do Maranhão S.A.) -->
-  <g transform="translate(200, 105)">
-    <g transform="translate(0, 0)">
-      <!-- Technical Power Wave / Energy Motif -->
-      <g transform="translate(0, -42)">
-        <path d="M -50 8 Q -25 -6 0 8 T 50 8" fill="none" stroke="#0ea5e9" stroke-width="4" stroke-linecap="round" />
-        <path d="M -30 18 Q -15 8 0 18 T 30 18" fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" />
-      </g>
-      
-      <!-- Typography GERA MARANHÃO -->
-      <text x="0" y="8" text-anchor="middle" font-family="'Montserrat', 'Arial Black', sans-serif" font-weight="900" font-size="28" fill="#0f172a" letter-spacing="0.5">GERA MARANHÃO</text>
-      
-      <!-- Subtitle -->
-      <text x="0" y="28" text-anchor="middle" font-family="'Montserrat', sans-serif" font-weight="700" font-size="10.5" fill="#0284c7" letter-spacing="1.5">GERADORA DE ENERGIA DO MARANHÃO</text>
+  <g transform="translate(200, 96) scale(1.28)">
+    <!-- Technical Power Wave / Energy Motif -->
+    <g transform="translate(0, -28)">
+      <path d="M -56 4 Q -28 -9 0 4 T 56 4" fill="none" stroke="#0ea5e9" stroke-width="4.5" stroke-linecap="round" />
+      <path d="M -36 14 Q -18 4 0 14 T 36 14" fill="none" stroke="#f59e0b" stroke-width="3.5" stroke-linecap="round" />
     </g>
+    
+    <!-- Typography GERA MARANHÃO -->
+    <text x="0" y="8" text-anchor="middle" font-family="'Montserrat', 'Arial Black', sans-serif" font-weight="900" font-size="27" fill="#0f172a" letter-spacing="0.5">GERA MARANHÃO</text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="25" text-anchor="middle" font-family="'Montserrat', sans-serif" font-weight="700" font-size="9.5" fill="#0284c7" letter-spacing="1.2">GERADORA DE ENERGIA DO MARANHÃO</text>
   </g>
 
   <!-- Horizontal Divider Line -->
-  <line x1="60" y1="185" x2="340" y2="185" stroke="#cbd5e1" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 4" />
+  <line x1="20" y1="188" x2="380" y2="188" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 6" />
 
   <!-- BOTTOM: Eneva Official Vector Brand (scaled and centered) -->
-  <g transform="translate(200, 290)">
-    <!-- Scaled Eneva group centered at (0, 0) -->
-    <g transform="translate(-140, -45) scale(0.56)">
+  <g transform="translate(200, 300)">
+    <g transform="translate(-180, -58) scale(0.72)">
       <!-- Yellow rays -->
       <path d="m155.67 62.638-1.1932-4.5212-1.3419-5.1095-30.388-0.66188 14.616-26.871-3.1693-3.1981-3.8027-3.823-26.622 14.777-0.6342-30.657-9.5448-2.5732-15.734 26.246-15.772-26.246-0.52182 17.314 12.379 20.218c1.2676-0.11027 2.5727-0.18377 3.8775-0.18377 1.3052 0 2.6099 0.0735 3.8779 0.18377l12.379-20.218 0.70857 23.747c2.386 1.1028 4.6232 2.3893 6.7113 3.9333l20.768-11.285-11.148 20.953c1.4915 2.1319 2.7962 4.3741 3.8779 6.7634l23.564 0.69865-20.059 12.498c0.11155 1.2866 0.18633 2.6099 0.18633 3.9333s-0.0748 2.6099-0.18633 3.8965l20.059 12.498 14.616 9.1163 1.5287-5.7346 1.044-3.8965-25.988-15.88 25.988-15.88z" fill="#eba900"/>
       <!-- Orange/Red rays -->
