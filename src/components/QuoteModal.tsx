@@ -19,6 +19,8 @@ export function QuoteModal({ product, isOpen, onClose }: QuoteModalProps) {
     email: "",
     telefone: "",
     tensaoRede: "380V Trifásico",
+    tensaoCC: "125 Vcc",
+    tipoBateria: "Chumbo-Ácido Ventilada (VLA)",
     aplicacao: "Retrofit de Painel Existente",
     observacoes: ""
   });
@@ -59,7 +61,7 @@ export function QuoteModal({ product, isOpen, onClose }: QuoteModalProps) {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-white tracking-wide">
-                    Solicitação de Cotação Técnica
+                    Solicitação de Cotação Técnica & Dimensionamento
                   </h3>
                   <p className="text-xs text-[#66c0f4] font-mono">
                     {product.nome} • {product.codigo_modelo}
@@ -86,11 +88,13 @@ export function QuoteModal({ product, isOpen, onClose }: QuoteModalProps) {
                     Solicitação Enviada com Sucesso!
                   </h4>
                   <p className="text-sm text-[#8f98a0] max-w-md mb-6">
-                    Nossa equipe de engenharia de aplicação da <strong className="text-[#66c0f4]">DSR Soluções</strong> entrará em contato em até 4 horas úteis com a proposta técnica e de retrofitting preliminar.
+                    Nossa equipe de engenharia de aplicação da <strong className="text-[#66c0f4]">DSR Soluções</strong> entrará em contato em até 4 horas úteis com a proposta técnica e memorial preliminar de dimensionamento.
                   </p>
-                  <div className="rounded bg-[#171a21] border border-[#2a475e] p-4 text-xs text-left w-full max-w-md font-mono text-[#c6d4df] mb-6">
+                  <div className="rounded bg-[#171a21] border border-[#2a475e] p-4 text-xs text-left w-full max-w-md font-mono text-[#c6d4df] mb-6 space-y-1">
                     <div><strong>Protocolo:</strong> DSR-COT-{Math.floor(100000 + Math.random() * 900000)}</div>
                     <div><strong>Equipamento:</strong> {product.nome}</div>
+                    <div><strong>Barramento:</strong> {formData.tensaoCC} | Rede: {formData.tensaoRede}</div>
+                    <div><strong>Bateria:</strong> {formData.tipoBateria}</div>
                     <div><strong>Contato:</strong> {formData.email || "engenharia@empresa.com.br"}</div>
                   </div>
                   <button
@@ -161,21 +165,61 @@ export function QuoteModal({ product, isOpen, onClose }: QuoteModalProps) {
                     </div>
                   </div>
 
+                  {/* Dados de Engenharia da Aplicação (conforme Página 14 do PDF) */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-semibold uppercase tracking-wider text-[#8f98a0] mb-1.5">
-                        Tensão de Rede da Planta
+                        Tensão CA da Rede de Alimentação
                       </label>
                       <select
                         value={formData.tensaoRede}
                         onChange={(e) => setFormData({ ...formData, tensaoRede: e.target.value })}
                         className="w-full rounded bg-[#171a21] border border-[#2a475e] px-3.5 py-2 text-sm text-white focus:border-[#66c0f4] focus:outline-none focus:ring-1 focus:ring-[#66c0f4]"
                       >
+                        <option value="220V Monofásico/Bifásico">220V Monofásico / Bifásico</option>
+                        <option value="220V Trifásico">220V Trifásico</option>
                         <option value="380V Trifásico">380V Trifásico</option>
                         <option value="440V Trifásico">440V Trifásico</option>
                         <option value="480V Trifásico">480V Trifásico</option>
-                        <option value="Média Tensão (com Trafo)">Média Tensão (com Transformador DSR)</option>
+                        <option value="Média Tensão (com Trafo DSR)">Média Tensão (com Transformador DSR)</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold uppercase tracking-wider text-[#8f98a0] mb-1.5">
+                        Tensão CC Nominal do Barramento
+                      </label>
+                      <select
+                        value={formData.tensaoCC}
+                        onChange={(e) => setFormData({ ...formData, tensaoCC: e.target.value })}
+                        className="w-full rounded bg-[#171a21] border border-[#2a475e] px-3.5 py-2 text-sm text-white focus:border-[#66c0f4] focus:outline-none focus:ring-1 focus:ring-[#66c0f4]"
+                      >
+                        <option value="125 Vcc">125 Vcc (Padrão Subestação)</option>
+                        <option value="110 Vcc">110 Vcc</option>
+                        <option value="48 Vcc">48 Vcc (Telecom / Automação)</option>
+                        <option value="24 Vcc">24 Vcc (Comando Industrial)</option>
+                        <option value="220 Vcc">220 Vcc</option>
+                        <option value="250 Vcc">250 Vcc</option>
                         <option value="Outra Tensão Especial">Outra Tensão Especial</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold uppercase tracking-wider text-[#8f98a0] mb-1.5">
+                        Banco de Baterias Acoplado
+                      </label>
+                      <select
+                        value={formData.tipoBateria}
+                        onChange={(e) => setFormData({ ...formData, tipoBateria: e.target.value })}
+                        className="w-full rounded bg-[#171a21] border border-[#2a475e] px-3.5 py-2 text-sm text-white focus:border-[#66c0f4] focus:outline-none focus:ring-1 focus:ring-[#66c0f4]"
+                      >
+                        <option value="Chumbo-Ácido Ventilada (VLA)">Chumbo-Ácido Ventilada (VLA / Placa Planté/Tubular)</option>
+                        <option value="Chumbo-Ácido Selada (VRLA / Gel / AGM)">Chumbo-Ácido Regulada por Válvula (VRLA)</option>
+                        <option value="Níquel-Cádmio (Ni-Cd)">Níquel-Cádmio (Ni-Cd bolsa/sinterizada)</option>
+                        <option value="Íons de Lítio (LiFePO4)">Íons de Lítio (LiFePO4 com BMS)</option>
+                        <option value="Sem Bateria (Carga CC Direta)">Sem Bateria (Alimentação Direta de Barramento CC)</option>
+                        <option value="Processo Eletroquímico">Processo Eletroquímico / Formação Química</option>
                       </select>
                     </div>
                     <div>

@@ -67,16 +67,16 @@ export const PRODUCTS_MOCK: Product[] = [
     subcategoria: "Retificador Industrial Tiristorizado Analógico",
     tagline: "Retificador tiristorizado analógico simples, robusto e funcional para alimentação CC ininterrupta de 12V a 250Vcc e correntes de 10A a 5.000A.",
     descricao: "Os Retificadores Industriais Modelo RIT-D foram projetados para atender às mais rígidas especificações do mercado industrial. Seus componentes e dispositivos foram dimensionados para trabalhar nos mais diversos ambientes industriais com extrema simplicidade e robustez. Trata-se de um retificador tiristorizado analógico simples e funcional, semi ou totalmente controlado de 02, 03, 04 ou 06 pulsos (modelos com 12, 18 e 24 pulsos sob consulta). Utiliza os mesmos módulos (PCIs) intercambiáveis para todas as tensões padrão industrial (12 a 250Vcc) e para redes monofásicas, bifásicas e trifásicas, independente da corrente de saída (10 a 5.000A).",
-    descricao_detalhada: "Projetado com arquitetura analógica direta e confiável, o Modelo RIT-D prioriza a durabilidade e a facilidade de manutenção em campo. No painel frontal, conta com instrumentos analógicos de medição (voltímetros e amperímetros de ponteiro) e sinalização luminosa por LEDs para os principais pontos do sistema: Alimentação CA, Retificador, Banco de Baterias e Consumidor. A concentração de circuitos no Módulo de Controle eleva o MTBF (Tempo Médio Entre Falhas) pela redução de conexões e número de placas, e reduz o MTTR (Tempo Médio Para Reparo). A fonte auxiliar chaveada possui alimentação mista CA e CC, garantindo que em caso de falta da rede CA os circuitos de controle e sinalização continuem operando através do banco de baterias.",
+    descricao_detalhada: "Projetado com arquitetura analógica direta e confiável, o Modelo RIT-D prioriza a durabilidade e a facilidade de manutenção em campo sem dependência de microcontroladores ou softwares. No painel frontal, conta com instrumentos analógicos de medição (voltímetros e amperímetros de ponteiro) e sinalização luminosa por LEDs para os principais pontos do sistema: Alimentação CA, Retificador, Banco de Baterias e Consumidor. A concentração de circuitos no Módulo de Controle eleva o MTBF (Tempo Médio Entre Falhas) pela redução de conexões e número de placas, e reduz o MTTR (Tempo Médio Para Reparo). A fonte auxiliar chaveada possui alimentação mista CA e CC, garantindo que em caso de falta da rede CA os circuitos de controle e sinalização continuem operando através do banco de baterias.",
     texto_tecnologia: "Módulo de Controle de UDQ (Unidade de Diodo de Queda) e Proteções Analógicas: Os retificadores RIT-D possuem um Módulo de Controle de UDQ que monitora diretamente a tensão sobre o Consumidor, protegendo contra sobretensão no caso de falha ou acionamento indevido de um contator da UDQ. Seu acionamento é sequencial e a ordem de entrada dos diodos em série com o Consumidor é inversa à ordem de retirada dos mesmos (a primeira etapa inserida em tensão alta será a última a ser retirada na tensão mais baixa). Este módulo é configurável para uma a até quatro etapas e, se inseridas todas as etapas e a tensão sobre o Consumidor atingir um nível pré-ajustado, um sinal de Sobretensão CC é enviado ao Módulo de Controle para desligamento seguro do Retificador. Possui fonte auxiliar chaveada com alimentação CA e CC, proteção de fusível interrompido / disjuntor aberto por eletrônica e proteção de fuga a terra via acoplamento óptico.",
     datasheet_url: "/downloads/retificador-industrial-analogico-rit-d.pdf",
     status_disponibilidade: "Em Estoque",
     garantia: "Garantia de Fábrica DSR (com Suporte Técnico, Instalação e Retrofitting)",
-    certificacoes: ["Normas Industriais ABNT/IEC", "Módulos Universais Intercambiáveis", "NR-10 / NR-12"],
+    certificacoes: ["IEC 60146-1-1", "IEEE 946", "IEC 62477-1", "NR-10 / NR-12", "IEC 60529 (IP21 a IP54)"],
     recursos_principais: [
       {
         titulo: "Topologia Tiristorizada Analógica",
-        descricao: "Controle analógico com disparo robusto de tiristores em pontes de 02 a 06 pulsos (12 a 24 sob consulta).",
+        descricao: "Controle analógico com disparo robusto de tiristores em pontes de 02 a 06 pulsos (12 a 24 sob consulta), imune a travamentos lógicos.",
         icone: "Cpu"
       },
       {
@@ -86,76 +86,138 @@ export const PRODUCTS_MOCK: Product[] = [
       },
       {
         titulo: "Painel com Instrumentação Analógica",
-        descricao: "Voltímetros e amperímetros de ponteiro no painel com sinalização luminosa por LED para CA, Retificador, Bateria e Consumidor.",
+        descricao: "Voltímetros e amperímetros analógicos de ponteiro com classe de precisão 1,5% e sinalização frontal por LEDs de alto brilho.",
         icone: "Activity"
       },
       {
         titulo: "Proteções Eletrônicas e Fuga a Terra",
-        descricao: "Proteção contra curto-circuito via fusível eletrônico e fuga a terra (+) e (-) com isolamento óptico.",
+        descricao: "Proteção de sobrecorrente por circuito eletrônico e supervisão óptica bipolar de fuga à terra (+) e (-) com isolamento galvânico.",
         icone: "ShieldCheck"
       },
       {
         titulo: "Mesmos Módulos (PCIs) Universais",
-        descricao: "Mesmas placas para todas as tensões de 12 a 250Vcc e redes mono, bi e trifásicas de 10 a 5.000A, facilitando a reposição.",
+        descricao: "Mesmas placas para todas as tensões de 12 a 250Vcc e redes mono, bi e trifásicas de 10 a 5.000A, simplificando sobressalentes.",
         icone: "Layers"
       },
       {
-        titulo: "Fonte Auxiliar Chaveada CA e CC",
-        descricao: "Alimentação mista que garante o funcionamento ininterrupto do controle e sinalização mesmo em caso de corte total da rede CA.",
+        titulo: "Fonte Auxiliar Chaveada Mista CA e CC",
+        descricao: "Alimentação mista garantindo a operação ininterrupta do controle e sinalização mesmo na perda completa da alimentação CA.",
         icone: "Sparkles"
       }
     ],
     especificacoes_rapidas: [
+      { chave: "Aplicação Principal", valor: "Sistemas CC industriais, subestações e carregamento de baterias", destaque: true },
       { chave: "Topologia de Retificação", valor: "Tiristorizada analógica semi ou totalmente controlada (02 a 06 pulsos)", destaque: true },
-      { chave: "Tensão de Saída CC", valor: "12 a 250 Vcc (todas as tensões padrão industrial)", destaque: true },
-      { chave: "Faixa de Corrente", valor: "10 A a 5.000 A", destaque: true },
-      { chave: "Alimentação de Entrada", valor: "Redes Monofásicas, Bifásicas e Trifásicas" },
-      { chave: "Módulos Intercambiáveis", valor: "Mesmas PCIs para qualquer tensão e corrente", destaque: true },
+      { chave: "Tensão Nominal de Entrada", valor: "110V/220Vca (Mono/Bi) ou 220V/380V/440V/480Vca (Trifásico)" },
+      { chave: "Tensão de Saída CC", valor: "12V, 24V, 48V, 110V, 125V, 220V ou 250Vcc (padronizada)", destaque: true },
+      { chave: "Faixa de Corrente Contínua", valor: "10 A a 5.000 A (conforme modelo e projeto)", destaque: true },
+      { chave: "Regime de Operação", valor: "Contínuo 24/7 (100% duty cycle)", destaque: true },
+      { chave: "Ripple Elétrico (com bateria)", valor: "< 0,1% RMS (em conformidade com a IEEE 946)", destaque: true },
+      { chave: "Ripple Elétrico (sem bateria)", valor: "< 1,0% RMS com filtragem LC padrão industrial" },
+      { chave: "Regulação Estática", valor: "≤ ± 1,0% sob variação de rede ±10% e carga 0-100%" },
       { chave: "Unidade de Diodo de Queda", valor: "UDQ inteligente de 1 a 4 etapas sequenciais inversas", destaque: true },
-      { chave: "Painel & Sinalização", valor: "Instrumentos analógicos de ponteiro e LEDs de status" },
-      { chave: "Proteções Integradas", valor: "Eletrônica de curto-circuito e fuga a terra óptica" },
-      { chave: "Fonte Auxiliar", valor: "Chaveada com alimentação híbrida CA e CC" },
-      { chave: "Componentes", valor: "Componentes de fácil aquisição no mercado nacional" }
+      { chave: "Grau de Proteção Mecânica", valor: "IP21 padrão industrial (IP31 a IP54 sob consulta)" },
+      { chave: "Instrumentação de Painel", valor: "Voltímetros e amperímetros analógicos de ponteiro + LEDs" },
+      { chave: "Telemetria & Alarmes Remotos", valor: "Contatos secos inversores a relé (sem Modbus/microcontrolador)" },
+      { chave: "Normas de Conformidade", valor: "IEC 60146-1-1, IEEE 946, NR-10, NR-12 e IEC 60529" }
     ],
     especificacoes_completas: [
       {
-        grupo: "Topologia e Parâmetros de Entrada CA",
+        grupo: "Classificação & Regime de Operação",
         itens: [
-          { parametro: "Topologia de Retificação", valor: "Tiristorizada analógica, semi ou totalmente controlada" },
-          { parametro: "Configurações de Pulsos", valor: "02, 03, 04 ou 06 pulsos (12, 18 e 24 pulsos sob consulta)" },
-          { parametro: "Alimentação da Rede", valor: "Redes industriais Monofásicas, Bifásicas e Trifásicas" },
-          { parametro: "Alarmes de Entrada CA", valor: "CA Alta, CA Baixa e Falta de Fase" },
-          { parametro: "Intercambiabilidade de Placas", valor: "Mesmos módulos (PCIs) para qualquer tensão de 12 a 250Vcc e corrente de 10 a 5.000A" }
+          { parametro: "Tipo Principal", valor: "Retificador Carregador de Baterias e Fonte CC de Potência" },
+          { parametro: "Aplicações Primárias", valor: "Subestações de energia, usinas de geração, óleo e gás, mineração, indústrias de base e telecom" },
+          { parametro: "Regime Nominal", valor: "Operação contínua 24/7 (100% duty cycle em plena carga nominal)" },
+          { parametro: "Capacidade de Sobrecarga", valor: "125% da corrente nominal por 10 minutos; 150% por 60 segundos" },
+          { parametro: "Vida Útil de Projeto", valor: "Projetado para vida em serviço contínuo superior a 20 anos" },
+          { parametro: "Operação sem Bateria", valor: "Apto a operar continuamente com ou sem bateria conectada ao barramento" }
         ]
       },
       {
-        grupo: "Saída CC e Unidade de Diodo de Queda (UDQ)",
+        grupo: "Entrada em Corrente Alternada (CA)",
+        itens: [
+          { parametro: "Tensão Nominal de Entrada", valor: "Monofásica/Bifásica (110/220Vca) ou Trifásica (220/380/440/480Vca)" },
+          { parametro: "Número de Fases", valor: "Monofásico a 2 fios, Bifásico a 2 fios ou Trifásico a 3 fios + Terra (PE)" },
+          { parametro: "Frequência da Rede", valor: "50 Hz ou 60 Hz ± 5%" },
+          { parametro: "Tolerância de Tensão Permanente", valor: "± 10% da tensão nominal em regime permanente contínuo" },
+          { parametro: "Tolerância de Tensão Transitória", valor: "-15% a +10% sem interrupção de suprimento na saída CC" },
+          { parametro: "Corrente de Partida (Inrush)", valor: "Limitada por rampa de subida suave analógica (soft-start de 3 a 8 segundos)" },
+          { parametro: "Esquema de Aterramento", valor: "Compatível com esquemas TN-S, TN-C, TT e IT" },
+          { parametro: "Proteção de Entrada CA", valor: "Disjuntor termomagnético / caixa moldada e DPS Classe II (padrão)" }
+        ]
+      },
+      {
+        grupo: "Saída CC & Unidade de Diodo de Queda (UDQ)",
         itens: [
           { parametro: "Tensão Nominal de Saída CC", valor: "12V, 24V, 48V, 110V, 125V, 220V ou 250Vcc" },
-          { parametro: "Faixa de Corrente Contínua", valor: "10 A a 5.000 A" },
-          { parametro: "Módulo de Controle UDQ", valor: "Configurável de 1 a até 4 etapas em série com o Consumidor" },
-          { parametro: "Lógica Sequencial UDQ", valor: "Sequência inversa: a primeira etapa inserida em sobretensão é a última a ser retirada" },
-          { parametro: "Monitoramento do Consumidor", valor: "Monitoramento direto da tensão sobre a carga com detecção de falha de contator" },
-          { parametro: "Proteção Crítica de Sobretensão", valor: "Envia sinal de Sobretensão CC ao controle para desligamento seguro do retificador" },
-          { parametro: "Sinalização de Saída CC", valor: "CC Baixa, CC Alta, Bateria em Descarga, Retificador Anormal, Tensão Alta e Baixa no Consumidor" }
+          { parametro: "Faixa de Ajuste da Tensão", valor: "85% a 125% da tensão nominal através de trimpots de precisão na PCI" },
+          { parametro: "Corrente Nominal Contínua", valor: "10 A a 5.000 A CC (dimensionamento sob encomenda de engenharia)" },
+          { parametro: "Limite de Corrente Ajustável", valor: "Ajustável de 20% a 110% da corrente nominal com resposta analógica rápida" },
+          { parametro: "Módulo de Controle de UDQ", valor: "Configurável de 1 a 4 etapas em série com o barramento do consumidor" },
+          { parametro: "Lógica Sequencial de Comutação UDQ", valor: "Sequência inversa: a primeira etapa inserida em alta tensão é a última retirada" },
+          { parametro: "Estabilidade no Consumidor", valor: "Mantém a tensão na carga crítica em ±2% mesmo durante equalização da bateria" },
+          { parametro: "Proteção Crítica de Sobretensão CC", valor: "Envia sinal de bloqueio eletrônico ao controle para desligamento imediato e seguro" },
+          { parametro: "Polaridade e Aterramento", valor: "Saída flutuante com detector óptico de fuga à terra bipolar (+) e (-)" }
         ]
       },
       {
-        grupo: "Painel Frontal, Sinalização e Proteções",
+        grupo: "Desempenho Elétrico & Filtragem LC",
         itens: [
-          { parametro: "Instrumentação de Painel", valor: "Voltímetros e amperímetros analógicos de ponteiro" },
-          { parametro: "Sinalização Frontal", valor: "LEDs indicadores para Entrada CA, Retificador, Baterias e Consumidor" },
-          { parametro: "Proteção contra Curto-Circuito", valor: "Fusível Interrompido / Disjuntor Aberto monitorado por circuito eletrônico (não mecânico)" },
-          { parametro: "Proteção de Fuga à Terra", valor: "Fuga a Terra (+) e (-) via acoplamento óptico (isolamento galvânico)" },
-          { parametro: "Fonte Auxiliar Chaveada", valor: "Alimentação mista CA e CC (em falta de CA, opera alimentada pelo banco de baterias)" }
+          { parametro: "Topologia de Conversão", valor: "Ponte tiristorizada analógica semi ou totalmente controlada (02, 03, 04 ou 06 pulsos)" },
+          { parametro: "Regulação Estática de Tensão", valor: "≤ ± 1,0% para variação de rede de ±10% e variação de carga de 0 a 100%" },
+          { parametro: "Resposta Dinâmica", valor: "Desvio transitório < 5% com tempo de recuperação < 50 ms para degrau de carga de 10% a 100%" },
+          { parametro: "Ripple com Bateria Conectada", valor: "< 0,1% RMS (atende integralmente à norma IEEE 946 para proteção de relés)" },
+          { parametro: "Ripple sem Bateria Conectada", valor: "< 1,0% RMS com banco de filtragem indutivo-capacitivo (LC) padrão" },
+          { parametro: "Rendimento Térmico Global", valor: "88% a 92% em regime nominal (conforme combinação de tensão e corrente)" },
+          { parametro: "Fator de Potência Típico", valor: "0,80 a 0,85 indutivo (em ponte trifásica totalmente controlada)" }
         ]
       },
       {
-        grupo: "Engenharia, Serviços e Suporte DSR",
+        grupo: "Funções de Gerenciamento de Baterias",
         itens: [
-          { parametro: "Robustez Industrial", valor: "Alta concentração no Módulo de Controle, elevando o MTBF e reduzindo o MTTR" },
-          { parametro: "Aquisição de Componentes", valor: "Utilização de componentes de fácil aquisição no mercado nacional" },
-          { parametro: "Serviços Disponíveis", valor: "Suporte técnico, Instalação, Comissionamento, Manutenção Preventiva, Corretiva, Retrofitting e Garantia" },
+          { parametro: "Tecnologias de Bateria Compatíveis", valor: "Chumbo-Ácido Ventilada (VLA), Regulada por Válvula (VRLA/Gel/AGM) e Níquel-Cádmio (Ni-Cd)" },
+          { parametro: "Estágios de Carga Disponíveis", valor: "Tensão de Flutuação e Tensão de Carga Rápida (Carga Inicial / Equalização)" },
+          { parametro: "Modo de Comutação Flutuação/Carga", valor: "Seleção manual por chave frontal ou automática por nível analógico de tensão" },
+          { parametro: "Limite de Corrente da Bateria", valor: "Ajustável independentemente da corrente entregue aos consumidores (ex.: 10% a 20% C10)" },
+          { parametro: "Proteção contra Curto de Bateria", valor: "Fusível ultrarrápido CC calibrado com monitoramento eletrônico de queima" },
+          { parametro: "Alarme de Bateria em Descarga", valor: "Sinalização visual imediata por LED e atuação de relé auxiliar de telecomando" }
+        ]
+      },
+      {
+        grupo: "Construção Mecânica, Ambiente & Resfriamento",
+        itens: [
+          { parametro: "Formato Construtivo", valor: "Cubículo autossustentado para fixação no piso com olhais de içamento reforçados" },
+          { parametro: "Material do Gabinete", valor: "Chapa de aço carbono tratada, decapada e fosfatizada (espessura 1,5mm a 2,25mm)" },
+          { parametro: "Pintura & Tratamento Anticorrosivo", valor: "Pintura eletrostática a pó poliéster epóxi cor Cinza RAL 7035 com espessura ≥ 80 µm" },
+          { parametro: "Grau de Proteção Mecânica", valor: "IP21 padrão industrial (disponíveis sob encomenda: IP31, IP42 e IP54 com venezianas e filtros)" },
+          { parametro: "Método de Resfriamento", valor: "Convecção natural de ar (para potências reduzidas) ou ar forçado com ventiladores de rolamento" },
+          { parametro: "Temperatura Ambiente de Operação", valor: "0°C a +40°C nominal contínua (operação de até +50°C com fator de derating)" },
+          { parametro: "Umidade Relativa Admissível", valor: "0% a 95% sem condensação em operação contínua" },
+          { parametro: "Altitude Máxima de Instalação", valor: "Até 1.000 metros sem redução de potência (derating acima de 1.000m conforme norma)" },
+          { parametro: "Entrada de Cabos de Potência", valor: "Entrada inferior ou superior por placas de fechamento flangeadas removíveis" }
+        ]
+      },
+      {
+        grupo: "Painel Frontal, Sinalização & Tele-Alarmes",
+        itens: [
+          { parametro: "Instrumentos de Medição Frontal", valor: "Voltímetros e amperímetros analógicos de ponteiro de ferro móvel / bobina móvel (classe 1,5%)" },
+          { parametro: "Sinalização Luminosa Frontal", valor: "LEDs de alto brilho: CA Normal, CA Anormal, Retificador Normal, Falha de Retificador, UDQ Atuada, Fuga a Terra (+) e Fuga a Terra (-)" },
+          { parametro: "Supervisão de Fuga à Terra", valor: "Sensoriamento bipolar (+) e (-) com isolamento galvânico por acopladores ópticos" },
+          { parametro: "Saídas para Tele-Alarmes (Contatos Secos)", valor: "Relés inversores (NA/NF - 5A @ 250Vca) para Falta de CA, Retificador Anormal, Bateria em Descarga, UDQ Atuada e Fuga à Terra" },
+          { parametro: "Filosofia de Controle Analógico Puro", valor: "100% analógico, sem microcontrolador, sem telas digitais, sem firmware e imune a travamentos lógicos" },
+          { parametro: "Intercambiabilidade de Módulos (PCIs)", valor: "Mesmas placas de circuito impresso padronizadas para qualquer faixa de 12 a 250Vcc e 10 a 5.000A" }
+        ]
+      },
+      {
+        grupo: "Normas Aplicáveis, Engenharia & Suporte",
+        itens: [
+          { parametro: "Segurança de Conversores Estáticos", valor: "Conforme IEC 60146-1-1 e IEC 62477-1" },
+          { parametro: "Sistemas Auxiliares CC em Subestações", valor: "Projetado com base nas recomendações da norma IEEE 946" },
+          { parametro: "Grau de Proteção de Invólucros", valor: "Conforme IEC 60529 (código IP padronizado)" },
+          { parametro: "Normas de Segurança do Trabalho", valor: "Atendimento integral às normas regulamentadoras brasileiras NR-10 e NR-12" },
+          { parametro: "Ensaios e Testes Realizados", valor: "Testes de aceitação em fábrica (FAT) com emissão de relatório técnico de ensaio" },
+          { parametro: "Disponibilidade de Componentes", valor: "Construído exclusivamente com componentes de fácil aquisição no mercado nacional" },
+          { parametro: "Serviços de Engenharia e Retrofit", valor: "Dimensionamento de bancos, retrofitting de painéis antigos, comissionamento e manutenção" },
           { parametro: "Contato Direto de Engenharia", valor: "engenharia@dsrsolucoes.com.br • Tel: (11) 4564-5200" }
         ]
       }
@@ -206,23 +268,154 @@ export const PRODUCTS_MOCK: Product[] = [
     codigo_modelo: "Modelo DK10 / DK30",
     categoria: "Retificadores & Carregadores",
     subcategoria: "Retificadores Tiristorizados com Controle Digital",
-    tagline: "Controle tiristorizado digital de precisão para alimentação ininterrupta de subestações e centros de controle (DK10 Monofásico e DK30 Trifásico).",
-    descricao: "A linha DK10 (monofásica) e DK30 (trifásica) foi projetada para aplicações industriais severas e subestações de energia. Conta com controle digital por microprocessador, disparo preciso de tiristores, recarga automática de baterias e supervisão remota completa.",
-    descricao_detalhada: "Fabricado com chassi em chapa de aço reforçada e grau de proteção industrial, o DK10/DK30 oferece regulação estática estrita (< 1%), filtragem LC de saída com baixíssimo ripple e opções de barramento desacoplado para bancos de baterias e cargas simultâneas.",
-    texto_tecnologia: "Controle de disparo digital microprocessado com algoritmo de compensação de fase e telemetria de corrente e tensão via barramento Modbus-RTU.",
+    tagline: "Controle tiristorizado microprocessado de precisão para alimentação ininterrupta de subestações de energia e processos críticos (DK10 Monofásico e DK30 Trifásico).",
+    descricao: "A linha DK10 (monofásica) e DK30 (trifásica) foi projetada para as mais severas aplicações de subestações de transmissão, geração de energia e plantas industriais contínuas. Dotado de controle digital por microprocessador de 32 bits e disparo preciso de tiristores em ângulo de fase, o sistema oferece regulação estática estrita (< 0,5%), baixíssimo ripple de saída (< 0,1% RMS com bateria conforme IEEE 946), rotinas automáticas de recarga de acumuladores com compensação térmica e conectividade nativa para automação de subestações (Modbus, DNP3 e IEC 61850).",
+    descricao_detalhada: "Fabricado em cubículo de aço reforçado com proteção IP21 a IP54, o DK10/DK30 opera em regime 24/7 com vida de projeto superior a 20 anos. O equipamento integra IHM gráfica digital com teclado frontal, registrador histórico com relógio de tempo real (RTC) para até 1.000 eventos e alarmes com carimbo de data e hora (timestamp), além de barramento de saída desacoplado para atendimento simultâneo de banco de baterias e consumidores vitais com máxima seletividade e segurança operacional.",
+    texto_tecnologia: "Controle digital microprocessado de 32 bits com amostragem True RMS e controle de disparo com compensação de ângulo de fase. Possui filtragem LC de alta ordem para rejeição de harmônicas, circuito de supervisão digital de fuga à terra bipolar (+ e -), compensação térmica automática da tensão de flutuação via sensor externo e teste dinâmico de capacidade de baterias sem qualquer perturbação no fornecimento da carga crítica.",
+    datasheet_url: "/downloads/retificador-tiristorizado-digital-dk10-dk30.pdf",
     status_disponibilidade: "Em Estoque",
-    garantia: "24 Meses (Garantia de Fábrica DSR)",
-    certificacoes: ["NR-10", "NR-12", "IEC 60146", "ISO 9001"],
+    garantia: "24 Meses (Garantia de Fábrica DSR com Assistência Técnica Autorizada)",
+    certificacoes: ["IEC 60146-1-1", "IEEE 946", "IEC 61850", "IEC 62477-1", "NR-10 / NR-12", "ISO 9001"],
     recursos_principais: [
-      { titulo: "Versões Mono e Trifásica", descricao: "DK10 para redes 110V/220V mono e DK30 para 220V/380V/440V trifásico.", icone: "Zap" },
-      { titulo: "Regulação Estrita de Tensão", descricao: "Estabilidade superior a ± 1% sob variações de carga e rede.", icone: "Cpu" }
+      {
+        titulo: "Controle Digital Microprocessado 32-bit",
+        descricao: "Disparo tiristorizado com algoritmo digital de alta precisão, regulação estática < ±0,5% e compensação de rede.",
+        icone: "Cpu"
+      },
+      {
+        titulo: "Conectividade para Subestações (IEC 61850 / DNP3)",
+        descricao: "Portas RS-485 Modbus-RTU e Ethernet TCP/IP com suporte nativo a protocolos de telemetria de subestações.",
+        icone: "Activity"
+      },
+      {
+        titulo: "Ripple Ultrabaixo < 0,1% RMS (IEEE 946)",
+        descricao: "Filtragem LC de alta performance para imunidade total de relés digitais de proteção contra ruídos CC.",
+        icone: "Zap"
+      },
+      {
+        titulo: "IHM Gráfica com Registro de 1.000 Eventos",
+        descricao: "Tela gráfica iluminada com teclado e histórico de eventos gravado com relógio RTC de milissegundos.",
+        icone: "Sliders"
+      },
+      {
+        titulo: "Compensação Térmica e Teste Sem Corte",
+        descricao: "Sensor de temperatura para ajuste fino da tensão de recarga e teste automático de bateria sem risco à carga.",
+        icone: "ShieldCheck"
+      },
+      {
+        titulo: "Paralelismo Ativo N+1",
+        descricao: "Operação em paralelo com partilha ativa de corrente entre unidades para máxima disponibilidade de planta.",
+        icone: "Layers"
+      }
     ],
     especificacoes_rapidas: [
-      { chave: "Configuração de Entrada", valor: "DK10 (Monofásica) / DK30 (Trifásica)", destaque: true },
-      { chave: "Tensões de Saída CC", valor: "24V, 48V, 110V, 125V, 220Vcc", destaque: true },
-      { chave: "Faixa de Corrente", valor: "15 A a 2.500 A", destaque: true },
-      { chave: "Topologia", valor: "Ponte Tiristorizada Totalmente Controlada" },
-      { chave: "Comunicação", valor: "Modbus-RTU / RS-485" }
+      { chave: "Aplicação Principal", valor: "Subestações de energia, usinas, óleo & gás e centros de controle", destaque: true },
+      { chave: "Tecnologia de Potência", valor: "Tiristores SCR totalmente controlados com controle digital 32-bit", destaque: true },
+      { chave: "Configurações de Entrada", valor: "DK10 (Monofásica/Bifásica) / DK30 (Trifásica 220V a 480Vca)" },
+      { chave: "Tensões de Saída CC", valor: "24V, 48V, 110V, 125V, 220V ou 250Vcc", destaque: true },
+      { chave: "Faixa de Corrente Contínua", valor: "15 A a 2.500 A nominais contínuos", destaque: true },
+      { chave: "Regime de Operação", valor: "Contínuo 24/7 (100% duty cycle)", destaque: true },
+      { chave: "Ripple Elétrico (com bateria)", valor: "< 0,1% RMS (conforme padrão IEEE 946)", destaque: true },
+      { chave: "Ripple Elétrico (sem bateria)", valor: "< 1,0% RMS através de filtro LC sintonizado" },
+      { chave: "Regulação Estática", valor: "≤ ± 0,5% de zero a 100% de carga e variação de rede ±15%" },
+      { chave: "Rendimento Global Garantido", valor: "90% a 93% em plena carga nominal" },
+      { chave: "Resfriamento", valor: "Convecção natural ou ar forçado com ventiladores monitorados" },
+      { chave: "Grau de Proteção Mecânica", valor: "IP21 padrão (IP31, IP42 e IP54 sob encomenda)" },
+      { chave: "Comunicação & Protocolos", valor: "RS-485 Modbus-RTU, Ethernet Modbus-TCP, DNP3 e IEC 61850", destaque: true },
+      { chave: "Normas Atendidas", valor: "IEC 60146-1-1, IEEE 946, IEC 61850, NR-10 e NR-12" }
+    ],
+    especificacoes_completas: [
+      {
+        grupo: "Classificação & Aplicação de Engenharia",
+        itens: [
+          { parametro: "Tipo Principal", valor: "Retificador Carregador Tiristorizado Microprocessado para Subestações" },
+          { parametro: "Segmentos Atendidos", valor: "Transmissão e distribuição de energia, usinas hidrelétricas e térmicas, mineração e óleo & gás" },
+          { parametro: "Modelos Disponíveis", valor: "Linha DK10 (Entrada Monofásica/Bifásica) e Linha DK30 (Entrada Trifásica)" },
+          { parametro: "Regime de Trabalho", valor: "Operação contínua ininterrupta 24 horas por dia, 365 dias por ano" },
+          { parametro: "Capacidade de Sobrecarga", valor: "125% da corrente nominal durante 10 minutos; 150% por 60 segundos" },
+          { parametro: "Vida Útil Projetada", valor: "Superior a 20 anos em ambiente industrial severo" },
+          { parametro: "Operação Sem Baterias", valor: "Totalmente apto a alimentar as cargas do consumidor sem bateria conectada" }
+        ]
+      },
+      {
+        grupo: "Entrada em Corrente Alternada (CA)",
+        itens: [
+          { parametro: "Tensão de Entrada DK10", valor: "110V, 127V ou 220Vca Monofásica/Bifásica (Fase-Fase ou Fase-Neutro)" },
+          { parametro: "Tensão de Entrada DK30", valor: "220V, 380V, 440V ou 480Vca Trifásica a 3 fios + Terra (PE)" },
+          { parametro: "Frequência Nominal", valor: "50 Hz ou 60 Hz ± 5%" },
+          { parametro: "Faixa de Tolerância Permanente", valor: "± 15% contínuos sobre a tensão nominal de entrada" },
+          { parametro: "Faixa Transitória Admissível", valor: "-20% a +15% com manutenção da regulação CC de saída" },
+          { parametro: "Partida Suave (Soft-Start)", valor: "Rampa digital microprocessada parametrizável de 2 a 30 segundos" },
+          { parametro: "Proteção de Entrada CA", valor: "Disjuntor caixa moldada com bobina de disparo, DPS Classe II e monitor de fases" }
+        ]
+      },
+      {
+        grupo: "Saída em Corrente Contínua (CC) & Regulação",
+        itens: [
+          { parametro: "Tensões Nominais de Saída", valor: "24V, 48V, 110V, 125V, 220V ou 250Vcc" },
+          { parametro: "Faixa de Corrente Contínua", valor: "15 A a 2.500 A nominais contínuos" },
+          { parametro: "Faixa de Ajuste da Tensão", valor: "80% a 135% Unom configurável com precisão decimal pela IHM" },
+          { parametro: "Regulação Estática de Tensão", valor: "≤ ± 0,5% de zero a 100% de carga e variação de rede de ±15%" },
+          { parametro: "Resposta Dinâmica a Degraus", valor: "Desvio transitório < 3% com recuperação < 30 ms para degrau de carga 0 a 100%" },
+          { parametro: "Limite de Corrente Ajustável", valor: "Faixa de 20% a 110% da corrente nominal com limitador separado para a bateria" },
+          { parametro: "Polaridade e Barramento", valor: "Saída flutuante com supervisão digital contínua de fuga à terra (+ e -)" }
+        ]
+      },
+      {
+        grupo: "Desempenho Elétrico & Qualidade de Energia",
+        itens: [
+          { parametro: "Topologia de Retificação", valor: "Ponte tiristorizada SCR totalmente controlada de 6 pulsos (12 pulsos sob consulta)" },
+          { parametro: "Ripple com Bateria Conectada", valor: "< 0,1% RMS (rigorosamente conforme especificação IEEE 946)" },
+          { parametro: "Ripple sem Bateria Conectada", valor: "< 1,0% RMS garantido por filtro LC de alta atenuação" },
+          { parametro: "Rendimento Global", valor: "≥ 90% a 93% em plena carga nominal" },
+          { parametro: "Fator de Potência Típico", valor: "0,82 a 0,87 indutivo sob carga nominal" },
+          { parametro: "Distorção Harmônica (THDi)", valor: "< 28% (6 pulsos direto) ou < 10% com opção de transformador 12 pulsos" },
+          { parametro: "Imunidade Eletromagnética (EMC)", valor: "Conforme IEC 61000-4-2 (ESD), 61000-4-4 (burst) e 61000-4-5 (surto até 4 kV)" }
+        ]
+      },
+      {
+        grupo: "Gerenciamento Avançado de Baterias",
+        itens: [
+          { parametro: "Tecnologias de Bateria Atendidas", valor: "Chumbo-Ácido Ventilada (VLA), VRLA (AGM/Gel), Níquel-Cádmio (Ni-Cd) e Íons de Lítio" },
+          { parametro: "Estágios de Carga Inteligentes", valor: "Flutuação, Carga Rápida (Boost) e Equalização programada automática ou manual" },
+          { parametro: "Compensação Térmica de Flutuação", valor: "Ajuste dinâmico por sensor de temperatura externo (-3 a -5 mV/°C/célula)" },
+          { parametro: "Limite Independente da Bateria", valor: "Corrente de recarga ajustável em 10% a 25% da capacidade C10 da bateria" },
+          { parametro: "Teste Automático de Bateria", valor: "Ensaio periódico programável de autonomia e impedância sem corte na carga crítica" },
+          { parametro: "Proteção contra Descarga Profunda", valor: "Contator LVD (Low Voltage Disconnect) com religamento automático ao retorno da rede" }
+        ]
+      },
+      {
+        grupo: "Supervisão Digital, IHM & Comunicação",
+        itens: [
+          { parametro: "Interface Homem-Máquina (IHM)", valor: "Display gráfico LCD de alto contraste com iluminação LED e teclado tátil de navegação" },
+          { parametro: "Grandezas Medidas no Display", valor: "Tensões CA/CC, correntes de carga e bateria, potência (kW), temperatura e estado da rede" },
+          { parametro: "Registro Histórico de Eventos", valor: "Memória interna não volátil para até 1.000 eventos e alarmes com timestamp (RTC)" },
+          { parametro: "Comunicação Serial Padrão", valor: "Porta RS-485 isolada galvanicamente com protocolo Modbus-RTU escravo" },
+          { parametro: "Comunicação Ethernet de Subestação", valor: "Porta Ethernet 10/100 Mbps com protocolos Modbus-TCP, DNP3 e IEC 61850" },
+          { parametro: "Contatos Secos de Tele-Alarme", valor: "8 relés inversores programáveis (NA/NF - 5A @ 250Vca) para alarmes urgentes e não urgentes" }
+        ]
+      },
+      {
+        grupo: "Arquitetura, Redundância & Proteções",
+        itens: [
+          { parametro: "Redundância e Paralelismo", valor: "Capacidade de paralelismo ativo N+1 entre 2 a 4 retificadores com partilha dinâmica de carga" },
+          { parametro: "Proteções CA Integradas", valor: "Sobretensão, subtensão, falta de fase, inversão de sequência de fase e surtos de rede" },
+          { parametro: "Proteções CC Integradas", valor: "Sobretensão CC com bloqueio ultrarrápido eletrônico, subtensão, sobrecorrente e polaridade reversa" },
+          { parametro: "Supervisão de Fuga à Terra", valor: "Medição em tempo real de resistência de isolamento dos polos positivo e negativo à terra" },
+          { parametro: "Proteção Térmica Ativa", valor: "Termistores nos tiristores e enrolamentos do transformador com alarme e desligamento seguro" }
+        ]
+      },
+      {
+        grupo: "Construção Mecânica & Normas Técnicas",
+        itens: [
+          { parametro: "Estrutura do Gabinete", valor: "Cubículo autossustentado em chapa de aço 2,0mm com olhais de içamento e base soleira" },
+          { parametro: "Grau de Proteção do Invólucro", valor: "IP21 padrão industrial (disponíveis IP31, IP42 e IP54 com filtros laváveis)" },
+          { parametro: "Pintura e Proteção Anticorrosiva", valor: "Pintura eletrostática poliéster a pó Cinza RAL 7035 com espessura mínima de 80 µm" },
+          { parametro: "Resfriamento do Sistema", valor: "Convecção natural ou ar forçado com ventiladores de longa vida (> 70.000h) monitorados" },
+          { parametro: "Faixa Térmica e Altitude", valor: "0°C a +40°C nominais (até +50°C com derating); altitude de até 1.000m sem redução de potência" },
+          { parametro: "Normas de Conformidade", valor: "IEC 60146-1-1, IEEE 946, IEC 61850, IEC 62477-1, IEC 60529, NR-10 e NR-12" }
+        ]
+      }
     ],
     midias: [
       {
@@ -231,8 +424,8 @@ export const PRODUCTS_MOCK: Product[] = [
         url: "/images/products/rit-d-cabinet.jpg",
         thumbnailUrl: "/images/products/rit-d-cabinet.jpg",
         title: "Retificador Industrial Tiristorizado DK10 / DK30",
-        alt: "Retificador Industrial DK10 / DK30",
-        badge: "Visão Geral"
+        alt: "Retificador Industrial DK10 / DK30 em cubículo com controle digital",
+        badge: "Linha Digital"
       }
     ]
   },
@@ -243,22 +436,145 @@ export const PRODUCTS_MOCK: Product[] = [
     codigo_modelo: "Modelo DK-SR10 / DK-SR30",
     categoria: "Retificadores & Carregadores",
     subcategoria: "Sistemas Modulares Chaveados de Alta Densidade",
-    tagline: "Arquitetura modular chaveada em alta frequência com redundância ativa N+1, módulos hot-swap e alta densidade de potência.",
-    descricao: "Os Retificadores Modulares DK-SR10 (entrada monofásica) e DK-SR30 (entrada trifásica) combinam fontes chaveadas em alta frequência em gavetas hot-swap, oferecendo flexibilidade de expansão, manutenção sem interrupção e rendimento > 95%.",
-    descricao_detalhada: "O sistema opera com paralelismo ativo e compartilhamento de corrente dinâmico entre os módulos. Um controlador central supervisiona todas as gavetas, registrando alarmes, medições e curvas de carga das baterias.",
-    texto_tecnologia: "Topologia de chaveamento suave em alta frequência com correção ativa de fator de potência (PFC unitário) e barramento CAN interno.",
+    tagline: "Arquitetura modular chaveada em alta frequência com redundância ativa N+1, módulos hot-swap e rendimento > 95,5%.",
+    descricao: "Os Retificadores Modulares DK-SR10 (entrada monofásica) e DK-SR30 (entrada trifásica) representam o estado da arte em fontes chaveadas de alta frequência para aplicações críticas. Utilizando conversores ressonantes em gavetas hot-swap de 19 polegadas, o sistema combina máxima densidade de potência, fator de potência unitário (PFC ≥ 0,99), distorção harmônica ultrabaixa (THDi < 3%) e eficiência superior a 95,5%, reduzindo drasticamente os custos operacionais e a dissipação térmica em salas de controle.",
+    descricao_detalhada: "Projetado com arquitetura verdadeiramente redundante N+1 ou 2N, cada módulo opera com controle digital descentralizado e partilha dinâmica ativa de corrente via barramento CAN de alta velocidade (desbalanceamento < 3%). Um controlador central inteligente com tela colorida touch gerencia todo o conjunto, oferecendo supervisão avançada de baterias (VRLA, Ni-Cd e Lítio), relatórios de eventos e conectividade completa através de SNMPv3, Modbus-TCP e servidor web HTTP integrado.",
+    texto_tecnologia: "Topologia ressonante chaveada em alta frequência (> 50 kHz) com comutação suave (ZVS/ZCS) em semicondutores de potência de carbeto de silício (SiC). Módulos gaveta plug-in substituíveis a quente (hot-swap) sem interrupção do barramento CC, controle de ventilação proporcional por carga/temperatura e desconexão de bateria por subtensão profunda (LVD) incorporada.",
+    datasheet_url: "/downloads/retificador-modular-chaveado-dk-sr10-dk-sr30.pdf",
     status_disponibilidade: "Em Estoque",
     garantia: "24 Meses (Garantia de Fábrica DSR)",
-    certificacoes: ["NR-10", "NR-12", "IEC 61204", "ISO 9001"],
+    certificacoes: ["IEC 61204", "IEC 62477-1", "CISPR 22 / EN 55022", "NR-10 / NR-12", "ISO 9001"],
     recursos_principais: [
-      { titulo: "Gavetas Hot-Swap", descricao: "Substituição ou adição de módulos com o sistema energizado.", icone: "Cpu" },
-      { titulo: "Eficiência > 95%", descricao: "Baixo consumo e mínima dissipação térmica em sala de baterias.", icone: "Zap" }
+      {
+        titulo: "Gavetas Hot-Swap de 19 Polegadas",
+        descricao: "Substituição e adição de módulos plug-in com o sistema energizado, sem interrupção de energia no barramento.",
+        icone: "Cpu"
+      },
+      {
+        titulo: "Eficiência > 95,5% & PFC ≥ 0,99",
+        descricao: "Mínima dissipação de calor em salas climatizadas e fator de potência unitário com distorção harmônica THDi < 3%.",
+        icone: "Zap"
+      },
+      {
+        titulo: "Redundância Ativa N+1 e 2N",
+        descricao: "Partilha de carga dinâmica e automática entre módulos conversores via barramento CAN com tolerância a falhas.",
+        icone: "Layers"
+      },
+      {
+        titulo: "Controlador Central Touch com SNMPv3",
+        descricao: "Display colorido sensível ao toque, servidor web HTTP, SNMPv3 com traps/MIBs e Modbus-TCP nativos.",
+        icone: "Activity"
+      },
+      {
+        titulo: "Gestão Multiquímica (VRLA, Ni-Cd e Lítio)",
+        descricao: "Curvas de carga de precisão com compensação térmica e integração com BMS para acumuladores de Lítio (LiFePO4).",
+        icone: "ShieldCheck"
+      },
+      {
+        titulo: "Ventilação Inteligente de Longa Vida",
+        descricao: "Velocidade variável controlada por temperatura e sensores de rotação com alarme preventivo de manutenção.",
+        icone: "Sparkles"
+      }
     ],
     especificacoes_rapidas: [
-      { chave: "Arquitetura", valor: "Modular Hot-Swap N+1", destaque: true },
-      { chave: "Rendimento", valor: "> 95,5% em regime nominal", destaque: true },
-      { chave: "Fator de Potência", valor: "≥ 0,99 (PFC Ativo)", destaque: true },
-      { chave: "Tensões de Saída", valor: "24Vcc, 48Vcc, 110Vcc, 125Vcc" }
+      { chave: "Aplicação Principal", valor: "Centros de telecomunicações, data centers, automação e subestações", destaque: true },
+      { chave: "Tecnologia de Potência", valor: "Fontes ressonantes chaveadas em alta frequência (> 50 kHz)", destaque: true },
+      { chave: "Arquitetura do Sistema", valor: "Modular hot-swap em sub-bastidores 19'' com redundância N+1", destaque: true },
+      { chave: "Tensão de Entrada CA", valor: "DK-SR10 (85-290Vca Mono) / DK-SR30 (380-440Vca Trifásico)" },
+      { chave: "Tensões de Saída CC", valor: "24Vcc, 48Vcc, 110Vcc ou 125Vcc parametrizáveis", destaque: true },
+      { chave: "Potência Escalável", valor: "De 3 kW a mais de 120 kW por gabinete", destaque: true },
+      { chave: "Rendimento Garantido", valor: "> 95,5% a 96,2% em regime nominal", destaque: true },
+      { chave: "Fator de Potência de Entrada", valor: "≥ 0,99 contínuo (Correção Ativa de FP - PFC)", destaque: true },
+      { chave: "Distorção Harmônica (THDi)", valor: "< 3% a 5% em plena carga nominal", destaque: true },
+      { chave: "Ripple de Saída", valor: "< 50 mV RMS ou < 0,05% RMS" },
+      { chave: "Conectividade de Rede", valor: "Ethernet RJ45, SNMPv3, Modbus-TCP e Web Server HTTP", destaque: true },
+      { chave: "Normas de Conformidade", valor: "IEC 61204, IEC 62477-1, CISPR 22, NR-10 e NR-12" }
+    ],
+    especificacoes_completas: [
+      {
+        grupo: "Classificação & Arquitetura Modular",
+        itens: [
+          { parametro: "Tipo de Equipamento", valor: "Retificador Carregador Modular Chaveado em Alta Frequência" },
+          { parametro: "Arquitetura do Sistema", valor: "Módulos gaveta plug-in padrão rack 19 polegadas com montagem em sub-bastidores" },
+          { parametro: "Substituição a Quente (Hot-Swap)", valor: "Troca e expansão de módulos 100% a quente sem interrupção do suprimento CC" },
+          { parametro: "Configuração de Redundância", valor: "Suporte nativo a redundância N+1, N+2 e sistemas dual bus 2N" },
+          { parametro: "Partilha Ativa de Corrente", valor: "Comunicação via barramento CAN interno com desbalanceamento entre módulos < 3%" },
+          { parametro: "Capacidade de Potência", valor: "Escalável de 1 módulo (1,5 kW a 6 kW) até dezenas de módulos em paralelo (> 120 kW)" },
+          { parametro: "Regime de Trabalho", valor: "Operação contínua ininterrupta 24 horas por dia, 7 dias por semana" }
+        ]
+      },
+      {
+        grupo: "Entrada em Corrente Alternada (CA)",
+        itens: [
+          { parametro: "Tensão de Entrada DK-SR10", valor: "85 Vca a 290 Vca universal monofásica (plena potência de 180V a 275Vca)" },
+          { parametro: "Tensão de Entrada DK-SR30", valor: "380 Vca / 400 Vca / 440 Vca Trifásica a 3 ou 4 fios ± 20%" },
+          { parametro: "Frequência Nominal", valor: "45 Hz a 66 Hz com rastreamento automático de rede" },
+          { parametro: "Fator de Potência (PFC Ativo)", valor: "≥ 0,99 em ampla faixa de carga (30% a 100% da potência nominal)" },
+          { parametro: "Distorção Harmônica Total (THDi)", valor: "< 3% em plena carga nominal (atende com folga à norma IEEE 519)" },
+          { parametro: "Corrente de Partida (Inrush)", valor: "Praticamente nula (< 1x Inom) com soft-start eletrônico suave" },
+          { parametro: "Proteção de Entrada CA", valor: "Disjuntor geral de entrada, proteção contra surtos DPS e fusíveis por módulo" }
+        ]
+      },
+      {
+        grupo: "Saída em Corrente Contínua (CC) & Potência",
+        itens: [
+          { parametro: "Tensões Nominais Padronizadas", valor: "24Vcc, 48Vcc, 110Vcc ou 125Vcc" },
+          { parametro: "Faixa de Ajuste da Tensão CC", valor: "21V a 30Vcc (para linha 24V); 42V a 58Vcc (linha 48V); 95V a 145Vcc (linha 110/125V)" },
+          { parametro: "Potência Unitária por Módulo", valor: "Módulos disponíveis em 1.500W, 3.000W e 6.000W" },
+          { parametro: "Regulação Estática de Tensão", valor: "≤ ± 0,2% para variações extremas de rede de entrada e carga de zero a 100%" },
+          { parametro: "Resposta Dinâmica a Transitórios", valor: "Desvio transitório < 2% com tempo de recuperação < 200 microssegundos" },
+          { parametro: "Ripple e Ruído de Alta Frequência", valor: "< 50 mV RMS ou < 0,05% RMS (largura de banda de 30 MHz)" },
+          { parametro: "Limite de Corrente Configurável", valor: "Limitador de corrente ajustável individualmente para cada módulo e para o barramento" }
+        ]
+      },
+      {
+        grupo: "Eficiência Energética & Térmica",
+        itens: [
+          { parametro: "Rendimento Global do Sistema", valor: "> 95,5% a 96,2% em regime nominal contínuo" },
+          { parametro: "Curva de Rendimento por Carga", valor: "> 94% a 25% de carga; > 95,5% a 50% de carga; > 96% a 75% e 100% de carga" },
+          { parametro: "Dissipação de Calor Reduzida", valor: "Redução de mais de 45% nas perdas térmicas comparado a retificadores convencionais" },
+          { parametro: "Modo Econômico (Eco-Sleep)", valor: "Gerenciamento inteligente que desativa módulos excedentes em baixa carga para manter eficiência máxima" }
+        ]
+      },
+      {
+        grupo: "Gerenciamento Multiquímica de Baterias",
+        itens: [
+          { parametro: "Tipos de Bateria Suportados", valor: "Chumbo-Ácido VRLA (AGM/Gel), Chumbo Ventilada (VLA), Níquel-Cádmio (Ni-Cd) e Íons de Lítio (LFP)" },
+          { parametro: "Ciclos de Carga Automatizados", valor: "Flutuação contínua, Carga Rápida (Boost) e Equalização programada com temporizador" },
+          { parametro: "Compensação de Tensão por Temperatura", valor: "Sensor térmico externo com compensação linear ajustável (-3 a -5 mV/°C/elemento)" },
+          { parametro: "Desconexão por Subtensão (LVD)", valor: "Contator magnético biestável integrado com corte seguro para preservação da vida útil das baterias" },
+          { parametro: "Integração com BMS de Lítio", valor: "Comunicação nativa via barramento CAN/RS-485 com sistemas BMS de baterias de lítio" }
+        ]
+      },
+      {
+        grupo: "Supervisão Inteligente, Display & Conectividade",
+        itens: [
+          { parametro: "Controlador Central Inteligente", valor: "Unidade de controle microprocessada com tela gráfica colorida touchscreen de 4,3'' ou 7''" },
+          { parametro: "Interface Web Integrada (HTTP/HTTPS)", valor: "Acesso a todos os parâmetros e curvas de operação através de qualquer navegador sem software especial" },
+          { parametro: "Protocolo SNMPv3 para TI e Telecom", valor: "Suporte completo a SNMPv1/v2c/v3 com criptografia de segurança, arquivos MIB e traps de alarmes" },
+          { parametro: "Protocolos Industriais de Automação", valor: "Modbus-TCP (Ethernet) e Modbus-RTU (RS-485) para integração com CLPs e sistemas supervisórios" },
+          { parametro: "Registro de Eventos & Histórico", valor: "Armazenamento em memória não volátil de mais de 2.000 registros detalhados com data e hora (RTC)" }
+        ]
+      },
+      {
+        grupo: "Construção Mecânica & Refrigeração",
+        itens: [
+          { parametro: "Padrão de Gabinete", valor: "Sub-bastidor de 19 polegadas (3U a 9U) ou cubículo industrial autossustentado completo" },
+          { parametro: "Método de Refrigeração", valor: "Ventilação forçada individual por módulo com ventiladores de rolamento de esferas" },
+          { parametro: "Controle Inteligente de Ventiladores", valor: "Velocidade variável proporcional à temperatura e carga, com sensor tacométrico de alarme de falha" },
+          { parametro: "Grau de Proteção Mecânica", valor: "IP20 / IP21 para bastidores de sala limpa; até IP54 em cubículos industriais com filtros" },
+          { parametro: "Faixa de Temperatura Operacional", valor: "-20°C a +55°C contínuo (plena potência até +45°C com derating suave até +65°C)" }
+        ]
+      },
+      {
+        grupo: "Normas de Segurança & Compatibilidade EMC",
+        itens: [
+          { parametro: "Norma de Conversores Estáticos", valor: "Atendimento integral à IEC 61204 e IEC 62477-1" },
+          { parametro: "Compatibilidade Eletromagnética (EMC)", valor: "CISPR 22 / EN 55022 Classe A e IEC 61000-4 (níveis industriais de imunidade a surtos e ruídos)" },
+          { parametro: "Segurança do Trabalho", valor: "Conformidade estrita com as normas regulamentadoras brasileiras NR-10 e NR-12" },
+          { parametro: "Garantia e Serviços DSR", valor: "24 meses de garantia fabril com sobressalentes e suporte de engenharia especializado" }
+        ]
+      }
     ],
     midias: [
       {
@@ -267,7 +583,7 @@ export const PRODUCTS_MOCK: Product[] = [
         url: "/images/products/rit-d-udq.jpg",
         thumbnailUrl: "/images/products/rit-d-udq.jpg",
         title: "Retificador Modular Chaveado DK-SR",
-        alt: "Retificador Modular Chaveado",
+        alt: "Retificador Modular Chaveado de Alta Frequência em bastidor",
         badge: "Arquitetura Modular"
       }
     ]
@@ -279,20 +595,118 @@ export const PRODUCTS_MOCK: Product[] = [
     codigo_modelo: "Modelo DSR-RFB",
     categoria: "Retificadores & Carregadores",
     subcategoria: "Equipamentos Especiais para Fabricação de Baterias",
-    tagline: "Ciclos programáveis de carga, formação química e despolarização para fabricantes e laboratórios de baterias industriais.",
-    descricao: "Projetado especialmente para fabricantes de baterias e centros de manutenção de acumuladores, o DSR-RFB executa rampas e patamares controlados de corrente e tensão com inversão controlada para formação inicial e regeneração de placas.",
-    descricao_detalhada: "Possui controle microprocessado com curvas de carga configuráveis via software, monitoramento térmico por sonda e registro contínuo de curva de formação em memória.",
-    texto_tecnologia: "Controle de tiristores com amostragem rápida e algoritmo de pulsos de despolarização para evitar aquecimento excessivo dos vasos de bateria.",
+    tagline: "Ciclos programáveis de carga, formação química e despolarização por micropulsos para fabricantes e laboratórios de baterias industriais.",
+    descricao: "Projetado com base nos mais exigentes padrões de processos eletroquímicos, o Retificador Formador de Baterias DSR-RFB executa rampas e patamares controlados de corrente e tensão para formação química inicial de placas e blocos de baterias, além de ciclos de regeneração profunda. O sistema incorpora integrador de Ampere-hora (Ah) e Coulomb de altíssima exatidão, algoritmos de despolarização por reversão controlada de pulsos e monitoramento térmico multicanal para evitar o superaquecimento dos vasos durante o processo de cura eletroquímica.",
+    descricao_detalhada: "O DSR-RFB opera sob controle tiristorizado microprocessado de resposta dinâmica ultrarrápida, permitindo parametrizar receitas completas com até 20 etapas sequenciais de corrente constante (CC), tensão constante (CV), patamares de repouso e pulsos de alta frequência. Todo o histórico de ensaio e formação é registrado em tempo real com exportação para sistemas de qualidade fabril e rastreabilidade individual por lote de baterias.",
+    texto_tecnologia: "Topologia tiristorizada com amostragem multicanal True RMS e algoritmo de pulsos de despolarização ativa. Inclui medição contínua de resistência interna dinâmica, integração digital de Ampere-hora / Coulomb com corte programado e supervisão térmica de até 16 sensores PT100/NTC posicionados diretamente nos vasos de bateria com interrupção de segurança por gradiente térmico excessivo.",
+    datasheet_url: "/downloads/retificador-formador-de-baterias-dsr-rfb.pdf",
     status_disponibilidade: "Engenharia Customizada",
-    garantia: "24 Meses (Garantia DSR)",
-    certificacoes: ["NR-10", "NR-12", "ISO 9001"],
+    garantia: "24 Meses (Garantia de Fábrica DSR com Suporte Especializado)",
+    certificacoes: ["IEC 60146-1-1", "IEC 62477-1", "NR-10 / NR-12", "ISO 9001"],
     recursos_principais: [
-      { titulo: "Ciclos Programáveis", descricao: "Perfis de formação química com múltiplas etapas de corrente e tempo.", icone: "Activity" }
+      {
+        titulo: "Receitas Eletroquímicas de até 20 Etapas",
+        descricao: "Perfis flexíveis de formação com rampas, patamares CC/CV, tempos de repouso e comutação automática.",
+        icone: "Activity"
+      },
+      {
+        titulo: "Integrador de Ampere-Hora (Ah) e Coulomb",
+        descricao: "Cálculo exato da energia acumulada para garantia de espessura e ativação homogênea da matéria ativa das placas.",
+        icone: "Cpu"
+      },
+      {
+        titulo: "Algoritmo de Despolarização Rápida",
+        descricao: "Micropulsos reversos controlados que quebram a resistência de polarização e reduzem em até 30% o tempo de formação.",
+        icone: "Zap"
+      },
+      {
+        titulo: "Monitoramento Térmico Multicanal de Vasos",
+        descricao: "Sondas térmicas individuais com corte preventivo ou redução de corrente em caso de sobreaquecimento dos vasos.",
+        icone: "ShieldCheck"
+      },
+      {
+        titulo: "Controle Preciso de Corrente de 0 a 1.500A",
+        descricao: "Ajuste milimétrico de densidade de corrente com estabilidade estática e dinâmica superior a ± 0,5%.",
+        icone: "Sliders"
+      },
+      {
+        titulo: "Rastreabilidade & Exportação de Curvas",
+        descricao: "Registro contínuo de curvas V(t), I(t) e T(t) com interface Ethernet para banco de dados e controle de qualidade.",
+        icone: "Layers"
+      }
     ],
     especificacoes_rapidas: [
-      { chave: "Aplicação", valor: "Formação e Regeneração de Baterias", destaque: true },
-      { chave: "Corrente de Saída", valor: "Até 1.500 A programáveis", destaque: true },
-      { chave: "Controle", valor: "Microprocessado com perfis em memória" }
+      { chave: "Aplicação Específica", valor: "Formação química, ativação e regeneração de baterias industriais", destaque: true },
+      { chave: "Modos de Processo", valor: "Corrente Constante (CC), Tensão Constante (CV) e Perfis Programados", destaque: true },
+      { chave: "Corrente de Saída CC", valor: "Até 1.500 A contínuos programáveis", destaque: true },
+      { chave: "Tensão de Barramento CC", valor: "Configurável de 12V até 600Vcc (para múltiplos vasos em série)", destaque: true },
+      { chave: "Precisão de Ajuste", valor: "Classe 0,5% de Fundo de Escala para corrente e tensão", destaque: true },
+      { chave: "Integrador de Energia", valor: "Ampere-hora (Ah) e Watt-hora (Wh) com corte automático", destaque: true },
+      { chave: "Pulsos de Despolarização", valor: "Inversão controlada de pulsos para aceleração eletroquímica" },
+      { chave: "Supervisão Térmica", valor: "Até 16 canais de temperatura para monitoramento de vasos" },
+      { chave: "Interface & Software", valor: "IHM industrial colorida + Porta Ethernet para software de laboratório" },
+      { chave: "Grau de Proteção Mecânica", valor: "IP21 a IP42 com tratamento especial anticorrosivo contra vapores ácidos" }
+    ],
+    especificacoes_completas: [
+      {
+        grupo: "Classificação & Processos Eletroquímicos",
+        itens: [
+          { parametro: "Aplicação Primária", valor: "Formação inicial de placas, carregamento de tanques e ativação de acumuladores químicos" },
+          { parametro: "Tipos de Bateria Formadas", valor: "Chumbo-Ácido (automotivas, tracionárias e estacionárias VRLA/VLA) e Níquel-Cádmio" },
+          { parametro: "Modos de Operação do Processo", valor: "Corrente Constante (CC), Tensão Constante (CV), Potência Constante (CP) e Repouso" },
+          { parametro: "Receitas de Formação", valor: "Armazenamento em memória de até 50 receitas com até 20 etapas sequenciais por receita" },
+          { parametro: "Critérios de Mudança de Etapa", valor: "Por tempo decorrido, por tensão atingida, por Ampere-hora acumulado ou por gradiente térmico" },
+          { parametro: "Regime de Trabalho", valor: "Regime industrial contínuo pesado 24/7 com proteção anticorrosiva reforçada" }
+        ]
+      },
+      {
+        grupo: "Entrada em Corrente Alternada (CA)",
+        itens: [
+          { parametro: "Tensão de Alimentação CA", valor: "220V, 380V ou 440Vca Trifásica (50/60 Hz ± 5%)" },
+          { parametro: "Esquema de Entrada", valor: "Trifásico a 3 fios + Condutor de Proteção (PE)" },
+          { parametro: "Tolerância de Tensão da Rede", valor: "± 10% permanente com compensação automática de fase" },
+          { parametro: "Partida e Rampa de Corrente", valor: "Rampa programável de subida e descida de corrente de 1 a 60 segundos" },
+          { parametro: "Proteção de Entrada", valor: "Disjuntor motorizado de alta capacidade de interrupção e supressores de transientes DPS" }
+        ]
+      },
+      {
+        grupo: "Saída CC & Parâmetros Eletroquímicos",
+        itens: [
+          { parametro: "Faixa de Tensão de Saída CC", valor: "12 Vcc a 600 Vcc (dimensionada para strings de 1 a 240 vasos de bateria)" },
+          { parametro: "Faixa de Corrente Contínua", valor: "10 A a 1.500 A contínuos com controle milimétrico" },
+          { parametro: "Estabilidade Estática de Corrente", valor: "≤ ± 0,5% do valor programado, independente de variações térmicas ou de rede" },
+          { parametro: "Resolução de Ajuste", valor: "Resolução de 0,1 A para corrente e 0,1 V para tensão" },
+          { parametro: "Ripple Residual de Corrente", valor: "< 1,5% RMS garantindo deposição eletroquímica uniforme" },
+          { parametro: "Despolarização por Micropulsos", valor: "Trem de pulsos reversos de alta velocidade para eliminação de bolhas e sulfatação prematura" }
+        ]
+      },
+      {
+        grupo: "Integrador de Carga & Controle Térmico",
+        itens: [
+          { parametro: "Integrador de Carga Elétrica", valor: "Contador digital de Ampere-hora (Ah) e Coulomb com classe de precisão 0,2%" },
+          { parametro: "Corte Automático por Carga", valor: "Desligamento automático seguro ou avanço de etapa ao atingir o valor exato de Ah programado" },
+          { parametro: "Canais de Medição de Temperatura", valor: "4 a 16 canais isolados para sondas térmicas PT100/NTC instaladas nos vasos de teste" },
+          { parametro: "Algoritmo de Proteção Térmica", valor: "Redução automática da corrente de carga se a temperatura do vaso ultrapassar 45°C e corte total a 55°C" }
+        ]
+      },
+      {
+        grupo: "Supervisão, Software & Rastreabilidade",
+        itens: [
+          { parametro: "Interface Frontal do Operador", valor: "IHM touch colorida industrial com visualização gráfica instantânea das curvas V, I e T" },
+          { parametro: "Comunicação com Sala de Controle", valor: "Porta Ethernet TCP/IP nativa com protocolo Modbus-TCP para software de supervisão de fábrica" },
+          { parametro: "Rastreabilidade por Lote", valor: "Associação de cada ciclo de formação ao código de barras do lote de fabricação" },
+          { parametro: "Exportação de Dados de Ensaio", valor: "Geração de arquivos CSV/Excel e relatórios em PDF com laudo de formação do acumulador" }
+        ]
+      },
+      {
+        grupo: "Construção Mecânica & Ambiente Agressivo",
+        itens: [
+          { parametro: "Estrutura do Cubículo", valor: "Chapa de aço tratada com primer anticorrosivo e pintura em epóxi especial resistente a ácidos" },
+          { parametro: "Grau de Proteção Mecânica", valor: "IP21 a IP42 com isolamento das placas eletrônicas contra atmosfera corrosiva de baterias" },
+          { parametro: "Refrigeração dos Semicondutores", valor: "Ventilação forçada em túnel de vento dedicado, impedindo o contato de vapores com as placas de controle" },
+          { parametro: "Normas Técnicas Aplicáveis", valor: "IEC 60146-1-1, IEC 62477-1, NR-10 e NR-12" }
+        ]
+      }
     ],
     midias: [
       {
@@ -301,7 +715,7 @@ export const PRODUCTS_MOCK: Product[] = [
         url: "/images/products/rit-d-cabinet.jpg",
         thumbnailUrl: "/images/products/rit-d-cabinet.jpg",
         title: "Retificador Formador de Baterias DSR",
-        alt: "Retificador Formador de Baterias",
+        alt: "Retificador Formador de Baterias em cubículo industrial",
         badge: "Equipamento Especial"
       }
     ]
