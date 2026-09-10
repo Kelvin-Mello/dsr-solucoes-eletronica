@@ -31,9 +31,9 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-[#2a475e]/80 bg-[#171a21]/95 backdrop-blur-md">
       {/* Main Navbar */}
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center group transition-opacity hover:opacity-90">
+        <Link href="/" className="flex items-center group transition-opacity hover:opacity-90 z-10">
           <div className="relative h-11 w-36 sm:w-40">
             <Image
               src="/images/logo/logo-white.png"
@@ -46,15 +46,15 @@ export function Header() {
           </div>
         </Link>
 
-        {/* Desktop Navigation links */}
-        <nav className="hidden lg:flex items-center gap-4 xl:gap-5 text-xs font-medium uppercase tracking-wider">
+        {/* Desktop Navigation links - Centralizados na página */}
+        <nav className="hidden lg:flex items-center gap-2.5 xl:gap-5 2xl:gap-6 text-[11px] xl:text-xs font-medium uppercase tracking-wider absolute left-1/2 -translate-x-1/2">
           {NAV_LINKS.map((link) => {
             const active = isLinkActive(link.href);
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`transition-colors py-1 relative ${
+                className={`transition-colors py-1 relative whitespace-nowrap ${
                   active
                     ? "text-[#66c0f4] font-bold"
                     : "text-[#c6d4df] hover:text-[#66c0f4]"
@@ -73,7 +73,7 @@ export function Header() {
         <button
           type="button"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden flex h-10 w-10 items-center justify-center rounded-lg bg-[#101822] text-[#c6d4df] border border-[#2a475e] hover:text-[#66c0f4] hover:border-[#66c0f4] transition-colors"
+          className="lg:hidden flex h-10 w-10 items-center justify-center rounded-lg bg-[#101822] text-[#c6d4df] border border-[#2a475e] hover:text-[#66c0f4] hover:border-[#66c0f4] transition-colors z-10"
           aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
         >
           {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
