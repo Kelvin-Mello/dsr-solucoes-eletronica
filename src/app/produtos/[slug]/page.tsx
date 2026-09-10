@@ -146,19 +146,93 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
         {/* Conteúdos Inferiores em Largura Total (Full Width) */}
         <div className="space-y-8">
-          {/* 1. Visão Geral & Engenharia do Equipamento */}
-          <article className="rounded-xl bg-[#2a475e]/40 border border-[#2a475e] p-6 md:p-8 backdrop-blur-sm shadow-xl">
-            <div className="flex items-center gap-3 border-b border-[#2a475e] pb-4 mb-5">
-              <div className="flex h-9 w-9 items-center justify-center rounded bg-[#1b2838] border border-[#66c0f4]/40 text-[#66c0f4]">
-                <Cpu className="h-5 w-5" />
+          {/* 1. Visão Geral & Engenharia do Equipamento - Design Sóbrio, Minimalista e Tecnológico */}
+          <article className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#131e2b] via-[#101822] to-[#0d141d] border border-[#2a475e]/90 shadow-2xl p-6 sm:p-8 lg:p-10 backdrop-blur-md">
+            {/* Linha técnica sutil superior iluminada */}
+            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#66c0f4]/50 to-transparent pointer-events-none" />
+
+            {/* Brilho ambiental sutil no canto superior */}
+            <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[#66c0f4]/5 blur-3xl" />
+
+            {/* Cabeçalho Técnico do Bloco */}
+            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#2a475e]/70 pb-5 mb-8">
+              <div className="flex items-center gap-3.5">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#172433] border border-[#3b678c]/60 text-[#66c0f4] shadow-[0_0_15px_rgba(102,192,244,0.18)]">
+                  <Cpu className="h-5 w-5" />
+                </div>
+                <div>
+                  <span className="block text-[11px] font-mono font-semibold tracking-wider text-[#66c0f4] uppercase">
+                    ARQUITETURA & PROJETO EXECUTIVO
+                  </span>
+                  <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                    Visão Geral & Engenharia do Equipamento
+                  </h2>
+                </div>
               </div>
-              <h2 className="text-xl md:text-2xl font-bold text-white tracking-wide">
-                Visão Geral & Engenharia do Equipamento
-              </h2>
+
+              {/* Tag Minimalista de Especificação Industrial */}
+              <div className="hidden sm:flex items-center gap-2.5 rounded-lg bg-[#141d28]/90 px-3.5 py-1.5 border border-[#2a475e] text-xs font-mono">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-white font-semibold">{product.codigo_modelo}</span>
+                <span className="text-[#3b5974]">|</span>
+                <span className="text-[#8f98a0]">Grau Industrial Crítico</span>
+              </div>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-sm md:text-base leading-relaxed text-[#c6d4df]">
-              <p>{product.descricao}</p>
-              <p>{product.descricao_detalhada}</p>
+
+            {/* Grid de Conteúdo em 2 Colunas com Hierarquia Editorial Clara */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+              {/* Coluna 1: Concepção & Robustez */}
+              <div className="space-y-3.5">
+                <div className="flex items-center gap-2.5">
+                  <span className="h-4 w-1 rounded-full bg-[#66c0f4]" />
+                  <h3 className="text-sm sm:text-base font-bold text-white tracking-wide">
+                    Concepção & Robustez Operacional
+                  </h3>
+                </div>
+                <p className="text-sm md:text-[15px] leading-relaxed text-[#c6d4df] text-justify md:text-left">
+                  {product.descricao}
+                </p>
+              </div>
+
+              {/* Coluna 2: Arquitetura de Controle & Manutenção */}
+              <div className="space-y-3.5">
+                <div className="flex items-center gap-2.5">
+                  <span className="h-4 w-1 rounded-full bg-[#66c0f4]" />
+                  <h3 className="text-sm sm:text-base font-bold text-white tracking-wide">
+                    Arquitetura de Controle & Resiliência
+                  </h3>
+                </div>
+                <p className="text-sm md:text-[15px] leading-relaxed text-[#c6d4df] text-justify md:text-left">
+                  {product.descricao_detalhada}
+                </p>
+              </div>
+            </div>
+
+            {/* Faixa Inferior de Destaques Técnicos (Sóbria e Minimalista) */}
+            <div className="mt-8 pt-6 border-t border-[#2a475e]/60 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              <div className="flex items-center gap-2.5 rounded-lg bg-[#141d27]/70 border border-[#2a475e]/60 px-3.5 py-2.5">
+                <CheckCircle className="h-4 w-4 text-[#66c0f4] flex-shrink-0" />
+                <span className="text-xs font-mono text-[#c6d4df]">Regime Contínuo 24/7 (100% Duty)</span>
+              </div>
+
+              <div className="flex items-center gap-2.5 rounded-lg bg-[#141d27]/70 border border-[#2a475e]/60 px-3.5 py-2.5">
+                <ShieldCheck className="h-4 w-4 text-[#66c0f4] flex-shrink-0" />
+                <span className="text-xs font-mono text-[#c6d4df]">Alto MTBF & Baixo MTTR</span>
+              </div>
+
+              <div className="flex items-center gap-2.5 rounded-lg bg-[#141d27]/70 border border-[#2a475e]/60 px-3.5 py-2.5">
+                <Zap className="h-4 w-4 text-[#66c0f4] flex-shrink-0" />
+                <span className="text-xs font-mono text-[#c6d4df]">Fonte Mista CA/CC Auxiliar</span>
+              </div>
+
+              <div className="flex items-center gap-2.5 rounded-lg bg-[#141d27]/70 border border-[#2a475e]/60 px-3.5 py-2.5">
+                <Layers className="h-4 w-4 text-[#66c0f4] flex-shrink-0" />
+                <span className="text-xs font-mono text-[#c6d4df] truncate">
+                  {product.certificacoes && product.certificacoes.length > 0
+                    ? `Normas ${product.certificacoes.slice(0, 2).join(" • ")}`
+                    : "Padrão IEEE / ABNT"}
+                </span>
+              </div>
             </div>
           </article>
 
