@@ -145,7 +145,7 @@ export const CLIENTS_LIST: ClientItem[] = [
     sector: "Usina Termelétrica Pampa Sul (Candiota/RS)",
     scale: "Termelétrica de 345 MW",
     desc: "Usina termelétrica a carvão mineral com tecnologia supercrítica de alta eficiência no Rio Grande do Sul.",
-    logoUrl: "/images/clients/pampasul.png"
+    logoUrl: "/images/clients/pampasul.svg"
   },
   {
     id: "geramaranhao",
