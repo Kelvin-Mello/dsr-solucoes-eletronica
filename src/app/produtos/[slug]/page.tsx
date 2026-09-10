@@ -77,6 +77,25 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   };
 }
 
+function getFeaturesGridCols(count: number): string {
+  if (count === 6 || count === 3 || count === 9) {
+    return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
+  }
+  if (count === 4 || count === 8 || count === 12) {
+    return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
+  }
+  if (count % 3 === 0) {
+    return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
+  }
+  if (count % 4 === 0) {
+    return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4";
+  }
+  if (count === 2) {
+    return "grid-cols-1 sm:grid-cols-2";
+  }
+  return "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
+}
+
 export default async function ProductDetailPage({ params }: ProductPageProps) {
   const { slug } = await params;
   const product = getProductBySlug(slug);
@@ -236,33 +255,35 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             </div>
           </article>
 
-          {/* 2. Destaques Tecnológicos (Cards distribuídos em 4 colunas em telas grandes) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {product.recursos_principais.map((feature, idx) => (
-              <div
-                key={idx}
-                className="rounded-xl bg-[#171a21]/80 border border-[#2a475e] p-5 hover:border-[#66c0f4]/50 transition-all hover:bg-[#1b2e3f]/60 group flex flex-col justify-between shadow-md"
-              >
-                <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#2a475e] text-[#66c0f4] group-hover:scale-110 transition-transform shadow-inner">
-                      {idx === 0 && <Wrench className="h-4 w-4" />}
-                      {idx === 1 && <Zap className="h-4 w-4" />}
-                      {idx === 2 && <Activity className="h-4 w-4" />}
-                      {idx === 3 && <ShieldCheck className="h-4 w-4" />}
-                      {idx >= 4 && <Layers className="h-4 w-4" />}
+          {/* 2. Destaques Tecnológicos (Cards com grid perfeitamente simétrico e dinâmico) */}
+          {product.recursos_principais && product.recursos_principais.length > 0 && (
+            <div className={`grid ${getFeaturesGridCols(product.recursos_principais.length)} gap-4`}>
+              {product.recursos_principais.map((feature, idx) => (
+                <div
+                  key={idx}
+                  className="rounded-xl bg-[#171a21]/80 border border-[#2a475e] p-5 hover:border-[#66c0f4]/50 transition-all hover:bg-[#1b2e3f]/60 group flex flex-col justify-between shadow-md h-full"
+                >
+                  <div>
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#2a475e] text-[#66c0f4] group-hover:scale-110 transition-transform shadow-inner shrink-0">
+                        {idx === 0 && <Wrench className="h-4 w-4" />}
+                        {idx === 1 && <Zap className="h-4 w-4" />}
+                        {idx === 2 && <Activity className="h-4 w-4" />}
+                        {idx === 3 && <ShieldCheck className="h-4 w-4" />}
+                        {idx >= 4 && <Layers className="h-4 w-4" />}
+                      </div>
+                      <h3 className="font-bold text-white text-sm group-hover:text-[#66c0f4] transition-colors line-clamp-2">
+                        {feature.titulo}
+                      </h3>
                     </div>
-                    <h3 className="font-bold text-white text-sm group-hover:text-[#66c0f4] transition-colors line-clamp-2">
-                      {feature.titulo}
-                    </h3>
+                    <p className="text-xs text-[#8f98a0] leading-relaxed">
+                      {feature.descricao}
+                    </p>
                   </div>
-                  <p className="text-xs text-[#8f98a0] leading-relaxed">
-                    {feature.descricao}
-                  </p>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           {/* 3. Abas Detalhadas de Engenharia em Largura Total */}
           <ProductDetailTabs product={product} />
