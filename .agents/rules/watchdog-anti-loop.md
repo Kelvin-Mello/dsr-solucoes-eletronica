@@ -23,4 +23,5 @@ Esta regra define o protocolo de segurança operacional para evitar loops infini
 
 5. **Simetria e Coerência de Layout**:
    - Manter consistência simétrica em grids, blocos e botões.
+   - **Área Superior dos Banners (Produtos e Serviços)**: Manter o lado direito dos banners de cabeçalho de produtos e serviços 100% limpo, sem badges, tags ou textos redundantes.
    - Proteger a experiência do usuário com validação de build (`npm run build`) antes de concluir a entrega.

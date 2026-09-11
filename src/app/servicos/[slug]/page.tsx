@@ -104,7 +104,6 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
   const allServices = getAllServices();
   const otherServices = allServices.filter((s) => s.slug !== service.slug);
-  const IconComponent = ICON_MAP[service.iconName] || Wrench;
 
   return (
     <div className="min-h-screen bg-[#1b2838] text-[#c6d4df] py-8 sm:py-12">
@@ -124,29 +123,17 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           </span>
         </nav>
 
-        {/* Hero Title Banner */}
+        {/* Hero Title Banner - Área da direita sempre limpa conforme solicitado */}
         <div className="relative overflow-hidden rounded-xl border border-[#2a475e] bg-gradient-to-r from-[#101822] via-[#172535] to-[#101822] p-5 sm:p-6 shadow-xl">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#66c0f4]/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white leading-tight">
-                {service.title}
-              </h1>
-              <p className="mt-1 text-sm sm:text-base text-[#66c0f4] font-semibold font-mono">
-                {service.subtitle}
-              </p>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-md bg-[#101822] px-3 py-1.5 text-xs font-mono text-[#66c0f4] border border-[#66c0f4]/40">
-                <IconComponent className="h-3.5 w-3.5" />
-                SERVIÇO ESPECIALIZADO DSR
-              </span>
-              <span className="rounded bg-[#66c0f4]/20 border border-[#66c0f4]/40 px-2.5 py-1.5 text-xs font-mono font-bold text-[#66c0f4]">
-                {service.badge}
-              </span>
-            </div>
+          <div className="relative z-10">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white leading-tight">
+              {service.title}
+            </h1>
+            <p className="mt-1 text-sm sm:text-base text-[#66c0f4] font-semibold font-mono">
+              {service.subtitle}
+            </p>
           </div>
         </div>
 

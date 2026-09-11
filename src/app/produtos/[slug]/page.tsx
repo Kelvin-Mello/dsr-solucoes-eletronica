@@ -122,26 +122,15 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           </span>
         </nav>
 
-        {/* Product Hero Header */}
+        {/* Product Hero Header - Área da direita sempre limpa conforme solicitado */}
         <div className="mb-6 rounded-lg bg-gradient-to-r from-[#171a21] via-[#2a475e]/70 to-[#171a21] border border-[#2a475e] p-5 md:p-6 shadow-lg">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
-                {product.nome}
-              </h1>
-              <p className="mt-1 text-sm md:text-base text-[#66c0f4] font-semibold font-mono">
-                {product.codigo_modelo}
-              </p>
-            </div>
-            
-            {/* Status indicator */}
-            <div className="flex flex-col items-start sm:items-end gap-1 font-mono text-xs">
-              <div className="flex items-center gap-2 rounded bg-[#101822] px-3 py-1.5 border border-[#3b678c]">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#66c0f4] animate-pulse"></span>
-                <span className="text-white font-semibold">{product.status_disponibilidade}</span>
-              </div>
-              <span className="text-[#8f98a0] text-[11px]">{product.garantia}</span>
-            </div>
+          <div>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
+              {product.nome}
+            </h1>
+            <p className="mt-1 text-sm md:text-base text-[#66c0f4] font-semibold font-mono">
+              {product.codigo_modelo}
+            </p>
           </div>
         </div>
 

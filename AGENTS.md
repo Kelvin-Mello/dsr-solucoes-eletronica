@@ -25,3 +25,4 @@ Este projeto possui regras estritas de execução e controle operacional para pr
 
 ## 3. Simetria e Qualidade Visual
 - Toda interface criada ou modificada deve zelar por **simetria visual**, alinhamento proporcional de colunas e botões, tipografia sóbria e estética industrial refinada (estilo Steam / Dark Tech), respeitando a identidade da DSR Soluções.
+- **Área Superior dos Banners (Produtos e Serviços)**: O lado direito do banner de cabeçalho/título (ao lado do H1 e subtítulo) de páginas de produtos e serviços deve ser mantido sempre 100% limpo, sem badges, tags ou status sobrepostos.
