@@ -25,6 +25,7 @@ export function BeforeAfterSlider({
   // Posição padrão da linha vertical: exatamente no centro (50%)
   const [sliderPosition, setSliderPosition] = useState<number>(50);
   const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [hasInteracted, setHasInteracted] = useState<boolean>(false);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const modalContainerRef = useRef<HTMLDivElement>(null);
@@ -36,6 +37,7 @@ export function BeforeAfterSlider({
     const x = clientX - rect.left;
     const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
     setSliderPosition(percentage);
+    setHasInteracted(true);
   }, []);
 
   // Eventos de Mouse e Touch no container principal
@@ -100,10 +102,21 @@ export function BeforeAfterSlider({
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowLeft") {
       setSliderPosition((prev) => Math.max(0, prev - 5));
+      setHasInteracted(true);
     } else if (e.key === "ArrowRight") {
       setSliderPosition((prev) => Math.min(100, prev + 5));
+      setHasInteracted(true);
     }
   };
+
+  // Quando o slider se move para a direita (revelando o Antes), o badge "Depois"
+  // desaparece suavemente para nunca ser exibido quando o usuário está no Antes.
+  // Em 75% ou mais, o badge "Depois" fica 100% invisível.
+  const afterBadgeOpacity = Math.max(0, Math.min(1, (75 - sliderPosition) / 15));
+
+  // Quando o slider se move para a esquerda (revelando o Depois), o badge "Antes"
+  // desaparece suavemente. Abaixo de 25%, o badge "Antes" fica 100% invisível.
+  const beforeBadgeOpacity = Math.max(0, Math.min(1, (sliderPosition - 25) / 15));
 
   return (
     <>
@@ -123,14 +136,17 @@ export function BeforeAfterSlider({
           className={`relative w-full overflow-hidden rounded-xl bg-black border border-[#2a475e] shadow-[0_10px_35px_rgba(0,0,0,0.85)] cursor-ew-resize group focus:outline-none focus:ring-2 focus:ring-[#66c0f4] touch-none ${aspectRatio}`}
         >
           {/* CAMADA 1 (BASE - DEPOIS): Imagem do Painel Modernizado Retrofit DSR */}
-          <div className="absolute inset-0 w-full h-full bg-black">
+          <div className="absolute inset-0 w-full h-full bg-black z-0">
             <img
               src={afterImage}
               alt={afterLabel}
               className="w-full h-full object-cover object-center pointer-events-none"
             />
-            {/* Badge Depois (Canto Superior Direito) */}
-            <div className="absolute top-3 right-3 z-10 pointer-events-none">
+            {/* Badge Depois (Canto Superior Direito) - Oculto quando no Antes */}
+            <div
+              style={{ opacity: afterBadgeOpacity }}
+              className="absolute top-3 right-3 z-10 pointer-events-none transition-opacity duration-200"
+            >
               <span className="inline-flex items-center gap-1.5 rounded-md bg-[#101822]/90 border border-[#66c0f4]/60 px-3 py-1 text-xs font-mono font-bold text-[#66c0f4] uppercase tracking-wider backdrop-blur-md shadow-lg">
                 <Sparkles className="h-3.5 w-3.5 text-[#66c0f4] animate-pulse" />
                 {afterLabel}
@@ -143,15 +159,18 @@ export function BeforeAfterSlider({
             style={{
               clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
             }}
-            className="absolute inset-0 w-full h-full bg-black pointer-events-none"
+            className="absolute inset-0 w-full h-full bg-black pointer-events-none z-10"
           >
             <img
               src={beforeImage}
               alt={beforeLabel}
               className="w-full h-full object-cover object-center pointer-events-none"
             />
-            {/* Badge Antes (Canto Superior Esquerdo) */}
-            <div className="absolute top-3 left-3 z-10 pointer-events-none">
+            {/* Badge Antes (Canto Superior Esquerdo) - Oculto quando no Depois */}
+            <div
+              style={{ opacity: beforeBadgeOpacity }}
+              className="absolute top-3 left-3 z-10 pointer-events-none transition-opacity duration-200"
+            >
               <span className="inline-flex items-center gap-1.5 rounded-md bg-black/85 border border-white/20 px-3 py-1 text-xs font-mono font-bold text-[#c6d4df] uppercase tracking-wider backdrop-blur-md shadow-lg">
                 <span className="h-2 w-2 rounded-full bg-amber-400" />
                 {beforeLabel}
@@ -188,7 +207,11 @@ export function BeforeAfterSlider({
           </button>
 
           {/* Dica Interativa Flutuante no Rodapé (Some suavemente após interação) */}
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 pointer-events-none transition-opacity duration-300">
+          <div
+            className={`absolute bottom-3 left-1/2 -translate-x-1/2 z-20 pointer-events-none transition-opacity duration-300 ${
+              hasInteracted || isDragging ? "opacity-0" : "opacity-100"
+            }`}
+          >
             <span className="inline-flex items-center gap-1.5 rounded-full bg-black/75 border border-[#2a475e] px-3.5 py-1 text-[11px] font-mono text-[#c6d4df] backdrop-blur-md shadow-md">
               <SlidersHorizontal className="h-3 w-3 text-[#66c0f4]" />
               Arraste a linha para transformar em tempo real
@@ -267,13 +290,16 @@ export function BeforeAfterSlider({
             onClick={(e) => e.stopPropagation()}
           >
             {/* Camada Depois */}
-            <div className="absolute inset-0 w-full h-full bg-black">
+            <div className="absolute inset-0 w-full h-full bg-black z-0">
               <img
                 src={afterImage}
                 alt={afterLabel}
                 className="w-full h-full object-cover object-center pointer-events-none"
               />
-              <div className="absolute top-4 right-4 z-10 pointer-events-none">
+              <div
+                style={{ opacity: afterBadgeOpacity }}
+                className="absolute top-4 right-4 z-10 pointer-events-none transition-opacity duration-200"
+              >
                 <span className="inline-flex items-center gap-1.5 rounded-md bg-[#101822]/90 border border-[#66c0f4]/60 px-3.5 py-1.5 text-xs font-mono font-bold text-[#66c0f4] uppercase tracking-wider backdrop-blur-md shadow-lg">
                   <Sparkles className="h-3.5 w-3.5 text-[#66c0f4]" />
                   {afterLabel}
@@ -286,14 +312,17 @@ export function BeforeAfterSlider({
               style={{
                 clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
               }}
-              className="absolute inset-0 w-full h-full bg-black pointer-events-none"
+              className="absolute inset-0 w-full h-full bg-black pointer-events-none z-10"
             >
               <img
                 src={beforeImage}
                 alt={beforeLabel}
                 className="w-full h-full object-cover object-center pointer-events-none"
               />
-              <div className="absolute top-4 left-4 z-10 pointer-events-none">
+              <div
+                style={{ opacity: beforeBadgeOpacity }}
+                className="absolute top-4 left-4 z-10 pointer-events-none transition-opacity duration-200"
+              >
                 <span className="inline-flex items-center gap-1.5 rounded-md bg-black/85 border border-white/20 px-3.5 py-1.5 text-xs font-mono font-bold text-[#c6d4df] uppercase tracking-wider backdrop-blur-md shadow-lg">
                   <span className="h-2 w-2 rounded-full bg-amber-400" />
                   {beforeLabel}
