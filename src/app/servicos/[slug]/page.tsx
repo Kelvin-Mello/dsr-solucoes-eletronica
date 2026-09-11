@@ -22,7 +22,7 @@ import {
   Award
 } from "lucide-react";
 import { getAllServices, getServiceBySlug, ServiceItem } from "@/mock/services";
-import { MediaCarousel } from "@/components/MediaCarousel";
+import { ServiceHeroMedia } from "@/components/ServiceHeroMedia";
 import { ServiceDetailTabs } from "@/components/ServiceDetailTabs";
 
 interface ServicePageProps {
@@ -152,13 +152,10 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
         {/* Top Hero Row: Carrossel à esquerda e Bloco Resumo à direita limitados à mesma altura */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch mb-8">
-          {/* Coluna Esquerda: Carrossel de Mídias (col-span-7 ou 8) */}
+          {/* Coluna Esquerda: Showcase Interativo de Mídias (col-span-7 ou 8) */}
           <div className="lg:col-span-7 xl:col-span-8 flex flex-col">
             <div className="rounded-xl bg-[#171a21]/90 p-3 md:p-4 border border-[#2a475e] shadow-xl h-full flex flex-col justify-between">
-              <MediaCarousel
-                mediaList={service.midias}
-                productName={service.title}
-              />
+              <ServiceHeroMedia service={service} />
             </div>
           </div>
 
@@ -219,6 +216,117 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
 
         {/* Conteúdos Inferiores em Largura Total (Full Width) */}
         <div className="space-y-8">
+          {/* Seção Exclusiva: Comparativo Técnico do Estudo de Caso de Retrofitting */}
+          {service.slug === "retrofitting-e-modernizacao" && (
+            <div className="rounded-xl border border-[#2a475e] bg-gradient-to-b from-[#171a21] to-[#101822] p-6 md:p-8 shadow-2xl space-y-6">
+              <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#2a475e]/80 pb-4">
+                <div className="space-y-1">
+                  <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#66c0f4] uppercase tracking-wider">
+                    <Zap className="h-4 w-4" />
+                    Estudo de Caso Prático: Retificador 2
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-black text-white">
+                    O que Muda na Prática com o Retrofit DSR?
+                  </h3>
+                  <p className="text-xs md:text-sm text-[#8f98a0]">
+                    Comparativo das tecnologias substituídas no painel industrial de 460V
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 rounded-md bg-[#101822] border border-[#66c0f4]/40 px-3 py-1.5 text-xs font-mono font-bold text-[#66c0f4]">
+                    <Award className="h-3.5 w-3.5" />
+                    Economia de até 65% em CAPEX
+                  </span>
+                </div>
+              </div>
+
+              {/* Grid Simétrico de 3 Colunas com os Pilares da Transformação */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                {/* Card 1: Supervisão & IHM */}
+                <div className="rounded-lg border border-[#2a475e] bg-[#1b2838]/80 p-5 space-y-3 flex flex-col justify-between hover:border-[#66c0f4]/50 transition-all">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#66c0f4]">
+                        01. Interface Homem-Máquina
+                      </span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-black/50 text-[#8f98a0] border border-[#2a475e]">
+                        Supervisão
+                      </span>
+                    </div>
+                    <h4 className="text-sm font-bold text-white">
+                      Digitalização com Tela Touchscreen WEG
+                    </h4>
+                    <div className="space-y-2 text-xs">
+                      <div className="p-2.5 rounded bg-black/40 border border-red-500/20 text-[#8f98a0]">
+                        <span className="font-bold text-red-400 block mb-0.5">Antes (Legado):</span>
+                        3 instrumentos digitais de 7 segmentos obsoletos, chaves rotativas mecânicas duras e sinalizadores discretos com queima crônica de lâmpadas.
+                      </div>
+                      <div className="p-2.5 rounded bg-[#101822] border border-[#66c0f4]/40 text-[#c6d4df]">
+                        <span className="font-bold text-[#66c0f4] block mb-0.5">Depois (Retrofit DSR):</span>
+                        IHM Touchscreen WEG colorida com visualização de grandezas CC em tempo real (Vcc, Icc), gráficos de barras, diagnóstico de falhas e sinaleiros LED industriais.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card 2: Conectividade & Telemetria */}
+                <div className="rounded-lg border border-[#2a475e] bg-[#1b2838]/80 p-5 space-y-3 flex flex-col justify-between hover:border-[#66c0f4]/50 transition-all">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#66c0f4]">
+                        02. Redes &amp; Indústria 4.0
+                      </span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-black/50 text-[#8f98a0] border border-[#2a475e]">
+                        Comunicação
+                      </span>
+                    </div>
+                    <h4 className="text-sm font-bold text-white">
+                      Telemetria Modbus-RTU / TCP/IP Integrada
+                    </h4>
+                    <div className="space-y-2 text-xs">
+                      <div className="p-2.5 rounded bg-black/40 border border-red-500/20 text-[#8f98a0]">
+                        <span className="font-bold text-red-400 block mb-0.5">Antes (Legado):</span>
+                        Equipamento isolado na subestação. Exigia deslocamento físico frequente dos eletrotécnicos para inspeções visuais manuais no local.
+                      </div>
+                      <div className="p-2.5 rounded bg-[#101822] border border-[#66c0f4]/40 text-[#c6d4df]">
+                        <span className="font-bold text-[#66c0f4] block mb-0.5">Depois (Retrofit DSR):</span>
+                        Integração completa ao sistema supervisório SCADA da indústria via rede digital, permitindo monitoramento remoto 24/7 e tele-alarmes instantâneos.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card 3: Custo, Tempo & Preservação */}
+                <div className="rounded-lg border border-[#2a475e] bg-[#1b2838]/80 p-5 space-y-3 flex flex-col justify-between hover:border-[#66c0f4]/50 transition-all">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#66c0f4]">
+                        03. Preservação de Ativos
+                      </span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-black/50 text-[#8f98a0] border border-[#2a475e]">
+                        Economia
+                      </span>
+                    </div>
+                    <h4 className="text-sm font-bold text-white">
+                      Economia de 65% em CAPEX e Sem Obras Civis
+                    </h4>
+                    <div className="space-y-2 text-xs">
+                      <div className="p-2.5 rounded bg-black/40 border border-red-500/20 text-[#8f98a0]">
+                        <span className="font-bold text-red-400 block mb-0.5">Painel Novo (Alternativa):</span>
+                        Descarte de transformadores de força e barramentos pesados de cobre, quebra de alvenaria/canaletas e semanas de parada de linha.
+                      </div>
+                      <div className="p-2.5 rounded bg-[#101822] border border-[#66c0f4]/40 text-[#c6d4df]">
+                        <span className="font-bold text-[#66c0f4] block mb-0.5">Retrofit DSR:</span>
+                        Aproveitamento integral da estrutura pesada e barramentos, montagem plug-and-play em parada de 24h a 48h com garantia de fábrica de 24 meses e ART/CREA.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Interactive Engineering Tabs (Escopo, Benefícios, Equipamentos, Normas & ART) */}
           <ServiceDetailTabs service={service} />
 

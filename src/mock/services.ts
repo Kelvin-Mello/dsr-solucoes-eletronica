@@ -62,8 +62,26 @@ export const SERVICES_MOCK: ServiceItem[] = [
       "Manual de operação e manutenção atualizado"
     ],
     standards: ["NR-10", "NR-12", "IEC 60146", "IEC 61439", "ISO 9001"],
-    imageUrl: "/images/categories/cat-energia-ininterrupta.jpg",
+    imageUrl: "/images/services/retrofit-after.jpg",
     midias: [
+      {
+        id: "srv-retro-after",
+        type: "image",
+        url: "/images/services/retrofit-after.jpg",
+        thumbnailUrl: "/images/services/retrofit-after.jpg",
+        title: "Depois: Painel Modernizado com IHM Touchscreen WEG e Telemetria DSR",
+        alt: "Painel retificador retrofittado com tela touch WEG colorida e sinalizadores LED",
+        badge: "Depois: Retrofit DSR"
+      },
+      {
+        id: "srv-retro-before",
+        type: "image",
+        url: "/images/services/retrofit-before.jpg",
+        thumbnailUrl: "/images/services/retrofit-before.jpg",
+        title: "Antes: Painel Legado com Medidores 7 Segmentos e Falhas Crônicas",
+        alt: "Painel retificador original com mostradores digitais antigos e chaves analógicas",
+        badge: "Antes: Painel Legado"
+      },
       {
         id: "srv-retro-1",
         type: "image",
