@@ -215,7 +215,7 @@ ${mensagem}
 ---------------------------------------------------------
     `.trim();
 
-    // 4. Se a senha SMTP estiver configurada, realiza o disparo real via Nodemailer
+    // 4. Disparo via SMTP direto (se SMTP_PASS configurado)
     if (smtpPass) {
       const transporter = nodemailer.createTransport({
         host: smtpHost,
@@ -239,31 +239,80 @@ ${mensagem}
       return NextResponse.json({
         success: true,
         delivered: true,
+        provider: "smtp",
         message: "E-mail enviado com sucesso para a equipe técnica da DSR!",
       });
     }
 
-    // 5. Se ainda não houver SMTP_PASS no ambiente, registra o log detalhado no servidor
-    console.log("==================================================");
-    console.log("[DSR CONTATO] Nova solicitação recebida:");
-    console.log(`De: ${nome} (${empresa}) <${email}>`);
-    console.log(`Telefone: ${telefone}`);
-    console.log(`Assunto: ${assunto}`);
-    console.log(`Mensagem: ${mensagem}`);
-    console.log(`Destino configurado: ${destinationEmail}`);
-    console.log(
-      "NOTA: Para disparo ativo via SMTP em produção, adicione a variável SMTP_PASS nas variáveis de ambiente da Vercel ou no arquivo .env.local."
-    );
-    console.log("==================================================");
+    // 5. Disparo via Web3Forms API (se WEB3FORMS_ACCESS_KEY configurado)
+    const web3Key = process.env.WEB3FORMS_ACCESS_KEY || process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    if (web3Key) {
+      const w3Response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: web3Key,
+          subject: `[Site DSR] ${assunto} - ${empresa} (${nome})`,
+          from_name: `${nome} via DSR Soluções`,
+          name: nome,
+          email: email,
+          phone: telefone,
+          company: empresa,
+          topic: assunto,
+          message: mensagem,
+          replyto: email,
+        }),
+      });
 
-    return NextResponse.json({
-      success: true,
-      delivered: false,
-      simulated: true,
-      destination: destinationEmail,
-      message:
-        "Solicitação registrada com sucesso! (Configuração SMTP pronta para envio a dsr.solucoes.eletronica@gmail.com)",
-    });
+      const w3Result = await w3Response.json();
+
+      if (w3Result.success) {
+        return NextResponse.json({
+          success: true,
+          delivered: true,
+          provider: "web3forms",
+          message: "E-mail transmitido com sucesso para a DSR Soluções!",
+        });
+      } else {
+        console.error("[WEB3FORMS ERROR]", w3Result);
+        throw new Error(w3Result.message || "Erro no envio via provedor de e-mail.");
+      }
+    }
+
+    // 6. Se nenhuma credencial de envio estiver cadastrada, NÃO finge sucesso
+    console.warn("==================================================");
+    console.warn("[DSR CONTATO - ATENÇÃO: CREDENCIAIS NÃO CONFIGURADAS]");
+    console.warn(`De: ${nome} (${empresa}) <${email}>`);
+    console.warn(`Telefone: ${telefone}`);
+    console.warn(`Assunto: ${assunto}`);
+    console.warn(`Mensagem: ${mensagem}`);
+    console.warn(
+      "Ação necessária: Configure a variável SMTP_PASS (Senha de App do Gmail) ou WEB3FORMS_ACCESS_KEY nas variáveis de ambiente da Vercel para efetivar a entrega automática."
+    );
+    console.warn("==================================================");
+
+    return NextResponse.json(
+      {
+        success: false,
+        delivered: false,
+        needsConfiguration: true,
+        destination: destinationEmail,
+        error:
+          "O envio automático de e-mail requer a configuração das credenciais (Senha de App do Gmail ou chave Web3Forms) no servidor.",
+        lead: {
+          nome,
+          empresa,
+          email,
+          telefone,
+          assunto,
+          mensagem,
+        },
+      },
+      { status: 503 }
+    );
   } catch (error: unknown) {
     const errMessage = error instanceof Error ? error.message : "Erro desconhecido";
     console.error("[DSR CONTACT ERROR]", error);
@@ -271,8 +320,9 @@ ${mensagem}
     return NextResponse.json(
       {
         success: false,
+        delivered: false,
         error:
-          "Houve uma falha técnica no processamento do e-mail. Por favor, tente novamente ou entre em contato diretamente pelo WhatsApp ou e-mail.",
+          "Houve uma falha técnica no envio do e-mail. Por favor, utilize o botão de WhatsApp ou envie diretamente pelo seu aplicativo de e-mail.",
         details: process.env.NODE_ENV === "development" ? errMessage : undefined,
       },
       { status: 500 }
