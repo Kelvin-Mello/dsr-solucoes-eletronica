@@ -297,6 +297,9 @@ ${mensagem}
           Accept: "application/json",
           Origin: originHeader,
           Referer: refererHeader,
+          "User-Agent":
+            request.headers.get("user-agent") ||
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
         },
         body: JSON.stringify({
           _subject: `[Site DSR] ${assunto} - ${empresa} (${nome})`,
