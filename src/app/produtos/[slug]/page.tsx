@@ -105,22 +105,24 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-[#1b2838] text-[#c6d4df] py-6 sm:py-8 lg:py-10">
+    <div className="min-h-screen bg-[#1b2838] text-[#c6d4df] pb-12 sm:pb-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-xs font-mono text-[#8f98a0]">
-          <Link href="/" className="hover:text-[#66c0f4] transition-colors">
-            Início
-          </Link>
-          <ChevronRight className="h-3.5 w-3.5 text-[#2a475e]" />
-          <Link href="/produtos" className="hover:text-[#66c0f4] transition-colors">
-            {product.categoria}
-          </Link>
-          <ChevronRight className="h-3.5 w-3.5 text-[#2a475e]" />
-          <span className="text-[#66c0f4] truncate max-w-xs sm:max-w-md font-semibold">
-            {product.nome}
-          </span>
-        </nav>
+        {/* Breadcrumb Navigation - Perfeitamente centralizado verticalmente */}
+        <div className="py-2 sm:py-2.5 flex items-center">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-[#8f98a0] leading-none">
+            <Link href="/" className="hover:text-[#66c0f4] transition-colors">
+              Início
+            </Link>
+            <ChevronRight className="h-3.5 w-3.5 text-[#2a475e]" />
+            <Link href="/produtos" className="hover:text-[#66c0f4] transition-colors">
+              {product.categoria}
+            </Link>
+            <ChevronRight className="h-3.5 w-3.5 text-[#2a475e]" />
+            <span className="text-[#66c0f4] truncate max-w-xs sm:max-w-md font-semibold">
+              {product.nome}
+            </span>
+          </nav>
+        </div>
 
         {/* Product Hero Header - Área da direita sempre limpa conforme solicitado */}
         <div className="mb-6 rounded-lg bg-gradient-to-r from-[#171a21] via-[#2a475e]/70 to-[#171a21] border border-[#2a475e] p-5 md:p-6 shadow-lg">

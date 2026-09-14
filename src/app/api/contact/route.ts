@@ -281,26 +281,34 @@ ${mensagem}
       }
     }
 
-    // 6. Disparo via FormSubmit.co direto para o e-mail da DSR
+    // 6. Disparo via FormSubmit.co direto para o e-mail da DSR (Ativo e sem captcha)
     try {
+      const originHeader =
+        request.headers.get("origin") ||
+        request.nextUrl.origin ||
+        "https://dsr-solucoes-eletronica.vercel.app";
+      const refererHeader =
+        request.headers.get("referer") || `${originHeader}/contato`;
+
       const fsResponse = await fetch(`https://formsubmit.co/ajax/${destinationEmail}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
-          Origin: "https://dsr-solucoes-eletronica.vercel.app",
-          Referer: "https://dsr-solucoes-eletronica.vercel.app/contato",
+          Origin: originHeader,
+          Referer: refererHeader,
         },
         body: JSON.stringify({
           _subject: `[Site DSR] ${assunto} - ${empresa} (${nome})`,
           _replyto: email,
+          _captcha: "false",
+          _template: "table",
           "Nome do Contato": nome,
           "Empresa / Planta": empresa,
           "E-mail Corporativo": email,
           "Telefone / WhatsApp": telefone,
           "Assunto Principal": assunto,
           "Detalhes da Solicitação": mensagem,
-          _template: "table",
         }),
       });
 

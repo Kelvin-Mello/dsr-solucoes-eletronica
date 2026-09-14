@@ -39,19 +39,23 @@ export default function NovidadesPage() {
   const featuredPost = posts[0];
 
   return (
-    <div className="min-h-screen bg-[#1b2838] text-[#c6d4df] py-8 sm:py-12">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-10">
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-[#8f98a0]">
+    <div className="min-h-screen bg-[#1b2838] text-[#c6d4df] pb-12 sm:pb-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Breadcrumb Navigation - Perfeitamente centralizado verticalmente */}
+        <div className="py-2 sm:py-2.5 flex items-center">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-[#8f98a0] leading-none">
           <Link href="/" className="hover:text-[#66c0f4] transition-colors">
             Início
           </Link>
           <ChevronRight className="h-3.5 w-3.5 text-[#2a475e]" />
           <span className="text-[#66c0f4] font-semibold">Atividades, Novidades & Engenharia</span>
         </nav>
+        </div>
 
-        {/* Hero Section */}
-        <div className="relative overflow-hidden rounded-xl border border-[#2a475e] bg-gradient-to-r from-[#101822] via-[#172535] to-[#101822] p-6 sm:p-10 shadow-2xl">
+        {/* Content sections wrapper */}
+        <div className="space-y-10">
+          {/* Hero Section */}
+          <div className="relative overflow-hidden rounded-xl border border-[#2a475e] bg-gradient-to-r from-[#101822] via-[#172535] to-[#101822] p-6 sm:p-10 shadow-2xl">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#66c0f4]/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 max-w-3xl space-y-4">
@@ -249,5 +253,6 @@ export default function NovidadesPage() {
         </div>
       </div>
     </div>
+  </div>
   );
 }

@@ -61,10 +61,11 @@ export default async function PostDetailPage({ params }: PostPageProps) {
   const otherPosts = allPosts.filter((p) => p.slug !== post.slug);
 
   return (
-    <div className="min-h-screen bg-[#1b2838] text-[#c6d4df] py-8 sm:py-12">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-[#8f98a0]">
+    <div className="min-h-screen bg-[#1b2838] text-[#c6d4df] pb-12 sm:pb-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Breadcrumb Navigation - Perfeitamente centralizado verticalmente */}
+        <div className="py-2 sm:py-2.5 flex items-center">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-[#8f98a0] leading-none">
           <Link href="/" className="hover:text-[#66c0f4] transition-colors">
             Início
           </Link>
@@ -77,9 +78,12 @@ export default async function PostDetailPage({ params }: PostPageProps) {
             {post.title}
           </span>
         </nav>
+        </div>
 
-        {/* Article Header */}
-        <div className="max-w-4xl space-y-4">
+        {/* Content sections wrapper */}
+        <div className="space-y-8">
+          {/* Article Header */}
+          <div className="max-w-4xl space-y-4">
           <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
             <span className="rounded bg-[#101822] border border-[#66c0f4]/40 px-3 py-1 text-[#66c0f4] font-bold">
               {post.category}
@@ -238,5 +242,6 @@ export default async function PostDetailPage({ params }: PostPageProps) {
         </div>
       </div>
     </div>
+  </div>
   );
 }
