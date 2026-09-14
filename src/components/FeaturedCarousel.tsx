@@ -60,20 +60,20 @@ const FEATURED_ITEMS: FeaturedItem[] = [
     id: "feat-retrofit",
     type: "servico",
     typeLabel: "Serviço Especializado",
-    title: "Retrofitting & Modernização de Painéis",
-    subtitle: "Modernização de Cubículos com até 65% de Economia",
-    tagline: "Substituição cirúrgica de semicondutores e placas obsoletas mantendo transformadores de força e barramentos originais.",
+    title: "Retrofitting & Modernização",
+    subtitle: "Modernização de Equipamentos com até 65% de Economia",
+    tagline: "Substituição cirúrgica de semicondutores e placas analógicas mantendo transformadores de força e barramentos originais.",
     href: "/servicos/retrofitting-e-modernizacao",
-    mainImage: "/images/products/rectifier-retrofit.jpg",
+    mainImage: "/images/services/retrofit-desmontagem-placas.jpg",
     thumbnails: [
-      "/images/products/rectifier-retrofit.jpg",
-      "/images/products/retrofit-thyristor.jpg",
-      "/images/products/rit-d-udq.jpg",
-      "/images/categories/cat-energia-ininterrupta.jpg"
+      "/images/services/retrofit-after.jpg",
+      "/images/services/retrofit-desmontagem-placas.jpg",
+      "/images/services/retrofit-instalacao-fiacao.jpg",
+      "/images/services/retrofit-furacao-montagem.jpg"
     ],
     recommendationReason: "Solução DSR com",
     recommendationTarget: "Economia de até 65% em relação à substituição civil",
-    tags: ["Sem Obra Civil", "Parada 24h a 48h", "Garantia Estendida", "MTBF Elevado"],
+    tags: ["Retificadores Industriais", "Inversores CC/CA", "No-Breaks / UPS", "Estabilizadores"],
     statusBadge: "Estudo Gratuito de Viabilidade",
     ctaText: "Solicitar Diagnóstico",
     iconType: "wrench"
@@ -268,12 +268,12 @@ export function FeaturedCarousel() {
           <ChevronRight className="h-8 w-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] transform group-hover/card:translate-x-0.5 transition-transform" />
         </button>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 lg:h-[470px] xl:h-[490px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 lg:h-[515px] xl:h-[525px]">
           
-          {/* LADO ESQUERDO: Imagem Grande de Destaque (~65% do card em telas grandes com tamanho padronizado) */}
+          {/* LADO ESQUERDO: Imagem Grande de Destaque (~58% do card em telas grandes) */}
           <Link
             href={currentItem.href}
-            className="lg:col-span-7 xl:col-span-8 relative group/preview block h-[260px] sm:h-[340px] lg:h-full w-full overflow-hidden bg-[#070b10]"
+            className="lg:col-span-7 xl:col-span-7 relative group/preview block h-[260px] sm:h-[340px] lg:h-full w-full overflow-hidden bg-[#070b10]"
           >
             {/* Imagem travada no container com absolute inset-0 e object-cover */}
             <img
@@ -316,12 +316,12 @@ export function FeaturedCarousel() {
             </div>
           </Link>
 
-          {/* LADO DIREITO: Painel com 4 Thumbnails, Recomendação e Preço/Ação (~35%) */}
-          <div className="lg:col-span-5 xl:col-span-4 bg-[#0d151e]/98 border-t lg:border-t-0 lg:border-l border-[#2a475e]/70 p-4 sm:p-5 lg:p-6 flex flex-col justify-between lg:h-full overflow-hidden">
+          {/* LADO DIREITO: Painel com 4 Thumbnails, Recomendação e Preço/Ação (~42% do card com folga perfeita) */}
+          <div className="lg:col-span-5 xl:col-span-5 bg-[#0d151e]/98 border-t lg:border-t-0 lg:border-l border-[#2a475e]/70 p-4 sm:p-5 lg:p-5 flex flex-col justify-between lg:h-full overflow-hidden">
             
             {/* Título do Produto / Serviço no Topo do Painel */}
             <div>
-              <div className="flex items-center justify-between gap-2 border-b border-[#2a475e]/60 pb-2.5 mb-3">
+              <div className="flex items-center justify-between gap-2 border-b border-[#2a475e]/60 pb-2 mb-2">
                 <div>
                   <h4 className="text-base sm:text-lg font-extrabold text-white tracking-tight leading-snug line-clamp-2">
                     {currentItem.title}
@@ -333,7 +333,7 @@ export function FeaturedCarousel() {
               </div>
 
               {/* Grid 2x2 com 4 Thumbnails Interativas padronizadas */}
-              <div className="grid grid-cols-2 gap-2 my-2">
+              <div className="grid grid-cols-2 gap-2 my-1.5">
                 {currentItem.thumbnails.slice(0, 4).map((thumb, idx) => {
                   const isHovered = hoveredThumbIndex === idx;
                   return (
@@ -363,16 +363,16 @@ export function FeaturedCarousel() {
               </div>
 
               {/* Bloco de Recomendação (Estilo o farol de aviso do print da Steam) */}
-              <div className="mt-3 p-2.5 rounded-lg bg-[#111c27] border border-[#253e56] flex items-center gap-3">
-                <div className="h-9 w-9 rounded flex items-center justify-center bg-[#1a2d3e] border border-[#66c0f4]/40 text-[#66c0f4] flex-shrink-0 shadow-[0_0_8px_rgba(102,192,244,0.3)]">
+              <div className="mt-2 p-2 sm:p-2.5 rounded-lg bg-[#111c27] border border-[#253e56] flex items-center gap-2.5">
+                <div className="h-8 w-8 rounded flex items-center justify-center bg-[#1a2d3e] border border-[#66c0f4]/40 text-[#66c0f4] flex-shrink-0 shadow-[0_0_8px_rgba(102,192,244,0.3)]">
                   {currentItem.iconType === "wrench" ? (
-                    <Wrench className="h-5 w-5" />
+                    <Wrench className="h-4 w-4" />
                   ) : currentItem.iconType === "cpu" ? (
-                    <Cpu className="h-5 w-5" />
+                    <Cpu className="h-4 w-4" />
                   ) : currentItem.iconType === "shield" ? (
-                    <ShieldCheck className="h-5 w-5" />
+                    <ShieldCheck className="h-4 w-4" />
                   ) : (
-                    <Zap className="h-5 w-5 text-amber-400" />
+                    <Zap className="h-4 w-4 text-amber-400" />
                   )}
                 </div>
 
@@ -387,7 +387,7 @@ export function FeaturedCarousel() {
               </div>
 
               {/* Badges de Parâmetros Técnicos / Tags */}
-              <div className="flex flex-wrap gap-1.5 mt-3">
+              <div className="flex flex-wrap gap-1.5 mt-2">
                 {currentItem.tags.map((tag, tIdx) => (
                   <span
                     key={tIdx}
@@ -399,21 +399,21 @@ export function FeaturedCarousel() {
               </div>
             </div>
 
-            {/* Rodapé do Card: Box de Cotação / Preço Steam com Botão de Ação */}
-            <div className="pt-4 border-t border-[#2a475e]/60 flex items-center justify-between gap-3 mt-4">
-              <div className="flex flex-col">
+            {/* Rodapé do Card: Box de Cotação com Botão de Ação com folga visual */}
+            <div className="pt-3 border-t border-[#2a475e]/60 flex items-center justify-between gap-3 mt-3">
+              <div className="flex flex-col min-w-0 pr-1">
                 <span className="text-[10px] font-mono uppercase text-[#8f98a0]">
                   Disponibilidade DSR
                 </span>
-                <span className="text-xs font-bold text-white font-mono flex items-center gap-1.5">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                  {currentItem.statusBadge}
+                <span className="text-xs font-bold text-white font-mono flex items-center gap-1.5 truncate">
+                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
+                  <span className="truncate">{currentItem.statusBadge}</span>
                 </span>
               </div>
 
               <Link
                 href={currentItem.href}
-                className="group/btn relative inline-flex items-center justify-center gap-1.5 rounded bg-gradient-to-r from-[#66c0f4] via-[#4ba6df] to-[#1b75bc] text-[#0a1118] font-black text-xs uppercase tracking-wider px-4 py-2.5 shadow-[0_0_15px_rgba(102,192,244,0.4)] hover:brightness-110 hover:shadow-[0_0_25px_rgba(102,192,244,0.6)] active:scale-95 transition-all"
+                className="group/btn relative inline-flex items-center justify-center gap-1.5 rounded bg-gradient-to-r from-[#66c0f4] via-[#4ba6df] to-[#1b75bc] text-[#0a1118] font-black text-xs uppercase tracking-wider px-4 py-2.5 shadow-[0_0_15px_rgba(102,192,244,0.4)] hover:brightness-110 hover:shadow-[0_0_25px_rgba(102,192,244,0.6)] active:scale-95 transition-all shrink-0 whitespace-nowrap"
               >
                 <span>{currentItem.ctaText}</span>
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
