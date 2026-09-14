@@ -25,3 +25,7 @@ Esta regra define o protocolo de segurança operacional para evitar loops infini
    - Manter consistência simétrica em grids, blocos e botões.
    - **Área Superior dos Banners (Produtos e Serviços)**: Manter o lado direito dos banners de cabeçalho de produtos e serviços 100% limpo, sem badges, tags ou textos redundantes.
    - Proteger a experiência do usuário com validação de build (`npm run build`) antes de concluir a entrega.
+
+6. **Delegação Paralela de Tarefas (Sub-Agentes)**:
+   - Ao receber múltiplas tarefas em uma mesma solicitação que possam ser executadas em paralelo sem dependência de ordem ou concorrência de arquivos, delegar a execução para sub-agentes.
+   - O agente principal consolida e valida os resultados antes de reportar a conclusão.

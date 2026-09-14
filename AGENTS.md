@@ -26,3 +26,8 @@ Este projeto possui regras estritas de execução e controle operacional para pr
 ## 3. Simetria e Qualidade Visual
 - Toda interface criada ou modificada deve zelar por **simetria visual**, alinhamento proporcional de colunas e botões, tipografia sóbria e estética industrial refinada (estilo Steam / Dark Tech), respeitando a identidade da DSR Soluções.
 - **Área Superior dos Banners (Produtos e Serviços)**: O lado direito do banner de cabeçalho/título (ao lado do H1 e subtítulo) de páginas de produtos e serviços deve ser mantido sempre 100% limpo, sem badges, tags ou status sobrepostos.
+
+## 4. Delegação Paralela de Tarefas (Sub-Agentes)
+- **Execução Paralela**: Sempre que o usuário solicitar mais de uma tarefa simultaneamente e for avaliado que é possível realizá-las em paralelo sem interferência mútua ou dependência sequencial de arquivos, delegar as tarefas para sub-agentes.
+- **Coordenação e Consolidação**: O agente principal atua como coordenador, despachando sub-agentes para trabalhos independentes, aguardando suas conclusões e consolidando a validação final (compilação estática com `npm run build` e entrega unificada ao usuário).
+
