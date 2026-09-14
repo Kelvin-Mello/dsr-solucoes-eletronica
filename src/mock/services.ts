@@ -87,9 +87,9 @@ export const SERVICES_MOCK: ServiceItem[] = [
         type: "image",
         url: "/images/services/retrofit-desmontagem-placas.jpg",
         thumbnailUrl: "/images/services/retrofit-desmontagem-placas.jpg",
-        title: "Desmontagem Técnica: Remoção de Placas e Circuitos Obsoletos",
-        alt: "Técnicos de manutenção elétrica desmontando e removendo placas antigas de retificador industrial desligado",
-        badge: "Remoção de Placas"
+        title: "Substituição Técnica: Desmontagem e Troca de Placas Obsoletas",
+        alt: "Técnicos de manutenção elétrica substituindo e desmontando placas antigas de retificador industrial desligado",
+        badge: "Substituição de Placas"
       },
       {
         id: "srv-retro-2",

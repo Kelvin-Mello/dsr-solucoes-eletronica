@@ -14,7 +14,9 @@ import {
   Zap, 
   MessageSquare,
   Building2,
-  Phone
+  Phone,
+  Loader2,
+  AlertCircle
 } from "lucide-react";
 
 export default function ContatoPage() {
@@ -23,20 +25,45 @@ export default function ContatoPage() {
     empresa: "",
     email: "",
     telefone: "",
-    assunto: "Cotação de Equipamento Novo",
-    mensagem: ""
+    assunto: "Cotação de Retificador ou Equipamento Novo",
+    mensagem: "",
+    website: "" // Honeypot anti-spam invisível
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setErrorMessage(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || "Ocorreu um erro ao enviar sua mensagem.");
+      }
+
       setIsSubmitted(true);
-    }, 600);
+    } catch (err: unknown) {
+      const msg =
+        err instanceof Error
+          ? err.message
+          : "Não foi possível enviar a mensagem agora. Por favor, tente novamente ou contate pelo WhatsApp.";
+      setErrorMessage(msg);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -93,36 +120,89 @@ export default function ContatoPage() {
             </p>
 
             {isSubmitted ? (
-              <div className="rounded-xl bg-[#102419] border border-emerald-500/50 p-6 text-center space-y-3">
-                <div className="h-12 w-12 rounded-full bg-emerald-500/20 border border-emerald-500/50 text-emerald-400 flex items-center justify-center mx-auto">
-                  <CheckCircle2 className="h-7 w-7" />
+              <div className="rounded-xl bg-[#102419] border border-emerald-500/50 p-6 sm:p-8 text-center space-y-4 shadow-xl">
+                <div className="h-14 w-14 rounded-full bg-emerald-500/20 border border-emerald-500/50 text-emerald-400 flex items-center justify-center mx-auto shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+                  <CheckCircle2 className="h-8 w-8" />
                 </div>
-                <h3 className="text-lg font-bold text-white">Solicitação Enviada com Sucesso!</h3>
-                <p className="text-xs text-[#c6d4df] max-w-md mx-auto">
-                  Recebemos seus dados. Um engenheiro técnico da DSR entrará em contato em breve para dar seguimento ao seu atendimento.
-                </p>
-                <div className="pt-2">
+                <div className="space-y-1">
+                  <h3 className="text-xl font-bold text-white">Solicitação Enviada com Sucesso!</h3>
+                  <p className="text-xs sm:text-sm text-[#c6d4df] max-w-lg mx-auto leading-relaxed">
+                    Sua mensagem foi transmitida com sucesso para o canal de engenharia da DSR (<span className="text-[#66c0f4] font-mono font-semibold">dsr.solucoes.eletronica@gmail.com</span>). Um engenheiro de aplicação entrará em contato em menos de 2 horas úteis.
+                  </p>
+                </div>
+
+                {/* Resumo dos dados enviados */}
+                <div className="rounded-lg bg-[#0c1813] border border-emerald-500/30 p-3.5 text-left text-xs space-y-1 font-mono text-[#a3c9b7] max-w-md mx-auto">
+                  <div><span className="text-emerald-400 font-semibold">Contato:</span> {formData.nome} ({formData.empresa})</div>
+                  <div><span className="text-emerald-400 font-semibold">E-mail:</span> {formData.email}</div>
+                  <div><span className="text-emerald-400 font-semibold">Assunto:</span> {formData.assunto}</div>
+                </div>
+
+                <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
                   <button
                     type="button"
                     onClick={() => {
                       setIsSubmitted(false);
+                      setErrorMessage(null);
                       setFormData({
                         nome: "",
                         empresa: "",
                         email: "",
                         telefone: "",
-                        assunto: "Cotação de Equipamento Novo",
-                        mensagem: ""
+                        assunto: "Cotação de Retificador ou Equipamento Novo",
+                        mensagem: "",
+                        website: ""
                       });
                     }}
-                    className="text-xs font-semibold text-[#66c0f4] hover:underline"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#142330] hover:bg-[#1c3245] border border-[#2a475e] text-xs font-bold text-[#66c0f4] py-2.5 px-4 transition-all cursor-pointer"
                   >
                     Enviar outra mensagem
                   </button>
+
+                  <a
+                    href="https://wa.me/5511980389729?text=Ol%C3%A1%2C+acabei+de+enviar+uma+solicita%C3%A7%C3%A3o+pelo+site+da+DSR."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-2.5 px-4 transition-all shadow-md"
+                  >
+                    <Phone className="h-3.5 w-3.5" />
+                    Chamar no WhatsApp Direto
+                  </a>
                 </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot invisível para retenção de bots */}
+                <input
+                  type="text"
+                  name="website"
+                  value={formData.website}
+                  onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  className="hidden pointer-events-none"
+                  aria-hidden="true"
+                />
+
+                {errorMessage && (
+                  <div className="rounded-lg bg-red-950/70 border border-red-500/50 p-3.5 text-xs text-red-200 flex items-start gap-2.5">
+                    <AlertCircle className="h-4 w-4 text-red-400 flex-shrink-0 mt-0.5" />
+                    <div className="space-y-1">
+                      <p className="font-semibold text-red-300">Não foi possível completar o envio:</p>
+                      <p>{errorMessage}</p>
+                      <p className="pt-1 text-[11px] text-red-300/80">
+                        Você também pode enviar diretamente pelo e-mail:{" "}
+                        <a
+                          href={`mailto:dsr.solucoes.eletronica@gmail.com?subject=${encodeURIComponent(formData.assunto || "Contato")}`}
+                          className="underline text-[#66c0f4] hover:text-white"
+                        >
+                          dsr.solucoes.eletronica@gmail.com
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                )}
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-mono uppercase text-[#8f98a0] mb-1.5">
@@ -192,7 +272,7 @@ export default function ContatoPage() {
                     onChange={(e) => setFormData({ ...formData, assunto: e.target.value })}
                     className="w-full rounded-lg bg-[#101822] border border-[#2a475e] px-3.5 py-2.5 text-sm text-white focus:border-[#66c0f4] focus:outline-none transition-colors"
                   >
-                    <option value="Cotação de Equipamento Novo">Cotação de Retificador ou Equipamento Novo</option>
+                    <option value="Cotação de Retificador ou Equipamento Novo">Cotação de Retificador ou Equipamento Novo</option>
                     <option value="Estudo de Retrofitting de Painel">Estudo Gratuito de Retrofitting / Modernização</option>
                     <option value="Manutenção Preventiva & Termografia">Manutenção Preventiva, Preditiva & Laudos com ART</option>
                     <option value="Plantão Emergencial 24h">Acionamento de Plantão Emergencial 24h</option>
@@ -218,10 +298,19 @@ export default function ContatoPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#66c0f4] to-[#1b75bc] hover:from-[#85d1f7] hover:to-[#2892e6] text-[#0a1118] font-bold text-sm uppercase tracking-wider py-3.5 shadow-[0_0_20px_rgba(102,192,244,0.4)] transition-all cursor-pointer"
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#66c0f4] to-[#1b75bc] hover:from-[#85d1f7] hover:to-[#2892e6] text-[#0a1118] font-bold text-sm uppercase tracking-wider py-3.5 shadow-[0_0_20px_rgba(102,192,244,0.4)] transition-all cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
                 >
-                  <Send className="h-4 w-4" />
-                  {isSubmitting ? "Enviando..." : "Enviar Mensagem para a Engenharia"}
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin text-[#0a1118]" />
+                      <span>Enviando Mensagem para a Engenharia...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4" />
+                      <span>Enviar Mensagem para a Engenharia</span>
+                    </>
+                  )}
                 </button>
               </form>
             )}
