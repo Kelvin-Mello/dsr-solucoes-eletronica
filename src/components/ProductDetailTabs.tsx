@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { 
   Sliders, 
   Cpu, 
@@ -11,7 +12,14 @@ import {
   CheckCircle, 
   Clock, 
   FileText, 
-  Layers
+  Layers,
+  SlidersHorizontal,
+  BellRing,
+  Activity,
+  Zap,
+  ShieldAlert,
+  CheckCircle2,
+  ArrowRight
 } from "lucide-react";
 import { Product } from "@/mock/products";
 
@@ -19,7 +27,7 @@ interface ProductDetailTabsProps {
   product: Product;
 }
 
-type TabType = "especificacoes" | "tecnologia" | "downloads" | "normas";
+type TabType = "especificacoes" | "tecnologia" | "opcionais" | "downloads" | "normas";
 
 export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
   // Default to 'especificacoes' as shown in the user's request
@@ -41,9 +49,15 @@ export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
       icon: Cpu,
     },
     {
+      id: "opcionais" as TabType,
+      label: "Opcionais",
+      shortLabel: "Opcionais",
+      icon: SlidersHorizontal,
+    },
+    {
       id: "downloads" as TabType,
       label: "Downloads & Catálogo",
-      shortLabel: "Downloads & Catálogo",
+      shortLabel: "Downloads",
       icon: FileDown,
     },
     {
@@ -256,7 +270,299 @@ export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
         )}
 
         {/* ================================================================= */}
-        {/* ABA 3: DOWNLOADS & CATÁLOGOS                                      */}
+        {/* ABA 3: OPCIONAIS DE ENGENHARIA & RECURSOS ADICIONAIS              */}
+        {/* ================================================================= */}
+        {activeTab === "opcionais" && (
+          <div className="space-y-6 animate-fadeIn">
+            {/* Header da Aba */}
+            <div className="flex items-center justify-between flex-wrap gap-4 border-b border-[#2a475e] pb-4">
+              <div className="flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded bg-[#101822] border border-[#66c0f4]/50 text-[#66c0f4]">
+                  <SlidersHorizontal className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="text-lg sm:text-xl font-bold text-white tracking-wide">
+                    Itens e Recursos Opcionais de Fábrica
+                  </h3>
+                  <p className="text-xs text-[#8f98a0]">
+                    Personalizações técnicas, instrumentação analógica adicional e módulos de supervisão sob demanda
+                  </p>
+                </div>
+              </div>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#101822] border border-[#3b678c] px-3 py-1 text-xs font-mono text-[#66c0f4]">
+                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
+                Configuração Sob Medida
+              </span>
+            </div>
+
+            {/* Banner Explicativo */}
+            <div className="rounded-lg bg-gradient-to-r from-[#101822] via-[#162738] to-[#101822] border border-[#2a475e] p-4 text-xs sm:text-sm text-[#c6d4df] leading-relaxed flex items-start gap-3 shadow-inner">
+              <div className="h-2 w-2 rounded-full bg-[#66c0f4] mt-2 flex-shrink-0 animate-pulse" />
+              <p>
+                A DSR Soluções desenvolve cada equipamento sob encomenda com alto rigor de engenharia. Todos os itens opcionais abaixo podem ser configurados e instalados internamente no cubículo durante a fabricação ou fornecidos como kits adicionais de modernização para plantas em operação.
+              </p>
+            </div>
+
+            {/* Grid dos 6 Opcionais Principais */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              
+              {/* Opcional 1: Supervisão Remota a Relés */}
+              <div className="rounded-xl bg-[#101822]/90 border border-[#2a475e] hover:border-[#66c0f4]/60 p-5 space-y-3 transition-all flex flex-col justify-between shadow-md">
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#66c0f4] bg-[#162838] border border-[#24415c] px-2 py-0.5 rounded">
+                      Telemetria &amp; Alarmes
+                    </span>
+                    <div className="h-7 w-7 rounded bg-[#162738] flex items-center justify-center text-[#66c0f4] border border-[#2a475e]">
+                      <BellRing className="h-4 w-4" />
+                    </div>
+                  </div>
+                  <h4 className="text-sm font-bold text-white">
+                    Supervisão Remota a Relés (Contatos Secos)
+                  </h4>
+                  <p className="text-xs text-[#8f98a0] leading-relaxed">
+                    Conjunto de relés auxiliares com contatos secos reversíveis (SPDT - NA/NF/C, até 250Vca/5A) para encaminhamento de alarmes a remotas de telemetria, painéis de subestação e supervisórios SCADA.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-[#203548] space-y-1.5 text-xs font-mono text-[#c6d4df]">
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Falha de CA e Subtensão de Entrada</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Sobretensão e Subtensão Barra CC</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Falha Geral do Retificador / Carga</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Disparo de Proteções e Disjuntores</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Opcional 2: Instrumentos Analógicos Extras */}
+              <div className="rounded-xl bg-[#101822]/90 border border-[#2a475e] hover:border-[#66c0f4]/60 p-5 space-y-3 transition-all flex flex-col justify-between shadow-md">
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#66c0f4] bg-[#162838] border border-[#24415c] px-2 py-0.5 rounded">
+                      Instrumentação no Frontal
+                    </span>
+                    <div className="h-7 w-7 rounded bg-[#162738] flex items-center justify-center text-[#66c0f4] border border-[#2a475e]">
+                      <Gauge className="h-4 w-4" />
+                    </div>
+                  </div>
+                  <h4 className="text-sm font-bold text-white">
+                    Instrumentos Analógicos Extras no Frontal
+                  </h4>
+                  <p className="text-xs text-[#8f98a0] leading-relaxed">
+                    Instalação de voltímetros e amperímetros de ponteiro com bobina móvel de alta precisão (classe 1,5, molduras 72x72mm ou 96x96mm) para visualização mecânica direta, redundante e sem necessidade de tela digital.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-[#203548] space-y-1.5 text-xs font-mono text-[#c6d4df]">
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Amperímetro Bateria (zero central)</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Amperímetro da Barra de Consumidores</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Voltímetro CA com comutadora de fases</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Voltímetro CC de Saída do Consumidor</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Opcional 3: Sinais Analógicos Padrão da Indústria */}
+              <div className="rounded-xl bg-[#101822]/90 border border-[#2a475e] hover:border-[#66c0f4]/60 p-5 space-y-3 transition-all flex flex-col justify-between shadow-md">
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#66c0f4] bg-[#162838] border border-[#24415c] px-2 py-0.5 rounded">
+                      Transmissão de Sinais
+                    </span>
+                    <div className="h-7 w-7 rounded bg-[#162738] flex items-center justify-center text-[#66c0f4] border border-[#2a475e]">
+                      <Activity className="h-4 w-4" />
+                    </div>
+                  </div>
+                  <h4 className="text-sm font-bold text-white">
+                    Sinais Analógicos Padrão (4-20mA / 0-10V)
+                  </h4>
+                  <p className="text-xs text-[#8f98a0] leading-relaxed">
+                    Transdutores isolados galvanicamente que convertem grandezas elétricas medidas em sinais de instrumentação analógica padronizada para leitura contínua por CLPs, remotas e sistemas SCADA.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-[#203548] space-y-1.5 text-xs font-mono text-[#c6d4df]">
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Saída 4 a 20 mA para Tensão Barra CC</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Saída 4 a 20 mA para Corrente Retificador</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Saída 4 a 20 mA para Corrente Bateria</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Sinais 0 a 10 Vcc e Isolação de 2,5 kV</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Opcional 4: Monitoramento Ativo da UDQ */}
+              <div className="rounded-xl bg-[#101822]/90 border border-[#2a475e] hover:border-[#66c0f4]/60 p-5 space-y-3 transition-all flex flex-col justify-between shadow-md">
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#66c0f4] bg-[#162838] border border-[#24415c] px-2 py-0.5 rounded">
+                      Proteção de Carga
+                    </span>
+                    <div className="h-7 w-7 rounded bg-[#162738] flex items-center justify-center text-[#66c0f4] border border-[#2a475e]">
+                      <Zap className="h-4 w-4" />
+                    </div>
+                  </div>
+                  <h4 className="text-sm font-bold text-white">
+                    Monitoramento da UDQ (Diodos de Queda)
+                  </h4>
+                  <p className="text-xs text-[#8f98a0] leading-relaxed">
+                    Supervisão eletrônica e térmica dedicada aos módulos de diodos de queda de tensão, garantindo regulação estrita na barra do consumidor durante recargas de equalização e carga rápida.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-[#203548] space-y-1.5 text-xs font-mono text-[#c6d4df]">
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Sensores térmicos nos dissipadores UDQ</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Indicação do degrau ativo (1 a 4 etapas)</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Supervisão do contator de bypass</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Alarme de sobreaquecimento e falha</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Opcional 5: Monitor de Falha de Disparo dos Tiristores */}
+              <div className="rounded-xl bg-[#101822]/90 border border-[#2a475e] hover:border-[#66c0f4]/60 p-5 space-y-3 transition-all flex flex-col justify-between shadow-md">
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#66c0f4] bg-[#162838] border border-[#24415c] px-2 py-0.5 rounded">
+                      Eletrônica de Potência
+                    </span>
+                    <div className="h-7 w-7 rounded bg-[#162738] flex items-center justify-center text-[#66c0f4] border border-[#2a475e]">
+                      <ShieldAlert className="h-4 w-4" />
+                    </div>
+                  </div>
+                  <h4 className="text-sm font-bold text-white">
+                    Monitor de Falha de Disparo dos Tiristores
+                  </h4>
+                  <p className="text-xs text-[#8f98a0] leading-relaxed">
+                    Circuito microprocessado de proteção ultra-rápida que detecta assimetrias nos pulsos de disparo de gate da ponte tiristorizada completa, prevenindo ripple excessivo no banco de baterias.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-[#203548] space-y-1.5 text-xs font-mono text-[#c6d4df]">
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Detecção de perda de pulso de disparo</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Identificação de tiristor aberto ou em curto</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Prevenção contra ripple e aquecimento do banco</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>LED de diagnóstico local e contato de alarme</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Opcional 6: Adequações Ambientais & Climatização */}
+              <div className="rounded-xl bg-[#101822]/90 border border-[#2a475e] hover:border-[#66c0f4]/60 p-5 space-y-3 transition-all flex flex-col justify-between shadow-md">
+                <div className="space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#66c0f4] bg-[#162838] border border-[#24415c] px-2 py-0.5 rounded">
+                      Adequação Ambiental
+                    </span>
+                    <div className="h-7 w-7 rounded bg-[#162738] flex items-center justify-center text-[#66c0f4] border border-[#2a475e]">
+                      <Layers className="h-4 w-4" />
+                    </div>
+                  </div>
+                  <h4 className="text-sm font-bold text-white">
+                    Climatização, IP Elevado &amp; Mecânica
+                  </h4>
+                  <p className="text-xs text-[#8f98a0] leading-relaxed">
+                    Conjunto de recursos mecânicos e climáticos para cubículos instalados em locais agressivos, áreas com poeira condutiva, alta umidade ou atmosferas marinhas/químicas.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-[#203548] space-y-1.5 text-xs font-mono text-[#c6d4df]">
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Resistência anticondensação com termostato</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Grau de proteção elevado (IP42 / IP54 / IP55)</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Iluminação interna LED de serviço</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Pintura epóxi especial em cores Munsell / RAL</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Chamada para Cotação Customizada com Opcionais */}
+            <div className="rounded-xl border border-[#3b678c] bg-gradient-to-r from-[#172535] via-[#101d2c] to-[#172535] p-5 sm:p-6 shadow-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="space-y-1">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-[#66c0f4] font-bold">
+                  Engenharia de Aplicação DSR
+                </span>
+                <h4 className="text-base font-bold text-white">
+                  Precisa de opcionais específicos para atender ao edital da sua planta?
+                </h4>
+                <p className="text-xs text-[#8f98a0] max-w-2xl">
+                  Nossos engenheiros customizam a lista de acessórios, esquemáticos e relatórios de fábrica de acordo com a norma interna da sua concessionária ou indústria.
+                </p>
+              </div>
+
+              <Link
+                href={`/contato?assunto=${encodeURIComponent("Cotação com Opcionais: " + product.nome)}`}
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#66c0f4] to-[#1b75bc] hover:brightness-110 text-[#0a1118] font-bold text-xs uppercase tracking-wider px-5 py-3 shadow-[0_0_15px_rgba(102,192,244,0.4)] transition-all shrink-0 whitespace-nowrap"
+              >
+                <span>Solicitar Cotação com Opcionais</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {/* ================================================================= */}
+        {/* ABA 4: DOWNLOADS & CATÁLOGOS                                      */}
         {/* ================================================================= */}
         {activeTab === "downloads" && (
           <div className="space-y-6 animate-fadeIn">
