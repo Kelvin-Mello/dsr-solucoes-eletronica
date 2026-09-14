@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { 
   ChevronRight, 
-  Handshake, 
   Factory, 
   Zap, 
   CheckCircle2,
@@ -249,52 +248,28 @@ export default function ClientesPage() {
         </nav>
 
         {/* Hero Banner */}
-        <div className="relative overflow-hidden rounded-xl border border-[#2a475e] bg-gradient-to-r from-[#101822] via-[#172535] to-[#101822] p-6 sm:p-10 shadow-2xl">
+        <div className="relative overflow-hidden rounded-xl border border-[#2a475e] bg-gradient-to-r from-[#101822] via-[#172535] to-[#101822] p-6 sm:p-8 lg:p-10 shadow-2xl">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#66c0f4]/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 max-w-3xl space-y-4">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-md bg-[#101822] px-3 py-1 text-xs font-mono text-[#66c0f4] border border-[#66c0f4]/40">
-                <Handshake className="h-3.5 w-3.5" />
-                PARCERIA & CONFIANÇA TÉCNICA
-              </span>
-              <span className="rounded bg-[#2a475e]/60 px-2.5 py-1 text-xs font-mono text-[#8f98a0]">
-                Presença nas Maiores Plantas do Brasil
-              </span>
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+            {/* Coluna Esquerda: Título e Descrição */}
+            <div className="lg:col-span-7 space-y-3">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
+                Clientes & <span className="text-[#66c0f4]">Parceiros Industriais</span>
+              </h1>
+
+              <p className="text-sm sm:text-base text-[#8f98a0] leading-relaxed">
+                Construímos relações sólidas baseadas na entrega de tecnologia de ponta, suporte transparente e presença física de engenharia nas maiores indústrias, hidrelétricas, usinas e concessionárias de energia do país.
+              </p>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-              Clientes & <span className="text-[#66c0f4]">Parceiros Industriais</span>
-            </h1>
-
-            <p className="text-sm sm:text-base text-[#8f98a0] leading-relaxed">
-              Construímos relações sólidas baseadas na entrega de tecnologia de ponta, suporte transparente e presença física de engenharia nas maiores indústrias, hidrelétricas, usinas e concessionárias de energia do país.
-            </p>
-
-            {/* Quote Manifesto DSR */}
-            <div className="rounded-lg bg-[#101822]/80 border-l-4 border-[#66c0f4] p-4 text-xs sm:text-sm text-[#c6d4df] italic">
-              &ldquo;A DSR Soluções busca estabelecer com seus clientes sólida parceria, no mais elevado grau de ética e transparência. Acreditamos que isto se alcança oferecendo produtos e serviços com qualidade, num relacionamento &apos;olho no olho&apos; com nossos clientes e com respostas verdadeiras. Esta é a nossa definição de parceria.&rdquo;
+            {/* Coluna Direita: Citação Manifesto DSR */}
+            <div className="lg:col-span-5">
+              <div className="rounded-lg bg-[#101822]/90 border border-[#2a475e]/80 border-l-4 border-l-[#66c0f4] p-4 sm:p-5 text-xs sm:text-sm text-[#c6d4df] italic shadow-lg">
+                &ldquo;A DSR Soluções busca estabelecer com seus clientes sólida parceria, no mais elevado grau de ética e transparência. Acreditamos que isto se alcança oferecendo produtos e serviços com qualidade, num relacionamento &apos;olho no olho&apos; com nossos clientes e com respostas verdadeiras. Esta é a nossa definição de parceria.&rdquo;
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* Sectors Overview */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {SECTORS.map((sec, idx) => {
-            const Icon = sec.icon;
-            return (
-              <div
-                key={idx}
-                className="rounded-xl border border-[#2a475e] bg-gradient-to-b from-[#1b2838] to-[#171a21] p-5 space-y-2 shadow-md hover:border-[#66c0f4]/60 transition-colors"
-              >
-                <div className="flex h-9 w-9 items-center justify-center rounded bg-[#2a475e] text-[#66c0f4] border border-[#66c0f4]/30">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <h3 className="text-sm font-bold text-white">{sec.name}</h3>
-                <p className="text-xs text-[#8f98a0] leading-relaxed">{sec.desc}</p>
-              </div>
-            );
-          })}
         </div>
 
         {/* Logos Grid Section */}
@@ -356,6 +331,25 @@ export default function ClientesPage() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Sectors Overview - Posicionado acima do cadastro técnico */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {SECTORS.map((sec, idx) => {
+            const Icon = sec.icon;
+            return (
+              <div
+                key={idx}
+                className="rounded-xl border border-[#2a475e] bg-gradient-to-b from-[#1b2838] to-[#171a21] p-5 space-y-2 shadow-md hover:border-[#66c0f4]/60 transition-colors"
+              >
+                <div className="flex h-9 w-9 items-center justify-center rounded bg-[#2a475e] text-[#66c0f4] border border-[#66c0f4]/30">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <h3 className="text-sm font-bold text-white">{sec.name}</h3>
+                <p className="text-xs text-[#8f98a0] leading-relaxed">{sec.desc}</p>
+              </div>
+            );
+          })}
         </div>
 
         {/* Partnership Callout */}

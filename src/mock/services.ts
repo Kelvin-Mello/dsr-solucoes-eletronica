@@ -85,29 +85,29 @@ export const SERVICES_MOCK: ServiceItem[] = [
       {
         id: "srv-retro-1",
         type: "image",
-        url: "/images/categories/cat-energia-ininterrupta.jpg",
-        thumbnailUrl: "/images/categories/cat-energia-ininterrupta.jpg",
-        title: "Modernização e Retrofit de Cubículos de Potência",
-        alt: "Cubículo industrial em processo de retrofit",
-        badge: "Retrofit em Campo"
+        url: "/images/services/retrofit-desmontagem-placas.jpg",
+        thumbnailUrl: "/images/services/retrofit-desmontagem-placas.jpg",
+        title: "Desmontagem Técnica: Remoção de Placas e Circuitos Obsoletos",
+        alt: "Técnicos de manutenção elétrica desmontando e removendo placas antigas de retificador industrial desligado",
+        badge: "Remoção de Placas"
       },
       {
         id: "srv-retro-2",
         type: "image",
-        url: "/images/products/rit-d-udq.jpg",
-        thumbnailUrl: "/images/products/rit-d-udq.jpg",
-        title: "Substituição de Pontes Tiristorizadas e Diodos",
-        alt: "Estágio de potência com semicondutores novos",
-        badge: "Estágio de Potência"
+        url: "/images/services/retrofit-instalacao-fiacao.jpg",
+        thumbnailUrl: "/images/services/retrofit-instalacao-fiacao.jpg",
+        title: "Instalação da Nova Eletrônica Digital e Passagem de Chicotes de Fiação",
+        alt: "Técnico instalando placa microprocessada e organizando fiação em canaletas industriais",
+        badge: "Instalação & Fiação"
       },
       {
         id: "srv-retro-3",
         type: "image",
-        url: "/images/products/rit-d-supervisao.jpg",
-        thumbnailUrl: "/images/products/rit-d-supervisao.jpg",
-        title: "Instalação de Eletrônica Digital e Teclas F1-F4",
-        alt: "Módulo digital de supervisão instalado no painel",
-        badge: "Supervisão Digital"
+        url: "/images/services/retrofit-furacao-montagem.jpg",
+        thumbnailUrl: "/images/services/retrofit-furacao-montagem.jpg",
+        title: "Furação e Adaptação Mecânica da Chapa para Novos Suportes",
+        alt: "Técnico realizando furação de precisão na porta e subplaca do cubículo para montagem mecânica",
+        badge: "Furação & Montagem"
       }
     ]
   },

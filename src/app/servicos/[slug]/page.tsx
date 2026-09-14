@@ -41,34 +41,51 @@ const ICON_MAP = {
   Compass,
 };
 
-const EXCLUSIVE_SERVICE_SUMMARIES: Record<string, string> = {
-  "retrofitting-e-modernizacao":
-    "Intervenção técnica especializada que renova integralmente os circuitos eletrônicos, placas de disparo e supervisão de cubículos existentes, alcançando até 65% de economia e estendendo a vida útil da planta por mais de 15 anos sem necessidade de obras civis.",
+const EXCLUSIVE_SERVICE_SUMMARIES: Record<string, string[]> = {
+  "retrofitting-e-modernizacao": [
+    "Engenharia de modernização eletrônica que substitui integralmente os circuitos analógicos, relés obsoletos e placas de controle de cubículos legados por módulos microprocessados de última geração com IHM touchscreen industrial e conectividade digital Modbus/Profinet.",
+    "Nossa metodologia preserva a carcaça mecânica, barramentos de cobre e transformadores de força originais, eliminando a necessidade de obras civis e gerando uma economia de até 65% frente a um cubículo novo. O retrofit é executado em janelas programadas de parada com emissão de ART/CREA e garantia integral de funcionamento.",
+  ],
 
-  "digitalizacao-de-ativos-e-industria-4-0":
-    "Modernização de painéis legados através de transdutores digitais de alta precisão e concentradores de telemetria, integrando medições contínuas e tele-alarmes diretamente a supervisórios SCADA e sistemas em nuvem para manutenção preditiva.",
+  "digitalizacao-de-ativos-e-industria-4-0": [
+    "Solução integrada de sensoriamento e telemetria industrial que converte painéis elétricos convencionais em nós de dados inteligentes, conectando grandezas de tensão, corrente, temperatura e harmônicos diretamente a plataformas SCADA, IoT e sistemas de monitoramento em nuvem.",
+    "Através de transdutores digitais de alta precisão e concentradores com protocolos industriais abertos (Modbus-TCP, MQTT e OPC-UA), viabiliza a manutenção preditiva com alertas em tempo real, reduzindo paradas não planejadas e assegurando total rastreabilidade do histórico operacional da planta.",
+  ],
 
-  "manutencao-preventiva-industrial":
-    "Protocolo estruturado de conservação com termografia infravermelha, testes de capacitores de potência, calibração de instrumentos de medição e reaperto torquimétrico para mitigar o risco de paradas emergenciais em cargas vitais.",
+  "manutencao-preventiva-industrial": [
+    "Programa rigoroso e sistemático de inspeção, testes elétricos e conservação preventiva em sistemas de energia ininterrupta, retificadores, inversores e bancos de baterias, focado em mitigar falhas catastróficas e garantir a máxima confiabilidade operacional de cargas críticas.",
+    "O escopo contempla varredura termográfica por infravermelho, análise de capacitores de filtro e potência, medição de ripple CC, teste dinâmico de semicondutores, reaperto torquimétrico certificado e limpeza especializada com produtos dielétricos, acompanhado de laudo conclusivo e ART.",
+  ],
 
-  "manutencao-corretiva-e-plantao-24-7":
-    "Mobilização ágil de engenheiros e técnicos com instrumental calibrado e estoque estratégico de semicondutores para diagnóstico resolutivo e restabelecimento rápido de conversores estáticos e retificadores em falha.",
+  "manutencao-corretiva-e-plantao-24-7": [
+    "Atendimento técnico emergencial de alta prioridade com mobilização rápida de engenheiros e especialistas em eletrônica de potência, projetado para restabelecer a operação de sistemas críticos e contingenciais no menor tempo de resposta possível (MTTR reduzido).",
+    "Contamos com instrumental de diagnóstico de ponta calibrado (osciloscópios isolados, analisadores de energia e testadores de semicondutores) e estoque estratégico de tiristores, diodos, módulos IGBT e placas de comando para substituição imediata, minimizando os prejuízos de paradas não programadas.",
+  ],
 
-  "treinamento-tecnico-e-capacitacao":
-    "Capacitação técnica in company voltada para operadores e equipes de manutenção elétrica, com foco na parametrização de IHM, rotinas de inspeção, segurança operacional e diagnóstico prático de alarmes em equipamentos DSR.",
+  "treinamento-tecnico-e-capacitacao": [
+    "Programas práticos de capacitação técnica in company e imersões presenciais desenvolvidos para operadores, técnicos e engenheiros eletricistas, capacitando as equipes internas a dominarem a operação, parametrização e supervisão de equipamentos de potência DSR.",
+    "O currículo aborda desde a arquitetura de circuitos de disparo e interpretação de alarmes na IHM até procedimentos seguros de manobra, rotinas de inspeção visual, análise de causas-raiz e práticas alinhadas às diretrizes da NR-10 e normas internacionais, com emissão de certificados individuais.",
+  ],
 
-  "comissionamento-e-startup-em-campo":
-    "Energização orientada com validação criteriosa de conexões elétricas, ensaios sob carga com banco de resistências e parametrização fina de malhas de controle, com emissão de relatório conclusivo e ART/CREA.",
+  "comissionamento-e-startup-em-campo": [
+    "Protocolo formal de testes em campo e energização assistida que valida integralmente a conformidade das instalações elétricas, cabeamento de força e controle, polaridade de barramentos e calibração de malhas de regulação antes da entrada definitiva em operação comercial.",
+    "Realizamos testes dinâmicos de queima e resposta sob carga assistida com bancos de carga resistivos próprios, ensaios de transferência de baterias e conferência rigorosa de intertravamentos de segurança, entregando relatório técnico fotográfico com curvas de ensaio e ART/CREA.",
+  ],
 
-  "consultoria-em-engenharia-e-projetos-especiais":
-    "Consultoria técnica especializada para especificação de sistemas CC, estudos de qualidade de energia, análise de harmônicos e projetos de seletividade sob medida para concessionárias e indústrias de grande porte.",
+  "consultoria-em-engenharia-e-projetos-especiais": [
+    "Consultoria de engenharia eletrotécnica e eletrônica para dimensionamento e especificação de soluções personalizadas em energia CC/CA, adequação normativa e estudos avançados de transitórios, seletividade e harmônicos para concessionárias, petroquímica e grandes indústrias.",
+    "Elaboramos pareceres de integridade, projetos executivos em EPLAN/CAD, especificação de sistemas redundantes N+1 e diagnósticos de mitigação de distorção harmônica, oferecendo suporte técnico consultivo de alto nível desde a fase conceitual até o aceite final da obra.",
+  ],
 };
 
-function getExclusiveServiceSummary(service: ServiceItem): string {
+function getExclusiveServiceSummary(service: ServiceItem): string[] {
   if (EXCLUSIVE_SERVICE_SUMMARIES[service.slug]) {
     return EXCLUSIVE_SERVICE_SUMMARIES[service.slug];
   }
-  return `Atendimento técnico de engenharia de alta especialização prestado por equipe qualificada da DSR, com foco em confiabilidade contínua, segurança operacional e emissão formal de ART/CREA para infraestruturas elétricas de missão crítica.`;
+  return [
+    "Atendimento técnico de engenharia de alta especialização prestado pelo time de especialistas da DSR, com foco em confiabilidade operacional contínua, máxima eficiência energética e conformidade estrita com normas técnicas nacionais e internacionais.",
+    "Todas as intervenções contam com acompanhamento técnico ponta a ponta, instrumental calibrado rastreável, elaboração de relatórios conclusivos com recomendações de melhoria e emissão formal de Anotação de Responsabilidade Técnica (ART/CREA).",
+  ];
 }
 
 export async function generateStaticParams() {
@@ -163,16 +180,18 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               )}
 
               {/* Texto exclusivo de apresentação rápida - Não copia textos de outros lugares da página */}
-              <div className="flex-1 flex flex-col justify-center py-3.5 space-y-2">
+              <div className="flex-1 flex flex-col justify-center py-3.5 space-y-2.5">
                 <div className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#66c0f4]" />
                   <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#66c0f4]">
                     Visão Rápida do Serviço
                   </span>
                 </div>
-                <p className="text-xs sm:text-[13px] text-[#c6d4df] leading-relaxed">
-                  {getExclusiveServiceSummary(service)}
-                </p>
+                <div className="space-y-2 text-xs sm:text-[13px] text-[#c6d4df] leading-relaxed">
+                  {getExclusiveServiceSummary(service).map((paragraph, idx) => (
+                    <p key={idx}>{paragraph}</p>
+                  ))}
+                </div>
               </div>
 
               {/* Botões de Ação Imediata (Solicitar Proposta e WhatsApp) */}
