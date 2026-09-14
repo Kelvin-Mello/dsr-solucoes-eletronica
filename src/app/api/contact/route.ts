@@ -278,11 +278,52 @@ ${mensagem}
         });
       } else {
         console.error("[WEB3FORMS ERROR]", w3Result);
-        throw new Error(w3Result.message || "Erro no envio via provedor de e-mail.");
       }
     }
 
-    // 6. Se nenhuma credencial de envio estiver cadastrada, NÃO finge sucesso
+    // 6. Disparo via FormSubmit.co direto para o e-mail da DSR
+    try {
+      const fsResponse = await fetch(`https://formsubmit.co/ajax/${destinationEmail}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Origin: "https://dsr-solucoes-eletronica.vercel.app",
+          Referer: "https://dsr-solucoes-eletronica.vercel.app/contato",
+        },
+        body: JSON.stringify({
+          _subject: `[Site DSR] ${assunto} - ${empresa} (${nome})`,
+          _replyto: email,
+          "Nome do Contato": nome,
+          "Empresa / Planta": empresa,
+          "E-mail Corporativo": email,
+          "Telefone / WhatsApp": telefone,
+          "Assunto Principal": assunto,
+          "Detalhes da Solicitação": mensagem,
+          _template: "table",
+        }),
+      });
+
+      const fsData = await fsResponse.json();
+      console.log("[FORMSUBMIT RESPONSE]", fsData);
+
+      if (fsData.success === "true" || fsData.success === true) {
+        return NextResponse.json({
+          success: true,
+          delivered: true,
+          provider: "formsubmit",
+          message: "E-mail transmitido com sucesso para dsr.solucoes.eletronica@gmail.com!",
+        });
+      }
+
+      if (fsData.message && fsData.message.includes("Activation")) {
+        console.warn("[FORMSUBMIT ACTIVATION REQUIRED] Um e-mail de ativação foi enviado para dsr.solucoes.eletronica@gmail.com");
+      }
+    } catch (fsError) {
+      console.error("[FORMSUBMIT ERROR]", fsError);
+    }
+
+    // 7. Se nenhuma credencial de envio estiver cadastrada/ativada, orienta com fallback manual
     console.warn("==================================================");
     console.warn("[DSR CONTATO - ATENÇÃO: CREDENCIAIS NÃO CONFIGURADAS]");
     console.warn(`De: ${nome} (${empresa}) <${email}>`);

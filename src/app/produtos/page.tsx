@@ -35,6 +35,75 @@ const CATEGORY_ICONS: Record<string, React.ElementType> = {
   "Qualidade de Energia, Proteção & Cargas": ShieldCheck,
 };
 
+const SHOWCASE_CATEGORIES = [
+  {
+    id: "retificadores",
+    title: "RETIFICADORES",
+    subtitle: "Sistemas Tiristorizados & Modulares",
+    description: "Retificadores Industriais, Carregadores de Bateria e Formadores de 12V a 250Vcc até 5.000A.",
+    actionText: "VER LINHA COMPLETA",
+    href: "/produtos/categoria/retificadores-e-carregadores",
+    bannerUrl: "/images/categories/banner-retificadores.png",
+    theme: "orange" as const,
+    priority: true,
+  },
+  {
+    id: "ups-nobreaks",
+    title: "UPS / NO-BREAKS",
+    subtitle: "On-Line Dupla Conversão & STS",
+    description: "No-breaks industriais e sistemas ininterruptos de energia crítica 24/7 para subestações e data centers.",
+    actionText: "VER LINHA COMPLETA",
+    href: "/produtos/categoria/sistemas-de-energia-ininterrupta-e-conversao",
+    bannerUrl: "/images/categories/banner-ups-nobreaks.png",
+    theme: "blue" as const,
+    priority: true,
+  },
+  {
+    id: "conversores",
+    title: "CONVERSORES",
+    subtitle: "Conversores Estáticos & Fontes CC",
+    description: "Conversores estáticos industriais de alta eficiência, fontes chaveadas e conversores CC/CC.",
+    actionText: "VER LINHA COMPLETA",
+    href: "/produtos/categoria/sistemas-de-energia-ininterrupta-e-conversao",
+    bannerUrl: "/images/categories/banner-conversores.png",
+    theme: "blue" as const,
+    priority: false,
+  },
+  {
+    id: "inversores",
+    title: "INVERSORES",
+    subtitle: "Inversores Industriais CC/CA",
+    description: "Inversores estáticos senoidais com chave de transferência estática rápida e isolamento galvânico.",
+    actionText: "VER LINHA COMPLETA",
+    href: "/produtos/categoria/sistemas-de-energia-ininterrupta-e-conversao",
+    bannerUrl: "/images/categories/banner-inversores.png",
+    theme: "orange" as const,
+    priority: false,
+  },
+  {
+    id: "transformadores",
+    title: "TRANSFORMADORES",
+    subtitle: "Transformadores a Seco & Filtros",
+    description: "Transformadores industriais a seco em resina epóxi, isoladores de alta rigidez e filtros de potência.",
+    actionText: "VER LINHA COMPLETA",
+    href: "/produtos/categoria/qualidade-de-energia-protecao-e-cargas",
+    bannerUrl: "/images/categories/banner-transformadores.png",
+    theme: "orange" as const,
+    priority: false,
+  },
+  {
+    id: "assistencia-tecnica",
+    title: "ASSISTÊNCIA TÉCNICA",
+    subtitle: "Retrofitting, Manutenção & Plantão 24h",
+    description: "Plantão técnico 24 horas, modernização e retrofitting de painéis multimarcas com emissão de ART.",
+    actionText: "SAIBA MAIS",
+    href: "/servicos",
+    bannerUrl: "/images/categories/banner-assistencia-tecnica.png",
+    theme: "blue" as const,
+    priority: false,
+  },
+];
+
 export default function ProdutosPage() {
   const products = getAllProducts();
   const categories = getAllCategories();
@@ -76,105 +145,53 @@ export default function ProdutosPage() {
           </div>
         </div>
 
-        {/* CATEGORY SHOWCASE GRID (Imagem no topo de cada card, como se fosse um produto) */}
+        {/* CATEGORY SHOWCASE GRID - REF INDUSTRIAL TECH DSR */}
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#2a475e] pb-4">
             <div>
               <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                Categorias de Produtos
+                Categorias Principais
               </h2>
               <p className="text-xs text-[#8f98a0] mt-0.5">
-                Escolha a linha tecnológica para acessar as especificações de cada equipamento
+                Selecione a linha de equipamentos ou serviços para acessar as especificações de cada modelo
               </p>
             </div>
             <span className="text-xs font-mono text-[#66c0f4] self-start sm:self-auto">
-              6 Linhas de Engenharia
+              6 Divisões Industriais
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((cat) => {
-              const Icon = CATEGORY_ICONS[cat.name] || Layers;
-              const categoryProducts = products.filter((p) => p.categoria === cat.name);
-
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
+            {SHOWCASE_CATEGORIES.map((card) => {
               return (
-                <div
-                  key={cat.slug}
-                  className="group flex flex-col rounded-xl border border-[#2a475e] bg-gradient-to-b from-[#1b2838] to-[#171a21] overflow-hidden shadow-xl hover:border-[#66c0f4]/80 hover:shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-all duration-300"
+                <Link
+                  key={card.id}
+                  href={card.href}
+                  className="group relative block rounded-2xl overflow-hidden border border-[#203548] bg-[#0c131a] shadow-xl hover:shadow-[0_12px_35px_rgba(0,0,0,0.7)] transition-all duration-300 hover:scale-[1.015] focus:outline-none focus:ring-2 focus:ring-[#66c0f4]"
+                  title={`${card.title} - ${card.actionText}`}
                 >
-                  {/* Category Image at the Top (Clickable Link) */}
-                  <Link
-                    href={`/produtos/categoria/${cat.slug}`}
-                    className="relative aspect-[16/10] w-full overflow-hidden bg-[#101822] block cursor-pointer"
-                    title={`Ver produtos da categoria ${cat.name}`}
-                  >
+                  <div className="relative aspect-[494/167] w-full overflow-hidden bg-[#0c131a]">
                     <Image
-                      src={cat.imageUrl}
-                      alt={cat.name}
+                      src={card.bannerUrl}
+                      alt={`${card.title} - ${card.subtitle}`}
                       fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      priority={card.priority}
+                      className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.025]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#171a21] via-transparent to-black/20 pointer-events-none" />
-
-                    {/* Badge */}
-                    <div className="absolute top-3 left-3">
-                      <span className="inline-flex items-center gap-1 rounded bg-[#101822]/90 border border-[#2a475e] px-2.5 py-1 text-[11px] font-mono font-semibold text-[#66c0f4] backdrop-blur-md">
-                        <Icon className="h-3.5 w-3.5" />
-                        {cat.badge}
-                      </span>
-                    </div>
-
-                    {/* Count */}
-                    <div className="absolute bottom-3 right-3">
-                      <span className="rounded bg-[#66c0f4] text-[#101822] px-2.5 py-1 text-xs font-mono font-bold shadow-md">
-                        {categoryProducts.length} {categoryProducts.length === 1 ? "Produto" : "Produtos"}
-                      </span>
-                    </div>
-                  </Link>
-
-                  {/* Card Body */}
-                  <div className="flex flex-1 flex-col p-5 space-y-3">
-                    <Link
-                      href={`/produtos/categoria/${cat.slug}`}
-                      className="text-lg font-bold text-white group-hover:text-[#66c0f4] transition-colors leading-snug line-clamp-1"
-                    >
-                      {cat.name}
-                    </Link>
-
-                    <p className="text-xs text-[#8f98a0] line-clamp-2 leading-relaxed flex-1">
-                      {cat.tagline}
-                    </p>
-
-                    {/* Featured Models Chips */}
-                    <div className="rounded-lg bg-[#101822] p-2.5 border border-[#2a475e]/60 space-y-1 text-[11px]">
-                      <span className="block font-mono text-[#66c0f4] font-semibold text-[10px] uppercase">
-                        Modelos Principais:
-                      </span>
-                      <div className="flex flex-wrap gap-1 text-[#c6d4df]">
-                        {cat.featuredModels.map((m, i) => (
-                          <span
-                            key={i}
-                            className="rounded bg-[#2a475e]/40 px-2 py-0.5 text-[10px] font-mono text-[#c6d4df]"
-                          >
-                            {m}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Action Button */}
-                    <div className="pt-2">
-                      <Link
-                        href={`/produtos/categoria/${cat.slug}`}
-                        className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-[#66c0f4] hover:bg-[#85d1f7] text-[#101822] py-2.5 px-4 text-xs font-bold uppercase tracking-wider transition-all shadow-md"
-                      >
-                        <span>Acessar Categoria</span>
-                        <ArrowRight className="h-3.5 w-3.5" />
-                      </Link>
-                    </div>
+                    
+                    {/* Glow border highlight on hover matching theme */}
+                    <div
+                      className={`absolute inset-0 rounded-2xl border-2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                        card.theme === "blue"
+                          ? "border-[#66c0f4]/60 shadow-[inset_0_0_25px_rgba(102,192,244,0.25)]"
+                          : "border-amber-400/60 shadow-[inset_0_0_25px_rgba(245,158,11,0.25)]"
+                      }`}
+                    />
                   </div>
-                </div>
+
+                  <span className="sr-only">{card.title} - {card.description}</span>
+                </Link>
               );
             })}
           </div>
