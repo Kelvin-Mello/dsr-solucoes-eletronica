@@ -65,6 +65,37 @@ ${formData.mensagem}`;
       const data = await response.json();
 
       if (response.status === 503 && data.needsConfiguration) {
+        // Tentativa de entrega direta pelo navegador do cliente (bypassa bloqueio de IP da nuvem/Vercel)
+        try {
+          const directFs = await fetch("https://formsubmit.co/ajax/dsr.solucoes.eletronica@gmail.com", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              _subject: `[Site DSR] ${formData.assunto} - ${formData.empresa} (${formData.nome})`,
+              _replyto: formData.email,
+              _captcha: "false",
+              _template: "table",
+              "Nome do Contato": formData.nome,
+              "Empresa / Planta": formData.empresa,
+              "E-mail Corporativo": formData.email,
+              "Telefone / WhatsApp": formData.telefone,
+              "Assunto Principal": formData.assunto,
+              "Detalhes da Solicitação": formData.mensagem,
+            }),
+          });
+          const fsResult = await directFs.json();
+          if (fsResult.success === "true" || fsResult.success === true) {
+            setNeedsManualDispatch(false);
+            setIsSubmitted(true);
+            return;
+          }
+        } catch (clientErr) {
+          console.warn("Client fallback dispatch failed:", clientErr);
+        }
+
         setNeedsManualDispatch(true);
         setIsSubmitted(true);
         return;
