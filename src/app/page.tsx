@@ -29,11 +29,6 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full bg-[#2a475e]/80 border border-[#66c0f4]/40 px-3.5 py-1.5 text-xs font-mono text-[#66c0f4]">
-                <Zap className="h-3.5 w-3.5 animate-bounce" />
-                ENGENHARIA DE ELETRÔNICA DE POTÊNCIA & RETROFITTING
-              </div>
-
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
                 Potência de Alta Confiabilidade para a <span className="text-[#66c0f4]">Indústria Pesada</span>
               </h1>

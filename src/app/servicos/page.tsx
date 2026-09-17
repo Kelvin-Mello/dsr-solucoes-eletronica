@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { 
-  Wrench, 
+  Wrench,
   Cpu, 
   ShieldCheck, 
   Activity, 
@@ -58,16 +58,6 @@ export default function ServicosPage() {
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#66c0f4]/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 max-w-3xl space-y-4">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-md bg-[#101822] px-3 py-1 text-xs font-mono text-[#66c0f4] border border-[#66c0f4]/40">
-                <Wrench className="h-3.5 w-3.5" />
-                ENGENHARIA INDUSTRIAL ESPECIALIZADA
-              </span>
-              <span className="rounded bg-[#2a475e]/60 px-2.5 py-1 text-xs font-mono text-[#8f98a0]">
-                NR-10 • NR-12 • CREA/SP
-              </span>
-            </div>
-
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
               Serviços Especializados em <span className="text-[#66c0f4]">Eletrônica de Potência</span>
             </h1>

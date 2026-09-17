@@ -13,8 +13,6 @@ import {
   ChevronRight, 
   Zap, 
   MessageSquare,
-  Building2,
-  Phone,
   Loader2,
   AlertCircle
 } from "lucide-react";
@@ -150,16 +148,6 @@ ${formData.mensagem}`;
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#66c0f4]/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 max-w-4xl space-y-3">
-            <div className="flex flex-wrap items-center gap-2.5">
-              <span className="inline-flex items-center gap-1.5 rounded-md bg-[#101822] px-3 py-1 text-xs font-mono text-[#66c0f4] border border-[#66c0f4]/40">
-                <PhoneCall className="h-3.5 w-3.5" />
-                CENTRAL DE ATENDIMENTO & ENGENHARIA
-              </span>
-              <span className="rounded bg-emerald-500/20 border border-emerald-500/40 px-2.5 py-1 text-xs font-mono font-bold text-emerald-400">
-                PLANTÃO 24 HORAS ATIVO
-              </span>
-            </div>
-
             <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
               Fale com a DSR Soluções
             </h1>

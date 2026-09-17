@@ -73,7 +73,6 @@ export default async function CategoryDetailPage({ params }: CategoryPageProps) 
   const products = getProductsByCategory(category.name);
   const allCategories = getAllCategories();
   const otherCategories = allCategories.filter((c) => c.slug !== category.slug);
-  const Icon = CATEGORY_ICONS[category.name] || Layers;
 
   return (
     <div className="min-h-screen bg-[#1b2838] text-[#c6d4df] pb-12 sm:pb-16">
@@ -100,16 +99,6 @@ export default async function CategoryDetailPage({ params }: CategoryPageProps) 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             {/* Info */}
             <div className="lg:col-span-8 space-y-4">
-              <div className="flex flex-wrap items-center gap-2.5">
-                <span className="inline-flex items-center gap-1.5 rounded-md bg-[#101822] px-3 py-1 text-xs font-mono text-[#66c0f4] border border-[#66c0f4]/40">
-                  <Icon className="h-3.5 w-3.5" />
-                  {category.badge}
-                </span>
-                <span className="rounded bg-[#66c0f4] text-[#101822] px-2.5 py-1 text-xs font-mono font-bold">
-                  {products.length} {products.length === 1 ? "Equipamento" : "Equipamentos"}
-                </span>
-              </div>
-
               <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
                 {category.name}
               </h1>

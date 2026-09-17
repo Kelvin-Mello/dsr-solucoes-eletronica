@@ -83,22 +83,24 @@ export default async function PostDetailPage({ params }: PostPageProps) {
         {/* Content sections wrapper */}
         <div className="space-y-8">
           {/* Article Header */}
-          <div className="max-w-4xl space-y-4">
-          <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
-            <span className="rounded bg-[#101822] border border-[#66c0f4]/40 px-3 py-1 text-[#66c0f4] font-bold">
-              {post.category}
-            </span>
-            <span className="flex items-center gap-1 text-[#8f98a0]">
-              <Calendar className="h-3.5 w-3.5" /> {post.date}
-            </span>
-            <span className="flex items-center gap-1 text-[#8f98a0]">
-              <Clock className="h-3.5 w-3.5" /> {post.readTime}
-            </span>
-          </div>
+          <div className="max-w-4xl space-y-3">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white leading-tight">
+              {post.title}
+            </h1>
 
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-white leading-tight">
-            {post.title}
-          </h1>
+            <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-[#8f98a0]">
+              <span className="text-[#66c0f4] font-bold uppercase tracking-wider">
+                {post.category}
+              </span>
+              <span>•</span>
+              <span className="flex items-center gap-1">
+                <Calendar className="h-3.5 w-3.5 text-[#66c0f4]" /> {post.date}
+              </span>
+              <span>•</span>
+              <span className="flex items-center gap-1">
+                <Clock className="h-3.5 w-3.5 text-[#66c0f4]" /> {post.readTime}
+              </span>
+            </div>
 
           <p className="text-sm sm:text-base text-[#8f98a0] leading-relaxed border-l-4 border-[#66c0f4] pl-4 py-1">
             {post.summary}
