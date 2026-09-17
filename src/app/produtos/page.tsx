@@ -156,14 +156,19 @@ export default function ProdutosPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
             {SHOWCASE_CATEGORIES.map((card) => {
+              const isBlue = card.theme === "blue";
               return (
                 <Link
                   key={card.id}
                   href={card.href}
-                  className="group relative block rounded-2xl overflow-hidden border border-[#203548] bg-[#0c131a] shadow-xl hover:shadow-[0_12px_35px_rgba(0,0,0,0.7)] transition-all duration-300 hover:scale-[1.015] focus:outline-none focus:ring-2 focus:ring-[#66c0f4]"
+                  className={`group relative block rounded-2xl overflow-hidden border border-[#203548] bg-[#0c131a] shadow-xl transition-all duration-300 hover:scale-[1.015] focus:outline-none focus:ring-2 ${
+                    isBlue
+                      ? "hover:border-[#66c0f4] hover:shadow-[0_12px_35px_rgba(0,159,227,0.3)] focus:ring-[#66c0f4]"
+                      : "hover:border-amber-500 hover:shadow-[0_12px_35px_rgba(245,158,11,0.3)] focus:ring-amber-500"
+                  }`}
                   title={`${card.title} - ${card.actionText}`}
                 >
-                  <div className="relative aspect-[494/167] w-full overflow-hidden bg-[#0c131a]">
+                  <div className="relative aspect-[984/326] w-full overflow-hidden bg-[#0c131a]">
                     <Image
                       src={card.bannerUrl}
                       alt={`${card.title} - ${card.subtitle}`}
@@ -176,7 +181,7 @@ export default function ProdutosPage() {
                     {/* Glow border highlight on hover matching theme */}
                     <div
                       className={`absolute inset-0 rounded-2xl border-2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                        card.theme === "blue"
+                        isBlue
                           ? "border-[#66c0f4]/60 shadow-[inset_0_0_25px_rgba(102,192,244,0.25)]"
                           : "border-amber-400/60 shadow-[inset_0_0_25px_rgba(245,158,11,0.25)]"
                       }`}
