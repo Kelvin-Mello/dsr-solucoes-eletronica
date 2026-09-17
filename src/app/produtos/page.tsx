@@ -37,67 +37,67 @@ const CATEGORY_ICONS: Record<string, React.ElementType> = {
 const SHOWCASE_CATEGORIES = [
   {
     id: "retificadores",
-    title: "RETIFICADORES",
+    title: "RETIFICADORES & CARREGADORES",
     subtitle: "Sistemas Tiristorizados & Modulares",
     description: "Retificadores Industriais, Carregadores de Bateria e Formadores de 12V a 250Vcc até 5.000A.",
     actionText: "VER LINHA COMPLETA",
     href: "/produtos/categoria/retificadores-e-carregadores",
-    bannerUrl: "/images/categories/banner-retificadores.png",
+    bannerUrl: "/images/categories/cat-banner-retificadores.png",
     theme: "orange" as const,
     priority: true,
   },
   {
-    id: "ups-nobreaks",
-    title: "UPS / NO-BREAKS",
-    subtitle: "On-Line Dupla Conversão & STS",
-    description: "No-breaks industriais e sistemas ininterruptos de energia crítica 24/7 para subestações e data centers.",
+    id: "energia-ininterrupta",
+    title: "SISTEMAS DE ENERGIA ININTERRUPTA & CONVERSÃO",
+    subtitle: "No-Breaks On-Line, Inversores & STS",
+    description: "No-breaks industriais On-Line Dupla Conversão, Inversores Estáticos CC/CA e Chaves Estáticas STS 24/7.",
     actionText: "VER LINHA COMPLETA",
     href: "/produtos/categoria/sistemas-de-energia-ininterrupta-e-conversao",
-    bannerUrl: "/images/categories/banner-ups-nobreaks.png",
+    bannerUrl: "/images/categories/cat-banner-energia-ininterrupta.png",
     theme: "blue" as const,
     priority: true,
   },
   {
-    id: "conversores",
-    title: "CONVERSORES",
-    subtitle: "Conversores Estáticos & Fontes CC",
-    description: "Conversores estáticos industriais de alta eficiência, fontes chaveadas e conversores CC/CC.",
+    id: "quadros-distribuicao",
+    title: "QUADROS DE DISTRIBUIÇÃO & PARALELISMO",
+    subtitle: "Distribuição CA/CC & Barramentos Maciços",
+    description: "Painéis de distribuição de força, barramentos de paralelismo seguro de bancos de baterias e disjuntores motorizados.",
     actionText: "VER LINHA COMPLETA",
-    href: "/produtos/categoria/sistemas-de-energia-ininterrupta-e-conversao",
-    bannerUrl: "/images/categories/banner-conversores.png",
+    href: "/produtos/categoria/quadros-de-distribuicao-e-paralelismo",
+    bannerUrl: "/images/categories/cat-banner-quadros-distribuicao.png",
     theme: "blue" as const,
     priority: false,
   },
   {
-    id: "inversores",
-    title: "INVERSORES",
-    subtitle: "Inversores Industriais CC/CA",
-    description: "Inversores estáticos senoidais com chave de transferência estática rápida e isolamento galvânico.",
+    id: "modulos-telemetria",
+    title: "MÓDULOS DE DIGITALIZAÇÃO & TELEMETRIA",
+    subtitle: "Transdutores True RMS & Indústria 4.0",
+    description: "Transdutores digitais de grandezas elétricas e térmicas com isolamento de 2,5kV e comunicação nativa Modbus-RTU.",
     actionText: "VER LINHA COMPLETA",
-    href: "/produtos/categoria/sistemas-de-energia-ininterrupta-e-conversao",
-    bannerUrl: "/images/categories/banner-inversores.png",
+    href: "/produtos/categoria/modulos-de-digitalizacao-e-telemetria",
+    bannerUrl: "/images/categories/cat-banner-telemetria.png",
     theme: "orange" as const,
     priority: false,
   },
   {
-    id: "transformadores",
-    title: "TRANSFORMADORES",
-    subtitle: "Transformadores a Seco & Filtros",
-    description: "Transformadores industriais a seco em resina epóxi, isoladores de alta rigidez e filtros de potência.",
+    id: "supervisao-sensores",
+    title: "SUPERVISÃO, SENSORES & CONDICIONAMENTO",
+    subtitle: "BMS Célula a Célula & Monitoramento",
+    description: "Monitoramento contínuo de impedância, tensão e temperatura de baterias estacionárias e telecomando digital.",
+    actionText: "VER LINHA COMPLETA",
+    href: "/produtos/categoria/supervisao-sensores-e-condicionamento",
+    bannerUrl: "/images/categories/cat-banner-supervisao-sensores.png",
+    theme: "orange" as const,
+    priority: false,
+  },
+  {
+    id: "qualidade-energia",
+    title: "QUALIDADE DE ENERGIA, PROTEÇÃO & CARGAS",
+    subtitle: "Correção Ativa de FP & Filtros Harmônicos",
+    description: "Mitigação ativa de reativos dinâmicos (< 5ms), proteção snubber de alta energia e bancos de carga para ensaios.",
     actionText: "VER LINHA COMPLETA",
     href: "/produtos/categoria/qualidade-de-energia-protecao-e-cargas",
-    bannerUrl: "/images/categories/banner-transformadores.png",
-    theme: "orange" as const,
-    priority: false,
-  },
-  {
-    id: "assistencia-tecnica",
-    title: "ASSISTÊNCIA TÉCNICA",
-    subtitle: "Retrofitting, Manutenção & Plantão 24h",
-    description: "Plantão técnico 24 horas, modernização e retrofitting de painéis multimarcas com emissão de ART.",
-    actionText: "SAIBA MAIS",
-    href: "/servicos",
-    bannerUrl: "/images/categories/banner-assistencia-tecnica.png",
+    bannerUrl: "/images/categories/cat-banner-qualidade-energia.png",
     theme: "blue" as const,
     priority: false,
   },
@@ -146,7 +146,7 @@ export default function ProdutosPage() {
                 Categorias Principais
               </h2>
               <p className="text-xs text-[#8f98a0] mt-0.5">
-                Selecione a linha de equipamentos ou serviços para acessar as especificações de cada modelo
+                Selecione a linha de equipamentos para acessar as especificações de cada modelo
               </p>
             </div>
             <span className="text-xs font-mono text-[#66c0f4] self-start sm:self-auto">
@@ -168,16 +168,43 @@ export default function ProdutosPage() {
                   }`}
                   title={`${card.title} - ${card.actionText}`}
                 >
-                  <div className="relative aspect-[984/326] w-full overflow-hidden bg-[#0c131a]">
+                  <div className="relative aspect-[1200/440] w-full overflow-hidden bg-[#0c131a]">
                     <Image
                       src={card.bannerUrl}
                       alt={`${card.title} - ${card.subtitle}`}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
                       priority={card.priority}
-                      className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.025]"
+                      className="object-cover object-right sm:object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                     />
-                    
+
+                    {/* Gradiente escuro lateral para assegurar contraste perfeito da tipografia */}
+                    <div className="absolute inset-y-0 left-0 w-[65%] sm:w-[60%] bg-gradient-to-r from-[#0c131a]/95 via-[#0c131a]/75 to-transparent pointer-events-none" />
+
+                    {/* Conteúdo Foreground com Tipografia Vetorial HTML/CSS */}
+                    <div className="absolute inset-y-0 left-0 w-[65%] sm:w-[58%] p-4 sm:p-6 lg:p-7 flex flex-col justify-center z-10">
+                      <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-[1.35rem] font-black uppercase text-white tracking-wide leading-snug drop-shadow-md">
+                        {card.title}
+                      </h3>
+
+                      {/* Barra de Acento Temática */}
+                      <div
+                        className={`w-8 sm:w-11 h-1 rounded-full my-2 sm:my-3 ${
+                          isBlue ? "bg-[#009fe3]" : "bg-[#f59e0b]"
+                        } shadow-sm`}
+                      />
+
+                      {/* Chamada para Ação com Ícone Animado */}
+                      <div className="flex items-center gap-1.5 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-[#c6d4df] group-hover:text-white transition-colors">
+                        <span>{card.actionText}</span>
+                        <ChevronRight
+                          className={`w-3.5 h-3.5 ${
+                            isBlue ? "text-[#66c0f4]" : "text-amber-400"
+                          } transition-transform duration-300 group-hover:translate-x-1.5`}
+                        />
+                      </div>
+                    </div>
+
                     {/* Glow border highlight on hover matching theme */}
                     <div
                       className={`absolute inset-0 rounded-2xl border-2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
@@ -187,8 +214,6 @@ export default function ProdutosPage() {
                       }`}
                     />
                   </div>
-
-                  <span className="sr-only">{card.title} - {card.description}</span>
                 </Link>
               );
             })}
