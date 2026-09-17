@@ -201,7 +201,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               {/* Botões de Ação Imediata (Solicitar Proposta e WhatsApp) */}
               <div className="pt-3 border-t border-[#2a475e]/80 flex flex-col gap-2.5">
                 <a
-                  href={`mailto:engenharia@dsrsolucoes.com.br?subject=Proposta Tecnica - ${encodeURIComponent(service.title)}`}
+                  href={`mailto:contato@dsrsolucoes.com.br?subject=Proposta Tecnica - ${encodeURIComponent(service.title)}`}
                   className="group relative flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-lg bg-gradient-to-r from-[#66c0f4] via-[#4ba6df] to-[#1b75bc] py-3 px-4 text-center font-bold uppercase tracking-wider text-[#0e141b] text-xs sm:text-sm shadow-[0_0_15px_rgba(102,192,244,0.4)] transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_25px_rgba(102,192,244,0.6)] active:scale-[0.98]"
                 >
                   <Mail className="h-4 w-4 text-[#0e141b] transition-transform group-hover:translate-x-1" />
@@ -209,7 +209,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 </a>
 
                 <a
-                  href={`https://wa.me/5511980389729?text=Ol%C3%A1%2C+gostaria+de+informa%C3%A7%C3%B5es+sobre+o+servi%C3%A7o+de+${encodeURIComponent(
+                  href={`https://wa.me/5511952345037?text=Ol%C3%A1%2C+gostaria+de+informa%C3%A7%C3%B5es+sobre+o+servi%C3%A7o+de+${encodeURIComponent(
                     service.title
                   )}`}
                   target="_blank"
@@ -217,7 +217,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                   className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#101822] hover:bg-[#1a2c3f] text-emerald-400 border border-emerald-500/40 font-bold py-2.5 px-3 text-xs uppercase tracking-wider transition-all shadow-sm"
                 >
                   <PhoneCall className="h-4 w-4 text-emerald-400" />
-                  <span>WhatsApp Direto (11) 98038-9729</span>
+                  <span>WhatsApp Direto (11) 95234-5037</span>
                 </a>
               </div>
             </div>
@@ -356,14 +356,14 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             </div>
             <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
               <a
-                href="tel:1145645200"
+                href="tel:11952345037"
                 className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-lg bg-[#1b2838] hover:bg-[#203248] text-white border border-[#2a475e] hover:border-[#66c0f4] px-5 py-3 text-xs font-bold uppercase tracking-wider transition-all"
               >
                 <PhoneCall className="h-4 w-4 text-[#66c0f4]" />
-                (11) 4564-5200
+                (11) 95234-5037
               </a>
               <a
-                href={`https://wa.me/5511980389729?text=Ol%C3%A1%2C+preciso+de+atendimento+urgente+para+o+servi%C3%A7o+de+${encodeURIComponent(service.title)}`}
+                href={`https://wa.me/5511952345037?text=Ol%C3%A1%2C+preciso+de+atendimento+urgente+para+o+servi%C3%A7o+de+${encodeURIComponent(service.title)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-[#0e141b] font-bold px-5 py-3 text-xs uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]"

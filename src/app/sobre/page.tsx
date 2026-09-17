@@ -312,10 +312,10 @@ export default function SobrePage() {
               </p>
               <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-white/90 pt-2">
                 <span className="flex items-center gap-1.5">
-                  <MapPin className="h-4 w-4 text-[#66c0f4]" /> Avenida Líder, 652 - Cidade Líder, São Paulo - SP
+                  <MapPin className="h-4 w-4 text-[#66c0f4]" /> Rua Frei Cristóvão Severim, 169 - Jardim Nossa Senhora do Carmo, São Paulo - SP
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Phone className="h-4 w-4 text-[#66c0f4]" /> (11) 4564-5200
+                  <Phone className="h-4 w-4 text-[#66c0f4]" /> (11) 95234-5037
                 </span>
               </div>
             </div>

@@ -323,7 +323,7 @@ ${mensagem}
           success: true,
           delivered: true,
           provider: "formsubmit",
-          message: "E-mail transmitido com sucesso para dsr.solucoes.eletronica@gmail.com!",
+          message: "E-mail transmitido com sucesso para a equipe técnica da DSR Soluções!",
         });
       }
 

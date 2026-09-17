@@ -372,11 +372,11 @@ export default function ClientesPage() {
             </div>
             <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
               <a
-                href="mailto:engenharia@dsrsolucoes.com.br?subject=Homologacao de Fornecedor - DSR"
+                href="mailto:contato@dsrsolucoes.com.br?subject=Homologacao de Fornecedor - DSR"
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#66c0f4] hover:bg-[#85d1f7] text-[#101822] font-bold px-5 py-3 text-xs sm:text-sm transition-all shadow-[0_0_20px_rgba(102,192,244,0.3)]"
               >
                 <Mail className="h-4 w-4" />
-                engenharia@dsrsolucoes.com.br
+                contato@dsrsolucoes.com.br
               </a>
             </div>
           </div>

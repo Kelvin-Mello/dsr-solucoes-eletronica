@@ -219,7 +219,7 @@ export const PRODUCTS_MOCK: Product[] = [
           { parametro: "Ensaios e Testes Realizados", valor: "Testes de aceitação em fábrica (FAT) com emissão de relatório técnico de ensaio" },
           { parametro: "Disponibilidade de Componentes", valor: "Construído exclusivamente com componentes de fácil aquisição no mercado nacional" },
           { parametro: "Serviços de Engenharia e Retrofit", valor: "Dimensionamento de bancos, retrofitting de painéis antigos, comissionamento e manutenção" },
-          { parametro: "Contato Direto de Engenharia", valor: "engenharia@dsrsolucoes.com.br • Tel: (11) 4564-5200" }
+          { parametro: "Contato Direto de Engenharia", valor: "contato@dsrsolucoes.com.br • Tel / WhatsApp: (11) 95234-5037" }
         ]
       }
     ],

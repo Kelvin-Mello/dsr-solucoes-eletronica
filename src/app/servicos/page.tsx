@@ -203,7 +203,7 @@ export default function ServicosPage() {
                     </Link>
 
                     <a
-                      href={`mailto:engenharia@dsrsolucoes.com.br?subject=Consulta de Servico - ${service.title}`}
+                      href={`mailto:contato@dsrsolucoes.com.br?subject=Consulta de Servico - ${service.title}`}
                       className="inline-flex items-center gap-1.5 rounded-lg bg-[#2a475e] hover:bg-[#3b678c] text-white px-3.5 py-1.5 text-xs font-semibold transition-all border border-[#66c0f4]/30"
                     >
                       <FileText className="h-3.5 w-3.5 text-[#66c0f4]" />
@@ -232,20 +232,20 @@ export default function ServicosPage() {
             </div>
             <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
               <a
-                href="tel:551145645200"
+                href="tel:5511952345037"
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#2a475e] hover:bg-[#3b678c] text-white font-bold px-4 py-3 text-xs sm:text-sm transition-colors border border-[#66c0f4]/30"
               >
                 <PhoneCall className="h-4 w-4 text-[#66c0f4]" />
-                (11) 4564-5200
+                (11) 95234-5037
               </a>
               <a
-                href="https://wa.me/5511980389729"
+                href="https://wa.me/5511952345037"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#66c0f4] hover:bg-[#85d1f7] text-[#101822] font-bold px-5 py-3 text-xs sm:text-sm transition-all shadow-[0_0_20px_rgba(102,192,244,0.3)]"
               >
                 <Zap className="h-4 w-4" />
-                Plantão WhatsApp (11) 98038-9729
+                Plantão WhatsApp (11) 95234-5037
               </a>
             </div>
           </div>

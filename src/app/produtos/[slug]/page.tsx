@@ -304,10 +304,10 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
             <div className="flex items-center gap-3 shrink-0">
               <a
-                href="tel:1145645200"
+                href="tel:11952345037"
                 className="font-mono text-[#66c0f4] hover:text-white font-bold bg-[#101822] hover:bg-[#1b2838] border border-[#2a475e] hover:border-[#66c0f4] px-4 py-2.5 rounded-lg text-xs flex items-center gap-2 transition-all shadow-md"
               >
-                <PhoneCall className="h-4 w-4" /> (11) 4564-5200
+                <PhoneCall className="h-4 w-4" /> (11) 95234-5037
               </a>
             </div>
           </div>

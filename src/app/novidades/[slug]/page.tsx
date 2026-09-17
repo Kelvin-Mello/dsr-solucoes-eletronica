@@ -186,7 +186,7 @@ export default async function PostDetailPage({ params }: PostPageProps) {
 
               <div className="space-y-2 pt-2">
                 <a
-                  href={`mailto:engenharia@dsrsolucoes.com.br?subject=Consulta Técnica - Referência Artigo: ${post.title}`}
+                  href={`mailto:contato@dsrsolucoes.com.br?subject=Consulta Técnica - Referência Artigo: ${post.title}`}
                   className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-[#66c0f4] hover:bg-[#85d1f7] text-[#101822] font-bold py-3 text-xs uppercase tracking-wider transition-all shadow-md"
                 >
                   <Mail className="h-4 w-4" />
@@ -194,13 +194,13 @@ export default async function PostDetailPage({ params }: PostPageProps) {
                 </a>
 
                 <a
-                  href="https://wa.me/5511980389729"
+                  href="https://wa.me/5511952345037"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-[#101822] hover:bg-[#1a2c3f] text-emerald-400 border border-emerald-500/40 font-bold py-3 text-xs uppercase tracking-wider transition-all"
                 >
                   <PhoneCall className="h-4 w-4" />
-                  WhatsApp Engenharia (11) 98038-9729
+                  WhatsApp Engenharia (11) 95234-5037
                 </a>
               </div>
             </div>

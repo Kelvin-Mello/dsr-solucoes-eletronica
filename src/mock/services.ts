@@ -253,7 +253,7 @@ export const SERVICES_MOCK: ServiceItem[] = [
     detailedDescription:
       "Quando uma falha ocorre na linha de produção, cada minuto de inatividade custa milhares de reais. O serviço de manutenção corretiva da DSR opera com canal direto de engenharia de plantão. Nossos especialistas deslocam-se até a planta com instrumentação de ponta (osciloscópios isolados, fontes de teste portáteis) e módulos de reposição em estoque para diagnóstico cirúrgico da causa raiz e reparo imediato.",
     benefits: [
-      "Canal de plantão direto com engenheiros: (11) 4564-5200 e WhatsApp (11) 98038-9729",
+      "Canal de plantão direto com especialistas: WhatsApp / Tel (11) 95234-5037",
       "Diagnóstico avançado de falhas com osciloscopia digital em tempo real",
       "Substituição ágil de semicondutores (tiristores, diodos, IGBTs) e placas de controle",
       "Estoque de peças de reposição nacionais para rápido restabelecimento",
