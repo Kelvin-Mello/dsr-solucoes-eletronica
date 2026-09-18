@@ -273,7 +273,6 @@ export function CatalogView({ products }: CatalogViewProps) {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {group.items.map((product) => {
                     const primaryImage = product.midias[0]?.url || "/images/products/rit-d-cabinet.jpg";
-                    const featuredSpecs = product.especificacoes_rapidas.slice(0, 3);
 
                     return (
                       <div
@@ -347,22 +346,6 @@ export function CatalogView({ products }: CatalogViewProps) {
                             {product.tagline}
                           </p>
 
-                          {/* Quick Specs Chips */}
-                          <div className="grid grid-cols-2 gap-1.5 py-1">
-                            {featuredSpecs.map((spec, i) => (
-                              <div
-                                key={i}
-                                className="rounded bg-[#101822] border border-[#2a475e]/60 px-2 py-1 text-center"
-                              >
-                                <span className="block text-[9px] uppercase font-mono text-[#8f98a0] truncate">
-                                  {spec.chave}
-                                </span>
-                                <span className="block text-[11px] font-bold font-mono text-[#66c0f4] truncate">
-                                  {spec.valor}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
 
                           {/* Card Footer Actions */}
                           <div className="mt-auto pt-3 border-t border-[#2a475e]/60 flex items-center gap-2">

@@ -109,7 +109,7 @@ export default function SobrePage() {
             Início
           </Link>
           <ChevronRight className="h-3.5 w-3.5 text-[#2a475e]" />
-          <span className="text-[#66c0f4] font-semibold">Sobre a DSR Soluções</span>
+          <span className="text-[#66c0f4] font-semibold">Sobre a DSR</span>
         </nav>
         </div>
 
@@ -121,7 +121,7 @@ export default function SobrePage() {
 
           <div className="relative z-10 max-w-3xl space-y-4">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-              Excelência em <span className="text-[#66c0f4]">Eletrônica de Potência</span> e Confiabilidade Industrial
+              Sobre a <span className="text-[#66c0f4]">DSR</span>
             </h1>
 
             <p className="text-sm sm:text-base text-[#8f98a0] leading-relaxed">
