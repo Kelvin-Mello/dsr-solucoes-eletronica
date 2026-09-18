@@ -292,16 +292,13 @@ export function FeaturedCarousel() {
             <div className="absolute inset-0 bg-gradient-to-r from-[#0b121a]/60 via-transparent to-transparent pointer-events-none" />
 
             {/* Badge de Categoria no Topo Esquerdo */}
-            <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
+            <div className="absolute top-4 left-4 z-10">
               <span className={`rounded px-2.5 py-1 text-[11px] font-mono font-extrabold uppercase tracking-wider shadow-md backdrop-blur-sm ${
                 currentItem.type === "produto"
                   ? "bg-[#66c0f4] text-[#0a1118]"
                   : "bg-emerald-400 text-[#091512]"
               }`}>
-                {currentItem.typeLabel}
-              </span>
-              <span className="rounded bg-[#101822]/85 border border-[#2a475e] px-2 py-1 text-[11px] font-mono text-[#c6d4df] backdrop-blur-sm">
-                {currentItem.statusBadge}
+                {currentItem.type === "produto" ? "Produto" : "Serviço"}
               </span>
             </div>
 
