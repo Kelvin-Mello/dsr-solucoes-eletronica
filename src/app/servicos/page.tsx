@@ -3,16 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { 
-  Wrench,
-  Cpu, 
-  ShieldCheck, 
-  Activity, 
-  GraduationCap, 
-  CheckCircle2, 
-  Compass, 
   ChevronRight, 
   PhoneCall, 
-  Mail, 
   Zap, 
   Clock, 
   FileText
@@ -22,16 +14,6 @@ import { getAllServices } from "@/mock/services";
 export const metadata: Metadata = {
   title: "Serviços de Engenharia & Retrofit | DSR Soluções",
   description: "Retrofitting de retificadores e UPS, digitalização de quadros e motores, manutenção preventiva e corretiva, comissionamento e consultoria especializada.",
-};
-
-const ICON_MAP = {
-  Wrench,
-  Cpu,
-  ShieldCheck,
-  Activity,
-  GraduationCap,
-  CheckCircle2,
-  Compass,
 };
 
 export default function ServicosPage() {
@@ -97,108 +79,71 @@ export default function ServicosPage() {
             <span className="text-xs font-mono text-[#66c0f4]">{services.length} Áreas Especializadas</span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {services.map((service, index) => {
-              const Icon = ICON_MAP[service.iconName] || Wrench;
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service) => {
               return (
                 <div
                   key={service.id}
                   id={service.slug}
-                  className="rounded-xl border border-[#2a475e] bg-gradient-to-b from-[#1b2838] to-[#171a21] p-6 sm:p-8 shadow-lg hover:border-[#66c0f4]/80 transition-all flex flex-col justify-between group scroll-mt-24"
+                  className="group flex flex-col rounded-xl border border-[#2a475e] bg-gradient-to-b from-[#1b2838] to-[#171a21] overflow-hidden shadow-lg hover:border-[#66c0f4]/80 hover:shadow-[0_10px_25px_rgba(0,0,0,0.5)] transition-all duration-300 scroll-mt-24"
                 >
-                  <div className="space-y-4">
-                    {/* Header with Icon and Badge */}
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex items-center gap-3.5">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#2a475e] border border-[#66c0f4]/40 text-[#66c0f4] group-hover:scale-105 transition-transform">
-                          <Icon className="h-6 w-6" />
-                        </div>
-                        <div>
-                          <span className="text-[11px] font-mono text-[#66c0f4] uppercase tracking-wider block">
-                            Serviço 0{index + 1}
-                          </span>
-                          <Link
-                            href={`/servicos/${service.slug}`}
-                            className="text-xl font-bold text-white group-hover:text-[#66c0f4] transition-colors"
-                          >
-                            {service.title}
-                          </Link>
-                        </div>
+                  {/* Media Container (Clickable Link) */}
+                  <Link
+                    href={`/servicos/${service.slug}`}
+                    className="relative aspect-[16/10] w-full overflow-hidden bg-[#101822] block cursor-pointer"
+                    title={`Ver documentação técnica de ${service.title}`}
+                  >
+                    <Image
+                      src={service.imageUrl}
+                      alt={service.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#171a21] via-transparent to-black/20 pointer-events-none" />
+
+                    {/* Badge top-left */}
+                    {service.badge && (
+                      <div className="absolute top-2.5 left-2.5">
+                        <span className="rounded bg-[#101822]/90 border border-[#2a475e] px-2 py-0.5 text-[10px] font-mono text-[#66c0f4] backdrop-blur-md shadow-sm">
+                          {service.badge}
+                        </span>
                       </div>
+                    )}
+                  </Link>
 
-                      <span className="rounded bg-[#101822] border border-[#66c0f4]/40 px-2.5 py-1 text-[11px] font-mono text-[#66c0f4] whitespace-nowrap">
-                        {service.badge}
-                      </span>
+                  {/* Card Body */}
+                  <div className="flex flex-1 flex-col p-4 sm:p-5 space-y-3">
+                    <div>
+                      <Link
+                        href={`/servicos/${service.slug}`}
+                        className="text-base sm:text-lg font-bold text-white group-hover:text-[#66c0f4] transition-colors line-clamp-2 leading-snug"
+                      >
+                        {service.title}
+                      </Link>
                     </div>
 
-                    {/* Clickable Service Image Link */}
-                    <Link
-                      href={`/servicos/${service.slug}`}
-                      className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-[#101822] border border-[#2a475e]/60 block cursor-pointer group/img"
-                      title={`Ver documentação técnica de ${service.title}`}
-                    >
-                      <Image
-                        src={service.imageUrl}
-                        alt={service.title}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                        className="object-cover object-center group-hover/img:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#101822] via-transparent to-transparent pointer-events-none" />
-                      <span className="absolute bottom-2.5 left-2.5 rounded bg-[#101822]/90 border border-[#2a475e] px-2 py-0.5 text-[10px] font-mono text-[#66c0f4] backdrop-blur-md">
-                        Engenharia Especializada DSR
-                      </span>
-                    </Link>
-
-                    <div className="text-xs font-mono text-[#8f98a0]">
-                      {service.subtitle}
-                    </div>
-
-                    <p className="text-sm text-[#c6d4df] leading-relaxed">
-                      {service.description}
+                    <p className="text-xs text-[#8f98a0] line-clamp-3 leading-relaxed flex-1">
+                      {service.subtitle || service.description}
                     </p>
 
-                    {/* Bullet Points */}
-                    <div className="pt-2">
-                      <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
-                        <CheckCircle2 className="h-3.5 w-3.5 text-[#66c0f4]" /> Diferenciais & Vantagens:
-                      </h4>
-                      <ul className="space-y-1.5 text-xs text-[#8f98a0]">
-                        {service.benefits.slice(0, 4).map((benefit, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <span className="h-1.5 w-1.5 rounded-full bg-[#66c0f4] mt-1.5 flex-shrink-0" />
-                            <span>{benefit}</span>
-                          </li>
-                        ))}
-                      </ul>
+                    {/* Card Footer Actions */}
+                    <div className="mt-auto pt-3 border-t border-[#2a475e]/60 flex items-center gap-2">
+                      <Link
+                        href={`/servicos/${service.slug}`}
+                        className="flex-1 inline-flex items-center justify-center gap-1 rounded-lg bg-[#2a475e] hover:bg-[#3b678c] text-white px-3 py-2 text-xs font-semibold transition-colors"
+                      >
+                        <span>Detalhes</span>
+                        <ChevronRight className="h-3.5 w-3.5" />
+                      </Link>
+                      <a
+                        href={`mailto:contato@dsrsolucoes.com.br?subject=Cotação de Serviço - ${encodeURIComponent(service.title)}`}
+                        className="inline-flex items-center justify-center gap-1 rounded-lg bg-[#66c0f4] hover:bg-[#85d1f7] text-[#101822] px-3 py-2 text-xs font-bold transition-all shadow-sm"
+                      >
+                        <FileText className="h-3.5 w-3.5" />
+                        <span>Cotação</span>
+                      </a>
                     </div>
-
-                    {/* Applications */}
-                    <div className="rounded-lg bg-[#101822] p-3 border border-[#2a475e]/50 text-xs">
-                      <span className="font-mono text-[#66c0f4] font-semibold block mb-0.5">
-                        Aplicações Típicas:
-                      </span>
-                      <span className="text-[#8f98a0]">{service.applications}</span>
-                    </div>
-                  </div>
-
-                  {/* Service Card Footer with Direct Link to Dedicated Page */}
-                  <div className="mt-6 pt-4 border-t border-[#2a475e]/60 flex items-center justify-between gap-3">
-                    <Link
-                      href={`/servicos/${service.slug}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#66c0f4] hover:text-white transition-colors"
-                    >
-                      <span>Ver Página Completa do Serviço</span>
-                      <ChevronRight className="h-4 w-4" />
-                    </Link>
-
-                    <a
-                      href={`mailto:contato@dsrsolucoes.com.br?subject=Consulta de Servico - ${service.title}`}
-                      className="inline-flex items-center gap-1.5 rounded-lg bg-[#2a475e] hover:bg-[#3b678c] text-white px-3.5 py-1.5 text-xs font-semibold transition-all border border-[#66c0f4]/30"
-                    >
-                      <FileText className="h-3.5 w-3.5 text-[#66c0f4]" />
-                      <span>Cotação</span>
-                    </a>
                   </div>
                 </div>
               );
