@@ -268,7 +268,7 @@ export function FeaturedCarousel() {
           <ChevronRight className="h-8 w-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] transform group-hover/card:translate-x-0.5 transition-transform" />
         </button>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 lg:h-[515px] xl:h-[525px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 lg:h-[530px] xl:h-[540px]">
           
           {/* LADO ESQUERDO: Imagem Grande de Destaque (~58% do card em telas grandes) */}
           <Link
@@ -314,11 +314,11 @@ export function FeaturedCarousel() {
           </Link>
 
           {/* LADO DIREITO: Painel com 4 Thumbnails, Recomendação e Preço/Ação (~42% do card com folga perfeita) */}
-          <div className="lg:col-span-5 xl:col-span-5 bg-[#0d151e]/98 border-t lg:border-t-0 lg:border-l border-[#2a475e]/70 p-4 sm:p-5 lg:p-5 flex flex-col justify-between lg:h-full overflow-hidden">
+          <div className="lg:col-span-5 xl:col-span-5 bg-[#0d151e]/98 border-t lg:border-t-0 lg:border-l border-[#2a475e]/70 px-4 pt-3 pb-3.5 sm:px-5 sm:pt-3.5 sm:pb-4 lg:px-5 lg:pt-3 lg:pb-3.5 flex flex-col justify-between lg:h-full overflow-hidden">
             
             {/* Título do Produto / Serviço no Topo do Painel */}
             <div>
-              <div className="flex items-center justify-between gap-2 border-b border-[#2a475e]/60 pb-2 mb-2">
+              <div className="flex items-center justify-between gap-2 border-b border-[#2a475e]/60 pb-1.5 mb-1.5">
                 <div>
                   <h4 className="text-base sm:text-lg font-extrabold text-white tracking-tight leading-snug line-clamp-2">
                     {currentItem.title}
@@ -330,7 +330,7 @@ export function FeaturedCarousel() {
               </div>
 
               {/* Grid 2x2 com 4 Thumbnails Interativas padronizadas */}
-              <div className="grid grid-cols-2 gap-2 my-1.5">
+              <div className="grid grid-cols-2 gap-1.5 my-1">
                 {currentItem.thumbnails.slice(0, 4).map((thumb, idx) => {
                   const isHovered = hoveredThumbIndex === idx;
                   return (
@@ -360,7 +360,7 @@ export function FeaturedCarousel() {
               </div>
 
               {/* Bloco de Recomendação (Estilo o farol de aviso do print da Steam) */}
-              <div className="mt-2 p-2 sm:p-2.5 rounded-lg bg-[#111c27] border border-[#253e56] flex items-center gap-2.5">
+              <div className="mt-1.5 p-2 sm:p-2.5 rounded-lg bg-[#111c27] border border-[#253e56] flex items-center gap-2.5">
                 <div className="h-8 w-8 rounded flex items-center justify-center bg-[#1a2d3e] border border-[#66c0f4]/40 text-[#66c0f4] flex-shrink-0 shadow-[0_0_8px_rgba(102,192,244,0.3)]">
                   {currentItem.iconType === "wrench" ? (
                     <Wrench className="h-4 w-4" />
@@ -383,12 +383,12 @@ export function FeaturedCarousel() {
                 </div>
               </div>
 
-              {/* Badges de Parâmetros Técnicos / Tags */}
-              <div className="flex flex-wrap gap-1.5 mt-2">
+              {/* Badges de Parâmetros Técnicos / Tags (limite para 2 linhas estáveis) */}
+              <div className="flex flex-wrap gap-1.5 mt-1.5 min-h-[46px] max-h-[48px] overflow-hidden content-start">
                 {currentItem.tags.map((tag, tIdx) => (
                   <span
                     key={tIdx}
-                    className="rounded bg-[#162534] border border-[#2b4966] px-2 py-0.5 text-[10px] font-mono text-[#a6bfd6]"
+                    className="rounded bg-[#162534] border border-[#2b4966] px-2 py-0.5 text-[10px] font-mono text-[#a6bfd6] leading-snug"
                   >
                     {tag}
                   </span>
@@ -396,13 +396,13 @@ export function FeaturedCarousel() {
               </div>
             </div>
 
-            {/* Rodapé do Card: Box de Cotação com Botão de Ação com folga visual */}
-            <div className="pt-3 border-t border-[#2a475e]/60 flex items-center justify-between gap-3 mt-3">
+            {/* Rodapé do Card: Box de Cotação com Botão de Ação com folga visual proporcional */}
+            <div className="pt-2.5 border-t border-[#2a475e]/60 flex items-center justify-between gap-3 mt-auto">
               <div className="flex flex-col min-w-0 pr-1">
                 <span className="text-[10px] font-mono uppercase text-[#8f98a0]">
                   Disponibilidade DSR
                 </span>
-                <span className="text-xs font-bold text-white font-mono flex items-center gap-1.5 truncate">
+                <span className="text-xs font-bold text-white font-mono flex items-center gap-1.5 truncate mt-0.5">
                   <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
                   <span className="truncate">{currentItem.statusBadge}</span>
                 </span>
