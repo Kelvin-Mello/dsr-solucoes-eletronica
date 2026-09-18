@@ -294,36 +294,14 @@ export function CatalogView({ products }: CatalogViewProps) {
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-[#171a21] via-transparent to-black/20 pointer-events-none" />
 
-                          {/* Availability Badge */}
-                          <div className="absolute top-2.5 left-2.5">
-                            <span
-                              className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-mono font-semibold backdrop-blur-md shadow-sm ${
-                                product.status_disponibilidade === "Em Estoque"
-                                  ? "bg-emerald-950/80 text-emerald-300 border border-emerald-500/50"
-                                  : product.status_disponibilidade === "Engenharia Customizada"
-                                  ? "bg-cyan-950/80 text-cyan-300 border border-cyan-500/50"
-                                  : "bg-amber-950/80 text-amber-300 border border-amber-500/50"
-                              }`}
-                            >
-                              <span
-                                className={`h-1.5 w-1.5 rounded-full ${
-                                  product.status_disponibilidade === "Em Estoque"
-                                    ? "bg-emerald-400"
-                                    : product.status_disponibilidade === "Engenharia Customizada"
-                                    ? "bg-cyan-400 animate-pulse"
-                                    : "bg-amber-400"
-                                }`}
-                              />
-                              {product.status_disponibilidade}
-                            </span>
-                          </div>
-
-                          {/* Model Code */}
-                          <div className="absolute bottom-2.5 left-2.5">
-                            <span className="rounded bg-[#101822]/90 border border-[#2a475e] px-2 py-0.5 text-[10px] font-mono text-[#66c0f4] backdrop-blur-md">
-                              {product.codigo_modelo}
-                            </span>
-                          </div>
+                          {/* Model Code Badge */}
+                          {product.codigo_modelo && (
+                            <div className="absolute top-2.5 left-2.5">
+                              <span className="rounded bg-[#101822]/90 border border-[#2a475e] px-2 py-0.5 text-[10px] font-mono text-[#66c0f4] backdrop-blur-md shadow-sm">
+                                {product.codigo_modelo}
+                              </span>
+                            </div>
+                          )}
                         </Link>
 
                         {/* Card Body */}
@@ -335,11 +313,6 @@ export function CatalogView({ products }: CatalogViewProps) {
                             >
                               {product.nome}
                             </Link>
-                            {product.codigo_modelo && (
-                              <span className="text-xs font-mono font-semibold text-[#66c0f4] block mt-0.5">
-                                {product.codigo_modelo}
-                              </span>
-                            )}
                           </div>
 
                           <p className="text-xs text-[#8f98a0] line-clamp-2 leading-relaxed flex-1">
