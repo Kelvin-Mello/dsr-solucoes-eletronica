@@ -284,24 +284,24 @@ export function SteamEventsGrid() {
       {/* Container Principal com Navegação Lateral e Grid de 4 Cards */}
       <div className="relative group/events">
         
-        {/* Seta Esquerda Flutuante */}
+        {/* Botão Anterior (Seta Esquerda) - Integrado internamente */}
         <button
           type="button"
           onClick={handlePrev}
           aria-label="Slide anterior de eventos"
-          className="absolute -left-3 sm:-left-5 top-1/2 -translate-y-1/2 z-30 h-24 w-8 sm:w-10 bg-gradient-to-r from-black/90 to-black/30 hover:from-[#66c0f4]/80 hover:to-[#66c0f4]/20 border border-[#2a475e]/80 hover:border-[#66c0f4] rounded-l flex items-center justify-center text-white/80 hover:text-white transition-all cursor-pointer shadow-[0_4px_20px_rgba(0,0,0,0.8)]"
+          className="absolute left-0 top-0 bottom-0 z-30 w-10 sm:w-12 bg-gradient-to-r from-black/85 via-black/40 to-transparent opacity-0 group-hover/events:opacity-100 flex items-center justify-center text-white/80 hover:text-[#66c0f4] transition-all hover:w-14 cursor-pointer rounded-l"
         >
-          <ChevronLeft className="h-6 w-6 sm:h-7 sm:w-7" />
+          <ChevronLeft className="h-8 w-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] transform group-hover/events:-translate-x-0.5 transition-transform" />
         </button>
 
-        {/* Seta Direita Flutuante */}
+        {/* Botão Próximo (Seta Direita) - Integrado internamente */}
         <button
           type="button"
           onClick={handleNext}
           aria-label="Próximo slide de eventos"
-          className="absolute -right-3 sm:-right-5 top-1/2 -translate-y-1/2 z-30 h-24 w-8 sm:w-10 bg-gradient-to-l from-black/90 to-black/30 hover:from-[#66c0f4]/80 hover:to-[#66c0f4]/20 border border-[#2a475e]/80 hover:border-[#66c0f4] rounded-r flex items-center justify-center text-white/80 hover:text-white transition-all cursor-pointer shadow-[0_4px_20px_rgba(0,0,0,0.8)]"
+          className="absolute right-0 top-0 bottom-0 z-30 w-10 sm:w-12 bg-gradient-to-l from-black/85 via-black/40 to-transparent opacity-0 group-hover/events:opacity-100 flex items-center justify-center text-white/80 hover:text-[#66c0f4] transition-all hover:w-14 cursor-pointer rounded-r"
         >
-          <ChevronRight className="h-6 w-6 sm:h-7 sm:w-7" />
+          <ChevronRight className="h-8 w-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] transform group-hover/events:translate-x-0.5 transition-transform" />
         </button>
 
         {/* Grid de 4 Cards no formato exato da imagem Steam:
