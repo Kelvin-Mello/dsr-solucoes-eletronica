@@ -117,7 +117,7 @@ export default function ProdutosPage() {
               Início
             </Link>
             <ChevronRight className="h-3.5 w-3.5 text-[#2a475e]" />
-            <span className="text-[#66c0f4] font-semibold">Categorias & Produtos</span>
+            <span className="text-[#66c0f4] font-semibold">Nossos Produtos</span>
           </nav>
         </div>
 
@@ -129,7 +129,7 @@ export default function ProdutosPage() {
 
           <div className="relative z-10 max-w-3xl space-y-4">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-              Linhas & Categorias de <span className="text-[#66c0f4]">Produtos</span>
+              Nossos <span className="text-[#66c0f4]">Produtos</span>
             </h1>
 
             <p className="text-sm sm:text-base text-[#8f98a0] leading-relaxed">

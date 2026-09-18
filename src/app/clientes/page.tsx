@@ -259,7 +259,7 @@ export default function ClientesPage() {
             {/* Coluna Esquerda: Título e Descrição */}
             <div className="lg:col-span-7 space-y-3">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-                Clientes & <span className="text-[#66c0f4]">Parceiros Industriais</span>
+                Clientes & <span className="text-[#66c0f4]">Parceiros</span>
               </h1>
 
               <p className="text-sm sm:text-base text-[#8f98a0] leading-relaxed">

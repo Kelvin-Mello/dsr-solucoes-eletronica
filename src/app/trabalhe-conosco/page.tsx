@@ -76,7 +76,7 @@ export default function TrabalheConoscoPage() {
             Início
           </Link>
           <ChevronRight className="h-3.5 w-3.5 text-[#2a475e]" />
-          <span className="text-[#66c0f4] font-semibold">Trabalhe Conosco</span>
+          <span className="text-[#66c0f4] font-semibold">Trabalhe na DSR Soluções</span>
         </nav>
         </div>
 
@@ -88,7 +88,7 @@ export default function TrabalheConoscoPage() {
 
           <div className="relative z-10 max-w-3xl space-y-4">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-              Construa sua Carreira na <span className="text-[#66c0f4]">Eletrônica de Potência</span>
+              Trabalhe na <span className="text-[#66c0f4]">DSR Soluções</span>
             </h1>
 
             <p className="text-sm sm:text-base text-[#8f98a0] leading-relaxed">
