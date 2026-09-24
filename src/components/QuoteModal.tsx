@@ -295,7 +295,7 @@ export function QuoteModal({
     csvContent += `Observações da Planta:;${formData.observacoes.replace(/\n/g, " ") || "[Nenhuma observação informada]"}\n\n`;
 
     csvContent += `7. INSTRUÇÕES DE ENVIO\n`;
-    csvContent += `Envie este modelo preenchido (ou seu próprio memorial descritivo) em anexo para:;comercial@dsrsolucoes.com.br\n`;
+    csvContent += `Envie este modelo preenchido (ou seu próprio memorial descritivo) em anexo para:;kelvin@dsrsolucoes.com.br\n`;
     csvContent += `Ou envie para o WhatsApp do Plantão de Engenharia DSR:;(11) 95234-5037\n`;
 
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
@@ -310,7 +310,7 @@ export function QuoteModal({
 
   // Copia E-mail Direto
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText("comercial@dsrsolucoes.com.br");
+    navigator.clipboard.writeText("kelvin@dsrsolucoes.com.br");
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2500);
   };
@@ -354,7 +354,7 @@ export function QuoteModal({
     body += `\nMENSAGEM / OBSERVAÇÕES TÉCNICAS:\n`;
     body += `${formData.observacoes || "Favor enviar proposta técnica e prazo de entrega."}\n`;
 
-    return `mailto:comercial@dsrsolucoes.com.br?subject=${subject}&body=${encodeURIComponent(body)}`;
+    return `mailto:kelvin@dsrsolucoes.com.br?subject=${subject}&body=${encodeURIComponent(body)}`;
   };
 
   // Copia Protocolo
@@ -463,8 +463,16 @@ export function QuoteModal({
 
       const resData = await response.json().catch(() => null);
 
-      if (response.ok && resData?.success) {
+      if (response.ok && resData?.success && resData?.isPrimary) {
+        // Prioridade 1 (Resend) ou Prioridade 2 (Gmail SMTP) confirmadas com sucesso pleno
         setSubmissionStatus("success");
+      } else if (response.ok && resData?.success && resData?.contingencyNotice) {
+        // Prioridade 3 (Web3Forms/FormSubmit) transmitiu, mas conforme regra mandatória,
+        // acionamos o aviso de contingência para o cliente confirmar também via WhatsApp/E-mail
+        setSubmissionStatus("warning");
+        setSubmissionMessage(
+          "Cotação registrada com sucesso sob protocolo oficial! Como os motores primários estavam indisponíveis, a mensagem foi despachada por rota secundária de contingência. Para garantir o atendimento imediato da nossa engenharia, recomendamos também confirmar pelo WhatsApp ou E-mail com 1 clique abaixo."
+        );
       } else {
         setSubmissionStatus("warning");
         setSubmissionMessage(
@@ -718,7 +726,7 @@ export function QuoteModal({
 
                       {/* Botão de Envio por E-mail Direto */}
                       <a
-                        href={`mailto:comercial@dsrsolucoes.com.br?subject=${encodeURIComponent(
+                        href={`mailto:kelvin@dsrsolucoes.com.br?subject=${encodeURIComponent(
                           `[${protocolNumber}] Cotação Técnica [Nível: ${level.toUpperCase()}] - ${config.name} (${config.code})`
                         )}&body=${encodeURIComponent(
                           `SOLICITAÇÃO DE COTAÇÃO TÉCNICA - DSR SOLUÇÕES EM ELETRÔNICA\nProtocolo Oficial: ${protocolNumber}\n\n${reportSummary || "Especificações conforme formulário do portal."}`
@@ -726,7 +734,7 @@ export function QuoteModal({
                         className="flex items-center justify-center gap-2.5 w-full rounded-lg bg-[#142332] hover:bg-[#1a2e42] text-[#66c0f4] border border-[#3b678c] font-semibold py-2.5 px-5 text-sm transition-colors"
                       >
                         <Mail className="h-4 w-4" />
-                        <span>Enviar via Aplicativo de E-mail (comercial@dsrsolucoes.com.br)</span>
+                        <span>Enviar via Aplicativo de E-mail (kelvin@dsrsolucoes.com.br)</span>
                       </a>
 
                       <div className="flex items-center justify-between pt-2">
@@ -801,7 +809,7 @@ export function QuoteModal({
                         </span>
                         <div className="flex items-center justify-between p-3 rounded-lg bg-[#172433] border border-[#2a475e]">
                           <span className="text-sm font-mono font-bold text-white select-all">
-                            comercial@dsrsolucoes.com.br
+                            kelvin@dsrsolucoes.com.br
                           </span>
                           <button
                             type="button"

@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
       .filter(Boolean);
 
     const defaultDestinations = [
-      "comercial@dsrsolucoes.com.br",
+      "kelvin@dsrsolucoes.com.br",
       "dsr.solucoes.eletronica@gmail.com"
     ];
 
@@ -246,7 +246,7 @@ ${mensagem}
     // -------------------------------------------------------------
     const dispatchErrors: Record<string, string> = {};
 
-    // 4. MOTOR 1: RESEND (Domínio Oficial @dsrsolucoes.com.br - Prioritário)
+    // 4. PRIORIDADE 1: RESEND (Domínio Oficial @dsrsolucoes.com.br)
     const resendKey = process.env.RESEND_API_KEY;
     if (resendKey) {
       try {
@@ -276,6 +276,7 @@ ${mensagem}
             success: true,
             delivered: true,
             provider: "resend",
+            isPrimary: true,
             destinations: destinationEmails,
             message: "Cotação transmitida com sucesso via Resend (Domínio Oficial DSR)!",
           });
@@ -290,7 +291,7 @@ ${mensagem}
       }
     }
 
-    // 5. MOTOR 2: GMAIL SMTP COM SENHA DE APP (Fallback 1)
+    // 5. PRIORIDADE 2: GMAIL SMTP COM SENHA DE APP (Backup Seguro)
     if (smtpPass) {
       try {
         const transporter = nodemailer.createTransport({
@@ -316,6 +317,7 @@ ${mensagem}
           success: true,
           delivered: true,
           provider: "smtp",
+          isPrimary: true,
           destinations: destinationEmails,
           message: "Cotação transmitida com sucesso via Gmail SMTP (Backup Seguro)!",
         });
@@ -326,7 +328,9 @@ ${mensagem}
       }
     }
 
-    // 6. MOTOR 3: WEB3FORMS (Fallback 2)
+    // 6. PRIORIDADE 3 (CONTINGÊNCIA): WEB3FORMS
+    // Caso P1 e P2 falhem, se P3 entregar, o e-mail chega na DSR,
+    // mas a API sinaliza contingencyNotice para o cliente receber aviso de contingência
     const web3Key = process.env.WEB3FORMS_ACCESS_KEY || process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
     if (web3Key) {
       try {
@@ -357,8 +361,10 @@ ${mensagem}
             success: true,
             delivered: true,
             provider: "web3forms",
+            isPrimary: false,
+            contingencyNotice: true,
             destinations: destinationEmails,
-            message: "Cotação transmitida com sucesso via Web3Forms Gateway!",
+            message: "Cotação transmitida via contingência Web3Forms (Aviso ativado para o cliente).",
           });
         } else {
           dispatchErrors["web3forms"] = JSON.stringify(w3Result);
@@ -370,7 +376,7 @@ ${mensagem}
       }
     }
 
-    // 7. MOTOR 4: FORMSUBMIT (Fallback 3)
+    // 7. PRIORIDADE 3 (CONTINGÊNCIA): FORMSUBMIT
     try {
       const originHeader =
         request.headers.get("origin") ||
@@ -412,8 +418,10 @@ ${mensagem}
           success: true,
           delivered: true,
           provider: "formsubmit",
+          isPrimary: false,
+          contingencyNotice: true,
           destinations: destinationEmails,
-          message: "Cotação transmitida com sucesso para a equipe técnica da DSR Soluções!",
+          message: "Cotação transmitida via contingência FormSubmit (Aviso ativado para o cliente).",
         });
       }
       dispatchErrors["formsubmit"] = fsData?.message || "Rejeitado pelo FormSubmit";
