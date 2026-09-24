@@ -31,3 +31,11 @@ Este projeto possui regras estritas de execução e controle operacional para pr
 - **Execução Paralela**: Sempre que o usuário solicitar mais de uma tarefa simultaneamente e for avaliado que é possível realizá-las em paralelo sem interferência mútua ou dependência sequencial de arquivos, delegar as tarefas para sub-agentes.
 - **Coordenação e Consolidação**: O agente principal atua como coordenador, despachando sub-agentes para trabalhos independentes, aguardando suas conclusões e consolidando a validação final (compilação estática com `npm run build` e entrega unificada ao usuário).
 
+## 5. Deploy de Produção na Vercel
+- **Credenciais Locais Seguras**: O token de acesso à Vercel está configurado exclusivamente neste computador (salvo no arquivo `.env.local` na variável `VERCEL_TOKEN`, na variável de ambiente de usuário do Windows `VERCEL_TOKEN`, e na configuração global do Vercel CLI em `%APPDATA%\com.vercel.cli\Data\auth.json`).
+- **Execução do Deploy**: Para publicar em produção na Vercel de forma automática e não-interativa, execute:
+  `cmd.exe /c "npx.cmd vercel --prod --yes"`
+  (caso necessário explicitar o token, leia a variável `VERCEL_TOKEN` do `.env.local` ou use `--token %VERCEL_TOKEN%`).
+- **Segurança**: Nunca comite o token em arquivos rastreados pelo Git. O `.env.local`, a variável de ambiente do Windows e `%APPDATA%` são estritamente locais à máquina do usuário.
+
+
