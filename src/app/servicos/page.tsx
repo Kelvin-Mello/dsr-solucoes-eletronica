@@ -10,6 +10,7 @@ import {
   FileText
 } from "lucide-react";
 import { getAllServices } from "@/mock/services";
+import { ServiceCardActions } from "@/components/ServiceCardActions";
 
 export const metadata: Metadata = {
   title: "Serviços de Engenharia & Retrofit | DSR Soluções",
@@ -127,23 +128,8 @@ export default function ServicosPage() {
                       {service.subtitle || service.description}
                     </p>
 
-                    {/* Card Footer Actions */}
-                    <div className="mt-auto pt-3 border-t border-[#2a475e]/60 flex items-center gap-2">
-                      <Link
-                        href={`/servicos/${service.slug}`}
-                        className="flex-1 inline-flex items-center justify-center gap-1 rounded-lg bg-[#2a475e] hover:bg-[#3b678c] text-white px-3 py-2 text-xs font-semibold transition-colors"
-                      >
-                        <span>Detalhes</span>
-                        <ChevronRight className="h-3.5 w-3.5" />
-                      </Link>
-                      <a
-                        href={`mailto:contato@dsrsolucoes.com.br?subject=Cotação de Serviço - ${encodeURIComponent(service.title)}`}
-                        className="inline-flex items-center justify-center gap-1 rounded-lg bg-[#66c0f4] hover:bg-[#85d1f7] text-[#101822] px-3 py-2 text-xs font-bold transition-all shadow-sm"
-                      >
-                        <FileText className="h-3.5 w-3.5" />
-                        <span>Cotação</span>
-                      </a>
-                    </div>
+                    {/* Card Footer Actions com QuoteModal específico por serviço */}
+                    <ServiceCardActions service={service} />
                   </div>
                 </div>
               );

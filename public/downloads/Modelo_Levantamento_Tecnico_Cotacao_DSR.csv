@@ -1,0 +1,104 @@
+﻿DSR SOLUÇÕES EM ELETRÔNICA;MODELO DE LEVANTAMENTO TÉCNICO & SOLICITAÇÃO DE COTAÇÃO
+Engenharia de Aplicação & Soluções Industriais;Data de Emissão: [Preencher]
+Contato Oficial: comercial@dsrsolucoes.com.br;WhatsApp: (11) 95234-5037
+Site Oficial: https://dsrsolucoes.com.br;Atendimento Nacional 24/7
+
+INSTRUÇÕES DE USO (OPCIONAL):
+1. Este documento é uma folha de dados técnica sugerida para auxiliar sua equipe no levantamento das necessidades da planta.
+2. O preenchimento é totalmente opcional e flexível. Você pode preencher apenas os campos que julgar pertinentes.
+3. Após preencher, envie este arquivo em anexo para o e-mail: comercial@dsrsolucoes.com.br ou via WhatsApp para (11) 95234-5037.
+4. Caso já possua sua própria folha de dados, especificação interna ou memorial descritivo em PDF/Word, pode enviá-lo diretamente.
+
+========================================================================================
+1. DADOS CADASTRAIS DA EMPRESA E RESPONSÁVEL
+========================================================================================
+Nome do Responsável Técnico:;[Preencher nome do engenheiro/comprador]
+Empresa / Planta Industrial:;[Razão Social ou Nome Fantasia da Fábrica / Subestação]
+E-mail Corporativo:;[email@empresa.com.br]
+E-mail Alternativo (opcional):;[email.alternativo@empresa.com.br]
+Telefone / WhatsApp Principal:;[(DD) 9XXXX-XXXX]
+Telefone / WhatsApp Alternativo:;[(DD) 9XXXX-XXXX]
+CEP da Instalação / Obra:;[XXXXX-XXX]
+País:;Brasil
+Estado (UF):;[UF]
+Cidade:;[Cidade da Planta]
+Endereço / Logradouro:;[Rua / Avenida / Distrito Industrial]
+Número:;[Número]
+Complemento / Prédio / Sala:;[Galpão, Subestação, etc.]
+
+========================================================================================
+2. IDENTIFICAÇÃO DO PRODUTO OU SERVIÇO DE INTERESSE
+========================================================================================
+Equipamento ou Serviço:;[Ex: Retificador Industrial Analógico Modelo RIT-D / Retrofitting / Manutenção Preventiva]
+Código do Modelo (se aplicável):;[Ex: Modelo RIT-D, Modelo DK10, DSR-UPS-IND, etc.]
+Objetivo do Projeto:;[ ( ) Retrofit de Painel Existente  ( ) Nova Linha Greenfield  ( ) Substituição por Falha  ( ) Aumento de Capacidade ]
+Data Desejada para Entrega / Início:;[Preencher prazo desejado]
+
+========================================================================================
+3. PARÂMETROS ELÉTRICOS PRINCIPAIS (PARA RETIFICADORES / UPS / CONVERSORES)
+========================================================================================
+Tensão CA de Alimentação da Rede:;[ ( ) 220V Trifásico  ( ) 380V Trifásico  ( ) 440V Trifásico  ( ) 480V Trifásico  ( ) Monofásico  ( ) Outra ]
+Frequência da Rede Elétrica:;[ ( ) 60 Hz (Padrão Brasil)  ( ) 50 Hz (Exportação) ]
+Tensão CC Nominal do Barramento:;[ ( ) 125 Vcc (Padrão Subestação)  ( ) 110 Vcc  ( ) 48 Vcc  ( ) 24 Vcc  ( ) 220 Vcc  ( ) Outra: ____ Vcc ]
+Corrente Nominal de Saída CC (A):;[ ( ) 25A  ( ) 50A  ( ) 100A  ( ) 150A  ( ) 200A  ( ) 300A  ( ) 400A  ( ) 500A  ( ) 1000A+ ]
+Quantidade de Etapas da UDQ:;[ ( ) Sem UDQ (Carga Direta)  ( ) 1 Etapa  ( ) 2 Etapas  ( ) 3 Etapas  ( ) 4 Etapas ]
+Tipo de Banco de Baterias Acoplado:;[ ( ) Chumbo-Ácido Ventilada (VLA)  ( ) Chumbo Selada (VRLA/Gel)  ( ) Níquel-Cádmio (Ni-Cd)  ( ) Lítio LiFePO4  ( ) Sem Bateria ]
+Capacidade do Banco de Baterias (Ah):;[Preencher se souber, ex: 150 Ah / 10h]
+Grau de Proteção Mecânica (IP):;[ ( ) IP20 Padrão  ( ) IP21 Pingadeira  ( ) IP31  ( ) IP42 Ventilação Filtrada  ( ) IP54 Industrial Severo ]
+
+========================================================================================
+4. INFORMAÇÕES TÉCNICAS ESPECÍFICAS PARA SERVIÇOS (RETROFIT / MANUTENÇÃO / COMISSIONAMENTO)
+========================================================================================
+Fabricante e Modelo do Painel Atual:;[Ex: WEG, Alstom, Lorenzetti, Emerson, etc.]
+Potência / Tensão / Corrente Atual:;[Ex: 125Vcc / 100A]
+Janela Máxima de Parada da Planta:;[Ex: 24 horas no fim de semana / 48 horas / Sem parada com bypass]
+Necessidade de Visita Técnica Prévia?:;[ ( ) Sim, necessária visita in loco  ( ) Não, enviaremos diagramas e fotos ]
+Número de Painéis / Equipamentos:;[Ex: 2 retificadores e 2 bancos de baterias]
+Local da Subestação / Acesso Especial:;[Descrever se há necessidade de treinamento de integração, EPIs específicos, etc.]
+
+========================================================================================
+5. OPCIONAIS AVANÇADOS DE ENGENHARIA (MARQUE "X" NOS DESEJADOS)
+========================================================================================
+[ ] Voltímetro CC do Barramento Consumidor com Classe de Precisão 1.5%
+[ ] Amperímetro CC da Corrente Total do Retificador
+[ ] Amperímetro CC da Bateria com Zero Central (Carga / Descarga)
+[ ] Voltímetro CA de Entrada com Chave Seletora de Fases RS/ST/TR
+[ ] Frequencímetro Analógico de Entrada CA
+[ ] Amperímetro CA de Entrada com Chave Seletora
+[ ] Horímetro Eletromecânico de Operação
+[ ] Sinalização Remota a Relés: Falha Geral do Equipamento (Contato Seco NA/NF)
+[ ] Sinalização Remota a Relés: Falha da Rede CA / Subtensão de Entrada
+[ ] Sinalização Remota a Relés: Subtensão CC Consumidor
+[ ] Sinalização Remota a Relés: Sobretensão CC Consumidor
+[ ] Sinalização Remota a Relés: Fuga à Terra Bipolar (+ ou - com supervisão óptica)
+[ ] Sinalização Remota a Relés: Disjuntor CA / CC / Bateria Desarmado
+[ ] Sinalização Remota a Relés: Modo Carga Rápida / Equalização Ativo
+[ ] Sinalização Remota a Relés: Atuação da UDQ (Etapas inseridas)
+[ ] Filtro de Entrada para Harmônicas: Filtro Passivo LC Ressonante (THDi < 10%)
+[ ] Filtro de Entrada para Harmônicas: Ponte de 12 Pulsos com Transformador Defasador (THDi < 8%)
+[ ] Filtro Ativo de Harmônicas (APF Integrado)
+[ ] Monitoramento Ativo de Pulso de Disparo dos SCR (Tiristores)
+[ ] Sensor PT100 para Compensação Térmica de Carga de Baterias (Cabo 10m)
+[ ] Conectividade Digital: Modbus-RTU RS485 / Modbus-TCP Ethernet
+[ ] Aquecedor Anticondensação com Termostato e Higrostato Regulável
+[ ] Iluminação Interna do Painel acionada por Fim de Curso + Tomada de Serviço 220V interna
+[ ] Pintura Especial: Cinza Munsell N6.5 (Padrão Petrobras/Vale) ou RAL 7035
+
+========================================================================================
+6. RESTRIÇÕES DE ESPAÇO FÍSICO / GABINETE
+========================================================================================
+Existe limitação de dimensões na sala técnica?:;[ ( ) Não há restrições  ( ) Sim, há limites de espaço ]
+Largura Máxima Permitida (mm):;[Ex: 800 mm]
+Profundidade Máxima Permitida (mm):;[Ex: 800 mm]
+Altura Máxima Permitida (mm):;[Ex: 2100 mm]
+Entrada de Cabos:;[ ( ) Inferior / Fundo Falso  ( ) Superior / Calha Aérea ]
+
+========================================================================================
+7. MENSAGEM / OBSERVAÇÕES TÉCNICAS / REQUISITOS ESPECÍFICOS
+========================================================================================
+Observações da Planta / Requisitos Normativos:
+[Escreva aqui sua mensagem, observações e requisitos específicos da sua empresa, tais como requisitos de edital, normas internas da concessionária, etc.]
+
+========================================================================================
+FIM DO FORMULÁRIO - ENVIE PARA comercial@dsrsolucoes.com.br OU WHATSAPP (11) 95234-5037
+DSR SOLUÇÕES EM ELETRÔNICA LTDA. • ENGENHARIA DE CONFIABILIDADE INDUSTRIAL

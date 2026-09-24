@@ -22,6 +22,7 @@ import {
   ArrowRight
 } from "lucide-react";
 import { Product } from "@/mock/products";
+import { QuoteModal } from "./QuoteModal";
 
 interface ProductDetailTabsProps {
   product: Product;
@@ -34,6 +35,7 @@ export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
   const [activeTab, setActiveTab] = useState<TabType>("especificacoes");
   // Sub-botão para exibir uma seção de parâmetros por vez
   const [selectedSpecGroup, setSelectedSpecGroup] = useState<number>(0);
+  const [isAdvancedQuoteOpen, setIsAdvancedQuoteOpen] = useState(false);
 
   const tabs = [
     {
@@ -550,14 +552,23 @@ export function ProductDetailTabs({ product }: ProductDetailTabsProps) {
                 </p>
               </div>
 
-              <Link
-                href={`/contato?assunto=${encodeURIComponent("Cotação com Opcionais: " + product.nome)}`}
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#66c0f4] to-[#1b75bc] hover:brightness-110 text-[#0a1118] font-bold text-xs uppercase tracking-wider px-5 py-3 shadow-[0_0_15px_rgba(102,192,244,0.4)] transition-all shrink-0 whitespace-nowrap"
+              <button
+                type="button"
+                onClick={() => setIsAdvancedQuoteOpen(true)}
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#66c0f4] to-[#1b75bc] hover:brightness-110 text-[#0a1118] font-bold text-xs uppercase tracking-wider px-5 py-3 shadow-[0_0_15px_rgba(102,192,244,0.4)] transition-all shrink-0 whitespace-nowrap cursor-pointer"
               >
                 <span>Solicitar Cotação com Opcionais</span>
                 <ArrowRight className="h-4 w-4" />
-              </Link>
+              </button>
             </div>
+
+            {/* Embedded QuoteModal no nível Avançada */}
+            <QuoteModal
+              product={product}
+              initialLevel="avancada"
+              isOpen={isAdvancedQuoteOpen}
+              onClose={() => setIsAdvancedQuoteOpen(false)}
+            />
           </div>
         )}
 
