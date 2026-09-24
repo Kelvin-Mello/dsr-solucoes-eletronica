@@ -81,8 +81,21 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const destinationEmail =
-      process.env.CONTACT_DESTINATION_EMAIL || "dsr.solucoes.eletronica@gmail.com";
+    // Lista de Destinatários: Entrega no e-mail do domínio e SEMPRE no Gmail da DSR como garantia
+    const configuredDestinations = (process.env.CONTACT_DESTINATION_EMAILS || process.env.CONTACT_DESTINATION_EMAIL || "")
+      .split(",")
+      .map((e) => e.trim())
+      .filter(Boolean);
+
+    const defaultDestinations = [
+      "comercial@dsrsolucoes.com.br",
+      "dsr.solucoes.eletronica@gmail.com"
+    ];
+
+    const destinationEmails = configuredDestinations.length > 0
+      ? Array.from(new Set([...configuredDestinations, "dsr.solucoes.eletronica@gmail.com"]))
+      : defaultDestinations;
+
     const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
     const smtpPort = Number(process.env.SMTP_PORT || 465);
     const smtpUser = process.env.SMTP_USER || "dsr.solucoes.eletronica@gmail.com";
@@ -228,73 +241,136 @@ ${mensagem}
 ---------------------------------------------------------
     `.trim();
 
-    // 4. Disparo via SMTP direto (se SMTP_PASS configurado)
-    if (smtpPass) {
-      const transporter = nodemailer.createTransport({
-        host: smtpHost,
-        port: smtpPort,
-        secure: smtpPort === 465,
-        auth: {
-          user: smtpUser,
-          pass: smtpPass,
-        },
-      });
+    // -------------------------------------------------------------
+    // MOTOR DE DISPARO MULTI-PROVEDOR COM FAILOVER EM CASCATA
+    // -------------------------------------------------------------
+    const dispatchErrors: Record<string, string> = {};
 
-      await transporter.sendMail({
-        from: `"Portal DSR Soluções" <${smtpUser}>`,
-        to: destinationEmail,
-        replyTo: `"${nome}" <${email}>`,
-        subject: `[Site DSR] ${assunto} - ${empresa} (${nome})`,
-        text: textEmail,
-        html: htmlEmail,
-      });
+    // 4. MOTOR 1: RESEND (Domínio Oficial @dsrsolucoes.com.br - Prioritário)
+    const resendKey = process.env.RESEND_API_KEY;
+    if (resendKey) {
+      try {
+        const fromAddress =
+          process.env.RESEND_FROM_EMAIL || "DSR Soluções <cotacoes@dsrsolucoes.com.br>";
 
-      return NextResponse.json({
-        success: true,
-        delivered: true,
-        provider: "smtp",
-        message: "E-mail enviado com sucesso para a equipe técnica da DSR!",
-      });
-    }
-
-    // 5. Disparo via Web3Forms API (se WEB3FORMS_ACCESS_KEY configurado)
-    const web3Key = process.env.WEB3FORMS_ACCESS_KEY || process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
-    if (web3Key) {
-      const w3Response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: web3Key,
-          subject: `[Site DSR] ${assunto} - ${empresa} (${nome})`,
-          from_name: `${nome} via DSR Soluções`,
-          name: nome,
-          email: email,
-          phone: telefone,
-          company: empresa,
-          topic: assunto,
-          message: mensagem,
-          replyto: email,
-        }),
-      });
-
-      const w3Result = await w3Response.json();
-
-      if (w3Result.success) {
-        return NextResponse.json({
-          success: true,
-          delivered: true,
-          provider: "web3forms",
-          message: "E-mail transmitido com sucesso para a DSR Soluções!",
+        const resendResponse = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${resendKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: fromAddress,
+            to: destinationEmails,
+            reply_to: email,
+            subject: assunto,
+            html: htmlEmail,
+            text: textEmail,
+          }),
         });
-      } else {
-        console.error("[WEB3FORMS ERROR]", w3Result);
+
+        const resendData = await resendResponse.json();
+
+        if (resendResponse.ok && resendData?.id) {
+          return NextResponse.json({
+            success: true,
+            delivered: true,
+            provider: "resend",
+            destinations: destinationEmails,
+            message: "Cotação transmitida com sucesso via Resend (Domínio Oficial DSR)!",
+          });
+        } else {
+          dispatchErrors["resend"] = resendData?.message || `HTTP ${resendResponse.status}`;
+          console.warn("[RESEND FAILOVER - TENTANDO PRÓXIMO MOTOR]", resendData);
+        }
+      } catch (resendError) {
+        dispatchErrors["resend"] =
+          resendError instanceof Error ? resendError.message : "Erro desconhecido no Resend";
+        console.warn("[RESEND FAILOVER ERROR]", resendError);
       }
     }
 
-    // 6. Disparo via FormSubmit.co direto para o e-mail da DSR (Ativo e sem captcha)
+    // 5. MOTOR 2: GMAIL SMTP COM SENHA DE APP (Fallback 1)
+    if (smtpPass) {
+      try {
+        const transporter = nodemailer.createTransport({
+          host: smtpHost,
+          port: smtpPort,
+          secure: smtpPort === 465,
+          auth: {
+            user: smtpUser,
+            pass: smtpPass,
+          },
+        });
+
+        await transporter.sendMail({
+          from: `"Portal DSR Soluções" <${smtpUser}>`,
+          to: destinationEmails.join(", "),
+          replyTo: `"${nome}" <${email}>`,
+          subject: assunto,
+          text: textEmail,
+          html: htmlEmail,
+        });
+
+        return NextResponse.json({
+          success: true,
+          delivered: true,
+          provider: "smtp",
+          destinations: destinationEmails,
+          message: "Cotação transmitida com sucesso via Gmail SMTP (Backup Seguro)!",
+        });
+      } catch (smtpError) {
+        dispatchErrors["smtp"] =
+          smtpError instanceof Error ? smtpError.message : "Erro desconhecido no SMTP";
+        console.warn("[SMTP FAILOVER ERROR]", smtpError);
+      }
+    }
+
+    // 6. MOTOR 3: WEB3FORMS (Fallback 2)
+    const web3Key = process.env.WEB3FORMS_ACCESS_KEY || process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    if (web3Key) {
+      try {
+        const w3Response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: web3Key,
+            subject: assunto,
+            from_name: `${nome} via DSR Soluções`,
+            name: nome,
+            email: email,
+            phone: telefone,
+            company: empresa,
+            topic: assunto,
+            message: mensagem,
+            replyto: email,
+          }),
+        });
+
+        const w3Result = await w3Response.json();
+
+        if (w3Result.success) {
+          return NextResponse.json({
+            success: true,
+            delivered: true,
+            provider: "web3forms",
+            destinations: destinationEmails,
+            message: "Cotação transmitida com sucesso via Web3Forms Gateway!",
+          });
+        } else {
+          dispatchErrors["web3forms"] = JSON.stringify(w3Result);
+          console.warn("[WEB3FORMS FAILOVER ERROR]", w3Result);
+        }
+      } catch (w3Error) {
+        dispatchErrors["web3forms"] =
+          w3Error instanceof Error ? w3Error.message : "Erro desconhecido no Web3Forms";
+      }
+    }
+
+    // 7. MOTOR 4: FORMSUBMIT (Fallback 3)
     try {
       const originHeader =
         request.headers.get("origin") ||
@@ -303,7 +379,7 @@ ${mensagem}
       const refererHeader =
         request.headers.get("referer") || `${originHeader}/contato`;
 
-      const fsResponse = await fetch(`https://formsubmit.co/ajax/${destinationEmail}`, {
+      const fsResponse = await fetch(`https://formsubmit.co/ajax/dsr.solucoes.eletronica@gmail.com`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -315,10 +391,11 @@ ${mensagem}
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
         },
         body: JSON.stringify({
-          _subject: `[Site DSR] ${assunto} - ${empresa} (${nome})`,
+          _subject: assunto,
           _replyto: email,
           _captcha: "false",
           _template: "table",
+          "Protocolo Oficial": protocolo || "N/A",
           "Nome do Contato": nome,
           "Empresa / Planta": empresa,
           "E-mail Corporativo": email,
@@ -329,34 +406,31 @@ ${mensagem}
       });
 
       const fsData = await fsResponse.json();
-      console.log("[FORMSUBMIT RESPONSE]", fsData);
 
       if (fsData.success === "true" || fsData.success === true) {
         return NextResponse.json({
           success: true,
           delivered: true,
           provider: "formsubmit",
-          message: "E-mail transmitido com sucesso para a equipe técnica da DSR Soluções!",
+          destinations: destinationEmails,
+          message: "Cotação transmitida com sucesso para a equipe técnica da DSR Soluções!",
         });
       }
-
-      if (fsData.message && fsData.message.includes("Activation")) {
-        console.warn("[FORMSUBMIT ACTIVATION REQUIRED] Um e-mail de ativação foi enviado para dsr.solucoes.eletronica@gmail.com");
-      }
+      dispatchErrors["formsubmit"] = fsData?.message || "Rejeitado pelo FormSubmit";
     } catch (fsError) {
-      console.error("[FORMSUBMIT ERROR]", fsError);
+      dispatchErrors["formsubmit"] =
+        fsError instanceof Error ? fsError.message : "Erro no FormSubmit";
     }
 
-    // 7. Se nenhuma credencial de envio estiver cadastrada/ativada, orienta com fallback manual
+    // 8. Se todos os motores falharem ou não estiverem configurados:
     console.warn("==================================================");
-    console.warn("[DSR CONTATO - ATENÇÃO: CREDENCIAIS NÃO CONFIGURADAS]");
+    console.warn("[DSR CONTATO - ALERTA: NENHUM MOTOR DE ENVIO ATIVO]");
+    console.warn(`Protocolo: ${protocolo}`);
     console.warn(`De: ${nome} (${empresa}) <${email}>`);
     console.warn(`Telefone: ${telefone}`);
     console.warn(`Assunto: ${assunto}`);
-    console.warn(`Mensagem: ${mensagem}`);
-    console.warn(
-      "Ação necessária: Configure a variável SMTP_PASS (Senha de App do Gmail) ou WEB3FORMS_ACCESS_KEY nas variáveis de ambiente da Vercel para efetivar a entrega automática."
-    );
+    console.warn(`Destinatários Planejados: ${destinationEmails.join(", ")}`);
+    console.warn(`Erros dos Motores:`, dispatchErrors);
     console.warn("==================================================");
 
     return NextResponse.json(
@@ -364,10 +438,13 @@ ${mensagem}
         success: false,
         delivered: false,
         needsConfiguration: true,
-        destination: destinationEmail,
+        protocolo,
+        destinations: destinationEmails,
+        dispatchErrors,
         error:
-          "O envio automático de e-mail requer a configuração das credenciais (Senha de App do Gmail ou chave Web3Forms) no servidor.",
+          "O envio automático requer a configuração de ao menos um motor de envio (Resend API Key ou Senha de App do Gmail).",
         lead: {
+          protocolo,
           nome,
           empresa,
           email,
