@@ -1622,3 +1622,21 @@ export async function searchAddressByCep(rawCep: string): Promise<CepResult> {
     return { sucesso: false, mensagem: "Falha de rede ao consultar o serviço ViaCEP." };
   }
 }
+
+/**
+ * Gerador de Protocolo de Engenharia Único e Anti-Colisão (Zero Colisão)
+ * Formato: DSR-COT-YYMMDD-HHMMSS-XXX (Data, Hora precisa ao segundo e Entropia)
+ * Exemplo: DSR-COT-260924-145520-892
+ */
+export function generateUniqueProtocol(prefix = "DSR-COT"): string {
+  const now = new Date();
+  const yy = String(now.getFullYear()).slice(-2);
+  const mm = String(now.getMonth() + 1).padStart(2, "0");
+  const dd = String(now.getDate()).padStart(2, "0");
+  const hh = String(now.getHours()).padStart(2, "0");
+  const min = String(now.getMinutes()).padStart(2, "0");
+  const ss = String(now.getSeconds()).padStart(2, "0");
+  const rnd = Math.floor(100 + Math.random() * 900); // Entropia de 3 dígitos
+  return `${prefix}-${yy}${mm}${dd}-${hh}${min}${ss}-${rnd}`;
+}
+

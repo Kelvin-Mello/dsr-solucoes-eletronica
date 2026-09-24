@@ -10,6 +10,7 @@ interface ContactPayload {
   telefone: string;
   assunto: string;
   mensagem: string;
+  protocolo?: string;
   website?: string; // Honeypot anti-spam
 }
 
@@ -36,7 +37,11 @@ export async function POST(request: NextRequest) {
     const empresa = (body.empresa || "").trim();
     const email = (body.email || "").trim();
     const telefone = (body.telefone || "").trim();
-    const assunto = (body.assunto || "Contato pelo Site").trim();
+    const protocolo = (body.protocolo || "").trim();
+    const assuntoBruto = (body.assunto || "Contato pelo Site").trim();
+    const assunto = protocolo && !assuntoBruto.includes(protocolo)
+      ? `[${protocolo}] ${assuntoBruto}`
+      : assuntoBruto;
     const mensagem = (body.mensagem || "").trim();
 
     // 2. Validação básica de campos obrigatórios
@@ -117,8 +122,16 @@ export async function POST(request: NextRequest) {
     <!-- Conteúdo Principal -->
     <div style="padding: 30px;">
       
-      <!-- Box do Assunto -->
+      <!-- Box do Assunto e Protocolo -->
       <div style="background-color: #172433; border: 1px solid #3b678c; border-left: 4px solid #66c0f4; padding: 14px 18px; border-radius: 6px; margin-bottom: 24px;">
+        ${protocolo ? `
+        <div style="margin-bottom: 8px;">
+          <span style="font-size: 10px; font-family: monospace; color: #8f98a0; text-transform: uppercase; letter-spacing: 1px;">Protocolo Oficial:</span>
+          <span style="display: inline-block; background-color: rgba(102, 192, 244, 0.2); border: 1px solid #66c0f4; border-radius: 4px; padding: 3px 8px; font-family: monospace; font-size: 13px; font-weight: bold; color: #66c0f4; margin-left: 6px;">
+            ${escapeHtml(protocolo)}
+          </span>
+        </div>
+        ` : ""}
         <span style="font-size: 11px; font-family: monospace; color: #8f98a0; text-transform: uppercase;">Assunto Principal:</span>
         <div style="font-size: 16px; font-weight: bold; color: #ffffff; margin-top: 2px;">
           ${escapeHtml(assunto)}
@@ -203,7 +216,7 @@ ${escapeHtml(mensagem)}
     const textEmail = `
 NOVA SOLICITAÇÃO TÉCNICA - DSR SOLUÇÕES EM ELETRÔNICA
 Data/Hora: ${timestamp}
----------------------------------------------------------
+${protocolo ? `Protocolo Oficial: ${protocolo}\n` : ""}---------------------------------------------------------
 Assunto: ${assunto}
 Nome do Contato: ${nome}
 Empresa / Planta: ${empresa}

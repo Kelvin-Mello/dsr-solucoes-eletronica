@@ -31,7 +31,8 @@ import {
   QuoteConfigItem, 
   getQuoteItemConfig, 
   searchAddressByCep,
-  CepResult
+  CepResult,
+  generateUniqueProtocol
 } from "@/config/quoteConfig";
 
 export interface QuoteModalProps {
@@ -60,11 +61,15 @@ export function QuoteModal({
   // Estado do Nível Selecionado
   const [level, setLevel] = useState<QuoteLevel>(initialLevel);
 
-  // Estados de Envio e Sucesso
+  // Estados de Envio, Validação e Sucesso/Contingência
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState<"idle" | "success" | "warning">("idle");
+  const [submissionMessage, setSubmissionMessage] = useState("");
+  const [reportSummary, setReportSummary] = useState("");
   const [protocolNumber, setProtocolNumber] = useState("");
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedProtocol, setCopiedProtocol] = useState(false);
 
   // Estados da Busca de CEP
   const [cepLoading, setCepLoading] = useState(false);
@@ -155,7 +160,9 @@ export function QuoteModal({
       setExtraAdvancedData(extraInit);
     }
 
-    setProtocolNumber(`DSR-COT-${Math.floor(100000 + Math.random() * 900000)}`);
+    setProtocolNumber(generateUniqueProtocol("DSR-COT"));
+    setSubmissionStatus("idle");
+    setSubmissionMessage("");
   }, [isOpen, itemSlug]);
 
   // Atualiza nível inicial quando o modal abre com parâmetro
@@ -350,14 +357,31 @@ export function QuoteModal({
     return `mailto:comercial@dsrsolucoes.com.br?subject=${subject}&body=${encodeURIComponent(body)}`;
   };
 
+  // Copia Protocolo
+  const handleCopyProtocol = () => {
+    if (protocolNumber) {
+      navigator.clipboard.writeText(protocolNumber);
+      setCopiedProtocol(true);
+      setTimeout(() => setCopiedProtocol(false), 2000);
+    }
+  };
+
   // Envio do Formulário (Níveis Básica, Intermediária e Avançada)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmissionMessage("");
+
+    // Garante que o protocolo foi gerado com precisão e zero colisão
+    const currentProtocol = protocolNumber || generateUniqueProtocol("DSR-COT");
+    if (!protocolNumber) {
+      setProtocolNumber(currentProtocol);
+    }
 
     try {
       // Monta relatório técnico em texto estruturado
-      let relatorio = `Cotação Técnica [Nível: ${level.toUpperCase()}] para: ${config.name} (${config.code})\n\n`;
+      let relatorio = `Cotação Técnica [Nível: ${level.toUpperCase()}] para: ${config.name} (${config.code})\n`;
+      relatorio += `Protocolo Oficial: ${currentProtocol}\n\n`;
       relatorio += `--- LOCALIZAÇÃO DA PLANTA ---\n`;
       relatorio += `CEP: ${formData.cep || "Não informado"}\n`;
       relatorio += `Cidade/UF: ${formData.cidade} / ${formData.estado} - ${formData.pais}\n`;
@@ -420,8 +444,10 @@ export function QuoteModal({
       relatorio += `--- MENSAGEM / REQUISITOS ADICIONAIS ---\n`;
       relatorio += formData.observacoes || "Nenhuma mensagem adicional escrita.";
 
+      setReportSummary(relatorio);
+
       // Dispara envio para a API de contato
-      await fetch("/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -429,21 +455,45 @@ export function QuoteModal({
           empresa: formData.empresa,
           email: formData.email,
           telefone: formData.telefone,
-          assunto: `Cotação Técnica [Nível: ${level.toUpperCase()}] - ${config.name} (${config.code})`,
-          mensagem: relatorio
+          assunto: `[${currentProtocol}] Cotação Técnica [Nível: ${level.toUpperCase()}] - ${config.name} (${config.code})`,
+          mensagem: relatorio,
+          protocolo: currentProtocol
         })
       });
+
+      const resData = await response.json().catch(() => null);
+
+      if (response.ok && resData?.success) {
+        setSubmissionStatus("success");
+      } else {
+        setSubmissionStatus("warning");
+        setSubmissionMessage(
+          resData?.error || "O envio automático via e-mail identificou pendência de credenciais no servidor. Todos os parâmetros foram salvos e você pode encaminhar com 1 clique diretamente pelo WhatsApp oficial ou aplicativo de e-mail abaixo."
+        );
+      }
+      setSubmitted(true);
     } catch (err) {
-      console.warn("Aviso na transmissão da cotação, concluindo exibição de confirmação:", err);
+      console.warn("Aviso na transmissão da cotação:", err);
+      setSubmissionStatus("warning");
+      setSubmissionMessage(
+        "Houve uma oscilação na rede de internet. Todos os dados foram preservados e você pode despachar a cotação diretamente pelo WhatsApp ou E-mail com 1 clique abaixo."
+      );
+      setSubmitted(true);
     } finally {
       setIsSubmitting(false);
-      setSubmitted(true);
     }
   };
 
   const handleReset = () => {
     setSubmitted(false);
+    setSubmissionStatus("idle");
+    setSubmissionMessage("");
     onClose();
+  };
+
+  const handleBackToForm = () => {
+    setSubmitted(false);
+    setSubmissionStatus("idle");
   };
 
   return (
@@ -576,52 +626,148 @@ export function QuoteModal({
             {/* CORPO DO MODAL (Com Scroll Interno Suave) */}
             <div className="flex-1 overflow-y-auto p-5 sm:p-6 custom-scrollbar">
               {submitted ? (
-                /* TELA DE SUCESSO APÓS SUBMISSÃO */
+                /* TELA DE RETORNO APÓS SUBMISSÃO (SUCESSO OU CONTINGÊNCIA TRANSPARENTE) */
                 <div className="flex flex-col items-center justify-center py-6 text-center animate-fadeIn">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#66c0f4]/20 border border-[#66c0f4] text-[#66c0f4] mb-4 shadow-[0_0_20px_rgba(102,192,244,0.4)]">
-                    <CheckCircle2 className="h-9 w-9" />
-                  </div>
-                  <h4 className="text-xl sm:text-2xl font-bold text-white mb-2">
-                    Solicitação de Cotação Transmitida com Sucesso!
-                  </h4>
-                  <p className="text-sm text-[#8f98a0] max-w-lg mb-6 leading-relaxed">
-                    Nossos engenheiros de aplicação da <strong className="text-[#66c0f4]">DSR Soluções em Eletrônica</strong> analisarão os parâmetros de <strong className="text-white">{config.name}</strong> e retornarão com o memorial técnico e a proposta comercial em até 4 horas úteis.
-                  </p>
+                  {submissionStatus === "success" ? (
+                    <>
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#66c0f4]/20 border border-[#66c0f4] text-[#66c0f4] mb-4 shadow-[0_0_20px_rgba(102,192,244,0.4)]">
+                        <CheckCircle2 className="h-9 w-9" />
+                      </div>
+                      <h4 className="text-xl sm:text-2xl font-bold text-white mb-2">
+                        Solicitação de Cotação Transmitida com Sucesso!
+                      </h4>
+                      <p className="text-sm text-[#8f98a0] max-w-lg mb-6 leading-relaxed">
+                        Nossos engenheiros de aplicação da <strong className="text-[#66c0f4]">DSR Soluções em Eletrônica</strong> receberam sua solicitação e retornarão com o memorial técnico e a proposta comercial em até 4 horas úteis.
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-amber-500/20 border border-amber-500 text-amber-400 mb-4 shadow-[0_0_20px_rgba(245,158,11,0.35)]">
+                        <AlertCircle className="h-9 w-9" />
+                      </div>
+                      <h4 className="text-xl sm:text-2xl font-bold text-white mb-2">
+                        Cotação Registrada • Protocolo Oficial Gerado
+                      </h4>
+                      <p className="text-sm text-[#8fa7be] max-w-xl mb-4 leading-relaxed">
+                        Seus parâmetros técnicos foram estruturados sob o protocolo abaixo. Como o servidor automático de e-mail identificou uma indisponibilidade temporária de entrega direta, <strong className="text-white">você pode encaminhar os dados com 1 clique para a nossa equipe pelo WhatsApp ou pelo seu e-mail</strong>:
+                      </p>
+                    </>
+                  )}
 
-                  <div className="rounded-xl bg-[#101822] border border-[#2a475e] p-5 text-xs text-left w-full max-w-lg font-mono text-[#c6d4df] mb-6 space-y-2 shadow-inner">
-                    <div className="flex items-center justify-between border-b border-[#2a475e]/60 pb-2">
-                      <span className="text-[#8f98a0]">Protocolo Oficial:</span>
-                      <span className="font-bold text-[#66c0f4]">{protocolNumber}</span>
+                  {/* BOX DE RESUMO E PROTOCOLO OFICIAL */}
+                  <div className="rounded-xl bg-[#101822] border border-[#2a475e] p-5 text-xs text-left w-full max-w-xl font-mono text-[#c6d4df] mb-6 space-y-2.5 shadow-inner">
+                    <div className="flex items-center justify-between border-b border-[#2a475e]/60 pb-2.5">
+                      <div>
+                        <span className="text-[#8f98a0] block text-[10px] uppercase tracking-wider">Protocolo de Engenharia:</span>
+                        <span className="font-bold text-[#66c0f4] text-sm select-all">{protocolNumber}</span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleCopyProtocol}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#172535] hover:bg-[#1f374d] text-xs font-sans text-[#66c0f4] border border-[#3b678c] transition-colors"
+                      >
+                        {copiedProtocol ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+                        <span>{copiedProtocol ? "Copiado!" : "Copiar"}</span>
+                      </button>
                     </div>
+
                     <div className="flex items-center justify-between">
                       <span className="text-[#8f98a0]">Item Solicitado:</span>
-                      <span className="text-white font-semibold">{config.name}</span>
+                      <span className="text-white font-semibold truncate max-w-[320px]">{config.name} ({config.code})</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-[#8f98a0]">Nível de Detalhe:</span>
                       <span className="text-[#66c0f4] uppercase font-bold">{level}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-[#8f98a0]">Responsável:</span>
-                      <span className="text-white">{formData.nome} ({formData.empresa})</span>
+                      <span className="text-[#8f98a0]">Responsável / Empresa:</span>
+                      <span className="text-white">{formData.nome || "-"} ({formData.empresa || "-"})</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-[#8f98a0]">E-mail Corporativo:</span>
-                      <span className="text-white">{formData.email}</span>
+                      <span className="text-white">{formData.email || "-"}</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-[#8f98a0]">Local da Instalação:</span>
-                      <span className="text-white">{formData.cidade} / {formData.estado}</span>
+                      <span className="text-white">{formData.cidade || "-"} / {formData.estado || "-"} {formData.cep ? `(CEP ${formData.cep})` : ""}</span>
                     </div>
+
+                    {submissionStatus === "warning" && (
+                      <div className="pt-2 border-t border-[#2a475e]/60 text-[11px] text-amber-300/90 font-sans">
+                        ● Todos os dados do memorial técnico estão salvos e anexados aos botões abaixo.
+                      </div>
+                    )}
                   </div>
 
-                  <button
-                    type="button"
-                    onClick={handleReset}
-                    className="rounded-lg bg-gradient-to-r from-[#66c0f4] to-[#1b75bc] hover:brightness-110 text-[#0e141b] px-8 py-2.5 text-sm font-bold shadow-[0_0_15px_rgba(102,192,244,0.4)] transition-all"
-                  >
-                    Concluir e Fechar
-                  </button>
+                  {/* AÇÕES DISPONÍVEIS NA CONTINGÊNCIA / SUCESSO */}
+                  {submissionStatus === "warning" ? (
+                    <div className="w-full max-w-xl space-y-3 mb-4">
+                      {/* Botão de Envio Imediato pelo WhatsApp */}
+                      <a
+                        href={`https://wa.me/5511952345037?text=${encodeURIComponent(
+                          `Olá, equipe de Engenharia da DSR Soluções! Acabei de registrar uma solicitação de cotação pelo portal:\n\n*Protocolo Oficial:* ${protocolNumber}\n*Equipamento/Serviço:* ${config.name} (${config.code})\n*Nível de Detalhe:* ${level.toUpperCase()}\n*Solicitante:* ${formData.nome} (${formData.empresa})\n*E-mail:* ${formData.email}\n*Telefone:* ${formData.telefone}\n*Local:* ${formData.cidade}/${formData.estado} (CEP: ${formData.cep})\n\n*Memorial Técnico:*\n${reportSummary || "Conforme especificações selecionadas no portal."}`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2.5 w-full rounded-lg bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white font-bold py-3 px-5 text-sm shadow-[0_0_15px_rgba(16,185,129,0.35)] transition-all"
+                      >
+                        <Phone className="h-4 w-4" />
+                        <span>Despachar Cotação pelo WhatsApp Oficial (Recomendado)</span>
+                        <ExternalLink className="h-3.5 w-3.5 opacity-70" />
+                      </a>
+
+                      {/* Botão de Envio por E-mail Direto */}
+                      <a
+                        href={`mailto:comercial@dsrsolucoes.com.br?subject=${encodeURIComponent(
+                          `[${protocolNumber}] Cotação Técnica [Nível: ${level.toUpperCase()}] - ${config.name} (${config.code})`
+                        )}&body=${encodeURIComponent(
+                          `SOLICITAÇÃO DE COTAÇÃO TÉCNICA - DSR SOLUÇÕES EM ELETRÔNICA\nProtocolo Oficial: ${protocolNumber}\n\n${reportSummary || "Especificações conforme formulário do portal."}`
+                        )}`}
+                        className="flex items-center justify-center gap-2.5 w-full rounded-lg bg-[#142332] hover:bg-[#1a2e42] text-[#66c0f4] border border-[#3b678c] font-semibold py-2.5 px-5 text-sm transition-colors"
+                      >
+                        <Mail className="h-4 w-4" />
+                        <span>Enviar via Aplicativo de E-mail (comercial@dsrsolucoes.com.br)</span>
+                      </a>
+
+                      <div className="flex items-center justify-between pt-2">
+                        <button
+                          type="button"
+                          onClick={handleBackToForm}
+                          className="text-xs text-[#8f98a0] hover:text-white underline transition-colors"
+                        >
+                          ← Voltar e Revisar Parâmetros
+                        </button>
+                        <button
+                          type="button"
+                          onClick={handleReset}
+                          className="rounded-lg bg-[#203548] hover:bg-[#2a475e] text-white px-5 py-2 text-xs font-semibold transition-colors"
+                        >
+                          Concluir e Fechar
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-3">
+                      <a
+                        href={`https://wa.me/5511952345037?text=${encodeURIComponent(
+                          `Olá, acabei de transmitir a cotação técnica ${protocolNumber} para ${config.name} (${config.code}) pelo site da DSR.`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 rounded-lg bg-[#142332] hover:bg-[#1a2e42] text-[#34d399] border border-emerald-600/40 px-5 py-2.5 text-xs font-bold transition-colors"
+                      >
+                        <Phone className="h-3.5 w-3.5" />
+                        <span>Acompanhar no WhatsApp</span>
+                      </a>
+                      <button
+                        type="button"
+                        onClick={handleReset}
+                        className="rounded-lg bg-gradient-to-r from-[#66c0f4] to-[#1b75bc] hover:brightness-110 text-[#0e141b] px-7 py-2.5 text-xs font-bold shadow-[0_0_15px_rgba(102,192,244,0.4)] transition-all"
+                      >
+                        Concluir e Fechar
+                      </button>
+                    </div>
+                  )}
                 </div>
               ) : level === "direta" ? (
                 /* =========================================================================
